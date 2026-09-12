@@ -1,0 +1,18 @@
+ROUTE_QA_BEGIN
+
+PATH                          HTTP PRIVATE_METADATA SEED_COPY PRODUCT_IMAGE PRICE AVAILABILITY
+----                          ---- ---------------- --------- ------------- ----- ------------
+/us                           200  NONE             NONE      N/A           N/A   N/A
+/us/store                     200  NONE             NONE      N/A           N/A   N/A
+/us/products/pet-hair-remover 200  NONE             NONE      FOUND         FOUND N/A
+/us/cart                      200  NONE             NONE      N/A           N/A   N/A
+
+
+STORE_API_HTTP=200
+STORE_API_PRODUCT=prod_01M1JG54Z6PFY802QV32EJ174D|pet-hair-remover|Reusable Self-Cleaning Pet Hair Remover
+STORE_API_SKU=PAW-PHR-001
+STORE_API_PRICE=14.99|usd
+STORE_API_IMAGE=/assets/products/COMP-001-main-square.png
+STORE_API_PUBLIC_METADATA=asset_status,availability_mode,bulk_shipping_quote,medusa_write,pawfectly_availability_mode,pawfectly_compare_at_price,pawfectly_cost_price,pawfectly_currency,pawfectly_internal_sku,pawfectly_product_master_version,pawfectly_product_status,pawfectly_project_owned_inventory,pawfectly_public_category,pawfectly_public_metadata_version,pawfectly_record_status,pawfectly_record_type,pawfectly_selling_price,pawfectly_selling_price_confirmed,pawfectly_selling_price_status,pawfectly_source_product_id,pawfectly_storefront_purchasable,pawfectly_store_integration_approved_by_user,pawfectly_supplier_name,pawfectly_supplier_stock_status,pawfectly_supplier_url,previous_wide_asset,previous_wide_asset_role,previous_wide_asset_sha256,primary_image_aspect_ratio,product_status,project_owned_inventory,publish_status,real_payment,selling_price_confirmed,selling_price_status,source_bundle_candidate,source_component_id,source_component_type,source_fact_boundary,source_image_sha256,sourcing_gate_status,storefront_purchasable,store_integration_approved_by_user,store_integration_gate,supplier_stock_status,supplier_stock_status_source,variant_strategy
+STORE_API_PRIVATE_METADATA_LEAK=True
+ROUTE_QA_END

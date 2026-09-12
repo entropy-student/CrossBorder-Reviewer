@@ -1,0 +1,74 @@
+Scope: all 3 workspace projects
+Lockfile is up to date, resolution step is skipped
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Packages: +1475
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 1475, reused 129, downloaded 0, added 0
+Progress: resolved 1475, reused 262, downloaded 0, added 0
+Progress: resolved 1475, reused 602, downloaded 0, added 0
+Progress: resolved 1475, reused 695, downloaded 0, added 0
+Progress: resolved 1475, reused 800, downloaded 0, added 0
+Progress: resolved 1475, reused 910, downloaded 0, added 0
+Progress: resolved 1475, reused 972, downloaded 0, added 0
+Progress: resolved 1475, reused 1260, downloaded 0, added 0
+Progress: resolved 1475, reused 1452, downloaded 0, added 2
+Progress: resolved 1475, reused 1455, downloaded 0, added 27
+Progress: resolved 1475, reused 1455, downloaded 0, added 89
+Progress: resolved 1475, reused 1455, downloaded 0, added 142
+Progress: resolved 1475, reused 1456, downloaded 0, added 194
+Progress: resolved 1475, reused 1457, downloaded 0, added 209
+Progress: resolved 1475, reused 1457, downloaded 0, added 219
+Progress: resolved 1475, reused 1457, downloaded 0, added 270
+Progress: resolved 1475, reused 1457, downloaded 0, added 325
+Progress: resolved 1475, reused 1457, downloaded 0, added 360
+Progress: resolved 1475, reused 1457, downloaded 0, added 460
+Progress: resolved 1475, reused 1457, downloaded 0, added 586
+Progress: resolved 1475, reused 1457, downloaded 0, added 626
+Progress: resolved 1475, reused 1457, downloaded 0, added 681
+Progress: resolved 1475, reused 1457, downloaded 0, added 710
+Progress: resolved 1475, reused 1457, downloaded 0, added 726
+Progress: resolved 1475, reused 1457, downloaded 0, added 775
+Progress: resolved 1475, reused 1457, downloaded 0, added 788
+Progress: resolved 1475, reused 1457, downloaded 0, added 828
+Progress: resolved 1475, reused 1457, downloaded 0, added 884
+Progress: resolved 1475, reused 1457, downloaded 0, added 894
+Progress: resolved 1475, reused 1457, downloaded 0, added 910
+Progress: resolved 1475, reused 1457, downloaded 0, added 911
+Progress: resolved 1475, reused 1457, downloaded 0, added 919
+Progress: resolved 1475, reused 1457, downloaded 0, added 937
+Progress: resolved 1475, reused 1457, downloaded 0, added 962
+Progress: resolved 1475, reused 1457, downloaded 0, added 1034
+Progress: resolved 1475, reused 1457, downloaded 0, added 1141
+Progress: resolved 1475, reused 1457, downloaded 0, added 1240
+Progress: resolved 1475, reused 1457, downloaded 0, added 1287
+Progress: resolved 1475, reused 1457, downloaded 0, added 1330
+Progress: resolved 1475, reused 1457, downloaded 0, added 1333
+Progress: resolved 1475, reused 1457, downloaded 0, added 1348
+Progress: resolved 1475, reused 1457, downloaded 0, added 1370
+Progress: resolved 1475, reused 1457, downloaded 0, added 1429
+Progress: resolved 1475, reused 1457, downloaded 0, added 1459
+Progress: resolved 1475, reused 1457, downloaded 0, added 1470
+Progress: resolved 1475, reused 1457, downloaded 0, added 1471
+Progress: resolved 1475, reused 1457, downloaded 0, added 1472
+Progress: resolved 1475, reused 1457, downloaded 0, added 1473
+Progress: resolved 1475, reused 1457, downloaded 0, added 1475, done
+(node:31372) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+devDependencies:
++ @medusajs/eslint-plugin 2.19.0
++ eslint 9.39.5
++ jiti 2.7.0
++ prettier 3.9.6
++ turbo 2.10.12
+
+╭ Warning ─────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│   Ignored build scripts: @medusajs/telemetry, @swc/core, esbuild,            │
+│   msgpackr-extract, protobufjs, sharp, unrs-resolver.                        │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed     │
+│   to run scripts.                                                            │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+Done in 1m 0.1s using pnpm v10.11.1

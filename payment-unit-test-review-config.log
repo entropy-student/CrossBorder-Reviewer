@@ -1,0 +1,27 @@
+PASS src/modules/paypal/__tests__/paypal.unit.spec.ts (6.755 s)
+  PayPal provider scaffold
+    √ keeps the provider disabled without requiring credentials (2 ms)
+    √ does not call an injected transport while disabled (3 ms)
+    √ fails closed for unsupported auto-capture and payment intent values (2 ms)
+    √ fails closed when the enabled provider receives untouched template credentials (1 ms)
+    √ uses an opaque Medusa session ID and freezes create intent to AUTHORIZE (2 ms)
+    √ uses authorization ID for capture and preserves operation-specific responses (3 ms)
+    √ reconciles status evidence through getPaymentStatus and retrievePayment (1 ms)
+    √ uses explicit USD/EUR decimal handling without floating-point rounding (2 ms)
+    √ rejects response money mismatches (1 ms)
+    √ uses the same refund key for a retry and distinct keys for distinct refunds (1 ms)
+    √ bounds locally represented cumulative refunds
+    √ requires a Medusa idempotency key for refund operations
+    √ restricts actionable webhooks to payment authorization/capture events (1 ms)
+    √ fails closed on malformed or uncorrelated webhook resources (1 ms)
+    √ rejects an invalid webhook signature before mapping
+    √ keeps provider secrets out of safe payment data (1 ms)
+    √ derives stable operation keys from opaque session and operation identity (1 ms)
+    √ keeps update operation identity stable without treating Orders PATCH as PayPal-Request-Id (1 ms)
+    √ preserves webhook headers, raw body and parsed data at the verification seam (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       19 passed, 19 total
+Snapshots:   0 total
+Time:        6.937 s
+Ran all test suites.

@@ -1,0 +1,79 @@
+
+> dtc-starter-monorepo@ verify:build C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base
+> pnpm -r build
+
+[WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.overrides". See https://pnpm.io/settings for the new home of each setting.
+Scope: 2 of 3 workspace projects
+apps/backend build$ medusa build
+apps/storefront build$ next build
+apps/storefront build:    ▲ Next.js 15.5.24
+apps/storefront build:    - Environments: .env.local
+apps/storefront build:    Creating an optimized production build ...
+apps/backend build: [32minfo[39m:    redisUrl not found. A fake redis instance will be used.
+apps/backend build: [32minfo[39m:    Generating types...
+apps/backend build: [32minfo[39m:    No link to load from C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\node_modules\.pnpm\@medusajs+draft-order@2.19._ab547186112aa2cacb92323532778ff2\node_modules\@medusajs\draft-order\.medusa\server\src\links. skipped.
+apps/backend build: [32minfo[39m:    Types generated successfully
+apps/backend build: [32minfo[39m:    Linting project...
+apps/backend build: [32minfo[39m:    Starting build...
+apps/backend build: [32minfo[39m:    Compiling backend source...
+apps/backend build: [32minfo[39m:    Removing existing ".medusa\server" folder
+apps/backend build: [32minfo[39m:    Compiling frontend source...
+apps/backend build: [32minfo[39m:    Backend build completed successfully (9.84s)
+apps/storefront build:  ✓ Compiled successfully in 13.5s
+apps/storefront build:    Linting and checking validity of types ...
+apps/storefront build: ./src/modules/checkout/components/shipping/index.tsx
+apps/storefront build: 119:6  Warning: React Hook useEffect has missing dependencies: '_pickupMethods', '_shippingMethods', 'cart.id', and 'shippingMethodId'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+apps/storefront build: ./src/modules/checkout/components/shipping-address/index.tsx
+apps/storefront build: 84:6  Warning: React Hook useEffect has a missing dependency: 'customer.email'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+apps/storefront build: ./src/modules/products/components/product-actions/index.tsx
+apps/storefront build: 100:6  Warning: React Hook useEffect has missing dependencies: 'pathname', 'router', and 'searchParams'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+apps/storefront build: info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+apps/storefront build:    Collecting page data ...
+apps/storefront build:    Generating static pages (0/46) ...
+apps/storefront build:    Generating static pages (11/46) 
+apps/storefront build:    Generating static pages (22/46) 
+apps/storefront build:    Generating static pages (34/46) 
+apps/storefront build:  ✓ Generating static pages (46/46)
+apps/storefront build:    Finalizing page optimization ...
+apps/storefront build:    Collecting build traces ...
+apps/storefront build: Route (app)                                                Size  First Load JS
+apps/storefront build: ┌ ○ /_not-found                                           150 B         103 kB
+apps/storefront build: ├ ƒ /[countryCode]                                        343 B         112 kB
+apps/storefront build: ├ ƒ /[countryCode]/account                              4.64 kB         111 kB
+apps/storefront build: ├ ƒ /[countryCode]/account/addresses                    5.26 kB         131 kB
+apps/storefront build: ├ ƒ /[countryCode]/account/orders                       5.43 kB         117 kB
+apps/storefront build: ├ ƒ /[countryCode]/account/orders/details/[id]          3.15 kB         118 kB
+apps/storefront build: ├ ƒ /[countryCode]/account/profile                      4.33 kB         121 kB
+apps/storefront build: ├ ƒ /[countryCode]/cart                                 1.96 kB         120 kB
+apps/storefront build: ├ ● /[countryCode]/categories/[...category]               206 B         156 kB
+apps/storefront build: ├   ├ /dk/categories/shirts
+apps/storefront build: ├   ├ /dk/categories/sweatshirts
+apps/storefront build: ├   ├ /dk/categories/pants
+apps/storefront build: ├   └ [+29 more paths]
+apps/storefront build: ├ ƒ /[countryCode]/checkout                             31.4 kB         188 kB
+apps/storefront build: ├ ● /[countryCode]/collections/[handle]                   504 B         156 kB
+apps/storefront build: ├ ƒ /[countryCode]/order/[id]/confirmed                 3.02 kB         115 kB
+apps/storefront build: ├ ƒ /[countryCode]/order/[id]/transfer/[token]          2.36 kB         105 kB
+apps/storefront build: ├ ƒ /[countryCode]/order/[id]/transfer/[token]/accept     150 B         103 kB
+apps/storefront build: ├ ƒ /[countryCode]/order/[id]/transfer/[token]/decline    150 B         103 kB
+apps/storefront build: ├ ● /[countryCode]/products/[handle]                    7.72 kB         152 kB
+apps/storefront build: ├   ├ /dk/products/pet-hair-remover
+apps/storefront build: ├   ├ /fr/products/pet-hair-remover
+apps/storefront build: ├   ├ /de/products/pet-hair-remover
+apps/storefront build: ├   └ [+5 more paths]
+apps/storefront build: ├ ƒ /[countryCode]/store                                  504 B         156 kB
+apps/storefront build: ├ ƒ /[countryCode]/verify-account                       2.59 kB         109 kB
+apps/storefront build: ├ ƒ /api/payment-return                                   150 B         103 kB
+apps/storefront build: ├ ○ /opengraph-image.jpg                                    0 B            0 B
+apps/storefront build: └ ○ /twitter-image.jpg                                      0 B            0 B
+apps/storefront build: + First Load JS shared by all                            103 kB
+apps/storefront build:   ├ chunks/2389-7903ca1a00af8816.js                     46.5 kB
+apps/storefront build:   ├ chunks/edd402d7-676662679f3983af.js                 54.2 kB
+apps/storefront build:   └ other shared chunks (total)                         2.05 kB
+apps/storefront build: ƒ Middleware                                            33.2 kB
+apps/storefront build: ○  (Static)   prerendered as static content
+apps/storefront build: ●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+apps/storefront build: ƒ  (Dynamic)  server-rendered on demand
+apps/storefront build: Done
+apps/backend build: [32minfo[39m:    Frontend build completed successfully (41.23s)
+apps/backend build: Done

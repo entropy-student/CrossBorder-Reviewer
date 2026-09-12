@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "COMPONENT_SAMPLE_TEST_RESULT",
+  "component_id": "COMP-001",
+  "sample_receipt_reference": null,
+  "sample_test_status": "NOT_TESTED",
+  "test_date": null,
+  "operator": null,
+  "scorecard_reference": "PET_HAIR_REMOVER_SAMPLE_SCORECARD.json",
+  "tests": [
+    { "test_id": "HAIR_REMOVAL_EFFICIENCY", "raw_observation": "NOT_TESTED", "score": "NOT_TESTED", "evidence": [], "hard_fail": "NOT_TESTED" },
+    { "test_id": "FABRIC_SAFETY", "raw_observation": "NOT_TESTED", "score": "NOT_TESTED", "evidence": [], "hard_fail": "NOT_TESTED" },
+    { "test_id": "SELF_CLEANING_EFFECTIVENESS", "raw_observation": "NOT_TESTED", "score": "NOT_TESTED", "evidence": [], "hard_fail": "NOT_TESTED" },
+    { "test_id": "HAIR_BIN_CLEANING", "raw_observation": "NOT_TESTED", "score": "NOT_TESTED", "evidence": [], "hard_fail": "NOT_TESTED" },
+    { "test_id": "HAND_FEEL", "raw_observation": "NOT_TESTED", "score": "NOT_TESTED", "evidence": [], "hard_fail": "NOT_TESTED" },
+    { "test_id": "PLASTIC_FINISH", "raw_observation": "NOT_TESTED", "score": "NOT_TESTED", "evidence": [], "hard_fail": "NOT_TESTED" },
+    { "test_id": "STRUCTURAL_RIGIDITY", "raw_observation": "NOT_TESTED", "score": "NOT_TESTED", "evidence": [], "hard_fail": "NOT_TESTED" },
+    { "test_id": "ROLLER_MECHANISM_SMOOTHNESS", "raw_observation": "NOT_TESTED", "score": "NOT_TESTED", "evidence": [], "hard_fail": "NOT_TESTED" },
+    { "test_id": "REPEATED_USE_DURABILITY", "raw_observation": "NOT_TESTED", "score": "NOT_TESTED", "evidence": [], "hard_fail": "NOT_TESTED" },
+    { "test_id": "CLEANING_CONVENIENCE", "raw_observation": "NOT_TESTED", "score": "NOT_TESTED", "evidence": [], "hard_fail": "NOT_TESTED" },
+    { "test_id": "VIDEO_DEMONSTRATION_QUALITY", "raw_observation": "NOT_TESTED", "score": "NOT_TESTED", "evidence": [], "hard_fail": "NOT_TESTED" },
+    { "test_id": "VISIBLE_MANUFACTURING_DEFECTS", "raw_observation": "NOT_TESTED", "score": "NOT_TESTED", "evidence": [], "hard_fail": "NOT_TESTED" }
+  ],
+  "overall_score": "NOT_TESTED",
+  "hard_fail": "NOT_TESTED",
+  "sample_result": "NOT_TESTED",
+  "procurement_gate_after_test": "HOLD_UNTIL_DECISION",
+  "photos": [],
+  "videos": [],
+  "operator_notes": null
+}

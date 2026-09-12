@@ -1,0 +1,6 @@
+
+> dtc-starter-monorepo@ typecheck C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base
+> pnpm --dir apps/backend run typecheck && pnpm --dir apps/storefront run typecheck
+
+$ tsc --noEmit --incremental false --pretty false
+$ tsc --noEmit --incremental false --pretty false

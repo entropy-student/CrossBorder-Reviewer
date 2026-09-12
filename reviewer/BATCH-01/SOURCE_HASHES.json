@@ -1,0 +1,78 @@
+[
+  {
+    "path": ".github/workflows/verify.yml",
+    "sha256": "DBA2EAADE4C5A7AE18E2ED727F57CE5CC45CCD21EA2FDE1A6580D6AF63096398"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/backend/package.json",
+    "sha256": "5238ECA63CB7FAED4160F7BF2A064C3F62E678F41197493E50705426ACB752B6"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/backend/scripts/run-jest.cjs",
+    "sha256": "0569E7D79791AE5FE669F26FDAE4D28BF643FEA566F9FD745388FE3260B3CF72"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/storefront/next.config.js",
+    "sha256": "A40A5E3B2433E52B6115DF44EF4F9BDBA63A42F32C4D27C5C95F37AAD2C0BC0D"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/storefront/package.json",
+    "sha256": "82F2B0C68FA36DA8B9024E3DB8A3C12DC7E6C34D9FA6E2E42862A3FC14A45B23"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/storefront/scripts/run-eslint.cjs",
+    "sha256": "E7E12F8730D8CCD71A3F20F9E719B5C3C699C53C1A3FC27979177CD770F9AF94"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/data/cart.ts",
+    "sha256": "C6A20C3F640C7CEE9E0383F4CD09B1095605F63BCBB41F9916994D5E65D9B7CA"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/layout/components/language-select/index.tsx",
+    "sha256": "85AE22153AEB8DA3C311169B19844BC413B2FC694BFC2BCDAB8121B5A046CE7F"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/package.json",
+    "sha256": "01CCC67FC937D76A5ADDA59A7E43E17C567728710E444A0E80FD6E7ABCEAAE45"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/pnpm-lock.yaml",
+    "sha256": "2AC9D0473EFDBFFC6A9A303F9B5ED84F98DC1F02939AAE150818160D41E1542B"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/scripts/_common.ps1",
+    "sha256": "F2A18B75250360BF6853E1C0E23CEF03B1533558B5C34A08A5EB8886400DC8C6"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/scripts/acceptance-smoke.ps1",
+    "sha256": "8926E745806B23B43D22492ABE1F3BA1B08CC63138A008AF5CC54D9713C4C6F7"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/scripts/build-production.ps1",
+    "sha256": "3D9207E1F6F6C807DAF9B8BA511F1474979A23938C54D2670925BD028098E04D"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/scripts/process-management.security.tests.ps1",
+    "sha256": "AB032F74F69167D6C2B2F89D00A199C668819E56EE0F0DE2E243F8EAB2CAE3A7"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/scripts/service-identity.security.tests.ps1",
+    "sha256": "18C862C01B233D3453ACD562935F753F3233B496CC26CF6EA0A1F0499759931D"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/scripts/start-local.ps1",
+    "sha256": "2C808E7B06FB908D84C3E9E1CDFB143F77FB6D8DC4261FB969A5F6AE01339AD1"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/scripts/verification-gate.security.tests.ps1",
+    "sha256": "B9517A756CFEE63B5DB51EE35E8A86BAF5EAA7E7FAB917074688BAC27718412A"
+  },
+  {
+    "path": "04_docs/scripts/92-prepare-review-staging.ps1",
+    "sha256": "84892FF43FEFE49B9E7199AFFB5B10B9CEA7CFD95B3A80A90C58C250A40F40D4"
+  },
+  {
+    "path": "04_docs/scripts/92-prepare-review-staging.security.tests.ps1",
+    "sha256": "138FD6B8589F77DE02070BFEB7C09952AA21F2C19E6826C6FEF9E9F07CD2F1F3"
+  }
+]

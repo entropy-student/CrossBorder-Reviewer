@@ -1,0 +1,5 @@
+COMMAND_FROM_DOCUMENTED_ROOT=corepack pnpm@10.11.1 --dir apps/storefront build
+WORKING_DIRECTORY=C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\storefront
+EXIT_CODE=1
+ ERROR  ENOENT: no such file or directory, lstat 'C:\Users\34707\Documents\ChatGPT\跨境电商\apps'
+For help, run: pnpm help run

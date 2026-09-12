@@ -1,0 +1,575 @@
+{
+  "generatedAt": "2026-09-05T07:11:46.345Z",
+  "method": "Pure source function evaluation in Node VM; original source files unchanged; no external side effects",
+  "results": [
+    {
+      "name": "CURRENT_MASTER_GATES",
+      "observation": {
+        "result": "NEEDS_VERIFICATION",
+        "schema_valid": true,
+        "dry_run_not_attempted": false,
+        "checks": {
+          "currency": "PASS",
+          "purchasability": "PASS",
+          "hs_code": "NEEDS_VERIFICATION",
+          "weight": "PASS",
+          "dimensions": "NEEDS_VERIFICATION",
+          "package_dimensions": "NEEDS_VERIFICATION",
+          "package_weight": "NEEDS_VERIFICATION"
+        },
+        "gates": {
+          "IMPORT_REQUIRED": "PASS",
+          "PUBLISH_REQUIRED": "PASS",
+          "LOGISTICS_REQUIRED": "NEEDS_VERIFICATION"
+        },
+        "issue_count": 5,
+        "issues": [
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "physical.dimensions",
+            "state": "MISSING",
+            "message": "All dimensions and a controlled unit must be verified for logistics.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          },
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "physical.package_dimensions",
+            "state": "MISSING",
+            "message": "Dimensions and unit are required for the logistics gate.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          },
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "physical.package_weight",
+            "state": "MISSING",
+            "message": "Measurement value and controlled unit are required for logistics.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          },
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "cross_border.country_of_origin",
+            "state": "MISSING",
+            "message": "Country of origin is required for cross-border logistics review.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          },
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "cross_border.hs_code.status",
+            "state": "UNVERIFIED",
+            "message": "Known HS code values require status VERIFIED.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MISSING_VARIANT_OPTION_PASSES",
+      "observation": {
+        "result": "NEEDS_VERIFICATION",
+        "gates": {
+          "IMPORT_REQUIRED": "PASS",
+          "PUBLISH_REQUIRED": "PASS",
+          "LOGISTICS_REQUIRED": "NEEDS_VERIFICATION"
+        },
+        "issues": [
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "physical.dimensions",
+            "state": "MISSING",
+            "message": "All dimensions and a controlled unit must be verified for logistics.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          },
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "physical.package_dimensions",
+            "state": "MISSING",
+            "message": "Dimensions and unit are required for the logistics gate.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          },
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "physical.package_weight",
+            "state": "MISSING",
+            "message": "Measurement value and controlled unit are required for logistics.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          },
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "cross_border.country_of_origin",
+            "state": "MISSING",
+            "message": "Country of origin is required for cross-border logistics review.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          },
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "cross_border.hs_code.status",
+            "state": "UNVERIFIED",
+            "message": "Known HS code values require status VERIFIED.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          }
+        ]
+      }
+    },
+    {
+      "name": "DUPLICATE_OPTION_COMBINATIONS_PASS",
+      "observation": {
+        "result": "NEEDS_VERIFICATION",
+        "gates": {
+          "IMPORT_REQUIRED": "PASS",
+          "PUBLISH_REQUIRED": "PASS",
+          "LOGISTICS_REQUIRED": "NEEDS_VERIFICATION"
+        },
+        "issues": [
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "physical.dimensions",
+            "state": "MISSING",
+            "message": "All dimensions and a controlled unit must be verified for logistics.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          },
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "physical.package_dimensions",
+            "state": "MISSING",
+            "message": "Dimensions and unit are required for the logistics gate.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          },
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "physical.package_weight",
+            "state": "MISSING",
+            "message": "Measurement value and controlled unit are required for logistics.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          },
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "cross_border.country_of_origin",
+            "state": "MISSING",
+            "message": "Country of origin is required for cross-border logistics review.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          },
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "cross_border.hs_code.status",
+            "state": "UNVERIFIED",
+            "message": "Known HS code values require status VERIFIED.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          }
+        ]
+      }
+    },
+    {
+      "name": "FRACTIONAL_AND_NEGATIVE_INVENTORY_PASS",
+      "observation": {
+        "result": "NEEDS_VERIFICATION",
+        "gates": {
+          "IMPORT_REQUIRED": "PASS",
+          "PUBLISH_REQUIRED": "PASS",
+          "LOGISTICS_REQUIRED": "NEEDS_VERIFICATION"
+        },
+        "issues": [
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "physical.dimensions",
+            "state": "MISSING",
+            "message": "All dimensions and a controlled unit must be verified for logistics.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          },
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "physical.package_dimensions",
+            "state": "MISSING",
+            "message": "Dimensions and unit are required for the logistics gate.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          },
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "physical.package_weight",
+            "state": "MISSING",
+            "message": "Measurement value and controlled unit are required for logistics.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          },
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "cross_border.country_of_origin",
+            "state": "MISSING",
+            "message": "Country of origin is required for cross-border logistics review.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          },
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "cross_border.hs_code.status",
+            "state": "UNVERIFIED",
+            "message": "Known HS code values require status VERIFIED.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          }
+        ]
+      }
+    },
+    {
+      "name": "INVALID_MAIN_IMAGE_URL_PASSES_PUBLISH",
+      "observation": {
+        "result": "NEEDS_VERIFICATION",
+        "gates": {
+          "IMPORT_REQUIRED": "PASS",
+          "PUBLISH_REQUIRED": "PASS",
+          "LOGISTICS_REQUIRED": "NEEDS_VERIFICATION"
+        },
+        "issues": [
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "physical.dimensions",
+            "state": "MISSING",
+            "message": "All dimensions and a controlled unit must be verified for logistics.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          },
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "physical.package_dimensions",
+            "state": "MISSING",
+            "message": "Dimensions and unit are required for the logistics gate.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          },
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "physical.package_weight",
+            "state": "MISSING",
+            "message": "Measurement value and controlled unit are required for logistics.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          },
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "cross_border.country_of_origin",
+            "state": "MISSING",
+            "message": "Country of origin is required for cross-border logistics review.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          },
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "cross_border.hs_code.status",
+            "state": "UNVERIFIED",
+            "message": "Known HS code values require status VERIFIED.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          }
+        ]
+      }
+    },
+    {
+      "name": "FIXTURE_RECORD_TYPE_WITH_PUBLISHED_STATUS_PASSES",
+      "observation": {
+        "result": "NEEDS_VERIFICATION",
+        "gates": {
+          "IMPORT_REQUIRED": "PASS",
+          "PUBLISH_REQUIRED": "PASS",
+          "LOGISTICS_REQUIRED": "NEEDS_VERIFICATION"
+        },
+        "issues": [
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "physical.dimensions",
+            "state": "MISSING",
+            "message": "All dimensions and a controlled unit must be verified for logistics.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          },
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "physical.package_dimensions",
+            "state": "MISSING",
+            "message": "Dimensions and unit are required for the logistics gate.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          },
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "physical.package_weight",
+            "state": "MISSING",
+            "message": "Measurement value and controlled unit are required for logistics.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          },
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "cross_border.country_of_origin",
+            "state": "MISSING",
+            "message": "Country of origin is required for cross-border logistics review.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          },
+          {
+            "gate": "LOGISTICS_REQUIRED",
+            "field": "cross_border.hs_code.status",
+            "state": "UNVERIFIED",
+            "message": "Known HS code values require status VERIFIED.",
+            "classification": "logistics blocker",
+            "severity": "NEEDS_VERIFICATION"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PREVIEW_TO_PRODUCTION_LEAVES_INVENTORY_UNMANAGED",
+      "observation": {
+        "gate": {
+          "IMPORT_REQUIRED": "PASS",
+          "PUBLISH_REQUIRED": "PASS",
+          "LOGISTICS_REQUIRED": "NEEDS_VERIFICATION"
+        },
+        "updateVariant": {
+          "title": "Default",
+          "sku": "PAW-PHR-001",
+          "options": {
+            "Variant": "Default"
+          },
+          "prices": [
+            {
+              "amount": 14.99,
+              "currency_code": "usd"
+            }
+          ],
+          "metadata": {
+            "pawfectly_source_variant_id": null,
+            "pawfectly_inventory_status": "IN_STOCK",
+            "pawfectly_inventory_quantity": 10,
+            "pawfectly_storefront_purchasable": "YES",
+            "pawfectly_cost_price": 1.6,
+            "pawfectly_compare_at_price": null
+          },
+          "id": "variant_review"
+        },
+        "setsManageInventory": false
+      }
+    },
+    {
+      "name": "DRY_RUN_VS_ACTUAL_PAYLOAD",
+      "observation": {
+        "onlyDryMetadata": [
+          "pawfectly_currency_minor_exponent",
+          "pawfectly_weight",
+          "pawfectly_package_weight",
+          "pawfectly_hs_code",
+          "pawfectly_taxonomy",
+          "pawfectly_physical",
+          "pawfectly_operations",
+          "pawfectly_cross_border",
+          "pawfectly_provenance"
+        ],
+        "onlyActualMetadata": [
+          "store_integration_approved_by_user",
+          "store_integration_gate",
+          "product_status",
+          "source_component_id",
+          "source_component_type",
+          "source_bundle_candidate",
+          "selling_price_status",
+          "selling_price_confirmed",
+          "variant_strategy",
+          "publish_status",
+          "sourcing_gate_status",
+          "asset_status",
+          "source_image_sha256",
+          "primary_image_aspect_ratio",
+          "previous_wide_asset",
+          "previous_wide_asset_sha256",
+          "previous_wide_asset_role",
+          "supplier_stock_status",
+          "supplier_stock_status_source",
+          "project_owned_inventory",
+          "storefront_purchasable",
+          "availability_mode",
+          "source_fact_boundary",
+          "bulk_shipping_quote",
+          "medusa_write",
+          "real_payment",
+          "public_merchandising_copy_review",
+          "pawfectly_record_type",
+          "pawfectly_record_status",
+          "pawfectly_product_status",
+          "pawfectly_store_integration_approved_by_user",
+          "pawfectly_selling_price_status",
+          "pawfectly_selling_price_confirmed"
+        ],
+        "actualSensitiveMetadataKeys": [
+          "store_integration_approved_by_user",
+          "store_integration_gate",
+          "sourcing_gate_status",
+          "supplier_stock_status",
+          "supplier_stock_status_source",
+          "bulk_shipping_quote",
+          "pawfectly_supplier_name",
+          "pawfectly_supplier_url",
+          "pawfectly_cost_price",
+          "pawfectly_store_integration_approved_by_user",
+          "pawfectly_supplier_stock_status"
+        ]
+      }
+    },
+    {
+      "name": "SECOND_VARIANT_WRONG_PRICE_READBACK_NOT_DETECTED",
+      "observation": {
+        "accepted": true,
+        "expectedSecondPrice": 99,
+        "returnedSecondPrice": 1
+      }
+    },
+    {
+      "name": "KNOWN_SUPPLIER_EVIDENCE_BLOCKED_BY_FIXED_UNKNOWN_CHECK",
+      "observation": {
+        "result": "BLOCKED",
+        "schema_valid": true,
+        "gates": {
+          "SOURCE_GATE": "PASS",
+          "SAMPLE_GATE": "NEEDS_TEST",
+          "PROCUREMENT_GATE": "HOLD",
+          "LOGISTICS_GATE": "NEEDS_VERIFICATION",
+          "RISK_GATE": "NEEDS_VERIFICATION"
+        },
+        "checks": {
+          "BUNDLE_ID": "PASS",
+          "NO_INVENTED_FIELDS": "FAIL",
+          "SUPPLIER_CLAIMS_LABELED": "PASS",
+          "BULK_SHIPPING_QUOTE_LABELED": "PASS",
+          "HS_NOT_VERIFIED": "PASS",
+          "FTO_NOT_VERIFIED": "PASS",
+          "DROPSHIP_UNKNOWN": "PASS",
+          "UNIT_PACKAGE_UNKNOWN": "PASS",
+          "COST_CALCULATION": "PASS",
+          "SAMPLE_SCORE": "NOT_TESTED",
+          "HARD_FAIL": "NOT_TESTED",
+          "QUOTE_RECONFIRMATION_REQUIRED": "YES",
+          "BULK_ORDER_GATE": "HOLD",
+          "MEDUSA_WRITE": "NO"
+        },
+        "issue_count": 1,
+        "issues": [
+          {
+            "field": "checks",
+            "state": "INVALID",
+            "message": "One or more evidence-preservation checks failed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "FAILED_SAMPLE_WITH_HARD_FAIL_RETURNS_NEEDS_TEST",
+      "observation": {
+        "result": "NEEDS_VERIFICATION",
+        "schema_valid": true,
+        "gates": {
+          "SOURCE_GATE": "PASS",
+          "SAMPLE_GATE": "NEEDS_TEST",
+          "PROCUREMENT_GATE": "HOLD",
+          "LOGISTICS_GATE": "NEEDS_VERIFICATION",
+          "RISK_GATE": "NEEDS_VERIFICATION"
+        },
+        "checks": {
+          "BUNDLE_ID": "PASS",
+          "NO_INVENTED_FIELDS": "PASS",
+          "SUPPLIER_CLAIMS_LABELED": "PASS",
+          "BULK_SHIPPING_QUOTE_LABELED": "PASS",
+          "HS_NOT_VERIFIED": "PASS",
+          "FTO_NOT_VERIFIED": "PASS",
+          "DROPSHIP_UNKNOWN": "PASS",
+          "UNIT_PACKAGE_UNKNOWN": "PASS",
+          "COST_CALCULATION": "PASS",
+          "SAMPLE_SCORE": 0,
+          "HARD_FAIL": "YES",
+          "QUOTE_RECONFIRMATION_REQUIRED": "YES",
+          "BULK_ORDER_GATE": "HOLD",
+          "MEDUSA_WRITE": "NO"
+        },
+        "issue_count": 0,
+        "issues": []
+      }
+    },
+    {
+      "name": "SAMPLE_PASS_WITH_HARD_FAIL_AND_PROCUREMENT_OPEN_ACCEPTED_IN_GATES",
+      "observation": {
+        "result": "NEEDS_VERIFICATION",
+        "schema_valid": true,
+        "gates": {
+          "SOURCE_GATE": "PASS",
+          "SAMPLE_GATE": "PASS",
+          "PROCUREMENT_GATE": "OPEN",
+          "LOGISTICS_GATE": "NEEDS_VERIFICATION",
+          "RISK_GATE": "NEEDS_VERIFICATION"
+        },
+        "checks": {
+          "BUNDLE_ID": "PASS",
+          "NO_INVENTED_FIELDS": "PASS",
+          "SUPPLIER_CLAIMS_LABELED": "PASS",
+          "BULK_SHIPPING_QUOTE_LABELED": "PASS",
+          "HS_NOT_VERIFIED": "PASS",
+          "FTO_NOT_VERIFIED": "PASS",
+          "DROPSHIP_UNKNOWN": "PASS",
+          "UNIT_PACKAGE_UNKNOWN": "PASS",
+          "COST_CALCULATION": "PASS",
+          "SAMPLE_SCORE": 0,
+          "HARD_FAIL": "YES",
+          "QUOTE_RECONFIRMATION_REQUIRED": "YES",
+          "BULK_ORDER_GATE": "OPEN",
+          "MEDUSA_WRITE": "NO"
+        },
+        "issue_count": 0,
+        "issues": []
+      }
+    },
+    {
+      "name": "NEGATIVE_COMPONENT_MEASUREMENT_SCHEMA_ACCEPTED",
+      "observation": {
+        "result": "NEEDS_VERIFICATION",
+        "schema_valid": true,
+        "gates": {
+          "SOURCE_GATE": "PASS",
+          "SAMPLE_GATE": "NEEDS_TEST",
+          "PROCUREMENT_GATE": "HOLD",
+          "LOGISTICS_GATE": "NEEDS_VERIFICATION",
+          "RISK_GATE": "NEEDS_VERIFICATION"
+        },
+        "checks": {
+          "BUNDLE_ID": "PASS",
+          "NO_INVENTED_FIELDS": "PASS",
+          "SUPPLIER_CLAIMS_LABELED": "PASS",
+          "BULK_SHIPPING_QUOTE_LABELED": "PASS",
+          "HS_NOT_VERIFIED": "PASS",
+          "FTO_NOT_VERIFIED": "PASS",
+          "DROPSHIP_UNKNOWN": "PASS",
+          "UNIT_PACKAGE_UNKNOWN": "PASS",
+          "COST_CALCULATION": "PASS",
+          "SAMPLE_SCORE": "NOT_TESTED",
+          "HARD_FAIL": "NOT_TESTED",
+          "QUOTE_RECONFIRMATION_REQUIRED": "YES",
+          "BULK_ORDER_GATE": "HOLD",
+          "MEDUSA_WRITE": "NO"
+        },
+        "issue_count": 0,
+        "issues": []
+      }
+    }
+  ]
+}

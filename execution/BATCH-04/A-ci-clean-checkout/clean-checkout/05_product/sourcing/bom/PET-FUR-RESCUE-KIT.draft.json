@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "BUNDLE_BOM",
+  "bom_id": "BOM-PET-FUR-RESCUE-KIT-DRAFT",
+  "bundle_id": "BUNDLE-PET-FUR-RESCUE-KIT",
+  "bundle_candidate_for": "Pet Fur Rescue Kit",
+  "sellable_product_id": null,
+  "status": "DRAFT",
+  "components": [
+    {
+      "component_id": "COMP-001",
+      "quantity": 1,
+      "role": "CORE_COMPONENT",
+      "component_status": "SAMPLE_TESTING_PENDING",
+      "unit_cost": 1.6,
+      "landed_unit_cost": 2.08,
+      "currency": "USD"
+    }
+  ],
+  "packaging_components": [],
+  "costing": {
+    "currency": "USD",
+    "component_cost": 1.6,
+    "packaging_cost": null,
+    "landed_component_cost": 2.08,
+    "bundle_cogs": null,
+    "calculation_status": "PARTIAL"
+  },
+  "notes": [
+    "Draft candidate reference only; COMP-001 is not an approved component.",
+    "No other components or packaging were supplied, so final Kit BOM and bundle COGS are intentionally incomplete.",
+    "Do not import this BOM or its component into Medusa as a sellable product.",
+    "Landed component cost reflects the supplied 100-unit estimate and does not infer other fees."
+  ]
+}

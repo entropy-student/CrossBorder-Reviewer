@@ -1,0 +1,285 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pawfectly-home.invalid/schemas/component-master.schema.json",
+  "title": "Pawfectly Home Sourcing Component Master",
+  "type": "object",
+  "required": ["schema_version", "record_type", "bundle_id", "identity", "role", "cost", "physical", "carton", "variants", "supplier_operations", "cross_border", "risk", "sample", "procurement"],
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0.0" },
+    "record_type": { "type": "string", "const": "SUPPLY_CHAIN_COMPONENT" },
+    "bundle_id": { "$ref": "#/$defs/text_or_null" },
+    "identity": { "$ref": "#/$defs/identity" },
+    "role": { "$ref": "#/$defs/role" },
+    "cost": { "$ref": "#/$defs/cost" },
+    "physical": { "$ref": "#/$defs/physical" },
+    "carton": { "$ref": "#/$defs/carton" },
+    "variants": { "$ref": "#/$defs/variants" },
+    "supplier_operations": { "$ref": "#/$defs/supplier_operations" },
+    "cross_border": { "$ref": "#/$defs/cross_border" },
+    "risk": { "$ref": "#/$defs/risk" },
+    "sample": { "$ref": "#/$defs/sample" },
+    "procurement": { "$ref": "#/$defs/procurement" },
+    "metadata": { "type": "object", "additionalProperties": true }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "text_or_null": { "oneOf": [{ "type": "string" }, { "type": "null" }] },
+    "number_or_null": { "oneOf": [{ "type": "number" }, { "type": "null" }] },
+    "fact": {
+      "type": "object",
+      "required": ["value", "source", "status"],
+      "properties": {
+        "value": {},
+        "source": { "type": "string", "enum": ["SUPPLIER_CLAIM", "IMAGE_EVIDENCE_ONLY", "SUPPLIED_FACT", "PROJECT_DECISION", "UNKNOWN_SOURCE"] },
+        "status": { "type": "string", "enum": ["VERIFIED", "NEEDS_VERIFICATION", "UNKNOWN", "PENDING", "NOT_A_VERIFIED_FACT"] },
+        "evidence": { "$ref": "#/$defs/text_or_null" },
+        "notes": { "$ref": "#/$defs/text_or_null" }
+      },
+      "additionalProperties": false
+    },
+    "money_fact": {
+      "type": "object",
+      "required": ["value", "currency", "source", "status"],
+      "properties": {
+        "value": { "$ref": "#/$defs/number_or_null" },
+        "currency": { "type": "string", "enum": ["USD", "EUR", "UNKNOWN"] },
+        "source": { "type": "string", "enum": ["SUPPLIER_CLAIM", "IMAGE_EVIDENCE_ONLY", "SUPPLIED_FACT", "PROJECT_DECISION", "UNKNOWN_SOURCE"] },
+        "status": { "type": "string", "enum": ["VERIFIED", "NEEDS_VERIFICATION", "UNKNOWN", "PENDING"] },
+        "evidence": { "$ref": "#/$defs/text_or_null" }
+      },
+      "additionalProperties": false
+    },
+    "quantity_fact": {
+      "type": "object",
+      "required": ["value", "unit", "source", "status"],
+      "properties": {
+        "value": { "$ref": "#/$defs/number_or_null" },
+        "unit": { "type": "string", "enum": ["units", "cartons", "days", "percent", "UNKNOWN"] },
+        "source": { "type": "string", "enum": ["SUPPLIER_CLAIM", "IMAGE_EVIDENCE_ONLY", "SUPPLIED_FACT", "PROJECT_DECISION", "UNKNOWN_SOURCE"] },
+        "status": { "type": "string", "enum": ["VERIFIED", "NEEDS_VERIFICATION", "UNKNOWN", "PENDING"] },
+        "evidence": { "$ref": "#/$defs/text_or_null" }
+      },
+      "additionalProperties": false
+    },
+    "measurement": {
+      "type": "object",
+      "required": ["value", "unit", "source", "status"],
+      "properties": {
+        "value": { "$ref": "#/$defs/number_or_null" },
+        "unit": { "type": "string", "enum": ["mm", "cm", "m", "g", "kg", "oz", "lb", "UNKNOWN"] },
+        "source": { "type": "string", "enum": ["SUPPLIER_CLAIM", "IMAGE_EVIDENCE_ONLY", "SUPPLIED_FACT", "PROJECT_DECISION", "UNKNOWN_SOURCE"] },
+        "status": { "type": "string", "enum": ["VERIFIED", "NEEDS_VERIFICATION", "UNKNOWN", "PENDING"] },
+        "evidence": { "$ref": "#/$defs/text_or_null" }
+      },
+      "additionalProperties": false
+    },
+    "dimension_set": {
+      "type": "object",
+      "required": ["length", "width", "height", "unit", "source", "status"],
+      "properties": {
+        "length": { "$ref": "#/$defs/number_or_null" },
+        "width": { "$ref": "#/$defs/number_or_null" },
+        "height": { "$ref": "#/$defs/number_or_null" },
+        "unit": { "type": "string", "enum": ["mm", "cm", "m", "in", "UNKNOWN"] },
+        "source": { "type": "string", "enum": ["SUPPLIER_CLAIM", "IMAGE_EVIDENCE_ONLY", "SUPPLIED_FACT", "PROJECT_DECISION", "UNKNOWN_SOURCE"] },
+        "status": { "type": "string", "enum": ["VERIFIED", "NEEDS_VERIFICATION", "UNKNOWN", "PENDING"] },
+        "evidence": { "$ref": "#/$defs/text_or_null" }
+      },
+      "additionalProperties": false
+    },
+    "bulk_shipping_quote": {
+      "type": "object",
+      "required": ["destination", "quantity", "mode", "quoted_cost", "currency", "terms", "transit_time", "source", "status", "evidence"],
+      "properties": {
+        "destination": { "type": "string", "minLength": 1 },
+        "quantity": { "type": "number", "exclusiveMinimum": 0 },
+        "mode": { "type": "string", "minLength": 1 },
+        "quoted_cost": { "type": "number", "minimum": 0 },
+        "currency": { "type": "string", "enum": ["USD", "EUR"] },
+        "terms": { "type": "string", "minLength": 1 },
+        "transit_time": { "type": "string", "minLength": 1 },
+        "source": { "type": "string", "enum": ["SUPPLIER_CLAIM", "IMAGE_EVIDENCE_ONLY", "SUPPLIED_FACT", "PROJECT_DECISION", "UNKNOWN_SOURCE"] },
+        "status": { "type": "string", "enum": ["VERIFIED", "NEEDS_VERIFICATION", "UNKNOWN", "PENDING"] },
+        "evidence": { "$ref": "#/$defs/text_or_null" }
+      },
+      "additionalProperties": false
+    },
+    "product_dimension_set": {
+      "type": "object",
+      "required": ["width", "height", "depth", "unit", "source", "status"],
+      "properties": {
+        "width": { "$ref": "#/$defs/number_or_null" },
+        "height": { "$ref": "#/$defs/number_or_null" },
+        "depth": { "$ref": "#/$defs/number_or_null" },
+        "unit": { "type": "string", "enum": ["mm", "cm", "m", "in", "UNKNOWN"] },
+        "source": { "type": "string", "enum": ["SUPPLIER_CLAIM", "IMAGE_EVIDENCE_ONLY", "SUPPLIED_FACT", "PROJECT_DECISION", "UNKNOWN_SOURCE"] },
+        "status": { "type": "string", "enum": ["VERIFIED", "NEEDS_VERIFICATION", "UNKNOWN", "PENDING"] },
+        "evidence": { "$ref": "#/$defs/text_or_null" }
+      },
+      "additionalProperties": false
+    },
+    "evidence_item": {
+      "type": "object",
+      "required": ["source", "status", "statement"],
+      "properties": {
+        "source": { "type": "string", "enum": ["SUPPLIER_CLAIM", "IMAGE_EVIDENCE_ONLY", "SUPPLIED_FACT", "PROJECT_DECISION", "UNKNOWN_SOURCE"] },
+        "status": { "type": "string", "enum": ["VERIFIED", "NEEDS_VERIFICATION", "UNKNOWN", "PENDING", "NOT_A_VERIFIED_FACT"] },
+        "statement": { "type": "string" },
+        "reference": { "$ref": "#/$defs/text_or_null" }
+      },
+      "additionalProperties": false
+    },
+    "identity": {
+      "type": "object",
+      "required": ["component_id", "source_product_id", "supplier_name", "supplier_url", "source_platform", "source_evidence"],
+      "properties": {
+        "component_id": { "type": "string" },
+        "source_product_id": { "type": "string" },
+        "supplier_name": { "$ref": "#/$defs/text_or_null" },
+        "supplier_url": { "$ref": "#/$defs/text_or_null" },
+        "source_platform": { "$ref": "#/$defs/text_or_null" },
+        "source_evidence": { "type": "array", "items": { "$ref": "#/$defs/evidence_item" } }
+      },
+      "additionalProperties": false
+    },
+    "role": {
+      "type": "object",
+      "required": ["component_type", "bundle_candidate_for", "candidate_status"],
+      "properties": {
+        "component_type": { "type": "string", "enum": ["CORE_COMPONENT", "ACCESSORY_COMPONENT", "PACKAGING_COMPONENT"] },
+        "bundle_candidate_for": { "$ref": "#/$defs/text_or_null" },
+        "candidate_status": { "type": "string", "enum": ["CANDIDATE", "SAMPLE_ORDERED", "SAMPLE_RECEIVED", "SAMPLE_TESTING", "SAMPLE_TESTING_PENDING", "APPROVED", "REJECTED"] }
+      },
+      "additionalProperties": false
+    },
+    "cost": {
+      "type": "object",
+      "required": ["unit_cost", "currency", "moq", "batch_quantity", "batch_product_cost", "batch_shipping_cost", "landed_total", "landed_unit_cost"],
+      "properties": {
+        "unit_cost": { "$ref": "#/$defs/money_fact" },
+        "currency": { "type": "string", "enum": ["USD", "EUR", "UNKNOWN"] },
+        "moq": { "$ref": "#/$defs/quantity_fact" },
+        "batch_quantity": { "$ref": "#/$defs/quantity_fact" },
+        "batch_product_cost": { "$ref": "#/$defs/money_fact" },
+        "batch_shipping_cost": { "$ref": "#/$defs/money_fact" },
+        "landed_total": { "$ref": "#/$defs/money_fact" },
+        "landed_unit_cost": { "$ref": "#/$defs/money_fact" }
+      },
+      "additionalProperties": false
+    },
+    "physical": {
+      "type": "object",
+      "required": ["product_dimensions", "product_weight", "material", "unit_packaging", "unit_package_dimensions", "unit_package_weight"],
+      "properties": {
+        "product_dimensions": { "$ref": "#/$defs/product_dimension_set" },
+        "product_weight": { "$ref": "#/$defs/measurement" },
+        "material": { "$ref": "#/$defs/fact" },
+        "unit_packaging": { "$ref": "#/$defs/fact" },
+        "unit_package_dimensions": { "$ref": "#/$defs/product_dimension_set" },
+        "unit_package_weight": { "$ref": "#/$defs/measurement" }
+      },
+      "additionalProperties": false
+    },
+    "carton": {
+      "type": "object",
+      "required": ["units_per_carton", "carton_dimensions", "carton_gross_weight", "hundred_units_estimate"],
+      "properties": {
+        "units_per_carton": { "$ref": "#/$defs/quantity_fact" },
+        "carton_dimensions": { "$ref": "#/$defs/dimension_set" },
+        "carton_gross_weight": { "$ref": "#/$defs/measurement" },
+        "hundred_units_estimate": {
+          "type": "object",
+          "required": ["carton_count", "approximate_gross_weight", "source", "status"],
+          "properties": {
+            "carton_count": { "$ref": "#/$defs/quantity_fact" },
+            "approximate_gross_weight": { "$ref": "#/$defs/measurement" },
+            "source": { "type": "string", "enum": ["SUPPLIER_CLAIM", "SUPPLIED_FACT"] },
+            "status": { "type": "string", "enum": ["NEEDS_VERIFICATION", "UNKNOWN"] }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "variants": {
+      "type": "object",
+      "required": ["colorways", "supplier_variant_ids", "variant_price_differences"],
+      "properties": {
+        "colorways": { "type": "array", "items": { "$ref": "#/$defs/evidence_item" } },
+        "supplier_variant_ids": { "$ref": "#/$defs/fact" },
+        "variant_price_differences": { "$ref": "#/$defs/money_fact" }
+      },
+      "additionalProperties": false
+    },
+    "supplier_operations": {
+      "type": "object",
+      "required": ["stock_status", "lead_time", "bulk_shipping_quote", "dropship_support", "fba_support", "labeling_support", "supplier_claims"],
+      "properties": {
+        "stock_status": { "$ref": "#/$defs/fact" },
+        "lead_time": { "$ref": "#/$defs/fact" },
+        "bulk_shipping_quote": { "$ref": "#/$defs/bulk_shipping_quote" },
+        "dropship_support": { "$ref": "#/$defs/fact" },
+        "fba_support": { "$ref": "#/$defs/fact" },
+        "labeling_support": { "$ref": "#/$defs/fact" },
+        "supplier_claims": { "type": "array", "items": { "$ref": "#/$defs/evidence_item" } }
+      },
+      "additionalProperties": false
+    },
+    "cross_border": {
+      "type": "object",
+      "required": ["shipping_mode", "ddp_terms", "transit_time", "supplier_hs_code", "hs_verification", "country_of_origin", "import_notes"],
+      "properties": {
+        "shipping_mode": { "$ref": "#/$defs/fact" },
+        "ddp_terms": { "$ref": "#/$defs/fact" },
+        "transit_time": { "$ref": "#/$defs/fact" },
+        "supplier_hs_code": { "$ref": "#/$defs/fact" },
+        "hs_verification": { "type": "string", "enum": ["VERIFIED", "NEEDS_VERIFICATION", "UNKNOWN"] },
+        "country_of_origin": { "$ref": "#/$defs/fact" },
+        "import_notes": { "$ref": "#/$defs/fact" }
+      },
+      "additionalProperties": false
+    },
+    "risk": {
+      "type": "object",
+      "required": ["fto_status", "patent_claims", "compliance_status", "supplier_claims", "unresolved_risks"],
+      "properties": {
+        "fto_status": { "$ref": "#/$defs/fact" },
+        "patent_claims": { "$ref": "#/$defs/fact" },
+        "compliance_status": { "$ref": "#/$defs/fact" },
+        "supplier_claims": { "type": "array", "items": { "$ref": "#/$defs/evidence_item" } },
+        "unresolved_risks": { "type": "array", "items": { "$ref": "#/$defs/evidence_item" } }
+      },
+      "additionalProperties": false
+    },
+    "sample": {
+      "type": "object",
+      "required": ["quantity", "sample_cost", "shipping_cost", "transit_time", "refund_condition", "test_status", "test_scope", "sampling_plan", "ab_competitor", "score", "hard_fail", "decision"],
+      "properties": {
+        "quantity": { "$ref": "#/$defs/quantity_fact" },
+        "sample_cost": { "$ref": "#/$defs/money_fact" },
+        "shipping_cost": { "$ref": "#/$defs/money_fact" },
+        "transit_time": { "$ref": "#/$defs/fact" },
+        "refund_condition": { "$ref": "#/$defs/fact" },
+        "test_status": { "type": "string", "enum": ["PENDING", "IN_PROGRESS", "PASS", "FAIL", "UNKNOWN"] },
+        "test_scope": { "type": "array", "items": { "type": "string" } },
+        "sampling_plan": { "$ref": "#/$defs/fact" },
+        "ab_competitor": { "$ref": "#/$defs/fact" },
+        "score": { "oneOf": [{ "type": "number", "minimum": 0, "maximum": 100 }, { "type": "string", "const": "NOT_TESTED" }] },
+        "hard_fail": { "type": "string", "enum": ["NOT_TESTED", "YES", "NO"] },
+        "decision": { "type": "string", "enum": ["NOT_TESTED", "PASS", "FAIL", "RETEST_REQUIRED"] }
+      },
+      "additionalProperties": false
+    },
+    "procurement": {
+      "type": "object",
+      "required": ["status", "bulk_order_gate", "approval_reason", "rejection_reason"],
+      "properties": {
+        "status": { "type": "string", "enum": ["CANDIDATE", "APPROVED", "REJECTED"] },
+        "bulk_order_gate": { "type": "string", "enum": ["HOLD", "OPEN", "BLOCKED"] },
+        "approval_reason": { "$ref": "#/$defs/fact" },
+        "rejection_reason": { "$ref": "#/$defs/fact" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "COMPONENT_SAMPLE_RECEIPT",
+  "sample_receipt_status": "WAITING_FOR_SAMPLE",
+  "component_id": "COMP-001",
+  "supplier": "UNKNOWN",
+  "received_date": null,
+  "sample_quantity": null,
+  "actual_color": null,
+  "actual_product_weight": { "value": null, "unit": "UNKNOWN" },
+  "actual_dimensions": {
+    "width": null,
+    "height": null,
+    "depth": null,
+    "unit": "UNKNOWN"
+  },
+  "actual_packaging": null,
+  "visible_defects": [],
+  "surface_finish": null,
+  "moving_parts": null,
+  "self_cleaning_mechanism": null,
+  "photos": [],
+  "videos": [],
+  "operator_notes": null,
+  "comparison_checks": {
+    "dimensions": "NOT_TESTED",
+    "weight": "NOT_TESTED",
+    "color": "NOT_TESTED",
+    "material_appearance": "NOT_TESTED",
+    "structure": "NOT_TESTED",
+    "packaging": "NOT_TESTED",
+    "workmanship": "NOT_TESTED"
+  },
+  "evidence_policy": "Record actual sample evidence only after receipt; do not replace unknowns with zero or inferred values."
+}

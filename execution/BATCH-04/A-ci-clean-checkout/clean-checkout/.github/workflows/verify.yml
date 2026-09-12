@@ -1,0 +1,50 @@
+name: Verify canonical template
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: windows-2022
+    timeout-minutes: 45
+    env:
+      NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY: ci-public-key-fixture
+      NEXT_PUBLIC_MEDUSA_BACKEND_URL: http://127.0.0.1:9999
+      NEXT_PUBLIC_BASE_URL: http://127.0.0.1:9998
+      PAYPAL_PROVIDER_ENABLED: "false"
+      PAYPAL_ENVIRONMENT: sandbox
+      PAYPAL_PAYMENT_INTENT: AUTHORIZE
+      PAYPAL_AUTO_CAPTURE: "false"
+    defaults:
+      run:
+        working-directory: 03_template/medusa-crossborder-base
+        shell: pwsh
+    steps:
+      - name: Checkout source repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.19.0
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Verify package manager contract
+        run: |
+          $version = corepack pnpm@10.11.1 --version
+          if ($version -ne "10.11.1") { throw "Expected pnpm 10.11.1, got $version" }
+
+      - name: Install locked dependencies
+        run: corepack pnpm@10.11.1 install --frozen-lockfile
+
+      - name: Unified type, lint, unit, contract and runtime safety gate
+        run: corepack pnpm@10.11.1 run verify
+
+      - name: Production build gate without a developer backend
+        run: corepack pnpm@10.11.1 run verify:build

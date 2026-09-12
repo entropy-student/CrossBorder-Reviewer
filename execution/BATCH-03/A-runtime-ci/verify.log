@@ -1,0 +1,196 @@
+
+> dtc-starter-monorepo@ verify C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base
+> pnpm run typecheck && pnpm run lint && pnpm run test && pnpm run test:runtime
+
+[WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.overrides". See https://pnpm.io/settings for the new home of each setting.
+$ pnpm --dir apps/backend run typecheck && pnpm --dir apps/storefront run typecheck
+[WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.overrides". See https://pnpm.io/settings for the new home of each setting.
+$ tsc --noEmit --incremental false --pretty false
+[WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.overrides". See https://pnpm.io/settings for the new home of each setting.
+$ tsc --noEmit --incremental false --pretty false
+[WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.overrides". See https://pnpm.io/settings for the new home of each setting.
+$ pnpm --dir apps/backend run lint && pnpm --dir apps/storefront run lint
+[WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.overrides". See https://pnpm.io/settings for the new home of each setting.
+$ medusa lint
+[32minfo[39m:    Linting project...
+
+C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\backend\src\modules\paypal\transport.ts
+   79:50  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+  100:72  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+  138:49  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+  147:84  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+  154:49  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+  166:49  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+  178:49  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+
+✖ 7 problems (0 errors, 7 warnings)
+[33mwarn[39m:    Lint produced 7 warning(s).
+[WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.overrides". See https://pnpm.io/settings for the new home of each setting.
+$ node scripts/run-eslint.cjs
+
+C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\storefront\src\modules\checkout\components\shipping-address\index.tsx
+  84:6  warning  React Hook useEffect has a missing dependency: 'customer.email'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\storefront\src\modules\checkout\components\shipping\index.tsx
+  119:6  warning  React Hook useEffect has missing dependencies: '_pickupMethods', '_shippingMethods', 'cart.id', and 'shippingMethodId'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\storefront\src\modules\products\components\product-actions\index.tsx
+  104:6  warning  React Hook useEffect has missing dependencies: 'pathname', 'router', and 'searchParams'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+✖ 3 problems (0 errors, 3 warnings)
+
+(node:14676) ESLintRCWarning: You are using an eslintrc configuration file, which is deprecated and support will be removed in v10.0.0. Please migrate to an eslint.config.js file. See https://eslint.org/docs/latest/use/configure/migration-guide for details. An eslintrc configuration file is used because you have the ESLINT_USE_FLAT_CONFIG environment variable set to false. If you want to use an eslint.config.js file, remove the environment variable. If you want to find the location of the eslintrc configuration file, use the --debug flag.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.overrides". See https://pnpm.io/settings for the new home of each setting.
+$ pnpm --dir apps/backend run test && pnpm run test:contracts
+[WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.overrides". See https://pnpm.io/settings for the new home of each setting.
+$ pnpm run test:unit
+[WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.overrides". See https://pnpm.io/settings for the new home of each setting.
+$ node scripts/run-jest.cjs unit --silent --runInBand --forceExit
+PASS src/modules/paypal/__tests__/paypal.unit.spec.ts (7.518 s)
+PASS src/api/__tests__/public-catalog.unit.spec.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       26 passed, 26 total
+Snapshots:   0 total
+Time:        8.154 s
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?
+[WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.overrides". See https://pnpm.io/settings for the new home of each setting.
+$ node ../../06_payment/providers/payment-provider-boundary.test.mjs && node ../../05_product/scripts/product-pipeline.mjs test --input ../../05_product/intake/TEST_FIXTURE_ONLY.medusa-seed.json && node ../../05_product/scripts/product-boundary.test.mjs && node ../../05_product/sourcing/scripts/component-pipeline.mjs test --input ../../05_product/sourcing/components/COMP-001-pet-hair-remover.json
+PAYMENT_BOUNDARY_TEST=PASS
+REAL_PAYMENT_CALL=NO
+FAKE_SUCCESS_RESPONSE=NO
+CASE_BLANK_INTAKE_BLOCKED=PASS
+CASE_TEST_FIXTURE_BLOCKS_PUBLISH=PASS
+CASE_MALFORMED_GALLERY_BLOCKED=PASS
+CASE_MALFORMED_VARIANTS_BLOCKED=PASS
+CASE_MALFORMED_MAIN_IMAGE_BLOCKED=PASS
+CASE_MALFORMED_DIMENSION_VALUE_BLOCKED=PASS
+CASE_MALFORMED_CURRENCY_BLOCKED=PASS
+CASE_NEGATIVE_DIMENSION_BLOCKED=PASS
+CASE_NEGATIVE_PRODUCT_DIMENSION_BLOCKED=PASS
+CASE_NAN_DIMENSION_BLOCKED=PASS
+CASE_ZERO_PACKAGE_DIMENSION_BLOCKED=PASS
+CASE_INVALID_DIMENSION_UNIT_BLOCKED=PASS
+CASE_WEIGHT_WITHOUT_UNIT_BLOCKED=PASS
+CASE_WEIGHT_OBJECT_WITHOUT_UNIT_BLOCKED=PASS
+CASE_WEIGHT_UNKNOWN_UNIT_NOT_PASS=PASS
+CASE_HS_VALUE_WITHOUT_VERIFIED_NOT_PASS=PASS
+CASE_HS_VERIFIED_WITHOUT_EVIDENCE_NOT_PASS=PASS
+CASE_HS_VERIFIED_WITH_EVIDENCE_PASS=PASS
+CASE_UNSUPPORTED_CURRENCY_BLOCKED=PASS
+CASE_USD_CURRENCY_CHECK_PASS=PASS
+CASE_EUR_CURRENCY_CHECK_PASS=PASS
+CASE_NORMALIZE_IDEMPOTENT=PASS
+CASE_DRY_RUN_WRITE_PERFORMED_NO=PASS
+CASE_PUBLIC_METADATA_EXCLUDES_SOURCING=PASS
+CASE_DRY_RUN_MAPS_ALL_VARIANTS=PASS
+CASE_SECOND_VARIANT_PRICE_MISMATCH_BLOCKS_PUBLISH=PASS
+CASE_OLD_SCHEMA_REQUIRES_EXPLICIT_UPGRADE=PASS
+VALIDATION_TEST_MATRIX=PASS
+PRODUCT_PUBLIC_METADATA=PASS
+PRODUCT_DRY_RUN_ALL_VARIANTS=PASS
+PRODUCT_BOUNDARY_TEST=PASS
+CASE_COMPONENT_RECORD_NEEDS_VERIFICATION=PASS
+CASE_SOURCE_GATE_PASS=PASS
+CASE_SAMPLE_GATE_NEEDS_TEST=PASS
+CASE_PROCUREMENT_GATE_HOLD=PASS
+CASE_LOGISTICS_GATE_NEEDS_VERIFICATION=PASS
+CASE_RISK_GATE_NEEDS_VERIFICATION=PASS
+CASE_BUNDLE_ID_STABLE=PASS
+CASE_NO_INVENTED_FIELDS_PASS=PASS
+CASE_SUPPLIER_CLAIMS_LABELED_PASS=PASS
+CASE_BULK_SHIPPING_QUOTE_LABELED_PASS=PASS
+CASE_HS_NOT_VERIFIED_PASS=PASS
+CASE_FTO_NOT_VERIFIED_PASS=PASS
+CASE_DROPSHIP_UNKNOWN_PASS=PASS
+CASE_UNIT_PACKAGE_UNKNOWN_PASS=PASS
+CASE_COST_CALCULATION_PASS=PASS
+CASE_BULK_ORDER_HOLD=PASS
+CASE_MEDUSA_WRITE_NO=PASS
+CASE_SAMPLE_SCORE_NOT_TESTED=PASS
+CASE_HARD_FAIL_NOT_TESTED=PASS
+CASE_QUOTE_RECONFIRMATION_REQUIRED_YES=PASS
+CASE_DRAFT_BOM_PASS=PASS
+CASE_HARD_FAIL_BLOCKS_PROCUREMENT=PASS
+CASE_FAILED_SAMPLE_REJECTS=PASS
+CASE_FAILED_SAMPLE_CONTRADICTION_BLOCKS=PASS
+CASE_VERIFIED_FACT_WITH_EVIDENCE_ALLOWED=PASS
+CASE_OPEN_INPUT_CANNOT_OVERRIDE_UNVERIFIED=PASS
+COMPONENT_VALIDATION_TESTS=PASS
+[WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.overrides". See https://pnpm.io/settings for the new home of each setting.
+$ powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File scripts/run-runtime-security-tests.ps1
+RT02_PROCESS_SECURITY_TEST= PASS
+PASS_COUNT=9
+FAIL_COUNT=0
+ASSERTION_COUNT=9
+CORRECT_OWNERSHIP_CAN_STOP=PASS;exact identity matched; root and descendants were terminated
+ALREADY_EXITED_IS_STALE=PASS;missing live PID is refused without termination
+PID_REUSE_IDENTITY_MISMATCH_REFUSED=PASS;record PID was injected to another live process; target-alive=True;stop-output=MANAGED_PROCESS_STOP=REFUSED_STALE
+MANAGED_PROCESS_REASON=executable path does not match
+
+STARTUP_TIME_MISMATCH_REFUSED=PASS;stale startup timestamp refused
+PROJECT_IDENTITY_MISMATCH_REFUSED=PASS;record project identity did not match this template
+IDENTITY_READ_FAILURE_REFUSED=PASS;missing identity fields refused
+OLD_PID_FORMAT_REFUSED=PASS;legacy PID-only record refused
+STALE_PARENT_DOES_NOT_KILL_CHILD=PASS;stale parent identity refused; child and external sentinel remain alive
+EXTERNAL_SENTINEL_SURVIVES=PASS;pid=22144
+MANAGED_PROCESS_STOP=PASS
+RT03_SERVICE_IDENTITY_TEST= PASS
+PASS_COUNT=7
+FAIL_COUNT=0
+ASSERTION_COUNT=7
+START_BUILD_USE_IDENTITY_DECISION=PASS;HTTP 200 reuse path is guarded by managed identity in both callers
+CORRECT_INSTANCE_REUSE=PASS;status=REUSE;reason=verified managed process owns the port and health returned HTTP 200;launcher_to_listener_chain=verified
+WRONG_PROJECT_200_NOT_REUSED=PASS;status=IDENTITY_CONFLICT;stub-alive=True
+UNKNOWN_IDENTITY_200_NOT_REUSED=PASS;status=IDENTITY_UNKNOWN;stub-alive=True
+UNLISTENING_PORT_START_ALLOWED=PASS;status=START_ALLOWED;reason=port is not listening
+IDENTITY_MATCH_NOT_READY_DISTINCT=PASS;status=SERVICE_NOT_READY;reason=verified managed process owns the port but health did not return HTTP 200
+CONTROLLED_SERVICE_NOT_STOPPED=PASS;identity probe does not stop a controlled service
+RT04_FAILURE_INJECTION_TEST= PASS
+TEST_GATE_REJECTED_INJECTED_FAILURE=PASS
+TYPECHECK_GATE_REJECTED_INJECTED_ERROR=PASS
+PERMANENT_FAILURE_FIXTURE=NO
+RT01_SECURITY_TEST= PASS
+PASS_COUNT=37
+FAIL_COUNT=0
+SKIP_COUNT=1
+PATH_AND_OWNERSHIP_ASSERTIONS=38
+AST_FUNCTION_EXTRACTION=PASS;loaded pure validation functions only; full script entrypoint not dot-sourced
+REJECT_SOURCE_ROOT=PASS;pure-validation-only;expected-reason=canonical source project;actual-error=StagingPath is rejected because it is the canonical source project or a descendant of it.
+REJECT_SOURCE_DESCENDANT=PASS;pure-validation-only;expected-reason=canonical source project;actual-error=StagingPath is rejected because it is the canonical source project or a descendant of it.
+REJECT_SOURCE_CASE_AND_TRAILING_SEPARATOR=PASS;pure-validation-only;expected-reason=canonical source project;actual-error=StagingPath is rejected because it is the canonical source project or a descendant of it.
+REJECT_DOCUMENT_CENTER_ROOT=PASS;pure-validation-only;expected-reason=document center;actual-error=StagingPath is rejected because it is the document center or a descendant of it.
+REJECT_DOCUMENT_CENTER_DESCENDANT=PASS;pure-validation-only;expected-reason=document center;actual-error=StagingPath is rejected because it is the document center or a descendant of it.
+REJECT_WORKSPACE_ANCESTOR=PASS;pure-validation-only;expected-reason=protected ancestor|outside the trusted staging root;actual-error=StagingPath is rejected because it is outside the trusted staging root.
+REJECT_USER_HOME=PASS;pure-validation-only;expected-reason=protected ancestor|outside the trusted staging root;actual-error=StagingPath is rejected because it is outside the trusted staging root.
+REJECT_DISK_ROOT=PASS;pure-validation-only;expected-reason=protected ancestor|outside the trusted staging root;actual-error=StagingPath is rejected because it is outside the trusted staging root.
+REJECT_TRUSTED_ROOT=PASS;pure-validation-only;expected-reason=trusted staging root itself;actual-error=StagingPath is rejected because it is the trusted staging root itself; use a dedicated child directory.
+REJECT_TRUSTED_ROOT_SIMILAR_PREFIX=PASS;pure-validation-only;expected-reason=outside the trusted staging root;actual-error=StagingPath is rejected because it is outside the trusted staging root.
+REJECT_EXTERNAL_TARGET=PASS;pure-validation-only;expected-reason=outside the trusted staging root;actual-error=StagingPath is rejected because it is outside the trusted staging root.
+REJECT_NORMALIZED_SOURCE_ANCESTOR=PASS;pure-validation-only;expected-reason=canonical source project|protected ancestor|outside the trusted staging root;actual-error=StagingPath is rejected because it is outside the trusted staging root.
+DANGEROUS_PATHS_FULL_ENTRYPOINT_CALLS=PASS;dangerous paths never invoked the top-level staging script
+ACCEPT_LEGAL_TRUSTED_CHILD=PASS;pure validation accepted a strict descendant of trusted staging root
+REJECTION_ASSERTION_SELF_CHECK=PASS;ordinary runtime exception is not accepted as a valid safety rejection
+REJECT_EXISTING_NO_MARKER=PASS;exit=1;expected=False;expected-reason=no valid tool-ownership marker
+NO_MARKER_CONTENT_UNCHANGED=PASS;sentinel-content-comparison=exact
+REJECT_WRONG_MARKER_IDENTITY=PASS;exit=1;expected=False;expected-reason=ownership marker does not match
+WRONG_MARKER_CONTENT_UNCHANGED=PASS;sentinel-content-comparison=exact
+REJECT_CORRUPT_MARKER=PASS;exit=1;expected=False;expected-reason=ownership marker is invalid
+CORRUPT_MARKER_CONTENT_UNCHANGED=PASS;sentinel-content-comparison=exact
+CREATE_VALID_NEW_STAGING=PASS;exit=0;expected=True;expected-reason=success
+VALID_MARKER_CREATED=PASS;marker-exists
+OWNERSHIP_MARKER_NO_ABSOLUTE_PATHS=PASS;path-fingerprints-only
+REJECT_WRONG_MARKER_PATH=PASS;exit=1;expected=False;expected-reason=ownership marker does not match
+WRONG_PATH_MARKER_CONTENT_UNCHANGED=PASS;sentinel-content-comparison=exact
+RERUN_VALID_OWNED_STAGING=PASS;exit=0;expected=True;expected-reason=success
+OWNED_RERUN_REPLACED_CONTENT=PASS;marker-remains;old-owned-file-removed
+PURE_REPARSE_PATH_REJECTED=PASS;expected-reason=reparse point;actual-error=StagingPath is rejected because an existing path component is a reparse point: C:\Users\34707\Documents\ChatGPT\_review_stage\security-tests\RT-01-R1-eeea641fc30e431ea67298966417a37f\junction-stage
+REJECT_JUNCTION_STAGING=PASS;exit=1;expected=False;expected-reason=existing path component is a reparse point
+JUNCTION_TARGET_CONTENT_UNCHANGED=PASS;sentinel-content-comparison=exact
+REPARSE_POINT_TEST=PASS;junction rejected before recursive delete
+PURE_INTERNAL_REPARSE_TREE_REJECTED=PASS;expected-reason=contains a reparse point;actual-error=Existing StagingPath is rejected because it contains a reparse point: C:\Users\34707\Documents\ChatGPT\_review_stage\security-tests\RT-01-R1-eeea641fc30e431ea67298966417a37f\internal-reparse-root\linked-child
+SYMBOLIC_LINK_TEST=SKIP;not attempted; symbolic-link privilege/elevation was not requested for this non-destructive test run
+SOURCE_PROTECTED_FILE_UNCHANGED=PASS;exists=True;content-comparison=exact
+DOCUMENT_CENTER_PROTECTED_FILE_UNCHANGED=PASS;exists=True;content-comparison=exact
+FIXTURE_CLEANUP_BOUNDARY_VERIFIED=PASS;fixture exact path, trusted-root descendant, and reparse-free tree verified before delete

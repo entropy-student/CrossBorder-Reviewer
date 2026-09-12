@@ -1,0 +1,178 @@
+[
+  {
+    "path": ".github/workflows/verify.yml",
+    "sha256": "5CFB194F27FD189B0678FCED91E0D22AD85C1CB84716CA8E618028B0705D4A8C"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/backend/.env.template",
+    "sha256": "0E0B2FF403CEE117DD63B477EE820BC9B6C038987E7120997655AD7FCD6FAD1F"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/backend/medusa-config.ts",
+    "sha256": "952631E10CCD47064DB5180C37472679638027D8E94955045861F4899F3C4B04"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/backend/package.json",
+    "sha256": "5238ECA63CB7FAED4160F7BF2A064C3F62E678F41197493E50705426ACB752B6"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/backend/scripts/run-jest.cjs",
+    "sha256": "0569E7D79791AE5FE669F26FDAE4D28BF643FEA566F9FD745388FE3260B3CF72"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/backend/src/api/checkout-boundary.ts",
+    "sha256": "E67065EEF4DA544A7C1C2AA6AE6C01BD6F1A59BA27B55D88290FB78C99028FF4"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/backend/src/api/middlewares.ts",
+    "sha256": "CD067F9D3F9710DF5AC3E65EF2D289FCF672171A5403D82B752E4F668C869B99"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/backend/src/modules/paypal/__tests__/paypal.unit.spec.ts",
+    "sha256": "B6DA677CB5B3C5E6B59E15F7DA31D970822A80684548ECD3CCA89E300E15AAD7"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/backend/src/modules/paypal/service.ts",
+    "sha256": "0A3E23A04C2F63A1DFF4C18E4273109242B0AFF2355D4D339C42316FED35D8A4"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/backend/src/modules/paypal/transport.ts",
+    "sha256": "038FAD56200EEE8392EDA6BC44CCDCCADFF95CAFA0EDC2FBCECDB11590FFB522"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/storefront/next.config.js",
+    "sha256": "A40A5E3B2433E52B6115DF44EF4F9BDBA63A42F32C4D27C5C95F37AAD2C0BC0D"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/storefront/package.json",
+    "sha256": "82F2B0C68FA36DA8B9024E3DB8A3C12DC7E6C34D9FA6E2E42862A3FC14A45B23"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/storefront/scripts/run-eslint.cjs",
+    "sha256": "E7E12F8730D8CCD71A3F20F9E719B5C3C699C53C1A3FC27979177CD770F9AF94"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/order/[id]/transfer/[token]/accept/page.tsx",
+    "sha256": "00356A5A50030511B7AB9934920B659140CFF08E932528C1E0EB00D81D8B3EC5"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/order/[id]/transfer/[token]/decline/page.tsx",
+    "sha256": "BF2C69ED62221BA50D7E8AC6BB1EDA98F3421A309D30227C6B6772FA7D81D604"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/data/cart.ts",
+    "sha256": "0345BABF2BA30B80806D57AFD1FFC4CD13CDDB605FFBB3C68C8FF5C925DC7ED1"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/data/customer.ts",
+    "sha256": "D7C491BDA73C3DC0AB01A1FF19E098D61D7B7F930786143E87EAF7B43A9126CE"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/data/orders.ts",
+    "sha256": "0CC7A157B3EC06A3687EDD7AEA3BE992A98A501F4F7948D0FF0E23498E0819CF"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/data/payment.ts",
+    "sha256": "3B0F89B0250FADA1A5A8111D107DB2898F5CEAF4B7D8A2D2BB5B566416010364"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/data/products.ts",
+    "sha256": "14884B1C2FBA9C00A734CE5545BEDDF391A566C4A3557933F9B55167A87137B5"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/data/regions.ts",
+    "sha256": "5239BB6D08F74D33605FBFA551D68A109C3BA8EE0635530355B9D11C1815278E"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/middleware.ts",
+    "sha256": "AA6EF665B9A081BA6B11B614CA581BDBBBF4A821C440AE69A75EE36F4FDF5699"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/account/components/profile-email/index.tsx",
+    "sha256": "4884DC55FF042A722F4F76B4314E788E081850161B797CE11A4B3D8FBCEEDE1B"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/payment/index.tsx",
+    "sha256": "40D96E770030B077F98337F88BD26384596975F7AE9F66930088FB61837E6231"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/layout/components/language-select/index.tsx",
+    "sha256": "85AE22153AEB8DA3C311169B19844BC413B2FC694BFC2BCDAB8121B5A046CE7F"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/order/components/payment-details/index.tsx",
+    "sha256": "BBDFC1B80A882DB0CE6FD3D66587B356A3E6E1A79A057D9E04F2C769DA555803"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/order/components/transfer-decision-form/index.tsx",
+    "sha256": "94A80BEDEC3E04F0372560320B0B7DCE620211A94848C21813F14E226C7DB09D"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/products/components/product-actions/index.tsx",
+    "sha256": "594E0B4B59D1F0C978DE6F12ACFBCBCF64D01856184F0B3AF1D48BF2FCC5AAB2"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/package.json",
+    "sha256": "0E177837B4613348570E4B944C1D6AC702CB1A38F4B1F8A88CA7C98999FE8727"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/pnpm-lock.yaml",
+    "sha256": "2AC9D0473EFDBFFC6A9A303F9B5ED84F98DC1F02939AAE150818160D41E1542B"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/scripts/_common.ps1",
+    "sha256": "99AEE8557A64C8916180FD341848289D9DA10D6F362EE191F42CD16864093501"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/scripts/acceptance-smoke.ps1",
+    "sha256": "8926E745806B23B43D22492ABE1F3BA1B08CC63138A008AF5CC54D9713C4C6F7"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/scripts/build-production.ps1",
+    "sha256": "2000CC47CF723F4DF0C4E19EB2719FE34ABA17A07B171DE35D6189EBB5C98AE0"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/scripts/process-management.security.tests.ps1",
+    "sha256": "82B18EF59FAA2C415AF0379D9C40B4E7F5C898125809C8015AB4A6049384D5A0"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/scripts/run-runtime-security-tests.ps1",
+    "sha256": "3F70F351A871E010A5A007CF266C9101CCB4F6B470C03151AD5A0B14E5306453"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/scripts/service-identity.security.tests.ps1",
+    "sha256": "F2818C78FEED618CB49ED9A25C7619D006427962FEB9D0DDD390DE4FEAF59484"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/scripts/start-local.ps1",
+    "sha256": "DC5DA9645D7C648B09324E6D83A39A63C21692BFBBC78D6E5C42DA14ADA1B784"
+  },
+  {
+    "path": "03_template/medusa-crossborder-base/scripts/verification-gate.security.tests.ps1",
+    "sha256": "3D63C476CCD08C6C0D78AB2C15C0326E88C9236EC68670D551E1301B105E31B6"
+  },
+  {
+    "path": "04_docs/scripts/92-prepare-review-staging.ps1",
+    "sha256": "84892FF43FEFE49B9E7199AFFB5B10B9CEA7CFD95B3A80A90C58C250A40F40D4"
+  },
+  {
+    "path": "04_docs/scripts/92-prepare-review-staging.security.tests.ps1",
+    "sha256": "8B2F55C3C6F418BF3CB2C5AD201E00C9ACEF1B1986353858B4924104027512F4"
+  },
+  {
+    "path": "05_product/scripts/medusa-product-upsert.mjs",
+    "sha256": "7B5E4036DC3F9E359DBDA37D0BC8C4A45954EA220359ED904AFAB23CE843A3AE"
+  },
+  {
+    "path": "05_product/scripts/product-boundary.test.mjs",
+    "sha256": "E2AD097DE8300824209CB986E319CFAB21076516752C7EB75BE0B64C64CEE7FF"
+  },
+  {
+    "path": "05_product/scripts/product-pipeline.mjs",
+    "sha256": "349349FE6C84DA94F38340E48B649E12C4D8A4CDDDA103C97D99A316BD1D496E"
+  },
+  {
+    "path": "05_product/sourcing/scripts/component-pipeline.mjs",
+    "sha256": "37146F53B312E78F0C74ABBA460D4DE50A198E1C16D5CFA8261869047A7A72E6"
+  }
+]

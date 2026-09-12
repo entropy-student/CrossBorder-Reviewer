@@ -1,0 +1,21 @@
+STATIC_EVIDENCE_ONLY=YES
+LIVE_CREDENTIAL_USED=NO
+LIVE_API_CALLED=NO
+SANDBOX_API_CALLED=NO
+RECONCILIATION_REFERENCES_BEGIN
+C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\backend\src\modules\paypal-reconciliation\service.ts:4:class PayPalReconciliationModuleService extends MedusaService({ PayPalEventInbox }) {}
+C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\backend\src\modules\paypal-reconciliation\service.ts:6:export default PayPalReconciliationModuleService
+C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\backend\src\modules\paypal-reconciliation\models\paypal-event-inbox.ts:3:export const PayPalEventInbox = model.define("paypal_event_inbox", {
+C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\backend\src\modules\paypal-reconciliation\index.ts:2:import PayPalReconciliationModuleService from "./service"
+C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\backend\src\modules\paypal-reconciliation\index.ts:7:  service: PayPalReconciliationModuleService,
+C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\backend\src\modules\paypal\__tests__\paypal.unit.spec.ts:10:  resolvePayPalWebhookAction,
+C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\backend\src\modules\paypal\__tests__\paypal.unit.spec.ts:469:    const result = await resolvePayPalWebhookAction({
+C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\backend\src\modules\paypal\service.ts:680:export async function resolvePayPalWebhookAction(
+C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\backend\src\modules\paypal\service.ts:1077:    return resolvePayPalWebhookAction(webhookData.data, this.transport_)
+RECONCILIATION_REFERENCES_END
+RECONCILIATION_MIGRATION_FILE_COUNT=0
+STORE_PAYMENT_CALL=apps/storefront/src/modules/checkout/components/payment/index.tsx:63 initiatePaymentSession(cart,{provider_id})
+MEDUSA_2_19_SESSION_INJECTION=node_modules/@medusajs/payment/dist/services/payment-module.js:147-165 creates session then adds data.session_id before provider call
+CUSTOMER_EXPOSURE=apps/storefront/src/lib/checkout-exposure.ts:38 sandbox-test-only
+PRODUCTION_BLOCK=apps/backend/medusa-config.ts:42-46 and modules/paypal/service.ts:785-787
+EVENT_POLICY_MISMATCH=service.ts:33-43 classifies nine payment events actionable; service.ts:626-636 maps only five event types

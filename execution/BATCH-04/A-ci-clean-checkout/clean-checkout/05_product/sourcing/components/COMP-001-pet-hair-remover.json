@@ -1,0 +1,175 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "SUPPLY_CHAIN_COMPONENT",
+  "bundle_id": "BUNDLE-PET-FUR-RESCUE-KIT",
+  "identity": {
+    "component_id": "COMP-001",
+    "source_product_id": "1601855396569",
+    "supplier_name": "UNKNOWN",
+    "supplier_url": "https://www.alibaba.com/x/MEiXjy?ck=pdp",
+    "source_platform": "Alibaba",
+    "source_evidence": [
+      {
+        "source": "SUPPLIED_FACT",
+        "status": "NEEDS_VERIFICATION",
+        "statement": "Alibaba listing and supplier information supplied for component COMP-001.",
+        "reference": "https://www.alibaba.com/x/MEiXjy?ck=pdp"
+      }
+    ]
+  },
+  "role": {
+    "component_type": "CORE_COMPONENT",
+    "bundle_candidate_for": "Pet Fur Rescue Kit",
+    "candidate_status": "SAMPLE_TESTING_PENDING"
+  },
+  "cost": {
+    "unit_cost": { "value": 1.6, "currency": "USD", "source": "SUPPLIED_FACT", "status": "NEEDS_VERIFICATION", "evidence": "Supplied cost fact" },
+    "currency": "USD",
+    "moq": { "value": 100, "unit": "units", "source": "SUPPLIER_CLAIM", "status": "NEEDS_VERIFICATION", "evidence": "Supplier MOQ statement" },
+    "batch_quantity": { "value": 100, "unit": "units", "source": "SUPPLIED_FACT", "status": "NEEDS_VERIFICATION", "evidence": "Supplied batch estimate" },
+    "batch_product_cost": { "value": 160, "currency": "USD", "source": "SUPPLIED_FACT", "status": "NEEDS_VERIFICATION", "evidence": "100 x 1.60 USD" },
+    "batch_shipping_cost": { "value": 48, "currency": "USD", "source": "SUPPLIER_CLAIM", "status": "NEEDS_VERIFICATION", "evidence": "US DDP ocean shipping for 100 units" },
+    "landed_total": { "value": 208, "currency": "USD", "source": "SUPPLIED_FACT", "status": "NEEDS_VERIFICATION", "evidence": "Product cost plus supplied shipping fact; no other fee inferred" },
+    "landed_unit_cost": { "value": 2.08, "currency": "USD", "source": "SUPPLIED_FACT", "status": "NEEDS_VERIFICATION", "evidence": "208 / 100; excludes unprovided fees" }
+  },
+  "physical": {
+    "product_dimensions": {
+      "width": 18.5,
+      "height": 19.5,
+      "depth": null,
+      "unit": "cm",
+      "source": "SUPPLIER_CLAIM",
+      "status": "NEEDS_VERIFICATION",
+      "evidence": "Supplied width and height; depth not supplied"
+    },
+    "product_weight": { "value": 196, "unit": "g", "source": "SUPPLIER_CLAIM", "status": "NEEDS_VERIFICATION", "evidence": "Supplier/product information supplied" },
+    "material": { "value": "PP + velvet strips", "source": "SUPPLIER_CLAIM", "status": "NEEDS_VERIFICATION", "evidence": "Supplier material statement" },
+    "unit_packaging": { "value": "OPP bag", "source": "SUPPLIER_CLAIM", "status": "NEEDS_VERIFICATION", "evidence": "Supplier packaging statement" },
+    "unit_package_dimensions": {
+      "width": null,
+      "height": null,
+      "depth": null,
+      "unit": "UNKNOWN",
+      "source": "SUPPLIER_CLAIM",
+      "status": "UNKNOWN",
+      "evidence": "Unit-package dimensions not supplied"
+    },
+    "unit_package_weight": { "value": null, "unit": "UNKNOWN", "source": "SUPPLIER_CLAIM", "status": "UNKNOWN", "evidence": "Unit-package weight not supplied" }
+  },
+  "carton": {
+    "units_per_carton": { "value": 50, "unit": "units", "source": "SUPPLIER_CLAIM", "status": "NEEDS_VERIFICATION", "evidence": "Supplier carton statement" },
+    "carton_dimensions": { "length": 45, "width": 45, "height": 34, "unit": "cm", "source": "SUPPLIER_CLAIM", "status": "NEEDS_VERIFICATION", "evidence": "Supplied carton measurement 45 x 45 x 34 cm" },
+    "carton_gross_weight": { "value": 14, "unit": "kg", "source": "SUPPLIER_CLAIM", "status": "NEEDS_VERIFICATION", "evidence": "Supplier carton gross weight" },
+    "hundred_units_estimate": {
+      "carton_count": { "value": 2, "unit": "cartons", "source": "SUPPLIED_FACT", "status": "NEEDS_VERIFICATION", "evidence": "100 units / 50 units per carton" },
+      "approximate_gross_weight": { "value": 28, "unit": "kg", "source": "SUPPLIED_FACT", "status": "NEEDS_VERIFICATION", "evidence": "Approximate 2-carton estimate" },
+      "source": "SUPPLIER_CLAIM",
+      "status": "NEEDS_VERIFICATION"
+    }
+  },
+  "variants": {
+    "colorways": [
+      { "source": "IMAGE_EVIDENCE_ONLY", "status": "NEEDS_VERIFICATION", "statement": "Image appears to show White & Gray.", "reference": "Supplied product marketing image" },
+      { "source": "IMAGE_EVIDENCE_ONLY", "status": "NEEDS_VERIFICATION", "statement": "Image appears to show White & Blue.", "reference": "Supplied product marketing image" }
+    ],
+    "supplier_variant_ids": { "value": null, "source": "SUPPLIER_CLAIM", "status": "UNKNOWN", "evidence": "Supplier variant/SKU confirmation not supplied" },
+    "variant_price_differences": { "value": null, "currency": "USD", "source": "SUPPLIER_CLAIM", "status": "UNKNOWN", "evidence": "No variant price difference supplied" }
+  },
+  "supplier_operations": {
+    "stock_status": { "value": "AVAILABLE", "source": "SUPPLIER_CLAIM", "status": "NEEDS_VERIFICATION", "evidence": "Supplier stock statement" },
+    "lead_time": { "value": "2-3 days after payment / tracking", "source": "SUPPLIER_CLAIM", "status": "NEEDS_VERIFICATION", "evidence": "Supplier lead-time statement" },
+    "bulk_shipping_quote": {
+      "destination": "US",
+      "quantity": 100,
+      "mode": "DDP ocean",
+      "quoted_cost": 48,
+      "currency": "USD",
+      "terms": "Supplier claims DDP includes duty, customs clearance and US final delivery.",
+      "transit_time": "Approximately 25 days after vessel departure",
+      "source": "SUPPLIER_CLAIM",
+      "status": "NEEDS_VERIFICATION",
+      "evidence": "Supplier quote for 100 units"
+    },
+    "dropship_support": { "value": null, "source": "SUPPLIER_CLAIM", "status": "UNKNOWN", "evidence": "China to individual US consumer dropshipping not confirmed" },
+    "fba_support": { "value": "YES", "source": "SUPPLIER_CLAIM", "status": "NEEDS_VERIFICATION", "evidence": "Supplier claims strong Amazon FBA familiarity/cooperation" },
+    "labeling_support": { "value": "Free printing/application of Amazon barcode/FBA label", "source": "SUPPLIER_CLAIM", "status": "NEEDS_VERIFICATION", "evidence": "Supplier labeling statement" },
+    "supplier_claims": [
+      { "source": "SUPPLIER_CLAIM", "status": "NOT_A_VERIFIED_FACT", "statement": "DDP includes duty, customs clearance and US final delivery.", "reference": "Supplier statement" },
+      { "source": "SUPPLIER_CLAIM", "status": "NOT_A_VERIFIED_FACT", "statement": "No additional fees.", "reference": "Supplier statement" },
+      { "source": "SUPPLIER_CLAIM", "status": "NOT_A_VERIFIED_FACT", "statement": "IOR is normally handled on the supplier/logistics side under DDP.", "reference": "Supplier statement" },
+      { "source": "SUPPLIER_CLAIM", "status": "NOT_A_VERIFIED_FACT", "statement": "DAP is available if the buyer acts as importer.", "reference": "Supplier statement" },
+      { "source": "SUPPLIER_CLAIM", "status": "NOT_A_VERIFIED_FACT", "statement": "US export share is approximately 40%.", "reference": "Supplier statement" },
+      { "source": "SUPPLIER_CLAIM", "status": "NOT_A_VERIFIED_FACT", "statement": "Many Amazon customers and approximately 4-5 years of hot-selling market history.", "reference": "Supplier statement" },
+      { "source": "SUPPLIER_CLAIM", "status": "NOT_A_VERIFIED_FACT", "statement": "Public mold / generic mature product.", "reference": "Supplier statement" },
+      { "source": "SUPPLIER_CLAIM", "status": "NOT_A_VERIFIED_FACT", "statement": "Photo/video confirmation can lead to refund or next-order credit for quality issues.", "reference": "Supplier remedy statement" }
+    ]
+  },
+  "cross_border": {
+    "shipping_mode": { "value": "DDP_US", "source": "SUPPLIER_CLAIM", "status": "NEEDS_VERIFICATION", "evidence": "Supplier DDP quote" },
+    "ddp_terms": { "value": "Supplier claims duty, customs clearance and US final delivery included.", "source": "SUPPLIER_CLAIM", "status": "NEEDS_VERIFICATION", "evidence": "Supplier DDP statement" },
+    "transit_time": { "value": "Approximately 25 days after vessel departure", "source": "SUPPLIER_CLAIM", "status": "NEEDS_VERIFICATION", "evidence": "Supplier transit statement" },
+    "supplier_hs_code": { "value": "9603909090", "source": "SUPPLIER_CLAIM", "status": "NEEDS_VERIFICATION", "evidence": "Supplier-provided HS code" },
+    "hs_verification": "NEEDS_VERIFICATION",
+    "country_of_origin": { "value": null, "source": "SUPPLIER_CLAIM", "status": "UNKNOWN", "evidence": "Country of origin not supplied; do not infer China" },
+    "import_notes": { "value": "IOR normally handled by supplier/logistics under DDP; DAP available if buyer acts as importer.", "source": "SUPPLIER_CLAIM", "status": "NEEDS_VERIFICATION", "evidence": "Supplier import terms" }
+  },
+  "risk": {
+    "fto_status": { "value": "NEEDS_VERIFICATION", "source": "PROJECT_DECISION", "status": "PENDING", "evidence": "No independent FTO review completed" },
+    "patent_claims": { "value": "Supplier reports no patent complaints received.", "source": "SUPPLIER_CLAIM", "status": "NEEDS_VERIFICATION", "evidence": "Supplier statement; not an FTO clearance" },
+    "compliance_status": { "value": "UNKNOWN", "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": "No independent compliance review supplied" },
+    "supplier_claims": [
+      { "source": "SUPPLIER_CLAIM", "status": "NOT_A_VERIFIED_FACT", "statement": "Supplier reports no known patent complaints.", "reference": "Supplier statement" },
+      { "source": "SUPPLIER_CLAIM", "status": "NOT_A_VERIFIED_FACT", "statement": "Supplier claims quality remedy by refund or next-order credit after photo/video confirmation.", "reference": "Supplier statement" }
+    ],
+    "unresolved_risks": [
+      { "source": "PROJECT_DECISION", "status": "PENDING", "statement": "Physical sample AB test is required before any 100-unit purchase.", "reference": "Project procurement gate" },
+      { "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "statement": "Country of origin, compliance status, unit packaging and consumer dropship capability remain unresolved.", "reference": "Open verification items" }
+    ]
+  },
+  "sample": {
+    "quantity": { "value": 2, "unit": "units", "source": "SUPPLIED_FACT", "status": "NEEDS_VERIFICATION", "evidence": "Supplied sample plan" },
+    "sample_cost": { "value": 5, "currency": "USD", "source": "SUPPLIED_FACT", "status": "NEEDS_VERIFICATION", "evidence": "5 USD total for two samples" },
+    "shipping_cost": { "value": 28, "currency": "USD", "source": "SUPPLIER_CLAIM", "status": "NEEDS_VERIFICATION", "evidence": "US sample express reference" },
+    "transit_time": { "value": "Approximately 8 days", "source": "SUPPLIER_CLAIM", "status": "NEEDS_VERIFICATION", "evidence": "Supplier sample transit reference" },
+    "refund_condition": { "value": "5 USD sample fee refundable when bulk order is at least 1000 USD", "source": "SUPPLIER_CLAIM", "status": "NEEDS_VERIFICATION", "evidence": "Supplier refund statement" },
+    "test_status": "PENDING",
+    "test_scope": [
+      "hair removal efficiency",
+      "snag / fabric damage",
+      "hand feel",
+      "plastic finish",
+      "hair-bin cleaning",
+      "durability",
+      "video demonstration quality",
+      "batch consistency"
+    ],
+    "score": "NOT_TESTED",
+    "hard_fail": "NOT_TESTED",
+    "decision": "NOT_TESTED",
+    "sampling_plan": { "value": "Domestic China sampling preferred.", "source": "PROJECT_DECISION", "status": "PENDING", "evidence": "Current project sampling plan" },
+    "ab_competitor": { "value": "Supplier 14", "source": "SUPPLIED_FACT", "status": "NEEDS_VERIFICATION", "evidence": "Supplied AB competitor reference" }
+  },
+  "procurement": {
+    "status": "CANDIDATE",
+    "bulk_order_gate": "HOLD",
+    "approval_reason": { "value": "Must pass physical sample AB test before 100-unit purchase.", "source": "PROJECT_DECISION", "status": "PENDING", "evidence": "Procurement rule" },
+    "rejection_reason": { "value": null, "source": "PROJECT_DECISION", "status": "UNKNOWN", "evidence": "No rejection decision made" }
+  },
+  "metadata": {
+    "asset_policy": "SOURCE_PRODUCT_ASSET / SUPPLIER_MARKETING_EVIDENCE",
+    "derived_marketing_asset_policy": "No derived asset generated in this task",
+    "marketing_evidence": [
+      { "source": "IMAGE_EVIDENCE_ONLY", "status": "NOT_A_VERIFIED_FACT", "statement": "Image shows a self-cleaning button design." },
+      { "source": "IMAGE_EVIDENCE_ONLY", "status": "NOT_A_VERIFIED_FACT", "statement": "Image shows a roller structure." },
+      { "source": "IMAGE_EVIDENCE_ONLY", "status": "NOT_A_VERIFIED_FACT", "statement": "Image includes sofa, carpet, clothing and bedding usage examples." }
+    ],
+    "unverified_marketing_language_not_promoted_to_facts": [
+      { "source": "IMAGE_EVIDENCE_ONLY", "status": "NOT_A_VERIFIED_FACT", "statement": "eco-friendly" },
+      { "source": "IMAGE_EVIDENCE_ONLY", "status": "NOT_A_VERIFIED_FACT", "statement": "durable" },
+      { "source": "IMAGE_EVIDENCE_ONLY", "status": "NOT_A_VERIFIED_FACT", "statement": "effective" },
+      { "source": "IMAGE_EVIDENCE_ONLY", "status": "NOT_A_VERIFIED_FACT", "statement": "ergonomic" },
+      { "source": "IMAGE_EVIDENCE_ONLY", "status": "NOT_A_VERIFIED_FACT", "statement": "great gift" }
+    ],
+    "medusa_write": "NO"
+  }
+}

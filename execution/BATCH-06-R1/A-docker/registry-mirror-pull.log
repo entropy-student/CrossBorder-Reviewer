@@ -1,0 +1,21 @@
+22.14.0-bookworm-slim: Pulling from library/node
+4c0fb48d4404: Pulling fs layer
+ccf053b99fca: Pulling fs layer
+8be40246db72: Pulling fs layer
+8a628cdd7ccc: Pulling fs layer
+2661489d5dec: Pulling fs layer
+c7857b450b54: Download complete
+b0ac9bb82887: Download complete
+4c0fb48d4404: Download complete
+2661489d5dec: Download complete
+8be40246db72: Download complete
+8a628cdd7ccc: Download complete
+2661489d5dec: Pull complete
+8a628cdd7ccc: Pull complete
+ccf053b99fca: Download complete
+ccf053b99fca: Pull complete
+4c0fb48d4404: Pull complete
+8be40246db72: Pull complete
+Digest: sha256:1c18d9ab3af4585870b92e4dbc5cac5a0dc77dd13df1a5905cea89fc720eb05b
+Status: Downloaded newer image for docker.m.daocloud.io/library/node:22.14.0-bookworm-slim
+docker.m.daocloud.io/library/node:22.14.0-bookworm-slim

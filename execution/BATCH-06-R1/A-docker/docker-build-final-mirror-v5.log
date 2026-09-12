@@ -1,0 +1,123 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.33kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:22.14.0-bookworm-slim
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 275B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 DONE 0.0s
+
+#5 [build  1/10] FROM docker.io/library/node:22.14.0-bookworm-slim@sha256:1c18d9ab3af4585870b92e4dbc5cac5a0dc77dd13df1a5905cea89fc720eb05b
+#5 resolve docker.io/library/node:22.14.0-bookworm-slim@sha256:1c18d9ab3af4585870b92e4dbc5cac5a0dc77dd13df1a5905cea89fc720eb05b 0.0s done
+#5 DONE 0.0s
+
+#6 [runtime 2/7] WORKDIR /app/apps/backend/.medusa/server
+#6 CACHED
+
+#7 [runtime 3/7] RUN corepack enable && useradd --create-home --uid 10001 medusa
+#7 CACHED
+
+#4 [internal] load build context
+#4 transferring context: 4.42kB 0.0s done
+#4 DONE 0.1s
+
+#8 [build  2/10] WORKDIR /app
+#8 CACHED
+
+#9 [build  3/10] COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+#9 CACHED
+
+#10 [build  4/10] RUN npm install --global --ignore-scripts --registry="https://registry.npmmirror.com" pnpm@10.11.1
+#10 7.380 
+#10 7.380 added 1 package in 7s
+#10 7.380 
+#10 7.380 1 package is looking for funding
+#10 7.380   run `npm fund` for details
+#10 7.382 npm notice
+#10 7.382 npm notice New major version of npm available! 10.9.2 -> 12.0.2
+#10 7.382 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+#10 7.382 npm notice To update run: npm install -g npm@12.0.2
+#10 7.382 npm notice
+#10 DONE 7.6s
+
+#11 [build  5/10] COPY apps/backend/package.json apps/backend/package.json
+#11 DONE 0.1s
+
+#12 [build  6/10] COPY apps/storefront/package.json apps/storefront/package.json
+#12 DONE 0.1s
+
+#13 [build  7/10] RUN pnpm install --frozen-lockfile
+#13 0.786 Scope: all 3 workspace projects
+#13 0.942 Lockfile is up to date, resolution step is skipped
+#13 1.061 Progress: resolved 1, reused 0, downloaded 0, added 0
+#13 1.349 Packages: +1481
+#13 1.349 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#13 2.063 Progress: resolved 1481, reused 0, downloaded 0, added 0
+#13 3.064 Progress: resolved 1481, reused 0, downloaded 9, added 0
+#13 3.348 
+#13 3.348    ╭─────────────────────────────────────────╮
+#13 3.348    │                                         │
+#13 3.348    │   Update available! 10.11.1 → 12.3.4.   │
+#13 3.348    │   Changelog: https://pnpm.io/v/12.3.4   │
+#13 3.348    │    To update, run: pnpm add -g pnpm     │
+#13 3.348    │                                         │
+#13 3.348    ╰─────────────────────────────────────────╯
+#13 3.348 
+#13 4.065 Progress: resolved 1481, reused 0, downloaded 27, added 27
+#13 4.226  WARN  GET https://registry.npmjs.org/minimatch/-/minimatch-10.2.6.tgz error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#13 4.227  WARN  GET https://registry.npmjs.org/brace-expansion/-/brace-expansion-5.0.9.tgz error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#13 4.401  WARN  GET https://registry.npmjs.org/@eslint-community/eslint-utils/-/eslint-utils-4.10.1.tgz error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#13 4.403  WARN  GET https://registry.npmjs.org/@eslint/config-array/-/config-array-0.21.2.tgz error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#13 4.406  WARN  GET https://registry.npmjs.org/tinyglobby/-/tinyglobby-0.2.17.tgz error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#13 4.407  WARN  GET https://registry.npmjs.org/ms/-/ms-2.1.3.tgz error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#13 4.408  WARN  GET https://registry.npmjs.org/picomatch/-/picomatch-4.0.7.tgz error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#13 5.066 Progress: resolved 1481, reused 0, downloaded 58, added 58
+#13 6.066 Progress: resolved 1481, reused 0, downloaded 93, added 95
+#13 7.066 Progress: resolved 1481, reused 0, downloaded 96, added 99
+#13 8.119 Progress: resolved 1481, reused 0, downloaded 97, added 99
+#13 9.120 Progress: resolved 1481, reused 0, downloaded 104, added 107
+#13 10.12 Progress: resolved 1481, reused 0, downloaded 115, added 118
+#13 11.12 Progress: resolved 1481, reused 0, downloaded 123, added 126
+#13 12.12 Progress: resolved 1481, reused 0, downloaded 129, added 132
+#13 13.12 Progress: resolved 1481, reused 0, downloaded 144, added 147
+#13 14.12 Progress: resolved 1481, reused 0, downloaded 162, added 165
+#13 15.12 Progress: resolved 1481, reused 0, downloaded 171, added 174
+#13 16.12 Progress: resolved 1481, reused 0, downloaded 205, added 213
+#13 16.78  WARN  GET https://registry.npmjs.org/brace-expansion/-/brace-expansion-5.0.9.tgz error (ECONNRESET). Will retry in 1 minute. 1 retries left.
+#13 17.13 Progress: resolved 1481, reused 0, downloaded 228, added 236
+#13 18.13 Progress: resolved 1481, reused 0, downloaded 242, added 250
+#13 19.12 Progress: resolved 1481, reused 0, downloaded 254, added 262
+#13 20.13 Progress: resolved 1481, reused 0, downloaded 270, added 278
+#13 21.13 Progress: resolved 1481, reused 0, downloaded 280, added 288
+#13 22.13 Progress: resolved 1481, reused 0, downloaded 294, added 302
+#13 23.13 Progress: resolved 1481, reused 0, downloaded 312, added 320
+#13 24.13 Progress: resolved 1481, reused 0, downloaded 335, added 343
+#13 25.13 Progress: resolved 1481, reused 0, downloaded 372, added 380
+#13 26.13 Progress: resolved 1481, reused 0, downloaded 393, added 401
+#13 27.13 Progress: resolved 1481, reused 0, downloaded 412, added 420
+#13 28.13 Progress: resolved 1481, reused 0, downloaded 439, added 447
+#13 29.13 Progress: resolved 1481, reused 0, downloaded 475, added 482
+#13 30.13 Progress: resolved 1481, reused 0, downloaded 514, added 522
+#13 31.13 Progress: resolved 1481, reused 0, downloaded 554, added 562
+#13 32.13 Progress: resolved 1481, reused 0, downloaded 570, added 578
+#13 33.13 Progress: resolved 1481, reused 0, downloaded 578, added 586
+#13 34.13 Progress: resolved 1481, reused 0, downloaded 592, added 600
+#13 35.13 Progress: resolved 1481, reused 0, downloaded 614, added 622
+#13 36.13 Progress: resolved 1481, reused 0, downloaded 619, added 628
+#13 37.13 Progress: resolved 1481, reused 0, downloaded 624, added 633
+#13 38.13 Progress: resolved 1481, reused 0, downloaded 627, added 636
+#13 39.13 Progress: resolved 1481, reused 0, downloaded 637, added 649
+#13 40.13 Progress: resolved 1481, reused 0, downloaded 642, added 653
+#13 41.13 Progress: resolved 1481, reused 0, downloaded 643, added 655
+#13 42.13 Progress: resolved 1481, reused 0, downloaded 650, added 662
+#13 43.13 Progress: resolved 1481, reused 0, downloaded 672, added 684
+#13 44.13 Progress: resolved 1481, reused 0, downloaded 690, added 701
+#13 45.13 Progress: resolved 1481, reused 0, downloaded 710, added 724
+#13 46.13 Progress: resolved 1481, reused 0, downloaded 726, added 740

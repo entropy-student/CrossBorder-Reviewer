@@ -1,0 +1,3 @@
+MEDUSA_WRITE=BLOCKED
+ERROR=Ordinary --write only accepts DRAFT records; use --publish for an explicit published-record request.
+EXIT_CODE=2

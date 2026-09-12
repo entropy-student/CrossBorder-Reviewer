@@ -1,0 +1,132 @@
+
+> dtc-starter-monorepo@ verify C:\Users\34707\Documents\ChatGPT\跨境电商-review\execution\BATCH-04\A-ci-clean-checkout\clean-checkout-final\03_template\medusa-crossborder-base
+> pnpm run typecheck && pnpm run lint && pnpm run test && pnpm run test:runtime
+
+$ pnpm --dir apps/backend run typecheck && pnpm --dir apps/storefront run typecheck
+$ tsc --noEmit --incremental false --pretty false
+$ tsc --noEmit --incremental false --pretty false
+$ pnpm --dir apps/backend run lint && pnpm --dir apps/storefront run lint
+$ medusa lint
+[32minfo[39m:    Linting project...
+
+C:\Users\34707\Documents\ChatGPT\跨境电商-review\execution\BATCH-04\A-ci-clean-checkout\clean-checkout-final\03_template\medusa-crossborder-base\apps\backend\src\modules\paypal\transport.ts
+   81:50  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+  102:72  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+  152:49  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+  161:84  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+  168:49  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+  180:49  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+  192:49  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+
+✖ 7 problems (0 errors, 7 warnings)
+[33mwarn[39m:    Lint produced 7 warning(s).
+$ node scripts/run-eslint.cjs
+(node:1132) ESLintRCWarning: You are using an eslintrc configuration file, which is deprecated and support will be removed in v10.0.0. Please migrate to an eslint.config.js file. See https://eslint.org/docs/latest/use/configure/migration-guide for details. An eslintrc configuration file is used because you have the ESLINT_USE_FLAT_CONFIG environment variable set to false. If you want to use an eslint.config.js file, remove the environment variable. If you want to find the location of the eslintrc configuration file, use the --debug flag.
+(Use `node --trace-warnings ...` to show where the warning was created)
+$ pnpm --dir apps/backend run test && pnpm run test:contracts
+$ pnpm run test:unit
+$ node scripts/run-jest.cjs unit --silent --runInBand --forceExit
+PASS src/modules/paypal/__tests__/paypal.unit.spec.ts (6.818 s)
+PASS src/api/__tests__/public-catalog.unit.spec.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       31 passed, 31 total
+Snapshots:   0 total
+Time:        7.314 s
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?
+$ node ../../06_payment/providers/payment-provider-boundary.test.mjs && node ../../05_product/scripts/product-pipeline.mjs test --input ../../05_product/intake/TEST_FIXTURE_ONLY.medusa-seed.json && node ../../05_product/scripts/product-boundary.test.mjs && node ../../05_product/sourcing/scripts/component-pipeline.mjs test --input ../../05_product/sourcing/components/COMP-001-pet-hair-remover.json && node ../../05_product/scripts/medusa-inventory-plan.test.mjs
+PAYMENT_BOUNDARY_TEST=PASS
+REAL_PAYMENT_CALL=NO
+FAKE_SUCCESS_RESPONSE=NO
+CASE_BLANK_INTAKE_BLOCKED=PASS
+CASE_TEST_FIXTURE_BLOCKS_PUBLISH=PASS
+CASE_MALFORMED_GALLERY_BLOCKED=PASS
+CASE_MALFORMED_VARIANTS_BLOCKED=PASS
+CASE_MALFORMED_MAIN_IMAGE_BLOCKED=PASS
+CASE_MALFORMED_DIMENSION_VALUE_BLOCKED=PASS
+CASE_MALFORMED_CURRENCY_BLOCKED=PASS
+CASE_NEGATIVE_DIMENSION_BLOCKED=PASS
+CASE_NEGATIVE_PRODUCT_DIMENSION_BLOCKED=PASS
+CASE_NAN_DIMENSION_BLOCKED=PASS
+CASE_ZERO_PACKAGE_DIMENSION_BLOCKED=PASS
+CASE_INVALID_DIMENSION_UNIT_BLOCKED=PASS
+CASE_WEIGHT_WITHOUT_UNIT_BLOCKED=PASS
+CASE_WEIGHT_OBJECT_WITHOUT_UNIT_BLOCKED=PASS
+CASE_WEIGHT_UNKNOWN_UNIT_NOT_PASS=PASS
+CASE_HS_VALUE_WITHOUT_VERIFIED_NOT_PASS=PASS
+CASE_HS_VERIFIED_WITHOUT_EVIDENCE_NOT_PASS=PASS
+CASE_HS_VERIFIED_WITH_EVIDENCE_PASS=PASS
+CASE_UNSUPPORTED_CURRENCY_BLOCKED=PASS
+CASE_USD_CURRENCY_CHECK_PASS=PASS
+CASE_EUR_CURRENCY_CHECK_PASS=PASS
+CASE_NORMALIZE_IDEMPOTENT=PASS
+CASE_DRY_RUN_WRITE_PERFORMED_NO=PASS
+CASE_PUBLIC_METADATA_EXCLUDES_SOURCING=PASS
+CASE_DRY_RUN_MAPS_ALL_VARIANTS=PASS
+CASE_SECOND_VARIANT_PRICE_MISMATCH_BLOCKS_PUBLISH=PASS
+CASE_OLD_SCHEMA_REQUIRES_EXPLICIT_UPGRADE=PASS
+VALIDATION_TEST_MATRIX=PASS
+PRODUCT_PUBLIC_METADATA=PASS
+PRODUCT_DRY_RUN_ALL_VARIANTS=PASS
+PRODUCT_BOUNDARY_TEST=PASS
+CASE_COMPONENT_RECORD_NEEDS_VERIFICATION=PASS
+CASE_SOURCE_GATE_PASS=PASS
+CASE_SAMPLE_GATE_NEEDS_TEST=PASS
+CASE_PROCUREMENT_GATE_HOLD=PASS
+CASE_LOGISTICS_GATE_NEEDS_VERIFICATION=PASS
+CASE_RISK_GATE_NEEDS_VERIFICATION=PASS
+CASE_BUNDLE_ID_STABLE=PASS
+CASE_NO_INVENTED_FIELDS_PASS=PASS
+CASE_SUPPLIER_CLAIMS_LABELED_PASS=PASS
+CASE_BULK_SHIPPING_QUOTE_LABELED_PASS=PASS
+CASE_HS_NOT_VERIFIED_PASS=PASS
+CASE_FTO_NOT_VERIFIED_PASS=PASS
+CASE_DROPSHIP_UNKNOWN_PASS=PASS
+CASE_UNIT_PACKAGE_UNKNOWN_PASS=PASS
+CASE_COST_CALCULATION_PASS=PASS
+CASE_BULK_ORDER_HOLD=PASS
+CASE_MEDUSA_WRITE_NO=PASS
+CASE_SAMPLE_SCORE_NOT_TESTED=PASS
+CASE_HARD_FAIL_NOT_TESTED=PASS
+CASE_QUOTE_RECONFIRMATION_REQUIRED_YES=PASS
+CASE_DRAFT_BOM_PASS=PASS
+CASE_HARD_FAIL_BLOCKS_PROCUREMENT=PASS
+CASE_FAILED_SAMPLE_REJECTS=PASS
+CASE_FAILED_SAMPLE_CONTRADICTION_BLOCKS=PASS
+CASE_VERIFIED_FACT_WITH_EVIDENCE_ALLOWED=PASS
+CASE_OPEN_INPUT_CANNOT_OVERRIDE_UNVERIFIED=PASS
+COMPONENT_VALIDATION_TESTS=PASS
+MEDUSA_INVENTORY_PLAN_TEST=PASS
+MEDUSA_WRITE=NO
+$ powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File scripts/run-runtime-security-tests.ps1
+RT02_PROCESS_SECURITY_TEST= PASS
+PASS_COUNT=9
+FAIL_COUNT=0
+ASSERTION_COUNT=9
+CORRECT_OWNERSHIP_CAN_STOP=PASS;exact identity matched; root and descendants were terminated
+ALREADY_EXITED_IS_STALE=PASS;missing live PID is refused without termination
+PID_REUSE_IDENTITY_MISMATCH_REFUSED=PASS;record PID was injected to another live process; target-alive=True;stop-output=MANAGED_PROCESS_STOP=REFUSED_STALE
+MANAGED_PROCESS_REASON=executable path does not match
+
+STARTUP_TIME_MISMATCH_REFUSED=PASS;stale startup timestamp refused
+PROJECT_IDENTITY_MISMATCH_REFUSED=PASS;record project identity did not match this template
+IDENTITY_READ_FAILURE_REFUSED=PASS;missing identity fields refused
+OLD_PID_FORMAT_REFUSED=PASS;legacy PID-only record refused
+STALE_PARENT_DOES_NOT_KILL_CHILD=PASS;stale parent identity refused; child and external sentinel remain alive
+EXTERNAL_SENTINEL_SURVIVES=PASS;pid=15220
+MANAGED_PROCESS_STOP=PASS
+RT03_SERVICE_IDENTITY_TEST= PASS
+PASS_COUNT=7
+FAIL_COUNT=0
+ASSERTION_COUNT=7
+START_BUILD_USE_IDENTITY_DECISION=PASS;HTTP 200 reuse path is guarded by managed identity in both callers
+CORRECT_INSTANCE_REUSE=PASS;status=REUSE;reason=verified managed process owns the port and health returned HTTP 200;launcher_to_listener_chain=verified
+WRONG_PROJECT_200_NOT_REUSED=PASS;status=IDENTITY_CONFLICT;stub-alive=True
+UNKNOWN_IDENTITY_200_NOT_REUSED=PASS;status=IDENTITY_UNKNOWN;stub-alive=True
+UNLISTENING_PORT_START_ALLOWED=PASS;status=START_ALLOWED;reason=port is not listening
+IDENTITY_MATCH_NOT_READY_DISTINCT=PASS;status=SERVICE_NOT_READY;reason=verified managed process owns the port but health did not return HTTP 200
+CONTROLLED_SERVICE_NOT_STOPPED=PASS;identity probe does not stop a controlled service
+RT04_FAILURE_INJECTION_TEST= PASS
+TEST_GATE_REJECTED_INJECTED_FAILURE=PASS
+TYPECHECK_GATE_REJECTED_INJECTED_ERROR=PASS
+PERMANENT_FAILURE_FIXTURE=NO

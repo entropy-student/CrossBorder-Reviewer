@@ -1,0 +1,15 @@
+
+> @dtc/backend@0.0.1 test C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\backend
+> pnpm run test:unit
+
+$ node scripts/run-jest.cjs unit --silent --runInBand --forceExit
+PASS src/modules/paypal/__tests__/paypal.unit.spec.ts (8.288 s)
+PASS src/api/__tests__/public-catalog.unit.spec.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       31 passed, 31 total
+Snapshots:   0 total
+Time:        8.946 s, estimated 10 s
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?
+
+EXIT_CODE=0

@@ -1,0 +1,11 @@
+[32minfo[39m:    redisUrl not found. A fake redis instance will be used.
+[33mwarn[39m:    Local Event Bus installed. This is not recommended for production.
+[32minfo[39m:    Locking module: Using "in-memory" as default.
+MODULE_LOADED=paypal_reconciliation
+WEBHOOK_FIRST={"replayed":false,"claimed":true,"status":"verified"}
+WEBHOOK_REPLAY={"replayed":true,"claimed":false,"status":"verified"}
+WEBHOOK_LIFECYCLE=dispatch_requested>applied
+REFUND_READBACK={"status":"completed"}
+REFUND_DB_STATUS=completed
+INBOX_DB_STATUS=applied
+REDIS_URL_PRESENT=true

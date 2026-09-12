@@ -1,0 +1,49 @@
+diff --git a/payment/paypal/PAYPAL_INTEGRATION_CONTRACT.md b/payment/paypal/PAYPAL_INTEGRATION_CONTRACT.md
+index ddceece..727869e 100644
+--- a/payment/paypal/PAYPAL_INTEGRATION_CONTRACT.md
++++ b/payment/paypal/PAYPAL_INTEGRATION_CONTRACT.md
+@@ -136,6 +136,11 @@ evidence. PayPal refund completion is asynchronous in the external contract:
+ `COMPLETED`, `PENDING` and `FAILED` outcomes, repeated logical refunds,
+ distinct partial refunds and provider/Medusa read-back all remain
+ `SANDBOX_REQUIRED`; local transport tests do not prove real refund completion.
++The current scaffold carries operation evidence in returned provider data for
++local contract testing, not as a durable concurrent-refund ledger. Until a
++reviewed Medusa persistence/reconciliation path and sandbox evidence exist,
++concurrent or ambiguous refunds remain `HOLD` for manual provider/Medusa
++reconciliation; the adapter must not invent a second accounting store.
+ 
+ ## Current gate
+ 
+diff --git a/payment/paypal/PAYPAL_TEST_MATRIX.md b/payment/paypal/PAYPAL_TEST_MATRIX.md
+index f514ff5..4d9b54a 100644
+--- a/payment/paypal/PAYPAL_TEST_MATRIX.md
++++ b/payment/paypal/PAYPAL_TEST_MATRIX.md
+@@ -1,6 +1,6 @@
+ # PayPal Readiness Test Matrix
+ 
+-Status: `LOCAL_CONTRACT_PASS / SCAFFOLD_ONLY / NO_EXTERNAL_CALLS`.
++Status: `LOCAL_CONTRACT_PASS / SANDBOX_PREPARED / OAUTH_PRECHECK_ONLY`.
+ 
+ All tests below require verified merchant/sandbox access before execution.
+ `REAL_MONEY_TEST=NO` for this readiness task.
+@@ -10,6 +10,7 @@ All tests below require verified merchant/sandbox access before execution.
+ | Customer exposure with no config | PayPal hidden; no usable CTA | PASS via fail-closed source gate |
+ | Sandbox credentials missing | No provider session; safe error | PASS — enabled registration rejects incomplete config |
+ | Create payment/session | One PayPal transaction correlated to one opaque Medusa session | LOCAL_CONTRACT_PASS — injected fake transport only |
++| Sandbox HTTP transport fixture | OAuth cache, Orders/Payments v2 request mapping and bounded retry seam | LOCAL_CONTRACT_PASS — local HTTP fixture only; no PayPal host called |
+ | Customer approval / redirect | Valid return state only | NOT_EXECUTED |
+ | Success authorization | Authorization ID and amount/currency match | LOCAL_CONTRACT_PASS — injected fake transport only |
+ | Capture where supported | Capture by authorization ID | LOCAL_CONTRACT_PASS — injected fake transport only |
+@@ -34,6 +35,12 @@ All tests below require verified merchant/sandbox access before execution.
+ 
+ No test in this matrix authorizes live checkout or real-money charging.
+ 
++BATCH-03 contacted only the fixed sandbox OAuth endpoint during a credential
++preflight; no sandbox order, authorization, capture, refund or webhook was
++created. The prior reviewer OAuth evidence remains the authoritative successful
++OAuth result. The preflight output contains only a sanitized HTTP status and no
++secret, token, account identifier or response body.
++
+ The canonical Payments v2 actionable webhook set is authorization-created,
+ authorization-voided, capture-completed and capture-declined. The
+ `PAYMENT.CAPTURE.DENIED` spelling is only a legacy Payments v1 compatibility

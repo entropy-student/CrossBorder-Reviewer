@@ -1,0 +1,10 @@
+candidate=Medusa DTC Starter
+origin=https://github.com/medusajs/dtc-starter.git
+acquisition_mode=github-archive-fallback
+archive_source=https://codeload.github.com/medusajs/dtc-starter/zip/refs/heads/main
+archive_reference=refs/heads/main (moving source reference)
+archive_sha256=ea7c88e159828fc2980a376186c331f0ce7496fa317665e15d653a00620bcc12
+upstream_commit=UNRESOLVED
+local_baseline_commit=5d3e644ebf7812453e2be000eba2f497423e5c02
+recorded_utc=2026-09-01T07:10:08.5104560Z
+note=The local commit is synthetic and must not be described as an official upstream commit.

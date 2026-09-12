@@ -1,0 +1,32 @@
+
+> @dtc/storefront@1.0.3 build C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\storefront
+> next build
+
+   ▲ Next.js 15.5.24
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 18.9s
+   Linting and checking validity of types ...
+
+./src/modules/checkout/components/shipping-address/index.tsx
+84:6  Warning: React Hook useEffect has a missing dependency: 'customer.email'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+   Collecting page data ...
+[TypeError: fetch failed] {
+  [cause]: Error: connect ECONNREFUSED 127.0.0.1:19999
+      at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:19999) {
+    errno: -4078,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '127.0.0.1',
+    port: 19999
+  }
+}
+
+> Build error occurred
+[Error: Failed to collect page data for /[countryCode]/collections/[handle]] {
+  type: 'Error'
+}
+ ELIFECYCLE  Command failed with exit code 1.

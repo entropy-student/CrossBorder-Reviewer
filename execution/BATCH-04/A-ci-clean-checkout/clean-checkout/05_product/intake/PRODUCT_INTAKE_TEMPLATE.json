@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.1.0",
+  "record_status": "DRAFT",
+  "identity": {
+    "source_product_id": null,
+    "supplier_name": null,
+    "supplier_url": null,
+    "internal_sku": null,
+    "handle": null,
+    "title": null,
+    "subtitle": null
+  },
+  "commerce": {
+    "currency": null,
+    "cost_price": null,
+    "selling_price": null,
+    "compare_at_price": null,
+    "option_names": [],
+    "variants": [],
+    "inventory_status": "UNKNOWN",
+    "inventory_quantity": null
+  },
+  "physical": {
+    "weight": {
+      "value": null,
+      "unit": "UNKNOWN"
+    },
+    "dimensions": {
+      "length": "UNKNOWN",
+      "width": "UNKNOWN",
+      "height": "UNKNOWN",
+      "unit": "UNKNOWN"
+    },
+    "material": "UNKNOWN",
+    "package_dimensions": {
+      "length": "UNKNOWN",
+      "width": "UNKNOWN",
+      "height": "UNKNOWN",
+      "unit": "UNKNOWN"
+    },
+    "package_weight": {
+      "value": null,
+      "unit": "UNKNOWN"
+    }
+  },
+  "content": {
+    "short_description": null,
+    "long_description": null,
+    "feature_bullets": [],
+    "care_instructions": null,
+    "specifications": {}
+  },
+  "taxonomy": {
+    "pet_type": "UNKNOWN",
+    "product_category": "UNKNOWN",
+    "collection": "UNKNOWN",
+    "tags": []
+  },
+  "assets": {
+    "main_image": null,
+    "gallery_images": [],
+    "lifestyle_images": [],
+    "thumbnail": null
+  },
+  "operations": {
+    "moq": null,
+    "supplier_lead_time": "UNKNOWN",
+    "domestic_shipping_notes": null,
+    "fulfillment_notes": null
+  },
+  "cross_border": {
+    "country_of_origin": "UNKNOWN",
+    "hs_code": {
+      "value": null,
+      "status": "NEEDS_VERIFICATION",
+      "evidence": null
+    },
+    "compliance_notes": null,
+    "restricted_material_notes": null
+  },
+  "provenance": {
+    "source_url": null,
+    "source_evidence": [],
+    "status": "UNVERIFIED",
+    "last_verified_date": null
+  },
+  "metadata": {}
+}

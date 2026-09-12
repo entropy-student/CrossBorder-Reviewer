@@ -1,0 +1,45 @@
+# Root meta repository only: candidate source trees retain their own baselines.
+02_demos/medusa-dtc/
+02_demos/spree-demo/
+.tooling/
+
+# Generated review artifacts and Docker/runtime state
+REVIEW*.zip
+REVIEW*.attestation.txt
+REVIEW_MANIFEST.txt
+REVIEW_ENV/
+**/.pnpm-store/
+**/node_modules/
+**/.next/
+**/.medusa/
+**/build/
+**/dist/
+**/coverage/
+**/tmp/
+**/logs/
+**/log/
+**/.cache/
+**/.turbo/
+**/*.tsbuildinfo
+**/storage/
+**/postgres_data/
+**/vendor/
+**/storefront-archive/
+**/*.zip
+**/spree-products.json
+02_demos/spree-local/.build-source/
+
+# Local-only credentials / runtime state
+*.local.txt
+.runtime/
+**/.env
+**/.env.local
+**/.env.e2e
+**/.env.*.local
+**/credentials.json
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

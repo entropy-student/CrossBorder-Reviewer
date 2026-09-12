@@ -1,0 +1,78 @@
+Scope: all 3 workspace projects
+Lockfile is up to date, resolution step is skipped
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Packages: +1475
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 1475, reused 100, downloaded 0, added 0
+Progress: resolved 1475, reused 148, downloaded 0, added 0
+Progress: resolved 1475, reused 192, downloaded 0, added 0
+Progress: resolved 1475, reused 459, downloaded 0, added 0
+Progress: resolved 1475, reused 631, downloaded 0, added 0
+Progress: resolved 1475, reused 730, downloaded 0, added 0
+Progress: resolved 1475, reused 798, downloaded 0, added 0
+Progress: resolved 1475, reused 917, downloaded 0, added 0
+Progress: resolved 1475, reused 968, downloaded 0, added 0
+Progress: resolved 1475, reused 1259, downloaded 0, added 0
+Progress: resolved 1475, reused 1452, downloaded 0, added 2
+Progress: resolved 1475, reused 1455, downloaded 0, added 16
+Progress: resolved 1475, reused 1455, downloaded 0, added 82
+Progress: resolved 1475, reused 1455, downloaded 0, added 144
+Progress: resolved 1475, reused 1455, downloaded 0, added 185
+Progress: resolved 1475, reused 1455, downloaded 0, added 206
+Progress: resolved 1475, reused 1456, downloaded 0, added 212
+Progress: resolved 1475, reused 1457, downloaded 0, added 233
+Progress: resolved 1475, reused 1457, downloaded 0, added 261
+Progress: resolved 1475, reused 1457, downloaded 0, added 306
+Progress: resolved 1475, reused 1457, downloaded 0, added 331
+Progress: resolved 1475, reused 1457, downloaded 0, added 379
+Progress: resolved 1475, reused 1457, downloaded 0, added 483
+Progress: resolved 1475, reused 1457, downloaded 0, added 611
+Progress: resolved 1475, reused 1457, downloaded 0, added 636
+Progress: resolved 1475, reused 1457, downloaded 0, added 700
+Progress: resolved 1475, reused 1457, downloaded 0, added 711
+Progress: resolved 1475, reused 1457, downloaded 0, added 731
+Progress: resolved 1475, reused 1457, downloaded 0, added 740
+Progress: resolved 1475, reused 1457, downloaded 0, added 782
+Progress: resolved 1475, reused 1457, downloaded 0, added 810
+Progress: resolved 1475, reused 1457, downloaded 0, added 851
+Progress: resolved 1475, reused 1457, downloaded 0, added 852
+Progress: resolved 1475, reused 1457, downloaded 0, added 853
+Progress: resolved 1475, reused 1457, downloaded 0, added 883
+Progress: resolved 1475, reused 1457, downloaded 0, added 901
+Progress: resolved 1475, reused 1457, downloaded 0, added 933
+Progress: resolved 1475, reused 1457, downloaded 0, added 949
+Progress: resolved 1475, reused 1457, downloaded 0, added 960
+Progress: resolved 1475, reused 1457, downloaded 0, added 1005
+Progress: resolved 1475, reused 1457, downloaded 0, added 1128
+Progress: resolved 1475, reused 1457, downloaded 0, added 1248
+Progress: resolved 1475, reused 1457, downloaded 0, added 1288
+Progress: resolved 1475, reused 1457, downloaded 0, added 1310
+Progress: resolved 1475, reused 1457, downloaded 0, added 1333
+Progress: resolved 1475, reused 1457, downloaded 0, added 1353
+Progress: resolved 1475, reused 1457, downloaded 0, added 1364
+Progress: resolved 1475, reused 1457, downloaded 0, added 1423
+Progress: resolved 1475, reused 1457, downloaded 0, added 1469
+Progress: resolved 1475, reused 1457, downloaded 0, added 1471
+Progress: resolved 1475, reused 1457, downloaded 0, added 1472
+Progress: resolved 1475, reused 1457, downloaded 0, added 1473
+Progress: resolved 1475, reused 1457, downloaded 0, added 1475, done
+(node:31032) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+devDependencies:
++ @medusajs/eslint-plugin 2.19.0
++ eslint 9.39.5
++ jiti 2.7.0
++ prettier 3.9.6
++ turbo 2.10.12
+
+╭ Warning ─────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│   Ignored build scripts: @medusajs/telemetry, @swc/core, esbuild,            │
+│   msgpackr-extract, protobufjs, sharp, unrs-resolver.                        │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed     │
+│   to run scripts.                                                            │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+Done in 1m 5.2s using pnpm v10.11.1

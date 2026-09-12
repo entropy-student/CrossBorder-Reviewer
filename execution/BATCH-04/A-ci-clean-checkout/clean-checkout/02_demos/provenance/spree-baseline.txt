@@ -1,0 +1,16 @@
+candidate=Spree Commerce demo
+acquisition_mode=official-create-spree-app-plus-official-storefront-archive-fallback
+create_spree_app_version=1.2.1
+spree_cli_locked_version=2.4.9
+backend_locked_spree_version=5.6.1
+storefront_upstream_commit=e1b2cc76335fe9a419afb090db5ef5da61432bab
+prebuilt_runtime_image=ghcr.io/spree/spree:latest
+prebuilt_runtime_image_id=sha256:048c57126667464722c61485be81686d7ddc1717794a3d77eff902a4e2125070
+prebuilt_runtime_repo_digest=ghcr.io/spree/spree@sha256:048c57126667464722c61485be81686d7ddc1717794a3d77eff902a4e2125070
+prebuilt_runtime_container=spree-demo-web-1
+prebuilt_backend_port=9100
+storefront_port=3001
+docker_project=spree-demo
+postgres_volume=spree-demo_postgres_data
+local_baseline_commit=f9966ab61ae0ceb72f62a51167b1c013fe10230f
+note=The local baseline commit is synthetic and is not an upstream commit. Prebuilt image runtime is not local application-source runtime.

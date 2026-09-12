@@ -1,0 +1,4 @@
+NAME=cb-b06r1-worker-final-20260908 IMAGE=cb-batch06-r1-medusa:20260908 STATUS=Up 4 minutes PORTS=9000/tcp
+NAME=cb-b06r1-server-final-20260908 IMAGE=cb-batch06-r1-medusa:20260908 STATUS=Up 4 minutes PORTS=0.0.0.0:19000->9000/tcp, [::]:19000->9000/tcp
+NAME=cb-b06r1-redis-20260908 IMAGE=redis:8-alpine STATUS=Up About an hour PORTS=6379/tcp
+NAME=cb-b06r1-pg-20260908 IMAGE=postgres:16-alpine STATUS=Up About an hour PORTS=5432/tcp

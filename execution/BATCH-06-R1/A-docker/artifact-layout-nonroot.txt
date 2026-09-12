@@ -1,0 +1,5 @@
+uid=10001(medusa) gid=10001(medusa) groups=10001(medusa)
+/app
+ARTIFACT_CONFIG=present
+ARTIFACT_PACKAGE=present
+NODE_MODULES=present

@@ -1,0 +1,35 @@
+
+> dtc-starter-monorepo@ lint C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base
+> pnpm --dir apps/backend run lint && pnpm --dir apps/storefront run lint
+
+[WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.overrides". See https://pnpm.io/settings for the new home of each setting.
+$ medusa lint
+[32minfo[39m:    Linting project...
+
+C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\backend\src\modules\paypal\transport.ts
+   79:50  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+  100:72  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+  138:49  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+  147:84  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+  154:49  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+  166:49  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+  178:49  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+
+✖ 7 problems (0 errors, 7 warnings)
+[33mwarn[39m:    Lint produced 7 warning(s).
+[WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.overrides". See https://pnpm.io/settings for the new home of each setting.
+$ node scripts/run-eslint.cjs
+
+C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\storefront\src\modules\checkout\components\shipping-address\index.tsx
+  84:6  warning  React Hook useEffect has a missing dependency: 'customer.email'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\storefront\src\modules\checkout\components\shipping\index.tsx
+  119:6  warning  React Hook useEffect has missing dependencies: '_pickupMethods', '_shippingMethods', 'cart.id', and 'shippingMethodId'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\storefront\src\modules\products\components\product-actions\index.tsx
+  104:6  warning  React Hook useEffect has missing dependencies: 'pathname', 'router', and 'searchParams'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+✖ 3 problems (0 errors, 3 warnings)
+
+(node:1204) ESLintRCWarning: You are using an eslintrc configuration file, which is deprecated and support will be removed in v10.0.0. Please migrate to an eslint.config.js file. See https://eslint.org/docs/latest/use/configure/migration-guide for details. An eslintrc configuration file is used because you have the ESLINT_USE_FLAT_CONFIG environment variable set to false. If you want to use an eslint.config.js file, remove the environment variable. If you want to find the location of the eslintrc configuration file, use the --debug flag.
+(Use `node --trace-warnings ...` to show where the warning was created)

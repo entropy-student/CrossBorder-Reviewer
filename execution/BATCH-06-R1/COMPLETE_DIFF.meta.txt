@@ -1,0 +1,4 @@
+PATCH_BYTES=345364
+UNTRACKED_FILES_INCLUDED=35
+SOURCE=git diff HEAD plus git diff --no-index for every git-untracked path
+GENERATED_AT=2026-09-08T21:54:14.9363146+08:00

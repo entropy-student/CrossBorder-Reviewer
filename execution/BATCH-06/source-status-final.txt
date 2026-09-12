@@ -1,0 +1,102 @@
+ M 03_template/medusa-crossborder-base/apps/backend/.env.template
+ M 03_template/medusa-crossborder-base/apps/backend/medusa-config.ts
+ M 03_template/medusa-crossborder-base/apps/backend/package.json
+ M 03_template/medusa-crossborder-base/apps/backend/src/modules/paypal/__tests__/paypal.unit.spec.ts
+ M 03_template/medusa-crossborder-base/apps/backend/src/modules/paypal/service.ts
+ M 03_template/medusa-crossborder-base/apps/storefront/.env.template
+ M 03_template/medusa-crossborder-base/apps/storefront/next.config.js
+ M 03_template/medusa-crossborder-base/apps/storefront/package.json
+ M 03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/account/@dashboard/profile/page.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/cart/page.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/categories/[...category]/page.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/collections/[handle]/page.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/layout.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/order/[id]/transfer/[token]/accept/page.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/order/[id]/transfer/[token]/decline/page.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/products/[handle]/page.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/app/api/payment-return/route.ts
+ M 03_template/medusa-crossborder-base/apps/storefront/src/lib/checkout-exposure.ts
+ M 03_template/medusa-crossborder-base/apps/storefront/src/lib/data/cart.ts
+ M 03_template/medusa-crossborder-base/apps/storefront/src/lib/data/customer.ts
+ M 03_template/medusa-crossborder-base/apps/storefront/src/lib/data/orders.ts
+ M 03_template/medusa-crossborder-base/apps/storefront/src/lib/data/payment.ts
+ M 03_template/medusa-crossborder-base/apps/storefront/src/lib/data/products.ts
+ M 03_template/medusa-crossborder-base/apps/storefront/src/lib/data/regions.ts
+ M 03_template/medusa-crossborder-base/apps/storefront/src/lib/util/money.ts
+ M 03_template/medusa-crossborder-base/apps/storefront/src/middleware.ts
+ M 03_template/medusa-crossborder-base/apps/storefront/src/modules/account/components/account-info/index.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/modules/account/components/profile-email/index.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/modules/cart/templates/index.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/addresses/index.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/error-message/index.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/payment-button/index.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/payment/index.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/review/index.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/shipping-address/index.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/shipping/index.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/modules/common/components/cart-totals/index.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/modules/common/components/input/index.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/modules/common/components/line-item-price/index.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/modules/common/components/line-item-unit-price/index.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/modules/layout/components/cart-dropdown/index.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/modules/layout/components/language-select/index.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/modules/order/components/order-summary/index.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/modules/order/components/payment-details/index.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/modules/order/components/shipping-details/index.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/modules/products/components/image-gallery/index.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/modules/products/components/product-actions/index.tsx
+ M 03_template/medusa-crossborder-base/apps/storefront/src/modules/products/templates/index.tsx
+ M 03_template/medusa-crossborder-base/package.json
+ M 03_template/medusa-crossborder-base/pnpm-lock.yaml
+ M 03_template/medusa-crossborder-base/pnpm-workspace.yaml
+ M 03_template/medusa-crossborder-base/scripts/_common.ps1
+ M 03_template/medusa-crossborder-base/scripts/acceptance-smoke.ps1
+ M 03_template/medusa-crossborder-base/scripts/build-production.ps1
+ M 03_template/medusa-crossborder-base/scripts/medusa-crossborder-augment.ts
+ M 03_template/medusa-crossborder-base/scripts/start-local.ps1
+ M 04_docs/scripts/92-prepare-review-staging.ps1
+ M 05_product/scripts/medusa-product-upsert.mjs
+ M 05_product/scripts/product-pipeline.mjs
+ M 05_product/sourcing/scripts/component-pipeline.mjs
+ M 06_payment/README.md
+ M 06_payment/providers/paypal/README.md
+?? .github/workflows/verify.yml
+?? 03_template/medusa-crossborder-base/.dockerignore
+?? 03_template/medusa-crossborder-base/apps/backend/scripts/paypal-reconcile.mjs
+?? 03_template/medusa-crossborder-base/apps/backend/scripts/run-jest.cjs
+?? 03_template/medusa-crossborder-base/apps/backend/src/api/__tests__/public-catalog.unit.spec.ts
+?? 03_template/medusa-crossborder-base/apps/backend/src/api/checkout-boundary.ts
+?? 03_template/medusa-crossborder-base/apps/backend/src/api/middlewares.ts
+?? 03_template/medusa-crossborder-base/apps/backend/src/api/public-catalog.ts
+?? 03_template/medusa-crossborder-base/apps/backend/src/config/__tests__/production.unit.spec.ts
+?? 03_template/medusa-crossborder-base/apps/backend/src/config/production.ts
+?? 03_template/medusa-crossborder-base/apps/backend/src/modules/paypal-reconciliation/index.ts
+?? 03_template/medusa-crossborder-base/apps/backend/src/modules/paypal-reconciliation/migrations/Migration20260907000100.ts
+?? 03_template/medusa-crossborder-base/apps/backend/src/modules/paypal-reconciliation/migrations/Migration20260908000100.ts
+?? 03_template/medusa-crossborder-base/apps/backend/src/modules/paypal-reconciliation/migrations/Migration20260908000200.ts
+?? 03_template/medusa-crossborder-base/apps/backend/src/modules/paypal-reconciliation/models/paypal-event-inbox.ts
+?? 03_template/medusa-crossborder-base/apps/backend/src/modules/paypal-reconciliation/models/paypal-payment-operation.ts
+?? 03_template/medusa-crossborder-base/apps/backend/src/modules/paypal-reconciliation/service.ts
+?? 03_template/medusa-crossborder-base/apps/backend/src/modules/paypal/config.ts
+?? 03_template/medusa-crossborder-base/apps/backend/src/modules/paypal/transport.ts
+?? 03_template/medusa-crossborder-base/apps/storefront/scripts/run-eslint.cjs
+?? 03_template/medusa-crossborder-base/apps/storefront/src/modules/order/components/transfer-decision-form/index.tsx
+?? 03_template/medusa-crossborder-base/deploy/README.md
+?? 03_template/medusa-crossborder-base/deploy/dns-plan.md
+?? 03_template/medusa-crossborder-base/deploy/docker-boundary.test.mjs
+?? 03_template/medusa-crossborder-base/deploy/managed-services.md
+?? 03_template/medusa-crossborder-base/deploy/medusa/Dockerfile
+?? 03_template/medusa-crossborder-base/deploy/medusa/README.md
+?? 03_template/medusa-crossborder-base/deploy/medusa/entrypoint.sh
+?? 03_template/medusa-crossborder-base/deploy/r2-acl-boundary.test.mjs
+?? 03_template/medusa-crossborder-base/deploy/rollback.md
+?? 03_template/medusa-crossborder-base/deploy/vercel.md
+?? 03_template/medusa-crossborder-base/scripts/process-management.security.tests.ps1
+?? 03_template/medusa-crossborder-base/scripts/run-runtime-security-tests.ps1
+?? 03_template/medusa-crossborder-base/scripts/service-identity.security.tests.ps1
+?? 03_template/medusa-crossborder-base/scripts/verification-gate.security.tests.ps1
+?? 04_docs/scripts/92-prepare-review-staging.security.tests.ps1
+?? 05_product/scripts/medusa-inventory-plan.mjs
+?? 05_product/scripts/medusa-inventory-plan.test.mjs
+?? 05_product/scripts/medusa-product-payload.mjs
+?? 05_product/scripts/product-boundary.test.mjs

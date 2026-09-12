@@ -1,0 +1,18 @@
+{
+  "refund": {
+    "accepted": false,
+    "order_lookup_called": false,
+    "error_category": "requires_order_id_for_refund_resource"
+  },
+  "replay": {
+    "inbox_calls": 2,
+    "first_action": "authorized",
+    "replay_action": "authorized",
+    "replay_suppressed": false
+  },
+  "officialCapturePersistence": {
+    "returned_action": "captured",
+    "returned_session_id": "payses_probe_123",
+    "persisted_event_has_correlation": false
+  }
+}

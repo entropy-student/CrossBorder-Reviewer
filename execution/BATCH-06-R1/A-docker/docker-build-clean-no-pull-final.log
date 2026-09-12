@@ -1,0 +1,357 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.55kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:22.14.0-bookworm-slim
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 275B done
+#3 DONE 0.1s
+
+#4 [build  1/11] FROM docker.io/library/node:22.14.0-bookworm-slim@sha256:1c18d9ab3af4585870b92e4dbc5cac5a0dc77dd13df1a5905cea89fc720eb05b
+#4 resolve docker.io/library/node:22.14.0-bookworm-slim@sha256:1c18d9ab3af4585870b92e4dbc5cac5a0dc77dd13df1a5905cea89fc720eb05b 0.0s done
+#4 DONE 0.0s
+
+#5 [runtime  2/10] WORKDIR /app/apps/backend/.medusa/server
+#5 CACHED
+
+#6 [build  2/11] WORKDIR /app
+#6 CACHED
+
+#7 [runtime  3/10] RUN corepack enable && useradd --create-home --uid 10001 medusa
+#7 ...
+
+#8 [internal] load build context
+#8 transferring context: 4.42kB 0.0s done
+#8 DONE 0.1s
+
+#9 [build  3/11] COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+#9 DONE 0.1s
+
+#7 [runtime  3/10] RUN corepack enable && useradd --create-home --uid 10001 medusa
+#7 DONE 0.8s
+
+#10 [build  4/11] RUN npm install --global --ignore-scripts --registry="https://registry.npmmirror.com" pnpm@10.11.1
+#10 9.077 
+#10 9.077 added 1 package in 9s
+#10 9.077 
+#10 9.077 1 package is looking for funding
+#10 9.077   run `npm fund` for details
+#10 9.079 npm notice
+#10 9.079 npm notice New major version of npm available! 10.9.2 -> 12.0.2
+#10 9.079 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+#10 9.079 npm notice To update run: npm install -g npm@12.0.2
+#10 9.079 npm notice
+#10 DONE 9.3s
+
+#11 [build  5/11] RUN pnpm config set registry "https://registry.npmmirror.com"
+#11 DONE 0.9s
+
+#12 [build  6/11] COPY apps/backend/package.json apps/backend/package.json
+#12 DONE 0.1s
+
+#13 [build  7/11] COPY apps/storefront/package.json apps/storefront/package.json
+#13 DONE 0.0s
+
+#14 [build  8/11] RUN pnpm install --frozen-lockfile
+#14 0.642 Scope: all 3 workspace projects
+#14 0.797 Lockfile is up to date, resolution step is skipped
+#14 0.917 Progress: resolved 1, reused 0, downloaded 0, added 0
+#14 1.140 Packages: +1481
+#14 1.140 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#14 1.920 Progress: resolved 1481, reused 0, downloaded 0, added 0
+#14 2.544 
+#14 2.544    ╭─────────────────────────────────────────╮
+#14 2.544    │                                         │
+#14 2.544    │   Update available! 10.11.1 → 12.3.4.   │
+#14 2.544    │   Changelog: https://pnpm.io/v/12.3.4   │
+#14 2.544    │    To update, run: pnpm add -g pnpm     │
+#14 2.544    │                                         │
+#14 2.544    ╰─────────────────────────────────────────╯
+#14 2.544 
+#14 3.008 Progress: resolved 1481, reused 0, downloaded 1, added 0
+#14 4.009 Progress: resolved 1481, reused 0, downloaded 20, added 22
+#14 5.011 Progress: resolved 1481, reused 0, downloaded 30, added 33
+#14 6.011 Progress: resolved 1481, reused 0, downloaded 37, added 40
+#14 7.012 Progress: resolved 1481, reused 0, downloaded 39, added 42
+#14 8.012 Progress: resolved 1481, reused 0, downloaded 41, added 44
+#14 9.013 Progress: resolved 1481, reused 0, downloaded 43, added 46
+#14 10.01 Progress: resolved 1481, reused 0, downloaded 45, added 48
+#14 11.01 Progress: resolved 1481, reused 0, downloaded 47, added 50
+#14 12.02 Progress: resolved 1481, reused 0, downloaded 49, added 52
+#14 13.02 Progress: resolved 1481, reused 0, downloaded 56, added 60
+#14 14.02 Progress: resolved 1481, reused 0, downloaded 67, added 71
+#14 15.02 Progress: resolved 1481, reused 0, downloaded 77, added 81
+#14 16.02 Progress: resolved 1481, reused 0, downloaded 91, added 95
+#14 17.02 Progress: resolved 1481, reused 0, downloaded 97, added 102
+#14 18.02 Progress: resolved 1481, reused 0, downloaded 104, added 109
+#14 19.02 Progress: resolved 1481, reused 0, downloaded 113, added 117
+#14 20.02 Progress: resolved 1481, reused 0, downloaded 122, added 127
+#14 21.02 Progress: resolved 1481, reused 0, downloaded 135, added 140
+#14 22.02 Progress: resolved 1481, reused 0, downloaded 143, added 148
+#14 23.02 Progress: resolved 1481, reused 0, downloaded 151, added 156
+#14 24.02 Progress: resolved 1481, reused 0, downloaded 155, added 160
+#14 25.02 Progress: resolved 1481, reused 0, downloaded 162, added 167
+#14 26.02 Progress: resolved 1481, reused 0, downloaded 167, added 173
+#14 27.02 Progress: resolved 1481, reused 0, downloaded 171, added 177
+#14 28.02 Progress: resolved 1481, reused 0, downloaded 178, added 184
+#14 29.02 Progress: resolved 1481, reused 0, downloaded 194, added 201
+#14 30.03 Progress: resolved 1481, reused 0, downloaded 210, added 218
+#14 31.03 Progress: resolved 1481, reused 0, downloaded 224, added 232
+#14 32.03 Progress: resolved 1481, reused 0, downloaded 240, added 248
+#14 33.03 Progress: resolved 1481, reused 0, downloaded 253, added 261
+#14 34.03 Progress: resolved 1481, reused 0, downloaded 266, added 274
+#14 35.03 Progress: resolved 1481, reused 0, downloaded 281, added 289
+#14 36.03 Progress: resolved 1481, reused 0, downloaded 287, added 295
+#14 37.03 Progress: resolved 1481, reused 0, downloaded 298, added 306
+#14 38.03 Progress: resolved 1481, reused 0, downloaded 311, added 319
+#14 39.03 Progress: resolved 1481, reused 0, downloaded 325, added 333
+#14 40.03 Progress: resolved 1481, reused 0, downloaded 337, added 345
+#14 41.03 Progress: resolved 1481, reused 0, downloaded 348, added 356
+#14 42.03 Progress: resolved 1481, reused 0, downloaded 366, added 374
+#14 43.03 Progress: resolved 1481, reused 0, downloaded 380, added 388
+#14 44.03 Progress: resolved 1481, reused 0, downloaded 394, added 402
+#14 45.03 Progress: resolved 1481, reused 0, downloaded 408, added 416
+#14 46.03 Progress: resolved 1481, reused 0, downloaded 421, added 429
+#14 47.03 Progress: resolved 1481, reused 0, downloaded 432, added 440
+#14 48.03 Progress: resolved 1481, reused 0, downloaded 443, added 451
+#14 49.03 Progress: resolved 1481, reused 0, downloaded 452, added 460
+#14 50.03 Progress: resolved 1481, reused 0, downloaded 462, added 470
+#14 51.03 Progress: resolved 1481, reused 0, downloaded 470, added 478
+#14 52.03 Progress: resolved 1481, reused 0, downloaded 484, added 492
+#14 53.03 Progress: resolved 1481, reused 0, downloaded 498, added 506
+#14 54.03 Progress: resolved 1481, reused 0, downloaded 510, added 518
+#14 55.03 Progress: resolved 1481, reused 0, downloaded 526, added 534
+#14 56.03 Progress: resolved 1481, reused 0, downloaded 544, added 552
+#14 57.03 Progress: resolved 1481, reused 0, downloaded 564, added 572
+#14 58.03 Progress: resolved 1481, reused 0, downloaded 576, added 585
+#14 59.03 Progress: resolved 1481, reused 0, downloaded 580, added 589
+#14 60.03 Progress: resolved 1481, reused 0, downloaded 584, added 594
+#14 61.04 Progress: resolved 1481, reused 0, downloaded 589, added 599
+#14 62.03 Progress: resolved 1481, reused 0, downloaded 595, added 605
+#14 63.04 Progress: resolved 1481, reused 0, downloaded 609, added 619
+#14 64.04 Progress: resolved 1481, reused 0, downloaded 622, added 632
+#14 65.04 Progress: resolved 1481, reused 0, downloaded 630, added 641
+#14 66.04 Progress: resolved 1481, reused 0, downloaded 634, added 645
+#14 67.04 Progress: resolved 1481, reused 0, downloaded 639, added 651
+#14 68.04 Progress: resolved 1481, reused 0, downloaded 644, added 656
+#14 69.04 Progress: resolved 1481, reused 0, downloaded 649, added 661
+#14 70.04 Progress: resolved 1481, reused 0, downloaded 653, added 665
+#14 71.04 Progress: resolved 1481, reused 0, downloaded 659, added 670
+#14 72.04 Progress: resolved 1481, reused 0, downloaded 669, added 682
+#14 73.04 Progress: resolved 1481, reused 0, downloaded 680, added 693
+#14 74.05 Progress: resolved 1481, reused 0, downloaded 689, added 702
+#14 75.05 Progress: resolved 1481, reused 0, downloaded 696, added 709
+#14 76.05 Progress: resolved 1481, reused 0, downloaded 703, added 716
+#14 77.04 Progress: resolved 1481, reused 0, downloaded 708, added 721
+#14 78.05 Progress: resolved 1481, reused 0, downloaded 717, added 730
+#14 79.05 Progress: resolved 1481, reused 0, downloaded 724, added 738
+#14 80.05 Progress: resolved 1481, reused 0, downloaded 729, added 743
+#14 81.05 Progress: resolved 1481, reused 0, downloaded 739, added 753
+#14 82.05 Progress: resolved 1481, reused 0, downloaded 748, added 762
+#14 83.05 Progress: resolved 1481, reused 0, downloaded 756, added 772
+#14 84.05 Progress: resolved 1481, reused 0, downloaded 758, added 774
+#14 85.05 Progress: resolved 1481, reused 0, downloaded 761, added 777
+#14 86.07 Progress: resolved 1481, reused 0, downloaded 766, added 782
+#14 87.07 Progress: resolved 1481, reused 0, downloaded 774, added 790
+#14 88.08 Progress: resolved 1481, reused 0, downloaded 791, added 808
+#14 89.08 Progress: resolved 1481, reused 0, downloaded 800, added 816
+#14 90.08 Progress: resolved 1481, reused 0, downloaded 806, added 824
+#14 91.09 Progress: resolved 1481, reused 0, downloaded 816, added 831
+#14 92.09 Progress: resolved 1481, reused 0, downloaded 832, added 850
+#14 93.09 Progress: resolved 1481, reused 0, downloaded 845, added 863
+#14 94.09 Progress: resolved 1481, reused 0, downloaded 857, added 875
+#14 95.09 Progress: resolved 1481, reused 0, downloaded 867, added 885
+#14 96.09 Progress: resolved 1481, reused 0, downloaded 881, added 898
+#14 97.09 Progress: resolved 1481, reused 0, downloaded 889, added 907
+#14 98.09 Progress: resolved 1481, reused 0, downloaded 899, added 917
+#14 99.09 Progress: resolved 1481, reused 0, downloaded 911, added 929
+#14 100.1 Progress: resolved 1481, reused 0, downloaded 925, added 942
+#14 101.1 Progress: resolved 1481, reused 0, downloaded 938, added 956
+#14 102.1 Progress: resolved 1481, reused 0, downloaded 951, added 969
+#14 103.1 Progress: resolved 1481, reused 0, downloaded 960, added 978
+#14 104.1 Progress: resolved 1481, reused 0, downloaded 978, added 996
+#14 105.1 Progress: resolved 1481, reused 0, downloaded 990, added 1008
+#14 106.1 Progress: resolved 1481, reused 0, downloaded 997, added 1015
+#14 107.1 Progress: resolved 1481, reused 0, downloaded 1008, added 1026
+#14 108.1 Progress: resolved 1481, reused 0, downloaded 1015, added 1033
+#14 109.1 Progress: resolved 1481, reused 0, downloaded 1021, added 1039
+#14 110.1 Progress: resolved 1481, reused 0, downloaded 1027, added 1045
+#14 111.1 Progress: resolved 1481, reused 0, downloaded 1036, added 1054
+#14 112.1 Progress: resolved 1481, reused 0, downloaded 1040, added 1058
+#14 113.1 Progress: resolved 1481, reused 0, downloaded 1050, added 1068
+#14 114.1 Progress: resolved 1481, reused 0, downloaded 1058, added 1076
+#14 115.1 Progress: resolved 1481, reused 0, downloaded 1061, added 1079
+#14 116.1 Progress: resolved 1481, reused 0, downloaded 1071, added 1089
+#14 117.1 Progress: resolved 1481, reused 0, downloaded 1082, added 1100
+#14 118.1 Progress: resolved 1481, reused 0, downloaded 1102, added 1120
+#14 119.1 Progress: resolved 1481, reused 0, downloaded 1111, added 1129
+#14 120.1 Progress: resolved 1481, reused 0, downloaded 1122, added 1140
+#14 121.1 Progress: resolved 1481, reused 0, downloaded 1133, added 1151
+#14 122.1 Progress: resolved 1481, reused 0, downloaded 1143, added 1161
+#14 123.1 Progress: resolved 1481, reused 0, downloaded 1150, added 1168
+#14 124.1 Progress: resolved 1481, reused 0, downloaded 1159, added 1177
+#14 125.1 Progress: resolved 1481, reused 0, downloaded 1167, added 1184
+#14 126.1 Progress: resolved 1481, reused 0, downloaded 1170, added 1188
+#14 127.1 Progress: resolved 1481, reused 0, downloaded 1177, added 1194
+#14 128.1 Progress: resolved 1481, reused 0, downloaded 1181, added 1199
+#14 129.1 Progress: resolved 1481, reused 0, downloaded 1184, added 1202
+#14 130.1 Progress: resolved 1481, reused 0, downloaded 1186, added 1204
+#14 131.1 Progress: resolved 1481, reused 0, downloaded 1192, added 1210
+#14 132.1 Progress: resolved 1481, reused 0, downloaded 1195, added 1213
+#14 133.1 Progress: resolved 1481, reused 0, downloaded 1197, added 1215
+#14 134.1 Progress: resolved 1481, reused 0, downloaded 1201, added 1219
+#14 135.1 Progress: resolved 1481, reused 0, downloaded 1206, added 1224
+#14 136.1 Progress: resolved 1481, reused 0, downloaded 1209, added 1227
+#14 137.1 Progress: resolved 1481, reused 0, downloaded 1211, added 1229
+#14 138.1 Progress: resolved 1481, reused 0, downloaded 1216, added 1234
+#14 139.1 Progress: resolved 1481, reused 0, downloaded 1219, added 1237
+#14 140.1 Progress: resolved 1481, reused 0, downloaded 1224, added 1242
+#14 141.1 Progress: resolved 1481, reused 0, downloaded 1231, added 1248
+#14 142.1 Progress: resolved 1481, reused 0, downloaded 1233, added 1251
+#14 143.1 Progress: resolved 1481, reused 0, downloaded 1236, added 1254
+#14 144.1 Progress: resolved 1481, reused 0, downloaded 1242, added 1260
+#14 145.1 Progress: resolved 1481, reused 0, downloaded 1246, added 1264
+#14 146.1 Progress: resolved 1481, reused 0, downloaded 1249, added 1267
+#14 147.1 Progress: resolved 1481, reused 0, downloaded 1257, added 1275
+#14 148.1 Progress: resolved 1481, reused 0, downloaded 1263, added 1281
+#14 149.1 Progress: resolved 1481, reused 0, downloaded 1266, added 1284
+#14 150.1 Progress: resolved 1481, reused 0, downloaded 1272, added 1290
+#14 151.1 Progress: resolved 1481, reused 0, downloaded 1280, added 1298
+#14 152.1 Progress: resolved 1481, reused 0, downloaded 1289, added 1307
+#14 153.1 Progress: resolved 1481, reused 0, downloaded 1299, added 1317
+#14 154.1 Progress: resolved 1481, reused 0, downloaded 1311, added 1329
+#14 155.1 Progress: resolved 1481, reused 0, downloaded 1318, added 1336
+#14 156.1 Progress: resolved 1481, reused 0, downloaded 1328, added 1346
+#14 157.1 Progress: resolved 1481, reused 0, downloaded 1336, added 1354
+#14 158.1 Progress: resolved 1481, reused 0, downloaded 1340, added 1357
+#14 159.1 Progress: resolved 1481, reused 0, downloaded 1345, added 1363
+#14 160.1 Progress: resolved 1481, reused 0, downloaded 1347, added 1365
+#14 161.1 Progress: resolved 1481, reused 0, downloaded 1353, added 1371
+#14 162.1 Progress: resolved 1481, reused 0, downloaded 1356, added 1374
+#14 163.1 Progress: resolved 1481, reused 0, downloaded 1361, added 1379
+#14 164.1 Progress: resolved 1481, reused 0, downloaded 1366, added 1384
+#14 165.1 Progress: resolved 1481, reused 0, downloaded 1369, added 1387
+#14 166.1 Progress: resolved 1481, reused 0, downloaded 1373, added 1391
+#14 167.1 Progress: resolved 1481, reused 0, downloaded 1377, added 1395
+#14 168.1 Progress: resolved 1481, reused 0, downloaded 1386, added 1404
+#14 169.1 Progress: resolved 1481, reused 0, downloaded 1391, added 1409
+#14 170.1 Progress: resolved 1481, reused 0, downloaded 1396, added 1414
+#14 171.1 Progress: resolved 1481, reused 0, downloaded 1400, added 1418
+#14 172.1 Progress: resolved 1481, reused 0, downloaded 1403, added 1421
+#14 173.1 Progress: resolved 1481, reused 0, downloaded 1410, added 1429
+#14 174.1 Progress: resolved 1481, reused 0, downloaded 1414, added 1433
+#14 175.1 Progress: resolved 1481, reused 0, downloaded 1422, added 1441
+#14 176.1 Progress: resolved 1481, reused 0, downloaded 1430, added 1449
+#14 177.1 Progress: resolved 1481, reused 0, downloaded 1439, added 1458
+#14 178.1 Progress: resolved 1481, reused 0, downloaded 1443, added 1462
+#14 179.1 Progress: resolved 1481, reused 0, downloaded 1448, added 1467
+#14 180.1 Progress: resolved 1481, reused 0, downloaded 1451, added 1470
+#14 181.1 Progress: resolved 1481, reused 0, downloaded 1453, added 1472
+#14 182.1 Progress: resolved 1481, reused 0, downloaded 1454, added 1473
+#14 183.2 Progress: resolved 1481, reused 0, downloaded 1455, added 1473
+#14 184.2 Progress: resolved 1481, reused 0, downloaded 1455, added 1474
+#14 185.2 Progress: resolved 1481, reused 0, downloaded 1456, added 1475
+#14 189.6 Progress: resolved 1481, reused 0, downloaded 1457, added 1475
+#14 190.6 Progress: resolved 1481, reused 0, downloaded 1458, added 1477
+#14 190.9  WARN  GET https://registry.npmmirror.com/react-remove-scroll-bar/-/react-remove-scroll-bar-2.3.8.tgz error (ERR_SOCKET_TIMEOUT). Will retry in 10 seconds. 2 retries left.
+#14 206.4 Progress: resolved 1481, reused 0, downloaded 1459, added 1477
+#14 207.4 Progress: resolved 1481, reused 0, downloaded 1459, added 1478
+#14 260.0 Progress: resolved 1481, reused 0, downloaded 1460, added 1478
+#14 261.0 Progress: resolved 1481, reused 0, downloaded 1460, added 1479
+#14 291.9 Progress: resolved 1481, reused 0, downloaded 1461, added 1479
+#14 292.9 Progress: resolved 1481, reused 0, downloaded 1461, added 1480
+#14 297.9 Progress: resolved 1481, reused 0, downloaded 1462, added 1480
+#14 297.9 Progress: resolved 1481, reused 0, downloaded 1462, added 1481, done
+#14 299.3 
+#14 299.3 devDependencies:
+#14 299.3 + @medusajs/eslint-plugin 2.19.0
+#14 299.3 + eslint 9.39.5
+#14 299.3 + jiti 2.7.0
+#14 299.3 + prettier 3.9.6
+#14 299.3 + turbo 2.10.12
+#14 299.3 
+#14 299.3 ╭ Warning ─────────────────────────────────────────────────────────────────────╮
+#14 299.3 │                                                                              │
+#14 299.3 │   Ignored build scripts: @medusajs/telemetry, @swc/core, esbuild,            │
+#14 299.3 │   msgpackr-extract, protobufjs, unrs-resolver.                               │
+#14 299.3 │   Run "pnpm approve-builds" to pick which dependencies should be allowed     │
+#14 299.3 │   to run scripts.                                                            │
+#14 299.3 │                                                                              │
+#14 299.3 ╰──────────────────────────────────────────────────────────────────────────────╯
+#14 299.3 
+#14 299.4 Done in 4m 59.1s using pnpm v10.11.1
+#14 DONE 299.8s
+
+#15 [build  9/11] COPY apps/backend apps/backend
+#15 DONE 3.6s
+
+#16 [build 10/11] RUN pnpm --dir apps/backend build
+#16 0.728 
+#16 0.728 > @dtc/backend@0.0.1 build /app/apps/backend
+#16 0.728 > medusa build
+#16 0.728 
+#16 1.396 ╔════════════════════════════════════════════════════════════════════════╗
+#16 1.396 ║                                                                        ║
+#16 1.396 ║   Medusa collects anonymous usage analytics                            ║
+#16 1.396 ║   to help improve Medusa for all users.                                ║
+#16 1.396 ║                                                                        ║
+#16 1.396 ║   If you'd like to opt-out, you can use `medusa telemetry --disable`   ║
+#16 1.396 ║                                                                        ║
+#16 1.396 ║                                                                        ║
+#16 1.396 ╚════════════════════════════════════════════════════════════════════════╝
+#16 4.360 info:    redisUrl not found. A fake redis instance will be used.
+#16 4.409 info:    Generating types...
+#16 4.414 info:    No link to load from /app/node_modules/.pnpm/@medusajs+draft-order@2.19.0_@medusajs+admin-sdk@2.19.0_@medusajs+cli@2.19.0_@types+nod_ab547186112aa2cacb92323532778ff2/node_modules/@medusajs/draft-order/.medusa/server/src/links. skipped.
+#16 5.674 info:    Types generated successfully
+#16 5.904 info:    Linting project...
+#16 7.138 info:    Starting build...
+#16 7.493 info:    Compiling backend source...
+#16 7.493 info:    Removing existing ".medusa/server" folder
+#16 14.21 info:    Backend build completed successfully (6.71s)
+#16 14.21 info:    Compiling frontend source...
+#16 40.87 info:    Frontend build completed successfully (26.67s)
+#16 DONE 41.4s
+
+#17 [build 11/11] RUN pnpm prune --prod
+#17 0.911 ? The modules directories will be removed and reinstalled from scratch. Proceed? (Y/n) ‣ true[4D
+#17 DONE 0.9s
+
+#18 [runtime  4/10] COPY --from=build --chown=medusa:medusa /app/node_modules /app/node_modules
+#18 DONE 41.7s
+
+#19 [runtime  5/10] COPY --from=build --chown=medusa:medusa /app/apps/backend/node_modules /app/apps/backend/node_modules
+#19 DONE 1.9s
+
+#20 [runtime  6/10] COPY --from=build --chown=medusa:medusa /app/apps/backend/.medusa/server /app/apps/backend/.medusa/server
+#20 DONE 0.3s
+
+#21 [runtime  7/10] COPY deploy/medusa/entrypoint.sh /app/entrypoint.sh
+#21 DONE 0.0s
+
+#22 [runtime  8/10] RUN sed -i 's/\r$//' /app/entrypoint.sh
+#22 DONE 0.3s
+
+#23 [runtime  9/10] RUN chmod 0555 /app/entrypoint.sh
+#23 DONE 0.3s
+
+#24 [runtime 10/10] RUN chown -R medusa:medusa /app/apps/backend/.medusa/server       && test -f /app/apps/backend/.medusa/server/medusa-config.js       && test -f /app/apps/backend/.medusa/server/package.json       && test -f /app/apps/backend/node_modules/@medusajs/cli/cli.js
+#24 DONE 1.3s
+
+#25 exporting to image
+#25 exporting layers
+#25 exporting layers 95.8s done
+#25 exporting manifest sha256:3fa1a9ffeee8559c8d4a04a7a11cd0a18ed13b75affb3a28d4dd5701a4b08014 0.1s done
+#25 exporting config sha256:111cb5d17684da9c1b514853b3c4169d104291d2eed74a2640f8a64bea96975c done
+#25 exporting attestation manifest sha256:d65aff1936379b51997ffb23bb77407ea8bd2a68a407839306ae75cc69bf4a83 0.0s done
+#25 exporting manifest list sha256:a64e3d304a30b122b7f15192facc99e0deb731ae70d2baacd51c543327c49987
+#25 exporting manifest list sha256:a64e3d304a30b122b7f15192facc99e0deb731ae70d2baacd51c543327c49987 0.0s done
+#25 naming to docker.io/library/cb-batch06-r1-medusa:20260908 done
+#25 unpacking to docker.io/library/cb-batch06-r1-medusa:20260908
+#25 unpacking to docker.io/library/cb-batch06-r1-medusa:20260908 48.1s done
+#25 DONE 144.2s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/kt626to4hb5ccrf86r1154v0r

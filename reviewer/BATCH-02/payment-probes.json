@@ -1,0 +1,46 @@
+{
+  "method": "actual source; fake fetch only; no real transactions",
+  "results": [
+    {
+      "name": "WRONG_ORDER_REJECTED",
+      "observed": true
+    },
+    {
+      "name": "MISSING_MONEY_REJECTED",
+      "observed": true
+    },
+    {
+      "name": "NEW_DATA_REFUND_REPLAY_ONCE",
+      "observed": {
+        "calls": 1,
+        "total": "5.00"
+      }
+    },
+    {
+      "name": "CONCURRENT_REFUNDS_RETURN_CONFLICTING_TOTALS",
+      "observed": {
+        "totals": [
+          "5.00",
+          "5.00"
+        ],
+        "note": "provider outputs only; no DB concurrency tested"
+      }
+    },
+    {
+      "name": "CREATE_ORDER_CONTENT_TYPE",
+      "observed": "text/plain;charset=UTF-8"
+    },
+    {
+      "name": "NONRETRYABLE_400_RETRY_COUNT",
+      "observed": 3
+    },
+    {
+      "name": "PENDING_CAPTURE_MAPPED_TO_CAPTURED",
+      "observed": "captured"
+    },
+    {
+      "name": "WEBHOOK_WITHOUT_EVENT_RESOURCE_ORDER_ID",
+      "observed": "captured"
+    }
+  ]
+}

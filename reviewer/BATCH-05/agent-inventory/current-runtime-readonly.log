@@ -1,0 +1,59 @@
+BEGIN
+               id                |      handle      |  status   |     availability_mode      | owned_inventory 
+---------------------------------+------------------+-----------+----------------------------+-----------------
+ prod_01M1JG54Z6PFY802QV32EJ174D | pet-hair-remover | published | LOCAL_PREVIEW_AVAILABILITY | 
+(1 row)
+
+                 id                 |     sku     | manage_inventory 
+------------------------------------+-------------+------------------
+ variant_01M1JG551ZEBATMPNNTW138YSE | PAW-PHR-001 | f
+(1 row)
+
+ variant_id | inventory_item_id | required_quantity 
+------------+-------------------+-------------------
+(0 rows)
+
+ inventory_item_id | location_id | stocked_quantity | reserved_quantity | simple_available 
+-------------------+-------------+------------------+-------------------+------------------
+(0 rows)
+
+               id                |        name        
+---------------------------------+--------------------
+ sloc_01M1JFCBNTQVRQHCETCE19VHF9 | European Warehouse
+ sloc_01M1JFCMXD3W7QA0JTRATEGMJW | US Test Warehouse
+(2 rows)
+
+              id               |         name          | is_disabled 
+-------------------------------+-----------------------+-------------
+ sc_01M1JFCBGKFBFYHXKF76Z0WQMS | Default Sales Channel | f
+(1 row)
+
+       sales_channel_id        |        stock_location_id        
+-------------------------------+---------------------------------
+ sc_01M1JFCBGKFBFYHXKF76Z0WQMS | sloc_01M1JFCBNTQVRQHCETCE19VHF9
+ sc_01M1JFCBGKFBFYHXKF76Z0WQMS | sloc_01M1JFCMXD3W7QA0JTRATEGMJW
+(2 rows)
+
+ product_id | sales_channel_id 
+------------+------------------
+(0 rows)
+
+ entity  |                 metadata_key                 
+---------+----------------------------------------------
+ product | pawfectly_availability_mode
+ product | pawfectly_internal_sku
+ product | pawfectly_product_master_version
+ product | pawfectly_product_status
+ product | pawfectly_public_category
+ product | pawfectly_public_metadata_version
+ product | pawfectly_record_status
+ product | pawfectly_record_type
+ product | pawfectly_selling_price_confirmed
+ product | pawfectly_selling_price_status
+ product | pawfectly_source_product_id
+ product | pawfectly_store_integration_approved_by_user
+ product | pawfectly_storefront_purchasable
+ variant | pawfectly_storefront_purchasable
+(14 rows)
+
+COMMIT

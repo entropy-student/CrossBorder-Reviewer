@@ -1,0 +1,66 @@
+[
+  {
+    "name": "PRODUCTION_UPDATE_SETS_MANAGE_INVENTORY",
+    "observed": false
+  },
+  {
+    "name": "DRY_RUN_WRITE_SAME_METADATA",
+    "observed": {
+      "same": false,
+      "onlyActualKeys": [
+        "pawfectly_product_status"
+      ]
+    }
+  },
+  {
+    "name": "MISSING_VARIANT_OPTIONS_BLOCKED",
+    "observed": {
+      "IMPORT_REQUIRED": "BLOCKED",
+      "PUBLISH_REQUIRED": "PASS",
+      "LOGISTICS_REQUIRED": "NEEDS_VERIFICATION"
+    }
+  },
+  {
+    "name": "INVALID_IMAGE_PUBLISH_GATE",
+    "observed": {
+      "IMPORT_REQUIRED": "PASS",
+      "PUBLISH_REQUIRED": "PASS",
+      "LOGISTICS_REQUIRED": "NEEDS_VERIFICATION"
+    }
+  },
+  {
+    "name": "TEST_RECORD_TYPE_PUBLISH_GATE",
+    "observed": {
+      "IMPORT_REQUIRED": "PASS",
+      "PUBLISH_REQUIRED": "PASS",
+      "LOGISTICS_REQUIRED": "NEEDS_VERIFICATION"
+    }
+  },
+  {
+    "name": "KNOWN_RISK_VERIFIED_STILL_BLOCKED",
+    "observed": {
+      "result": "BLOCKED",
+      "noInvented": "FAIL"
+    }
+  },
+  {
+    "name": "FAILED_TEST_WITH_NOT_TESTED_DECISION",
+    "observed": {
+      "SOURCE_GATE": "PASS",
+      "SAMPLE_GATE": "NEEDS_TEST",
+      "PROCUREMENT_GATE": "HOLD",
+      "LOGISTICS_GATE": "NEEDS_VERIFICATION",
+      "RISK_GATE": "NEEDS_VERIFICATION"
+    }
+  },
+  {
+    "name": "HARDFail_REJECTS",
+    "observed": {
+      "SOURCE_GATE": "PASS",
+      "SAMPLE_GATE": "FAIL",
+      "PROCUREMENT_GATE": "REJECT",
+      "LOGISTICS_GATE": "NEEDS_VERIFICATION",
+      "RISK_GATE": "NEEDS_VERIFICATION"
+    }
+  }
+]

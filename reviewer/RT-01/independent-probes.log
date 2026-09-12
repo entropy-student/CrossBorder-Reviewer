@@ -1,0 +1,100 @@
+[
+  {
+    "name": "actual-source-pure",
+    "passed": true,
+    "error": "StagingPath is rejected because it is the canonical source project or a descendant of it."
+  },
+  {
+    "name": "actual-source-descendant-pure",
+    "passed": true,
+    "error": "StagingPath is rejected because it is the canonical source project or a descendant of it."
+  },
+  {
+    "name": "actual-case-trailing-pure",
+    "passed": true,
+    "error": "StagingPath is rejected because it is the canonical source project or a descendant of it."
+  },
+  {
+    "name": "actual-doc-pure",
+    "passed": true,
+    "error": "StagingPath is rejected because it is the document center or a descendant of it."
+  },
+  {
+    "name": "actual-ancestor-pure",
+    "passed": true,
+    "error": "StagingPath is rejected because it is outside the trusted staging root."
+  },
+  {
+    "name": "actual-home-pure",
+    "passed": true,
+    "error": "StagingPath is rejected because it is outside the trusted staging root."
+  },
+  {
+    "name": "actual-drive-pure",
+    "passed": true,
+    "error": "StagingPath is rejected because it is outside the trusted staging root."
+  },
+  {
+    "name": "actual-trusted-root-pure",
+    "passed": true,
+    "error": "StagingPath is rejected because it is the trusted staging root itself; use a dedicated child directory."
+  },
+  {
+    "name": "actual-prefix-pure",
+    "passed": true,
+    "error": "StagingPath is rejected because it is outside the trusted staging root."
+  },
+  {
+    "name": "actual-traversal-pure",
+    "passed": true,
+    "error": "StagingPath is rejected because it is outside the trusted staging root."
+  },
+  {
+    "name": "new-child-allowed",
+    "passed": true,
+    "error": ""
+  },
+  {
+    "name": "existing-no-marker",
+    "passed": true,
+    "error": "Existing StagingPath is rejected because it has no valid tool-ownership marker; use a new child directory."
+  },
+  {
+    "name": "matching-marker",
+    "passed": true,
+    "error": ""
+  },
+  {
+    "name": "wrong-task",
+    "passed": true,
+    "error": "Existing StagingPath is rejected because its ownership marker does not match this tool/task."
+  },
+  {
+    "name": "marker-copied-to-other-path",
+    "passed": true,
+    "error": "Existing StagingPath is rejected because its ownership marker does not match this tool/task."
+  },
+  {
+    "name": "malformed-json",
+    "passed": true,
+    "error": "Existing StagingPath is rejected because its ownership marker is invalid."
+  },
+  {
+    "name": "junction-root",
+    "passed": true,
+    "error": "StagingPath is rejected because an existing path component is a reparse point: C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商-review\\reviewer\\RT-01\\fixture-e0b5a07d3ec7487d9314f6fc9cb5b118\\_review_stage\\junction"
+  },
+  {
+    "name": "junction-ancestor",
+    "passed": true,
+    "error": "StagingPath is rejected because an existing path component is a reparse point: C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商-review\\reviewer\\RT-01\\fixture-e0b5a07d3ec7487d9314f6fc9cb5b118\\_review_stage\\junction"
+  },
+  {
+    "name": "nested-junction-in-owned-tree",
+    "passed": true,
+    "error": "Existing StagingPath is rejected because it contains a reparse point: C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商-review\\reviewer\\RT-01\\fixture-e0b5a07d3ec7487d9314f6fc9cb5b118\\_review_stage\\owned\\nested-link"
+  }
+]
+SOURCE_SHA256=84892FF43FEFE49B9E7199AFFB5B10B9CEA7CFD95B3A80A90C58C250A40F40D4
+FIXTURE=C:\Users\34707\Documents\ChatGPT\跨境电商-review\reviewer\RT-01\fixture-e0b5a07d3ec7487d9314f6fc9cb5b118
+TOTAL=19;PASS=19

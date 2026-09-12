@@ -1,0 +1,29 @@
+╔════════════════════════════════════════════════════════════════════════╗
+Couldn't find tsconfig.json. tsconfig-paths will be skipped
+║                                                                        ║
+║   Medusa collects anonymous usage analytics                            ║
+║   to help improve Medusa for all users.                                ║
+║                                                                        ║
+║   If you'd like to opt-out, you can use `medusa telemetry --disable`   ║
+║                                                                        ║
+║                                                                        ║
+╚════════════════════════════════════════════════════════════════════════╝
+{"activity_id":"01M20ESVXW19HB1YSQAHPES5FJ","config":{},"level":"info","message":"Creating server","timestamp":"2026-09-08 12:10:06"}
+{"level":"info","message":"Skipping instrumentation registration. No register function found.","timestamp":"2026-09-08 12:10:06"}
+{"level":"info","message":"No link to load from /app/node_modules/.pnpm/@medusajs+draft-order@2.19.0_@medusajs+admin-sdk@2.19.0_@medusajs+cli@2.19.0_@types+nod_ab547186112aa2cacb92323532778ff2/node_modules/@medusajs/draft-order/.medusa/server/src/links. skipped.","timestamp":"2026-09-08 12:10:06"}
+{"level":"info","message":"No link to load from /app/apps/backend/.medusa/server/src/links. skipped.","timestamp":"2026-09-08 12:10:06"}
+{"level":"info","message":"Redis cache connection established successfully","timestamp":"2026-09-08 12:10:09"}
+{"level":"info","message":"Connection to Redis in module 'event-bus-redis' established","timestamp":"2026-09-08 12:10:09"}
+{"level":"info","message":"Connection to Redis in \"locking-redis\" provider established","timestamp":"2026-09-08 12:10:09"}
+{"level":"info","message":"Redis cache is ready to accept commands","timestamp":"2026-09-08 12:10:09"}
+{"level":"info","message":"Redis cache connection test successful","timestamp":"2026-09-08 12:10:09"}
+{"level":"info","message":"[Workflow-engine-redis] Connection to Redis in module 'workflow-engine-redis' established","timestamp":"2026-09-08 12:10:09"}
+{"level":"info","message":"[Workflow-engine-redis] Connection to Redis PubSub in module 'workflow-engine-redis' established","timestamp":"2026-09-08 12:10:09"}
+{"level":"info","message":"No workflow to load from /app/apps/backend/.medusa/server/src/workflows. skipped.","timestamp":"2026-09-08 12:10:09"}
+{"level":"info","message":"No workflow to load from /app/node_modules/.pnpm/@medusajs+draft-order@2.19.0_@medusajs+admin-sdk@2.19.0_@medusajs+cli@2.19.0_@types+nod_ab547186112aa2cacb92323532778ff2/node_modules/@medusajs/draft-order/.medusa/server/src/workflows. skipped.","timestamp":"2026-09-08 12:10:09"}
+{"level":"info","message":"No subscriber to load from /app/apps/backend/.medusa/server/src/subscribers. skipped.","timestamp":"2026-09-08 12:10:09"}
+{"level":"info","message":"No subscriber to load from /app/node_modules/.pnpm/@medusajs+draft-order@2.19.0_@medusajs+admin-sdk@2.19.0_@medusajs+cli@2.19.0_@types+nod_ab547186112aa2cacb92323532778ff2/node_modules/@medusajs/draft-order/.medusa/server/src/subscribers. skipped.","timestamp":"2026-09-08 12:10:09"}
+{"level":"info","message":"No job to load from /app/node_modules/.pnpm/@medusajs+medusa@2.19.0_55fd7992ca4da9f7822a18399b6ccf4a/node_modules/@medusajs/medusa/dist/jobs. skipped.","timestamp":"2026-09-08 12:10:13"}
+{"level":"info","message":"No job to load from /app/node_modules/.pnpm/@medusajs+draft-order@2.19.0_@medusajs+admin-sdk@2.19.0_@medusajs+cli@2.19.0_@types+nod_ab547186112aa2cacb92323532778ff2/node_modules/@medusajs/draft-order/.medusa/server/src/jobs. skipped.","timestamp":"2026-09-08 12:10:13"}
+{"level":"info","message":"No job to load from /app/apps/backend/.medusa/server/src/jobs. skipped.","timestamp":"2026-09-08 12:10:13"}
+{"activity_id":"01M20ESVXW19HB1YSQAHPES5FJ","duration":7269,"level":"info","message":"Server is ready on port: 9000","timestamp":"2026-09-08 12:10:13"}

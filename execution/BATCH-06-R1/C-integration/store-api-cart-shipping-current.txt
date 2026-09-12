@@ -1,0 +1,2 @@
+CART_CREATE_STATUS=200 CART_ID_READ=true
+SHIPPING_OPTIONS_STATUS=200 keys=shipping_options;shipping_options.count=0

@@ -1,0 +1,12 @@
+{
+  "checked_at_utc": "2026-09-07T06:14:00.2247212Z",
+  "endpoint_host": "api-m.sandbox.paypal.com",
+  "endpoint_path": "/v1/oauth2/token",
+  "http_status": 401,
+  "success": false,
+  "redirect_followed": false,
+  "response_body_saved": false,
+  "credential_saved": false,
+  "token_saved": false,
+  "live_value_read_or_used": false
+}

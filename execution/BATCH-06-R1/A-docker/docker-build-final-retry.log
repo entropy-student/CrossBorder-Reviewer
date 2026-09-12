@@ -1,0 +1,158 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.22kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:22.14.0-bookworm-slim
+#2 DONE 0.1s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 275B done
+#3 DONE 0.0s
+
+#4 [build  1/10] FROM docker.io/library/node:22.14.0-bookworm-slim@sha256:1c18d9ab3af4585870b92e4dbc5cac5a0dc77dd13df1a5905cea89fc720eb05b
+#4 resolve docker.io/library/node:22.14.0-bookworm-slim@sha256:1c18d9ab3af4585870b92e4dbc5cac5a0dc77dd13df1a5905cea89fc720eb05b 0.0s done
+#4 DONE 0.0s
+
+#5 [runtime 2/7] WORKDIR /app/apps/backend/.medusa/server
+#5 CACHED
+
+#6 [runtime 3/7] RUN corepack enable && useradd --create-home --uid 10001 medusa
+#6 CACHED
+
+#7 [internal] load build context
+#7 transferring context: 4.42kB 0.1s done
+#7 DONE 0.1s
+
+#8 [build  3/10] RUN corepack enable
+#8 CACHED
+
+#9 [build  5/10] COPY apps/backend/package.json apps/backend/package.json
+#9 CACHED
+
+#10 [build  6/10] COPY apps/storefront/package.json apps/storefront/package.json
+#10 CACHED
+
+#11 [build  7/10] RUN pnpm install --frozen-lockfile
+#11 CACHED
+
+#12 [build  8/10] COPY apps/backend apps/backend
+#12 CACHED
+
+#13 [build  4/10] COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+#13 CACHED
+
+#14 [build  2/10] WORKDIR /app
+#14 CACHED
+
+#15 [build  9/10] RUN pnpm --dir apps/backend build
+#15 CACHED
+
+#16 [build 10/10] RUN pnpm --filter @dtc/backend deploy --prod --legacy /app/medusa-deploy
+#16 0.761  WARN  Shared workspace lockfile detected but configuration forces legacy deploy implementation.
+#16 0.839 Packages are copied from the content-addressable store to the virtual store.
+#16 0.839   Content-addressable store is at: /root/.local/share/pnpm/store/v10
+#16 0.839   Virtual store is at:             medusa-deploy/node_modules/.pnpm
+#16 1.833 Progress: resolved 1, reused 0, downloaded 0, added 0
+#16 2.832 Progress: resolved 13, reused 0, downloaded 0, added 0
+#16 3.302 apps/backend                             |  WARN  deprecated eslint@9.39.4
+#16 3.609  WARN  GET https://registry.npmjs.org/@medusajs%2Fadmin-shared error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#16 3.611  WARN  GET https://registry.npmjs.org/@medusajs%2Fmedusa error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#16 3.612  WARN  GET https://registry.npmjs.org/@medusajs%2Flocking-redis error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#16 3.614  WARN  GET https://registry.npmjs.org/@medusajs%2Fcaching error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#16 3.614  WARN  GET https://registry.npmjs.org/@tanstack%2Freact-query error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#16 3.721 .                                        |  WARN  deprecated eslint@9.39.5
+#16 3.832 Progress: resolved 25, reused 0, downloaded 0, added 0
+#16 4.833 Progress: resolved 30, reused 0, downloaded 0, added 0
+#16 5.833 Progress: resolved 34, reused 0, downloaded 0, added 0
+#16 6.835 Progress: resolved 39, reused 0, downloaded 0, added 0
+#16 7.835 Progress: resolved 45, reused 0, downloaded 0, added 0
+#16 8.835 Progress: resolved 50, reused 0, downloaded 0, added 0
+#16 9.836 Progress: resolved 54, reused 0, downloaded 0, added 0
+#16 10.84 Progress: resolved 57, reused 0, downloaded 0, added 0
+#16 11.91 Progress: resolved 58, reused 0, downloaded 0, added 0
+#16 12.91 Progress: resolved 61, reused 0, downloaded 0, added 0
+#16 14.02 Progress: resolved 63, reused 0, downloaded 0, added 0
+#16 15.05 Progress: resolved 68, reused 0, downloaded 0, added 0
+#16 16.36 Progress: resolved 69, reused 0, downloaded 0, added 0
+#16 17.36 Progress: resolved 104, reused 0, downloaded 0, added 0
+#16 18.36 Progress: resolved 120, reused 0, downloaded 0, added 0
+#16 19.36 Progress: resolved 138, reused 0, downloaded 0, added 0
+#16 20.37 Progress: resolved 150, reused 0, downloaded 0, added 0
+#16 21.37 Progress: resolved 167, reused 0, downloaded 0, added 0
+#16 22.37 Progress: resolved 183, reused 0, downloaded 0, added 0
+#16 23.37 Progress: resolved 204, reused 0, downloaded 0, added 0
+#16 24.37 Progress: resolved 214, reused 0, downloaded 0, added 0
+#16 25.37 Progress: resolved 217, reused 0, downloaded 0, added 0
+#16 26.37 Progress: resolved 220, reused 0, downloaded 0, added 0
+#16 27.70 Progress: resolved 221, reused 0, downloaded 0, added 0
+#16 28.70 Progress: resolved 229, reused 0, downloaded 0, added 0
+#16 29.70 Progress: resolved 237, reused 0, downloaded 0, added 0
+#16 30.70 Progress: resolved 264, reused 0, downloaded 0, added 0
+#16 31.70 Progress: resolved 290, reused 0, downloaded 0, added 0
+#16 32.70 Progress: resolved 303, reused 0, downloaded 0, added 0
+#16 33.70 Progress: resolved 312, reused 0, downloaded 0, added 0
+#16 34.70 Progress: resolved 316, reused 0, downloaded 0, added 0
+#16 35.70 Progress: resolved 319, reused 0, downloaded 0, added 0
+#16 36.70 Progress: resolved 321, reused 0, downloaded 0, added 0
+#16 37.70 Progress: resolved 326, reused 0, downloaded 0, added 0
+#16 38.70 Progress: resolved 329, reused 0, downloaded 0, added 0
+#16 40.89 Progress: resolved 330, reused 0, downloaded 0, added 0
+#16 41.89 Progress: resolved 331, reused 0, downloaded 0, added 0
+#16 45.45 Progress: resolved 332, reused 0, downloaded 0, added 0
+#16 46.50 Progress: resolved 333, reused 0, downloaded 0, added 0
+#16 47.50 Progress: resolved 335, reused 0, downloaded 0, added 0
+#16 48.51 Progress: resolved 341, reused 0, downloaded 0, added 0
+#16 49.50 Progress: resolved 349, reused 0, downloaded 0, added 0
+#16 50.51 Progress: resolved 356, reused 0, downloaded 0, added 0
+#16 51.51 Progress: resolved 373, reused 0, downloaded 0, added 0
+#16 52.51 Progress: resolved 387, reused 0, downloaded 0, added 0
+#16 53.51 Progress: resolved 413, reused 0, downloaded 0, added 0
+#16 54.51 Progress: resolved 444, reused 0, downloaded 0, added 0
+#16 55.51 Progress: resolved 485, reused 0, downloaded 0, added 0
+#16 56.51 Progress: resolved 494, reused 0, downloaded 0, added 0
+#16 57.51 Progress: resolved 499, reused 0, downloaded 0, added 0
+#16 58.51 Progress: resolved 512, reused 0, downloaded 0, added 0
+#16 59.51 Progress: resolved 519, reused 0, downloaded 0, added 0
+#16 60.51 Progress: resolved 521, reused 0, downloaded 0, added 0
+#16 61.51 Progress: resolved 526, reused 0, downloaded 0, added 0
+#16 62.52 Progress: resolved 536, reused 0, downloaded 0, added 0
+#16 63.51 Progress: resolved 553, reused 0, downloaded 0, added 0
+#16 64.51 Progress: resolved 564, reused 0, downloaded 0, added 0
+#16 65.51 Progress: resolved 567, reused 0, downloaded 0, added 0
+#16 66.52 Progress: resolved 572, reused 0, downloaded 0, added 0
+#16 67.52 Progress: resolved 574, reused 0, downloaded 0, added 0
+#16 68.52 Progress: resolved 580, reused 0, downloaded 0, added 0
+#16 69.52 Progress: resolved 581, reused 0, downloaded 0, added 0
+#16 70.52 Progress: resolved 592, reused 0, downloaded 0, added 0
+#16 71.52 Progress: resolved 593, reused 0, downloaded 0, added 0
+#16 72.52 Progress: resolved 598, reused 0, downloaded 0, added 0
+#16 73.52 Progress: resolved 601, reused 0, downloaded 0, added 0
+#16 74.52 Progress: resolved 605, reused 0, downloaded 0, added 0
+#16 75.52 Progress: resolved 620, reused 0, downloaded 0, added 0
+#16 76.52 Progress: resolved 638, reused 0, downloaded 0, added 0
+#16 77.55 Progress: resolved 651, reused 0, downloaded 0, added 0
+#16 78.58 Progress: resolved 669, reused 0, downloaded 0, added 0
+#16 79.58 Progress: resolved 705, reused 0, downloaded 0, added 0
+#16 80.58 Progress: resolved 719, reused 0, downloaded 0, added 0
+#16 81.58 Progress: resolved 731, reused 0, downloaded 0, added 0
+#16 82.58 Progress: resolved 737, reused 0, downloaded 0, added 0
+#16 83.58 Progress: resolved 757, reused 0, downloaded 0, added 0
+#16 84.58 Progress: resolved 786, reused 0, downloaded 0, added 0
+#16 85.58 Progress: resolved 837, reused 0, downloaded 0, added 0
+#16 86.59 Progress: resolved 896, reused 0, downloaded 0, added 0
+#16 87.62 Progress: resolved 967, reused 0, downloaded 0, added 0
+#16 88.62 Progress: resolved 979, reused 0, downloaded 0, added 0
+#16 89.62 Progress: resolved 1037, reused 0, downloaded 0, added 0
+#16 90.62 Progress: resolved 1061, reused 0, downloaded 0, added 0
+#16 91.62 Progress: resolved 1084, reused 0, downloaded 0, added 0
+#16 92.62 Progress: resolved 1100, reused 0, downloaded 0, added 0
+#16 93.62 Progress: resolved 1137, reused 0, downloaded 0, added 0
+#16 94.62 Progress: resolved 1197, reused 0, downloaded 0, added 0
+#16 95.62 Progress: resolved 1231, reused 0, downloaded 0, added 0
+#16 96.63 Progress: resolved 1233, reused 0, downloaded 0, added 0
+#16 100.2 Progress: resolved 1234, reused 0, downloaded 0, added 0
+#16 101.2 Progress: resolved 1235, reused 0, downloaded 0, added 0
+#16 102.8  WARN  GET https://registry.npmjs.org/@types%2Fbabel__template error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#16 115.9  WARN  GET https://registry.npmjs.org/@types%2Fbabel__template error (ECONNRESET). Will retry in 1 minute. 1 retries left.

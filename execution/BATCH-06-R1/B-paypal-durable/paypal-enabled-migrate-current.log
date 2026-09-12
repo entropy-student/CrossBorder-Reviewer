@@ -1,0 +1,185 @@
+Couldn't find tsconfig.json. tsconfig-paths will be skipped
+╔════════════════════════════════════════════════════════════════════════╗
+║                                                                        ║
+║   Medusa collects anonymous usage analytics                            ║
+║   to help improve Medusa for all users.                                ║
+║                                                                        ║
+║   If you'd like to opt-out, you can use `medusa telemetry --disable`   ║
+║                                                                        ║
+║                                                                        ║
+╚════════════════════════════════════════════════════════════════════════╝
+[32minfo[39m:    redisUrl not found. A fake redis instance will be used.
+[32minfo[39m:    No link to load from /app/node_modules/.pnpm/@medusajs+draft-order@2.19.0_@medusajs+admin-sdk@2.19.0_@medusajs+cli@2.19.0_@types+nod_ab547186112aa2cacb92323532778ff2/node_modules/@medusajs/draft-order/.medusa/server/src/links. skipped.
+[32minfo[39m:    No link to load from /app/apps/backend/.medusa/server/src/links. skipped.
+[32minfo[39m:    Running migrations...
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: stock_location
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: inventory
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: product
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: pricing
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: promotion
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: customer
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: sales_channel
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: cart
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: region
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: api_key
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: store
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: tax
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: currency
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: payment
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: payment
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: payment
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: order
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: settings
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: auth
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: auth
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: auth
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: user
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: fulfillment
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: fulfillment
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: fulfillment
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: notification
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: notification
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: notification
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: cache
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: event_bus
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: workflows
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: locking
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: file
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: file
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: file
+[32minfo[39m:    Skipped. Database is up-to-date for module.
+[32minfo[39m:    
+[32minfo[39m:    
+[32minfo[39m:    MODULE: paypal_reconciliation
+[32minfo[39m:      ● Migrating Migration20260907000100
+[32minfo[39m:      ✔ Migrated Migration20260907000100
+[32minfo[39m:      ● Migrating Migration20260908000100
+[32minfo[39m:      ✔ Migrated Migration20260908000100
+[32minfo[39m:      ● Migrating Migration20260908000200
+[32minfo[39m:      ✔ Migrated Migration20260908000200
+[32minfo[39m:    Completed successfully
+[32minfo[39m:    
+[32minfo[39m:    Migrations completed
+[32minfo[39m:    
+[32minfo[39m:    Syncing links...
+[32minfo[39m:    Database already up-to-date
+[32minfo[39m:    
+Couldn't find tsconfig.json. tsconfig-paths will be skipped
+[32minfo[39m:    redisUrl not found. A fake redis instance will be used.
+[32minfo[39m:    No link to load from /app/node_modules/.pnpm/@medusajs+draft-order@2.19.0_@medusajs+admin-sdk@2.19.0_@medusajs+cli@2.19.0_@types+nod_ab547186112aa2cacb92323532778ff2/node_modules/@medusajs/draft-order/.medusa/server/src/links. skipped.
+[32minfo[39m:    No link to load from /app/apps/backend/.medusa/server/src/links. skipped.
+[33mwarn[39m:    Local Event Bus installed. This is not recommended for production.
+[32minfo[39m:    Locking module: Using "in-memory" as default.
+[32minfo[39m:    No workflow to load from /app/node_modules/.pnpm/@medusajs+draft-order@2.19.0_@medusajs+admin-sdk@2.19.0_@medusajs+cli@2.19.0_@types+nod_ab547186112aa2cacb92323532778ff2/node_modules/@medusajs/draft-order/.medusa/server/src/workflows. skipped.
+[32minfo[39m:    No workflow to load from /app/apps/backend/.medusa/server/src/workflows. skipped.
+[32minfo[39m:    
+[32minfo[39m:    Pending migration scripts to execute
+[32minfo[39m:    /app/node_modules/.pnpm/@medusajs+medusa@2.19.0_55fd7992ca4da9f7822a18399b6ccf4a/node_modules/@medusajs/medusa/dist/migration-scripts/create-super-admin-role.js
+[32minfo[39m:    
+[32minfo[39m:    Running migration scripts...
+[32minfo[39m:    
+[32minfo[39m:    Migration scripts completed

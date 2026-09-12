@@ -1,0 +1,43 @@
+RT01_SECURITY_TEST= PASS
+PASS_COUNT=37
+FAIL_COUNT=0
+SKIP_COUNT=1
+PATH_AND_OWNERSHIP_ASSERTIONS=38
+AST_FUNCTION_EXTRACTION=PASS;loaded pure validation functions only; full script entrypoint not dot-sourced
+REJECT_SOURCE_ROOT=PASS;pure-validation-only;expected-reason=canonical source project;actual-error=StagingPath is rejected because it is the canonical source project or a descendant of it.
+REJECT_SOURCE_DESCENDANT=PASS;pure-validation-only;expected-reason=canonical source project;actual-error=StagingPath is rejected because it is the canonical source project or a descendant of it.
+REJECT_SOURCE_CASE_AND_TRAILING_SEPARATOR=PASS;pure-validation-only;expected-reason=canonical source project;actual-error=StagingPath is rejected because it is the canonical source project or a descendant of it.
+REJECT_DOCUMENT_CENTER_ROOT=PASS;pure-validation-only;expected-reason=document center;actual-error=StagingPath is rejected because it is the document center or a descendant of it.
+REJECT_DOCUMENT_CENTER_DESCENDANT=PASS;pure-validation-only;expected-reason=document center;actual-error=StagingPath is rejected because it is the document center or a descendant of it.
+REJECT_WORKSPACE_ANCESTOR=PASS;pure-validation-only;expected-reason=protected ancestor|outside the trusted staging root;actual-error=StagingPath is rejected because it is outside the trusted staging root.
+REJECT_USER_HOME=PASS;pure-validation-only;expected-reason=protected ancestor|outside the trusted staging root;actual-error=StagingPath is rejected because it is outside the trusted staging root.
+REJECT_DISK_ROOT=PASS;pure-validation-only;expected-reason=protected ancestor|outside the trusted staging root;actual-error=StagingPath is rejected because it is outside the trusted staging root.
+REJECT_TRUSTED_ROOT=PASS;pure-validation-only;expected-reason=trusted staging root itself;actual-error=StagingPath is rejected because it is the trusted staging root itself; use a dedicated child directory.
+REJECT_TRUSTED_ROOT_SIMILAR_PREFIX=PASS;pure-validation-only;expected-reason=outside the trusted staging root;actual-error=StagingPath is rejected because it is outside the trusted staging root.
+REJECT_EXTERNAL_TARGET=PASS;pure-validation-only;expected-reason=outside the trusted staging root;actual-error=StagingPath is rejected because it is outside the trusted staging root.
+REJECT_NORMALIZED_SOURCE_ANCESTOR=PASS;pure-validation-only;expected-reason=canonical source project|protected ancestor|outside the trusted staging root;actual-error=StagingPath is rejected because it is outside the trusted staging root.
+DANGEROUS_PATHS_FULL_ENTRYPOINT_CALLS=PASS;dangerous paths never invoked the top-level staging script
+ACCEPT_LEGAL_TRUSTED_CHILD=PASS;pure validation accepted a strict descendant of trusted staging root
+REJECTION_ASSERTION_SELF_CHECK=PASS;ordinary runtime exception is not accepted as a valid safety rejection
+REJECT_EXISTING_NO_MARKER=PASS;exit=1;expected=False;expected-reason=no valid tool-ownership marker
+NO_MARKER_CONTENT_UNCHANGED=PASS;sentinel-content-comparison=exact
+REJECT_WRONG_MARKER_IDENTITY=PASS;exit=1;expected=False;expected-reason=ownership marker does not match
+WRONG_MARKER_CONTENT_UNCHANGED=PASS;sentinel-content-comparison=exact
+REJECT_CORRUPT_MARKER=PASS;exit=1;expected=False;expected-reason=ownership marker is invalid
+CORRUPT_MARKER_CONTENT_UNCHANGED=PASS;sentinel-content-comparison=exact
+CREATE_VALID_NEW_STAGING=PASS;exit=0;expected=True;expected-reason=success
+VALID_MARKER_CREATED=PASS;marker-exists
+OWNERSHIP_MARKER_NO_ABSOLUTE_PATHS=PASS;path-fingerprints-only
+REJECT_WRONG_MARKER_PATH=PASS;exit=1;expected=False;expected-reason=ownership marker does not match
+WRONG_PATH_MARKER_CONTENT_UNCHANGED=PASS;sentinel-content-comparison=exact
+RERUN_VALID_OWNED_STAGING=PASS;exit=0;expected=True;expected-reason=success
+OWNED_RERUN_REPLACED_CONTENT=PASS;marker-remains;old-owned-file-removed
+PURE_REPARSE_PATH_REJECTED=PASS;expected-reason=reparse point;actual-error=StagingPath is rejected because an existing path component is a reparse point: C:\Users\34707\Documents\ChatGPT\_review_stage\security-tests\RT-01-R1-7b71079894084293a0fd6f21b62b3775\junction-stage
+REJECT_JUNCTION_STAGING=PASS;exit=1;expected=False;expected-reason=existing path component is a reparse point
+JUNCTION_TARGET_CONTENT_UNCHANGED=PASS;sentinel-content-comparison=exact
+REPARSE_POINT_TEST=PASS;junction rejected before recursive delete
+PURE_INTERNAL_REPARSE_TREE_REJECTED=PASS;expected-reason=contains a reparse point;actual-error=Existing StagingPath is rejected because it contains a reparse point: C:\Users\34707\Documents\ChatGPT\_review_stage\security-tests\RT-01-R1-7b71079894084293a0fd6f21b62b3775\internal-reparse-root\linked-child
+SYMBOLIC_LINK_TEST=SKIP;not attempted; symbolic-link privilege/elevation was not requested for this non-destructive test run
+SOURCE_PROTECTED_FILE_UNCHANGED=PASS;exists=True;content-comparison=exact
+DOCUMENT_CENTER_PROTECTED_FILE_UNCHANGED=PASS;exists=True;content-comparison=exact
+FIXTURE_CLEANUP_BOUNDARY_VERIFIED=PASS;fixture exact path, trusted-root descendant, and reparse-free tree verified before delete

@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "COMPONENT_SAMPLE_SCORECARD",
+  "component_id": "COMP-001",
+  "scope": "COMP-001 only; no supplier comparison",
+  "sample_status": "WAITING_FOR_SAMPLE",
+  "score_model": {
+    "scale": "0-5 per criterion; weighted_points = score / 5 * weight",
+    "total_weight": 100,
+    "criteria": [
+      { "id": "HAIR_REMOVAL_EFFICIENCY", "name": "Hair Removal Efficiency", "weight": 25, "score": "NOT_TESTED", "raw_observation": "NOT_TESTED" },
+      { "id": "FABRIC_SAFETY", "name": "Fabric Safety / Snag", "weight": 20, "score": "NOT_TESTED", "raw_observation": "NOT_TESTED" },
+      { "id": "SELF_CLEANING_EFFECTIVENESS", "name": "Self-cleaning Effectiveness", "weight": 15, "score": "NOT_TESTED", "raw_observation": "NOT_TESTED" },
+      { "id": "BUILD_QUALITY", "name": "Build Quality: finish, rigidity and mechanism", "weight": 15, "score": "NOT_TESTED", "raw_observation": "NOT_TESTED" },
+      { "id": "DURABILITY", "name": "Repeated-use Durability", "weight": 10, "score": "NOT_TESTED", "raw_observation": "NOT_TESTED" },
+      { "id": "CLEANING_CONVENIENCE", "name": "Cleaning Convenience", "weight": 5, "score": "NOT_TESTED", "raw_observation": "NOT_TESTED" },
+      { "id": "HAND_FEEL", "name": "Handle / Hand Feel", "weight": 5, "score": "NOT_TESTED", "raw_observation": "NOT_TESTED" },
+      { "id": "VIDEO_DEMONSTRATION_QUALITY", "name": "Video Demonstration Quality", "weight": 5, "score": "NOT_TESTED", "raw_observation": "NOT_TESTED" }
+    ]
+  },
+  "test_surfaces": ["sofa / upholstery fabric", "clothing fabric", "bedding fabric", "carpet / rug"],
+  "controlled_conditions": [
+    "same or comparable surface area",
+    "similar recorded pet-hair quantity; do not invent precise measurement",
+    "same rolling passes",
+    "same direction rules",
+    "same operator where possible",
+    "before and after photo/video"
+  ],
+  "hard_fail": "NOT_TESTED",
+  "hard_fail_conditions": [
+    "obvious snag or fabric scratch",
+    "noticeable shedding or debris",
+    "cracked handle",
+    "loose or damaged housing",
+    "jammed roller",
+    "jammed self-cleaning mechanism",
+    "cannot collect hair normally",
+    "obvious safety hazard",
+    "obvious short-use failure"
+  ],
+  "overall_score": "NOT_TESTED",
+  "decision": "NOT_TESTED",
+  "procurement_gate_after_test": "HOLD_UNTIL_DECISION",
+  "evidence": [],
+  "operator_notes": null
+}

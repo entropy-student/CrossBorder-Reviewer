@@ -1,0 +1,16 @@
+{
+  "@medusajs/eslint-plugin": {
+    "current": "2.19.0",
+    "latest": "2.20.1",
+    "wanted": "2.19.0",
+    "isDeprecated": false,
+    "dependencyType": "devDependencies"
+  },
+  "eslint": {
+    "current": "9.39.5",
+    "latest": "10.10.0",
+    "wanted": "9.39.5",
+    "isDeprecated": false,
+    "dependencyType": "devDependencies"
+  }
+}

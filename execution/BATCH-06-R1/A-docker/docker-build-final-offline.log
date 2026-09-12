@@ -1,0 +1,86 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.23kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:22.14.0-bookworm-slim
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 275B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 DONE 0.0s
+
+#5 [build  1/10] FROM docker.io/library/node:22.14.0-bookworm-slim@sha256:1c18d9ab3af4585870b92e4dbc5cac5a0dc77dd13df1a5905cea89fc720eb05b
+#5 resolve docker.io/library/node:22.14.0-bookworm-slim@sha256:1c18d9ab3af4585870b92e4dbc5cac5a0dc77dd13df1a5905cea89fc720eb05b 0.0s done
+#5 DONE 0.0s
+
+#6 [runtime 2/7] WORKDIR /app/apps/backend/.medusa/server
+#6 CACHED
+
+#7 [runtime 3/7] RUN corepack enable && useradd --create-home --uid 10001 medusa
+#7 CACHED
+
+#4 [internal] load build context
+#4 transferring context: 4.42kB 0.1s done
+#4 DONE 0.1s
+
+#8 [build  6/10] COPY apps/storefront/package.json apps/storefront/package.json
+#8 CACHED
+
+#9 [build  8/10] COPY apps/backend apps/backend
+#9 CACHED
+
+#10 [build  2/10] WORKDIR /app
+#10 CACHED
+
+#11 [build  3/10] RUN corepack enable
+#11 CACHED
+
+#12 [build  4/10] COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+#12 CACHED
+
+#13 [build  5/10] COPY apps/backend/package.json apps/backend/package.json
+#13 CACHED
+
+#14 [build  7/10] RUN pnpm install --frozen-lockfile
+#14 CACHED
+
+#15 [build  9/10] RUN pnpm --dir apps/backend build
+#15 CACHED
+
+#16 [build 10/10] RUN pnpm --filter @dtc/backend deploy --prod --legacy --offline /app/medusa-deploy
+#16 0.843  WARN  Shared workspace lockfile detected but configuration forces legacy deploy implementation.
+#16 0.924 Packages are copied from the content-addressable store to the virtual store.
+#16 0.924   Content-addressable store is at: /root/.local/share/pnpm/store/v10
+#16 0.924   Virtual store is at:             medusa-deploy/node_modules/.pnpm
+#16 1.025 /app/apps/backend:
+#16 1.025  ERR_PNPM_NO_OFFLINE_META  Failed to resolve @medusajs/admin-sdk@2.19.0 in package mirror /root/.cache/pnpm/metadata-v1.3/registry.npmjs.org/@medusajs/admin-sdk.json
+#16 1.025 
+#16 1.025 This error happened while installing a direct dependency of /app/apps/backend
+#16 ERROR: process "/bin/sh -c pnpm --filter @dtc/backend deploy --prod --legacy --offline /app/medusa-deploy" did not complete successfully: exit code: 1
+------
+ > [build 10/10] RUN pnpm --filter @dtc/backend deploy --prod --legacy --offline /app/medusa-deploy:
+0.843  WARN  Shared workspace lockfile detected but configuration forces legacy deploy implementation.
+0.924 Packages are copied from the content-addressable store to the virtual store.
+0.924   Content-addressable store is at: /root/.local/share/pnpm/store/v10
+0.924   Virtual store is at:             medusa-deploy/node_modules/.pnpm
+1.025 /app/apps/backend:
+1.025  ERR_PNPM_NO_OFFLINE_META  Failed to resolve @medusajs/admin-sdk@2.19.0 in package mirror /root/.cache/pnpm/metadata-v1.3/registry.npmjs.org/@medusajs/admin-sdk.json
+1.025 
+1.025 This error happened while installing a direct dependency of /app/apps/backend
+------
+Dockerfile:11
+--------------------
+   9 |     COPY apps/backend apps/backend
+  10 |     RUN pnpm --dir apps/backend build
+  11 | >>> RUN pnpm --filter @dtc/backend deploy --prod --legacy --offline /app/medusa-deploy
+  12 |     
+  13 |     FROM node:22.14.0-bookworm-slim AS runtime
+--------------------
+ERROR: failed to build: failed to solve: process "/bin/sh -c pnpm --filter @dtc/backend deploy --prod --legacy --offline /app/medusa-deploy" did not complete successfully: exit code: 1
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/bgxiz94gpqv3u4a06n11n8lm1

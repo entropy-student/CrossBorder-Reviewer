@@ -1,0 +1,1 @@
+IMAGE_ID=sha256:fdad6ea65ee7ca9c6d535156ead20ea2fcac7bdd43f33e81e58ba380bc2846b8`nIMAGE_REPO_DIGESTS=cb-batch06-r1-medusa@sha256:fdad6ea65ee7ca9c6d535156ead20ea2fcac7bdd43f33e81e58ba380bc2846b8`nIMAGE_CREATED=2026-09-08T08:56:13.226347168Z`nCONFIG_USER=medusa`nCONFIG_WORKDIR=/app/apps/backend/.medusa/server`nCONFIG_ENTRYPOINT=["/app/entrypoint.sh"]

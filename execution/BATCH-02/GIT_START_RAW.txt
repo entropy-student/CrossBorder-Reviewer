@@ -1,0 +1,27 @@
+BATCH-02 START
+DATE=2026-09-06T07:55:08.3075786+08:00
+SOURCE_HEAD=4b7dd0f371f13cc3ee1f598499dcecbf63b33fec
+SOURCE_STATUS
+ M 03_template/medusa-crossborder-base/apps/backend/package.json
+ M 03_template/medusa-crossborder-base/apps/storefront/next.config.js
+ M 03_template/medusa-crossborder-base/apps/storefront/package.json
+ M 03_template/medusa-crossborder-base/apps/storefront/src/lib/data/cart.ts
+ M 03_template/medusa-crossborder-base/apps/storefront/src/modules/layout/components/language-select/index.tsx
+ M 03_template/medusa-crossborder-base/package.json
+ M 03_template/medusa-crossborder-base/pnpm-lock.yaml
+ M 03_template/medusa-crossborder-base/scripts/_common.ps1
+ M 03_template/medusa-crossborder-base/scripts/acceptance-smoke.ps1
+ M 03_template/medusa-crossborder-base/scripts/build-production.ps1
+ M 03_template/medusa-crossborder-base/scripts/start-local.ps1
+ M 04_docs/scripts/92-prepare-review-staging.ps1
+?? .github/
+?? 03_template/medusa-crossborder-base/apps/backend/scripts/
+?? 03_template/medusa-crossborder-base/apps/storefront/scripts/
+?? 03_template/medusa-crossborder-base/scripts/process-management.security.tests.ps1
+?? 03_template/medusa-crossborder-base/scripts/service-identity.security.tests.ps1
+?? 03_template/medusa-crossborder-base/scripts/verification-gate.security.tests.ps1
+?? 04_docs/scripts/92-prepare-review-staging.security.tests.ps1
+DOC_HEAD=38e879c42ead6e561939a7881526c2a984c158a2
+DOC_STATUS
+SPREE_HEAD=f9966ab61ae0ceb72f62a51167b1c013fe10230f
+SPREE_STATUS

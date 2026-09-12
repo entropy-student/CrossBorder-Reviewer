@@ -1,0 +1,2732 @@
+[
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": ".gitignore",
+    "sha256": "7929318720017104BDBE81FBCDD5EB3DA1059018750F0DD5B58D8C2166381582"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "00_HANDOFF.md",
+    "sha256": "F9ADDCFD7ECADF41EBEAFB9B0277546972DA74300ACBCA45D660B737F05AB47D"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "CB-FULL-REVIEW-CHECKPOINT-002-FINAL-ROUND-3_MANIFEST.md",
+    "sha256": "DA873E70A9EADB539157B937A9B393728B063AD263C63BEE4B9952EC23918ACC"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "CB-FULL-REVIEW-CHECKPOINT-002-FIX-R1_VALIDATION.md",
+    "sha256": "143819AF620FEF1A6513B55FCC81EFD3E6954BCAF7A5119207425CD0711A5FF5"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "CB-FULL-REVIEW-CHECKPOINT-002-FIX-R2-FINAL_VALIDATION.md",
+    "sha256": "2F9A66E5A1D72C6C3BAF5752B3F35235A7FA1707EFDF582BE46E68D299D1F222"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "CB-FULL-REVIEW-CHECKPOINT-002-ROUND-2_MANIFEST.md",
+    "sha256": "51CC65A6AE050BBE704D777EA5F91488943578E4BF5802D6B719A9DF6BE39707"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "CB-FULL-REVIEW-CHECKPOINT-002_MANIFEST.md",
+    "sha256": "2F3EBB877593A48542E93635DD8C388904FAD4FDCBBBBFB314FB20B3F5FB515D"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "CURRENT_STATE.md",
+    "sha256": "2738C11A0843E0CE4FC55CB450C2A22A93FC012FACFB42C10B6FFE0895E7BA3B"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "DEPENDENCY_AUDIT_SANITIZED.json",
+    "sha256": "AB05D6BA5A3533D10B384F83EE68034EAC527A1B76E719725DAD351AF54345AB"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "DEPENDENCY_AUDIT_TRIAGE.md",
+    "sha256": "7DDABBD45F4CC036BE87F74A8195E483E74B375226E3D486790A56EE59C685C4"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "DOCKER_RECOVERY_AND_DISK_AUDIT.md",
+    "sha256": "1F45187B58A2A330AA0D82883FBF7B15026E8C30EE1131BD88B5786A289302B8"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "DOCUMENT_CLEANUP_VALIDATION.md",
+    "sha256": "BF08F7A3190A58C6667C5C3BD3FC9A7D4FB62CEABB970278B890EF39ABF2F1CC"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "DOCUMENT_INDEX.md",
+    "sha256": "7E8E5922A462355F8D098F5C23F95790E2DCE55DCEB49C6363F0A235EF46CF41"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "PRODUCTION_READINESS.md",
+    "sha256": "F5BFE30F0AF0AA237DC6EDFB53FB2E1127407A693FB66BC57406805E89DF437E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "ROADMAP.md",
+    "sha256": "9C9F0729D2D75B7972EA9E49DCA1565945877CA74812653CE2BEBEC432FEE197"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "SOURCE_MARKDOWN_AUDIT.md",
+    "sha256": "4E86ECAEC7630F61EC8016DC30D184D5091E3102650E3BE2B9F586F6B57A5412"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "WORKSPACE_MIGRATION_VALIDATION.md",
+    "sha256": "508F31F4048F2683EF45EE8597E03D41D6F4C9501B9EE34B2E43720320E8738D"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/INDEX.md",
+    "sha256": "C46BBC02690D34F3E615AB0012C2A10A712D3ACAF86884173D923580E4A39F83"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/documentation-history/DOCUMENT_CLEANUP_INVENTORY-2026-09-02.md",
+    "sha256": "2049E151BA518FA223151D44369164598E5208B5A5707A6C3488CA3AC5E48613"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/documentation-history/DOCUMENT_CLEANUP_INVENTORY-2026-09-04-CB-DOCS-001.md",
+    "sha256": "B8ED2DFACBF4044AF030D326E7EFEC3E4211415ED197553DBA9D3E1DA45C91AE"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/documentation-history/DOCUMENT_CLEANUP_REPORT-2026-09-02.md",
+    "sha256": "9646A160CDDD1D07DC4C575E64EAEF4DB9994373DCF77981DE871185A7508BBE"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/legacy-runbooks/DEMO_BOOTSTRAP.md",
+    "sha256": "8B0F147A08D387ADCDC6743C81655EC96A4569E1463DA491635945EC09454392"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/legacy-runbooks/LOCAL_RUNBOOK.pre-cleanup.md",
+    "sha256": "9578F35930D6E875A25FDEB8E203AF4F5F6F91D39E345727A48195A32E305FA8"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/payment-history/CB-FULL-REVIEW-CHECKPOINT-001-FIX-R1_VALIDATION.md",
+    "sha256": "31B20E7C361E89FF9D5A288603EE6B95D78AB8D396C9C6258F0E19C9ACE6A81D"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/payment-history/CB-FULL-REVIEW-CHECKPOINT-001-FIX-R2-FINAL_VALIDATION.md",
+    "sha256": "0DE2DC486F2037DE58B380C39E7D3227E0B0C5C409B395F4D4CB5B20C9937676"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/payment-history/CB-PAYMENT-002-WORLDFIRST-READINESS_VALIDATION.md",
+    "sha256": "1B559E5DEA751091DA3547D235CC8D5EEB7DF5CE17D98C0DFAA0A9CB494F7F72"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/payment-history/CB-PAYMENT-003-MODE-A-PAYPAL-READINESS_VALIDATION.md",
+    "sha256": "C4CE32A70803BC6283CBF87F21DAD38B20EDBDFA8BBF1841881ACAAA4F03E5AB"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/payment-history/CB-PAYMENT-004-PAYPAL-MEDUSA-ADAPTER-SCAFFOLD_VALIDATION.md",
+    "sha256": "C1AEDB1280DF19E899EBDA779A3DC0CBB7EF6768B34665F090D50556F412B480"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/payment-history/CB-PREPAYMENT-REVIEW-002_VALIDATION.md",
+    "sha256": "BFF2893BDA1C96CB0BC1B0A5A77A397DDE1D3CB67D4F4947F0CF1790212FBC01"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/platform-selection/FINAL_SELECTION_EVIDENCE.md",
+    "sha256": "CD55784DDC315C100690E31EE4AC9B97FBA732C53DE89D0D431012799933CF76"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/platform-selection/PLATFORM_COMPARISON.md",
+    "sha256": "54A9A11EAA670104C7AA14A7270EA144B83B63FF4E49212A063DB3AB3AC65477"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/product-history/CB-PREPAYMENT-CLOSURE-001_VALIDATION.md",
+    "sha256": "E7BF4427E2720FF3FE7E4C324CE83507F8FD945F6D47F8DA3B8120BC96851EC5"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/product-history/CB-PRODUCT-004_VALIDATION.md",
+    "sha256": "08EB465E7CD719D22F1F51FB25FBB8A712B9219367F14EDFECBEC07C2DC24757"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/product-history/CB-PRODUCT-005R-FINAL-ASSET-UNIFICATION_VALIDATION.md",
+    "sha256": "DF6EA45015296129776E92701101A4E61E1BBD4A1A5FA493555652669049FA16"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/product-history/CB-PRODUCT-005R-FINAL_VALIDATION.md",
+    "sha256": "DA66E5E87D6682FCBDD2D26A7FAEAC6E2E1E4551C484B1C0576FBA3621A3194A"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/product-history/CB-PRODUCT-005R-PREPAYMENT-POLISH_VALIDATION.md",
+    "sha256": "992F28191AB345101ED3955088CE51E19693FBED25F230E9257CC55A1535CA66"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/product-history/CB-PRODUCT-005_VALIDATION.md",
+    "sha256": "AE6DF953B841113AFBF5809BB75DA71A264F1FC8EAD158D74EF03DBE70534088"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/review-history/00_HANDOFF.pre-cleanup.md",
+    "sha256": "0D8EEDDC4EC4BF9356A7DCFC9602A1E702E834448A199739352E7AE5B611EB8A"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/review-history/INDEX.md",
+    "sha256": "718126B4E638395568EAB8E40CF937DAA95E8A3A68B4FC827E0237501B3FCED9"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/review-history/REVIEW-03-FIX/FUNCTIONAL_REGRESSION.md",
+    "sha256": "EF62D0B13255410840445BC0E6C5B734D25D51C07CF1F062BBD45C0CE8B37855"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/review-history/REVIEW-03-FIX/IMPLEMENTATION_NOTES.md",
+    "sha256": "5003E0C67152F3EA599D1F71C23642AF44381863DC36A1B0110031058166923E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/review-history/REVIEW-03-FIX/RESPONSIVE_GEOMETRY.md",
+    "sha256": "1DA2BC169CC82E8F4F3F6EF633471C0C3FCE5CB37E54C6D56C0CE142B1F49700"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/review-history/REVIEW-03-FIX/collection-768.png",
+    "sha256": "83BD62B1666A405AC8048F52362064A6A54D223EEDD96D3B426DF9AA2535ADF3"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/review-history/REVIEW-03-FIX/header-768.png",
+    "sha256": "14F3746BEE0EA61A16F609E165A08B37995B248354C36C56FAA2AE34947109F6"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/review-history/REVIEW-03-FIX/homepage-768.png",
+    "sha256": "16197EE80B61C1578710E90167B7B808C783A31BC53B455617DBBA0A49E8BEAB"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/review-history/REVIEW-03/CODE_REUSE_AUDIT.md",
+    "sha256": "37FBA11A5DB07542A72AA30C4C63EEE709937DDFF02B340072F94009B2DF8326"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/review-history/REVIEW-03/COMMERCE_BOUNDARY_AUDIT.md",
+    "sha256": "449C6562F098E1943A55568CCFC81D3B40297C94A13EED059D4D8B57E316B022"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/review-history/REVIEW-03/DESIGN_CONSISTENCY_MATRIX.md",
+    "sha256": "FF49304429CBE2F0885492BAB13A8D78395B706053E0DE21999D131971C5B19D"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/review-history/REVIEW-03/RESPONSIVE_A11Y_AUDIT.md",
+    "sha256": "15D56AB2E69FAE8138E54E172B7208300B587ADCC9E603A6C33DF76878B6C419"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/review-history/REVIEW-03/REVIEW03_SUMMARY.md",
+    "sha256": "11B3A0E89CE651D8DBCCF6BA20E370C5E941BD36CDD1FDF5BB14B03EA6CC1ADF"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/review-history/REVIEW-03/TECH_DEBT_REGISTER.md",
+    "sha256": "CD09001551411EA34E1F0EA6ACF7C757495419E379AF79CA114A10E4A92B4EEF"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/review-history/REVIEW02_CLEANUP_REPORT.md",
+    "sha256": "507DA5DC0F03BDAF368681FBB1601AFEBBC5E9B0518F554E92C65A942D8821C0"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/review-history/REVIEW02_INCLUDE_EXCLUDE.md",
+    "sha256": "CE5749D08C4D586361B5537E24C8324F85AA1D130502C49C38D976339B377511"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/review-history/REVIEW02_WORKSPACE_SIZE_REPORT.md",
+    "sha256": "1A4B9F2E86EB36FB30AE5B84F9743895A267F9346C55CF1397116ABE0C271EBB"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-001/IMPLEMENTATION_NOTES.md",
+    "sha256": "96A6E8F802CE898A7636635469E1D50BAEE085714F6AC2504A200AF54DA75D7A"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-001/UI_VISUAL_DIFF.md",
+    "sha256": "2921378C61D9340041F24B393AB919ECD2A1D9917AAFFA21EAC5706DA802631F"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-001/homepage-desktop-1440.png",
+    "sha256": "3EB7D3B92A10F57230A6F2D23BC8F62F467B47C7D021FCC41370F60816CD3A85"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-001/homepage-mobile-390.png",
+    "sha256": "9C44233F5E93B7C9ED86CA0BC5297DFBFA65C556361F4E3154C7FBA70B795865"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-002/FUNCTIONAL_QA.md",
+    "sha256": "1C0E0AFE0C7128F8AE92B36F8E0E7A941BFA11EB8548DBC0263757B19A8D1EE4"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-002/IMPLEMENTATION_NOTES.md",
+    "sha256": "57C764643E33B77A0902A4377E229DE89EAFE9DD20EF950498110D720DBF524E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-002/UI_VISUAL_DIFF.md",
+    "sha256": "149ECF12F47251BF6561ECCD0F00446902F7AE0C325A80265D66A1A930F85930"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-002/collection-desktop-1440.png",
+    "sha256": "24C7C2FB834405977E1B04C57A84734AF95B0C22666762D84333DF44C9A1F86B"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-002/collection-mobile-390.png",
+    "sha256": "378687187BA8BADB80FD1F08389D7D01ECCE8DF681E8E09FDA8F977F19BACC2F"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-002/pdp-desktop-1440.png",
+    "sha256": "FEB82C26F0BB8C8B362835F184F9E92C9F0A309F032FA49FCC440C43F8BD2465"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-002/pdp-mobile-390.png",
+    "sha256": "83A19EF1DCDE73FAE9238A8996929A9D344CE8A0F9EAB8D7671AC07B1530AA82"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-002R/FUNCTIONAL_REGRESSION.md",
+    "sha256": "EEC4B7CEF13411246E4FD74E53570DCE584C0AD9EEAD2D57357606EBE749DB0C"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-002R/UI_VISUAL_DIFF.md",
+    "sha256": "B4E8DA7558FB411E1019EED5C62A0591B56C8C4936DF861253B6F6F6FB35725C"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-002R/collection-desktop-1440-r.png",
+    "sha256": "82AA2FAFB97F4D0CFCF92CE059C73D61DCDCBFFCB697D2E3446DBDDB88B8E1FA"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-002R/collection-mobile-390-r.png",
+    "sha256": "F462B0FB53FB6077AED62E3747DABA791675DA02CCFAD2E709FFCD92AED46324"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-003/CART_FUNCTIONAL_QA.md",
+    "sha256": "923E2D950EE83C245218DA0A5F073A4A4A74295145F6FD098F07D154E5E22291"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-003/CHECKOUT_FUNCTIONAL_QA.md",
+    "sha256": "C106B83E8BFE1A58F273E144475FB1A24C6C79A623F90F8F2CD439F318F8D315"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-003/COMMERCE_ORDER_EVIDENCE.md",
+    "sha256": "4440EFB5E6DB9752BA5B8540947239A9BA9D3019FADFA957F3404D46BAC12FA8"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-003/IMPLEMENTATION_NOTES.md",
+    "sha256": "FFDB77BBEFB557A653CEC878442DCABC6ECD741E36D604317774D9CD7B11ECC0"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-003/UI_VISUAL_DIFF.md",
+    "sha256": "A268A5CF3FE04E9FC4BCDEC1121AEDA1209A839E333E70AECA9135CE05E9FA93"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-003/cart-desktop-1440.png",
+    "sha256": "0B8824436459AFB1D43AD993276EA49E94838F446087BEB9901201CCD5322E23"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-003/cart-mobile-390.png",
+    "sha256": "885022910174B0150D3C7D140BC7B5C7CD42E73874492FB54E134C19584EC850"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-003/checkout-address-desktop-1440.png",
+    "sha256": "522893B0C604DF02A769264B80AE1F04CCEB5F1F8F3DA70DFE942F13B927282C"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-003/checkout-address-mobile-390.png",
+    "sha256": "732F992C31DFFC4A7363961AEA202E2CAFB486BF8FE55E22A8D3FB2AAE6D0957"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-003/checkout-payment-desktop-1440.png",
+    "sha256": "6FCE0E15FDF940711B4D29053FEDB30551F218384CD7BCEE788583BB083BB4E4"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-003/checkout-review-desktop-1440.png",
+    "sha256": "97E43648A427B6EC355020EFA819A485FBDF47F2C740E7C75282955144802DB9"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-003/checkout-review-mobile-390.png",
+    "sha256": "12BE19F9D3E41BE16B997F6C53D6E7B9CAAA73AE4F242BAA3A41F4747557EB59"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-003/mini-cart-desktop-1440.png",
+    "sha256": "DA7FC7B7743A512754873CCF46516DA9BF891E05AD45FEBF6D902DFAD05F89AD"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-003/mini-cart-mobile-390.png",
+    "sha256": "885022910174B0150D3C7D140BC7B5C7CD42E73874492FB54E134C19584EC850"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-003R/FUNCTIONAL_REGRESSION.md",
+    "sha256": "5B4992DCDB0F83F65C75941379D7EEED27A900D8633C3EC5B5DE5C4F292A6B11"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-003R/UI_VISUAL_DIFF.md",
+    "sha256": "FCB196A85ACF300828B9372C0E0E48187428F242A18AE80BB818D7644D289469"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-003R/cart-mobile-390-r.png",
+    "sha256": "561356070FDAD0F7F34065FDE6631B504C21646AD80C5AF5CA9429A9F5EA821E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-003R/checkout-address-desktop-1440-r.png",
+    "sha256": "352355C0876189C3381EE2B0AD31BD6CCF61F23A908A8B30E8F1EA553E4698B1"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-003R/checkout-address-mobile-390-r.png",
+    "sha256": "7F8D665D4E9A7B5D7E065947583BA0D62FFF612B586A02E86BA7893EDC18821B"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-003R/checkout-review-desktop-1440-r.png",
+    "sha256": "56EC6083DDB47766F50B24823CF10FFB4575AD06E145AA9B8D12C70FA1D793FF"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/CB-UI-DEV-003R/checkout-review-mobile-390-r.png",
+    "sha256": "90D4382B89282E832FAEE2761999F41BA166C7AF2CD6EEC06699DA1D80794A96"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "archive/ui-development-history/INDEX.md",
+    "sha256": "A26A4157402D6B46FB7E610CA3A1649E446AA48440DF4F47F9CFD6FBB623067F"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "deployment/README.md",
+    "sha256": "C766DA952F92075C8B363C7E3EA36003AB3D032F64AB4AA828B2D9C5C5FFE8E9"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "operations/ACCEPTANCE_GATES.md",
+    "sha256": "C7454EBF57438FA0254BD43DA621592B8A1122517E02CF9B4B490CCDADE57320"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "operations/LOCAL_RUNBOOK.md",
+    "sha256": "6EE748F3C9CFCC4B19F5AF527AADAB1198A9B0DFB409BE317BF9DD2E820B2956"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "operations/REVIEW_PACKAGING.md",
+    "sha256": "DE3C9B9687896C009A2160BE3051AC908FD5FA65ACBBF3392B1EAB17447AB94B"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "operations/RUNTIME_SCORECARD.md",
+    "sha256": "10748A194BEB14FFF4B89EA881D59F209A2FDC810C7023496745E8C38137AF5A"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "operations/WINDOWS_PREFLIGHT.md",
+    "sha256": "385399813E0CA938D361E7A078EC2525BF7CA228BB8FB620B78F8CBB71B51BCA"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "payment/EXISTING_PAYMENT_SYSTEM_INTAKE.md",
+    "sha256": "7C61D225849AECA8C430879CAB5D4A10C4B9D134EA87EC015ADD6F1DD8178E53"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "payment/PAYMENT_ARCHITECTURE.md",
+    "sha256": "9A7D4BF8899D321448A566A2C9076F70D87B5B765848F06B6C20FE33D2D7FB69"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "payment/PAYMENT_INTEGRATION_CONTRACT.md",
+    "sha256": "AE42E85B6C678E11C4DF030746C17C3FDD8EB7B08C3C733EB6C5364C6A621C90"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "payment/PAYMENT_PROVIDER_DECISION.md",
+    "sha256": "EF17C6F034EAE4C3A94C5DE691EB254A53170604744DBA8BDDE67AB052A89497"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "payment/PAYMENT_TEST_MATRIX.md",
+    "sha256": "562AED77F68368D2C344E6CDF4F262938788C75269B99288B9FF1694504840FB"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "payment/PAYPAL.md",
+    "sha256": "765696DE20150C1EA7A4A927E87ED75B10C056E2E9C16D667FCD4886C9F3B12E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "payment/WORLDFIRST.md",
+    "sha256": "6CD6A3E0F4D31E8AA18711E6FF35DECFA938B6630C5C109AA6D9091B20B0A8B7"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "payment/paypal/PAYPAL_CAPABILITY_MATRIX.md",
+    "sha256": "3FE8BBB2779B23426E0999FFD861BA7B0A05C6683192B1EBB2B0D49F88E46625"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "payment/paypal/PAYPAL_ENV_CONTRACT.md",
+    "sha256": "945C88525D975652BD8FDFC78007FC723697846E3B4C886C1A866EB9103012F5"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "payment/paypal/PAYPAL_INTEGRATION_CONTRACT.md",
+    "sha256": "67135D2309E9896F360AA091A4ED29F2B2EEFEB6B4061CBE76E2086E13BEB0B9"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "payment/paypal/PAYPAL_TEST_MATRIX.md",
+    "sha256": "93C720BC20BB2DE4203A836C3ADDAED797480BA4324BC72670E6A2ED4CE0FA3D"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "payment/worldfirst/WORLDFIRST_CAPABILITY_MATRIX.md",
+    "sha256": "0C5A5BC541EAE0A0D1D90B9A29BA4A0F7EECCD220B932A7C10E738430C02B4F3"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "payment/worldfirst/WORLDFIRST_INTEGRATION_CONTRACT.md",
+    "sha256": "1F53A47FC794242C05F2C19E771E5ADEB4F49A80CD383C1EC5B412DFC6034CBB"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "payment/worldfirst/WORLDFIRST_TEST_MATRIX.md",
+    "sha256": "D7CE1CEA40B666E8B544C31939768D7D364AFC2F1D932054168AC413CC2456E3"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "product/PRODUCT_CONTRACT.md",
+    "sha256": "8B27C3B24F01D629C2E1576F2C00E482CC7E20E106820B486B62753ED18C6105"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "product/PRODUCT_DATA_CONTRACT.md",
+    "sha256": "534B18CB5B8D74709C16D814114016308D24946F8566EE69532F923CB21BB84B"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "product/PRODUCT_IMPORT_GUIDE.md",
+    "sha256": "5A27D8DC96EE825697660CE471A99AD33BE6F799EBC24ED07CD2010AB0085BD4"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "product/REAL_PRODUCT_INTEGRATION_POLICY.md",
+    "sha256": "410AB77DCACA57A27E1AA29F0811CE45E228CA46786D1B724433CDA6CDEB22B2"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "product/SOURCING.md",
+    "sha256": "EA7155215A636F439F0F19AB968552D9FF201DF263A66001356223FBCE038A21"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "product/VALIDATION_TEST_MATRIX.md",
+    "sha256": "81DF1C1CDBD9E02DA672AF2EEEA9408638DB6A29084E2304D06AA01D076A14CB"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "product/sourcing/COMP-001_PROCUREMENT_CHECKLIST.md",
+    "sha256": "F28A3C63227E25F8658670981B6B393675CDB9AB77904CCA2526A0B34E6C7E79"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "product/sourcing/COMP-001_SUPPLIER_FOLLOWUP.md",
+    "sha256": "4527B23042D8F2DE758CAB120488E3FA52080DFA395742A96E3E6606F4D158D2"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "product/sourcing/COMP-001_VALIDATION.md",
+    "sha256": "0863FDC0C138D02A552E568D4499C4A83BEF4C927DC7FEFD910BD1BC069CD2E9"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "product/sourcing/COMPONENT_DATA_CONTRACT.md",
+    "sha256": "55330D9AEA0AE848D448B6D63361EF8FB6A6DCD8714AC2A4C32CFDA9C4D74DE8"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "product/sourcing/testing/PET_HAIR_REMOVER_SAMPLE_TEST_PROTOCOL.md",
+    "sha256": "562D5082991F36DBB48F7C7E25B77E00297E762B582978F7BFE8F175EB84C9CF"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "ui/CB-UI-FINAL-001/ACCESSIBILITY_FINAL.md",
+    "sha256": "4D8BA4A349666B16E35FF5CE9A4E318CF38661657007DC274C0EDD65587BAA59"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "ui/CB-UI-FINAL-001/ASSET_READINESS.md",
+    "sha256": "0F84BB3C139115714093F94254FF44937CF32051956857E2B61151144F023CDD"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "ui/CB-UI-FINAL-001/COMMERCE_FINAL_REGRESSION.md",
+    "sha256": "C5515FF696C9D4B39C862749513ADC56F5E772C9D50FF9790DCC5F5AC4BC4F8A"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "ui/CB-UI-FINAL-001/CSS_DEBT_CLOSURE.md",
+    "sha256": "7DEC2E351CBE2F70AF0F1DA66FA50C8FA4D84E2FC462A75D1B40ABB1EF2D6BA3"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "ui/CB-UI-FINAL-001/FINAL_QA_MATRIX.md",
+    "sha256": "C4B4CFC1A4D3FE9E3EBB0DE5220D8973FBEC75A3E14EC88A2E7797152C749911"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "ui/CB-UI-FINAL-001/FINAL_VISUAL_DIFF.md",
+    "sha256": "0843A1B91D75A0D9679E07EDE7E97CAD8F12AE0F1C4D9B879946533C125F9824"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "ui/CB-UI-FINAL-001/cart-1440-final.png",
+    "sha256": "EE91D810C349703F84418F52CE3347A251EA8AB8B2A195742395849961977C92"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "ui/CB-UI-FINAL-001/cart-390-final.png",
+    "sha256": "561356070FDAD0F7F34065FDE6631B504C21646AD80C5AF5CA9429A9F5EA821E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "ui/CB-UI-FINAL-001/checkout-1440-final.png",
+    "sha256": "352355C0876189C3381EE2B0AD31BD6CCF61F23A908A8B30E8F1EA553E4698B1"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "ui/CB-UI-FINAL-001/checkout-390-final.png",
+    "sha256": "7F8D665D4E9A7B5D7E065947583BA0D62FFF612B586A02E86BA7893EDC18821B"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "ui/CB-UI-FINAL-001/collection-1440-final.png",
+    "sha256": "20183A803D98FF4C5ED6CD10C2F0D30ACAA7211E41DB7019B5DC5E9BCC4C68DD"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "ui/CB-UI-FINAL-001/collection-390-final.png",
+    "sha256": "636B6611BC3D57A16F9BD5FE54F73FF77D89C81959752F7F6DB804F98B4BB2FF"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "ui/CB-UI-FINAL-001/homepage-1440-final.png",
+    "sha256": "4999F481D3A6CCC792BC80E2ACC7A8C91BA59FB5FACF677808C55D879EC7435F"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "ui/CB-UI-FINAL-001/homepage-390-final.png",
+    "sha256": "127804D24308FE6662A0FB5E6A871FEB8C65EC693CE46DBA6F630DFFE625FBA4"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "ui/CB-UI-FINAL-001/pdp-1440-final.png",
+    "sha256": "38AA76F94BD3FE21FE597E68C4F2027544EB50478EC059A097E62BCD558B0E43"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "ui/CB-UI-FINAL-001/pdp-390-final.png",
+    "sha256": "81977308F4FE872FE53AFF8F2A798C3F392C7C1DB3C12620BB616244D83E0CC0"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "ui/FINAL_UI_EVIDENCE.md",
+    "sha256": "5607DC6C2987510F12E0F80A377EA58113C54077A35E37B3EE2201613DE7E0D2"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "ui/UI_IMPLEMENTATION_BASELINE.md",
+    "sha256": "3FEE2B58B33B6103080EAA6049D16575A12C00C323D48031DA055137FBDE4CC7"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商",
+    "path": "ui/WEB_UI_FREEZE.md",
+    "sha256": "EC05C49E26F019F15C7DB81354086D4E938F34FD99758F54441AC78D6FA97795"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": ".gitignore",
+    "sha256": "E53DC3D79402446A64D0A379D4DCA144E2DB9E499434CC43E82F84E87A8185F7"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "00_HANDOFF.md",
+    "sha256": "FE707CE0CFAF80D7D13E2313DEF72A6CFA40732C6667FF17A093A86A224105FB"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "02_demos/README.md",
+    "sha256": "DE92A06FC18026F1DEBA77A67A8CB9690240FBF8D51971A839DB270FAB90351D"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "02_demos/medusa-dtc.UPSTREAM.txt",
+    "sha256": "218FFB3178B749DF0AE1937BF1FA2CE36909969ACEE879C10E4DC495CE86F51D"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "02_demos/medusa-local/docker-compose.db.yml",
+    "sha256": "970C5DB38A3C72BB876C35A7C117AC4D1E1DA80EFBD53D48F654810EDFEDA52E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "02_demos/medusa-repeat/docker-compose.repeat-2.yml",
+    "sha256": "AA161DB3BBCE6CAD11CA15890816C3FF57E1FF700A531367CB457F28AC6F6AD2"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "02_demos/medusa-repeat/docker-compose.repeat.yml",
+    "sha256": "69347C98472DE9D003E98F78A67E1E5B02E95FAEFDEA7BB979363D8914256F67"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "02_demos/provenance/medusa-baseline.txt",
+    "sha256": "910459C5311F3CAA6EF8194251AE8E63B2F3799CC68E0268FB0A6F7EE63E5700"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "02_demos/provenance/spree-baseline.txt",
+    "sha256": "8E29CD0B320216EAD9B8A01EE4A66A03F1E854903CF6185B79B6136AA2DC7708"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "02_demos/provenance/spree-db-isolation.txt",
+    "sha256": "D4C4F25C40FE6E87AD16BFF5578FBE8FDF209F0BCD95E4B79A02B9D2CF631E7F"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "02_demos/spree-local/docker-compose.source.yml",
+    "sha256": "F6576E7DCCC54FA146BAD84CA107F2257D6217302AAD79E39237AE5184BEF582"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "02_demos/spree-repeat/docker-compose.repeat-2.yml",
+    "sha256": "5D7ECEFF494D6116CCAFE36F5C545DFE14F72E57E33ABA6EEE5A120DE0665A5C"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "02_demos/spree-repeat/docker-compose.repeat.yml",
+    "sha256": "31C9C42D406128A9C1D1BCFA7966EFB90A85B0311BE83A30E7BFC7D74594D99E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/.github/workflows/update.yaml",
+    "sha256": "E135EAF179EEC0D05645241CCBEA10E522B7E48E7CC67284A26247B75081223F"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/.gitignore",
+    "sha256": "CB9F61391A3C2EABA16ACBF0C8C96EA629DC2F19307305F08FA25B94617B0EE9"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/.npmrc",
+    "sha256": "C9B2BFAA64B4A1F0393B77C307494C187060C10B236BD9A5F26103EDF5BD65E7"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/AGENTS.md",
+    "sha256": "2A5449641B6A53FB8866311DE76EB8504A6FBEFDFC05CEB879F70E774ADC3F6B"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/CLAUDE.md",
+    "sha256": "7CE6A81BC1A1375E55C759B4D2304F69CF59EA3F5376F1F7957730ED214C1D5A"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/LICENSE",
+    "sha256": "770A61C897D73CDEB53FF2A367D537A80ECCF57B31F81E4A5FE951FECC40C632"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/PROVENANCE.txt",
+    "sha256": "910459C5311F3CAA6EF8194251AE8E63B2F3799CC68E0268FB0A6F7EE63E5700"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/README.md",
+    "sha256": "226B76B786888FE7BED32509FC1EB0F483F10C74ECC4DBBE3852D8E6B45381D6"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/TEMPLATE_PROVENANCE.md",
+    "sha256": "6A56D4FA4FB9C57288AB39A2AE9F247B98C041B35C6F56993735B118A38EF6B0"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/backend/.gitignore",
+    "sha256": "1A2DE662F139B324B9D678AB7522985E1CD872118F85EEE6663824A219709234"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/backend/README.md",
+    "sha256": "9E4610E4266EE2E2F776E7DB548CE9AFAE66D8F360D8A718546C73A7CEDA7AAE"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/backend/eslint.config.ts",
+    "sha256": "148C2E94315AA2A28E5FCD4111586E5AAC7904F4573685F09B288B4D52B10CFD"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/backend/instrumentation.ts",
+    "sha256": "B4881AF7951EDD8EC4EBAC612CB3E0D7B82BD98A112CC3F24048BD7028A14D3B"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/backend/integration-tests/setup.js",
+    "sha256": "1CB61340D3931AB42C1E280ABCFC259B6301308C1B023B4CE8EA16B9C47ED9AF"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/backend/jest.config.js",
+    "sha256": "2BA24C2850E6CE215E13B04F37713B15C35B1CDF87F36F3F4276D47D528F248F"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/backend/medusa-config.ts",
+    "sha256": "EB5535E202B87269060780FFB2266EC96C75CB5D7D6F9FB49311AF5F8EFDDEEF"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/backend/package.json",
+    "sha256": "A8A163D7275902308154B81C0D6B4D426F58A6E361DC355FE7CEB0A3713A822F"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/backend/src/admin/README.md",
+    "sha256": "199B3FDD429AC0C9CA15051AB2715DB266CD3719CBB92A93339AFB3FFD793C5B"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/backend/src/admin/i18n/README.md",
+    "sha256": "7F8996C75944232E6078F2043C2522372263E6B6B12069500856FBF272375C86"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/backend/src/admin/i18n/index.ts",
+    "sha256": "9AEB8D59B4D483CA6298E9A450FBF37DFD2B4C63990135AB1D040D76314087EC"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/backend/src/admin/tsconfig.json",
+    "sha256": "20CEF9E3D28503FC6E6A389FB438B82273E3FE6CC8D08D81423BCB4F2B2A8DAB"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/backend/src/admin/vite-env.d.ts",
+    "sha256": "B440B802C2CFEAC6A24EDA510BD63C1F23C6AB5C52BCFE3A32A918DBAD6B46C8"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/backend/src/api/README.md",
+    "sha256": "44B7F9AE0C18E6EECF6B894E5E8D93BB2F4372887CD93C7726CDED24F252D3D7"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/backend/src/api/admin/custom/route.ts",
+    "sha256": "B91DECAD25963549EDAF66214E2427BD67FEAB9FB0F45C98BDB494960851AD9B"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/backend/src/api/store/custom/route.ts",
+    "sha256": "B91DECAD25963549EDAF66214E2427BD67FEAB9FB0F45C98BDB494960851AD9B"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/backend/src/jobs/README.md",
+    "sha256": "82E32CC9F1931DE798536406D50C03164945970DB18BCEA6C34225047987D261"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/backend/src/links/README.md",
+    "sha256": "7A7DF0289BDAA452965F461ED6985A8AEDE4816D9B268901CAC7C75DF648245E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/backend/src/migration-scripts/initial-data-seed.ts",
+    "sha256": "15D05783EB77EC75789B4FBA778A5E4CF2DBC228884B50E34E0339A5FDB154DB"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/backend/src/modules/README.md",
+    "sha256": "8DB1B8EA5F97199EBC1BEEF23ABF7DBD0849A557C3162CB11D9114FE3DD67118"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/backend/src/modules/paypal/__tests__/paypal.unit.spec.ts",
+    "sha256": "B212748D52110883EE47385B1E37A51EF3DC02B6B433D492D9ED956A3A077C04"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/backend/src/modules/paypal/index.ts",
+    "sha256": "F89DFEE28F3B80623DC9EC8680A4425DCC41F63C64C9F977A4B946A9CCCAE4BE"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/backend/src/modules/paypal/service.ts",
+    "sha256": "25702E89C2D94496A913193F1663920AFA21797E2519946557F10DB5779ED404"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/backend/src/subscribers/README.md",
+    "sha256": "CF678346723A063CBD86812FDD65FB0BF581D7498B83A0727C6A9C5810E2E9AF"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/backend/src/workflows/README.md",
+    "sha256": "2942B241CFA8E15EB59C15467AC00CED60BD0C1E408CEF373C6745C47410A883"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/backend/tsconfig.json",
+    "sha256": "089B08BB77D24FE892F0756364C40FC5044F7A58F32E5453AC1F0A28EBC7BCD6"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/.eslintrc.json",
+    "sha256": "C3F3666DA03D2CECAD935775E15773CA8AC19431B1CB3C49C8C40C42BE195D0F"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/.prettierrc.json",
+    "sha256": "CE64A3E4152447C9D2555656012420B6FD868FDEFDD3B016B2E177473E01FCC1"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/check-env-variables.js",
+    "sha256": "24336C91A14B67F684E74E0344CE9E2DC12707DEF011CC3E21B7826EDA89A1C9"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/next-env.d.ts",
+    "sha256": "85AE5AEE75F011967CF2D25CBC342F62D69314E9D925F7F4AA3456FC2CFFCCA6"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/next-sitemap.js",
+    "sha256": "50F35E9CEC402040E1F4C3788713152E30A13AF4A4F525893F6CDC3B6F09FA9E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/next.config.js",
+    "sha256": "B0C42F7AE83A095826230587F6EAB82BD0FA3E038035DD4D431005980E4786F6"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/package.json",
+    "sha256": "4FD22A39845EFB099636E06B68DBD59BE4BBA3D3A2D720EB068F68E8088C5A4A"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/postcss.config.js",
+    "sha256": "251ECDDD4672C9CF467547E3DC535DE00AD2129DF26E7E7AE728FA4E5AC45FC5"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/public/assets/products/COMP-001-main-square.png",
+    "sha256": "FBA393D76A2291B4B152D4E0BCDF321B76F851C3614947D251959FC54A02D04E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/public/favicon.ico",
+    "sha256": "2B8AD2D33455A8F736FC3A8EBF8F0BDEA8848AD4C0DB48A2833BD0F9CD775932"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/public/fonts/dm-serif-display-regular.ttf",
+    "sha256": "C03775F8CC3DB88CFEA259B231ABE13F94E6A3D3CB01C09477A2E42A1F5919E1"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/public/fonts/plus-jakarta-sans-400.ttf",
+    "sha256": "076831B98043F50F829B6C91DB3BE4A844641F1C95BCCFF5C886ED87C661A852"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/public/fonts/plus-jakarta-sans-500.ttf",
+    "sha256": "B4FC14EC283D54236FD302CDB92546F98AE0FF061CA5EE23453A02BDF4628791"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/public/fonts/plus-jakarta-sans-600.ttf",
+    "sha256": "50357DF108C5D297EC4ECE76AEDDF49561F3794F67AF077CFC2C711B7A75B439"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/public/fonts/plus-jakarta-sans-700.ttf",
+    "sha256": "32971AD7976930539A11C79CE91CE84092DF7F25C5BE716B594601842F10A7AE"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(checkout)/checkout/page.tsx",
+    "sha256": "2B0217AC7DDC886214834ADD1C5340B2B2B54D1548400499494A5A658453FE33"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(checkout)/layout.tsx",
+    "sha256": "1192DDA377A55A759933ED6236D57722724D109F16360DC245621F54652E1299"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(checkout)/not-found.tsx",
+    "sha256": "0EC5816D08D629055B9D26D9F8D04EF4E07A96D3757C0FC83A1784BA58C786CD"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/account/@dashboard/addresses/page.tsx",
+    "sha256": "DF5E2331CA960CBC8A69C8F7519C86574F63AF69A6E3D62B8F501E004300E756"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/account/@dashboard/loading.tsx",
+    "sha256": "311F291629A52D021C82F51E040F3B99077742CFD65064A0AA35DC01509A07BC"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/account/@dashboard/orders/details/[id]/page.tsx",
+    "sha256": "EC3CA34EA931EADFEAD1DE4099D9D5CA6566F1548A006DA602BC7686ADDED801"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/account/@dashboard/orders/page.tsx",
+    "sha256": "F146D2DD09BC585E8C3F35BA3E0E56D6C4D086D12F3D1D2ECCC9385670446E72"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/account/@dashboard/page.tsx",
+    "sha256": "01C1FCFE53E201C8121056187699C7C65AB914AE329B8E8D733CDD6B83FAA529"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/account/@dashboard/profile/page.tsx",
+    "sha256": "F9D1153F77ACA3892FFB902438244FD5D5113E1466D9B21572351F7EC5E6863A"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/account/@login/page.tsx",
+    "sha256": "4EC8277AD9303FDB453EEB169F8745B1809FE878D7C78285F3D25E8F98510EF5"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/account/layout.tsx",
+    "sha256": "2E8E864992D43BC20F4FC89AB3390D725C1CBA820318BAB631EE627D92E72D16"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/account/loading.tsx",
+    "sha256": "311F291629A52D021C82F51E040F3B99077742CFD65064A0AA35DC01509A07BC"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/cart/loading.tsx",
+    "sha256": "13C3966EA6B1C7564D64B0E1F416BEDE2A34F939A3B7663B01B5B957A79AF035"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/cart/not-found.tsx",
+    "sha256": "97F46DF7675D6BCC4486C2DD1E7CFB4A0AB8C0B66E47701894BCCCE02011DD18"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/cart/page.tsx",
+    "sha256": "BF633E09DDB576DAE0E071F18A8639B62ABB09DF075726BF5F494F498E5E7E86"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/categories/[...category]/page.tsx",
+    "sha256": "FDC1CEC0875053FC4AEEFF81B3F1489FA3BF47DAA8C4403013CB82B2AFBEF85B"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/collections/[handle]/page.tsx",
+    "sha256": "09477208E2D06C49371F3A617F5947EF447D5A4822EE941CEF2D0686C00B043B"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/layout.tsx",
+    "sha256": "48F3D0834645EDE954859FE07CAB203E0E071DF49DE4242D35955047CA2A21D6"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/not-found.tsx",
+    "sha256": "B4DF486D1A8016386D242A4967F7B314FB187304DC4035CE76FF472C0C7F9BA9"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/order/[id]/confirmed/loading.tsx",
+    "sha256": "AE618E13F0881D87C981270AA9D85CD0D9B88AA6339E514A22BF01F9363D4311"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/order/[id]/confirmed/page.tsx",
+    "sha256": "E0C34835B11014EA67D9842B3DB89024309E916AA2B4C8B37BBCAC134BA03D0B"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/order/[id]/transfer/[token]/accept/page.tsx",
+    "sha256": "4BA3F4EB8BA1F10BF12D33C976262604F03A544EA19B268A03F8D3FB325EB649"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/order/[id]/transfer/[token]/decline/page.tsx",
+    "sha256": "5E74C193C6F63B6D2ED32CB01ADC0A03F63156D91AEAB5448E9B4035E845957D"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/order/[id]/transfer/[token]/page.tsx",
+    "sha256": "66921957D89EC46A5E321FD6D5FA76EB39DECE6FD2F53D308150848AA56A7B19"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/page.tsx",
+    "sha256": "06486574969CCB84DE432F00CEAB4151E043B35EF58ED374C8681E07F1041D00"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/products/[handle]/page.tsx",
+    "sha256": "CE120CBAFD0A9836E8A277D55733FBAA2F79CB18AD4BCBBB76F31A152921C651"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/store/page.tsx",
+    "sha256": "5EA5FE67CA02BC311B4232C986B704A8B0FEE77ADF778DAF0070ED37A8620645"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/verify-account/page.tsx",
+    "sha256": "2C2ED6E8EC71EE671CD0EDAC0C3A5F68486224FA4E60237383A14471910E4E0B"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/api/payment-return/route.ts",
+    "sha256": "AB05DE64F02BEA834250EADC249AB5B253DF01232E9E04210E0E396C34E73443"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/layout.tsx",
+    "sha256": "2FCE8D05733DDF8C068C17B733689B0847DBF76221664DDDA560F43F8E9F1CBE"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/not-found.tsx",
+    "sha256": "513FE77E37C3694DBDF8A96235DF1D683942DDEEBF27350E4CFE2BBF5E384A66"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/opengraph-image.jpg",
+    "sha256": "24008E08B38397E6F265333C2F29B236AF4F85515D36DDF26D7A7C1178AEB333"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/app/twitter-image.jpg",
+    "sha256": "24008E08B38397E6F265333C2F29B236AF4F85515D36DDF26D7A7C1178AEB333"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/checkout-exposure.ts",
+    "sha256": "E90FB3D1FFBFE4642FB9771B9F16432C280CBA980B178048EDA4D3D48F6C4EA7"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/config.ts",
+    "sha256": "A51C77EBC63739036208D47D8954C1C73B37DD559AA4FA03CD467E3667B533D6"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/constants.tsx",
+    "sha256": "142786F6E05A3D0DFB02D0CC126992DCD9C7FEDF615C4EFDBB3490083A14A63A"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/context/modal-context.tsx",
+    "sha256": "F053CC93DBC9C09A53F7F0231B2DFFFED10CF8945010DFF9E1F33CAE6972FDA7"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/data/cart.ts",
+    "sha256": "BDD585E5CC6CC41A13525C99C0E1E51F033C0D044945E964E2EE5925EBE325B0"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/data/categories.ts",
+    "sha256": "7BB3E801BF8BAFFD24335D8F60BFE58FF5A98F58B51ED1E51A967DE105700C62"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/data/collections.ts",
+    "sha256": "D7DE6C35BEC1E523519855F1A95EC8D258DD94189DCE746631EE73BA3C18FEF4"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/data/cookies.ts",
+    "sha256": "CCD80BAA42A75B584C7DA4A990431739133DB606B4CBE4DEC035CF7CB1886E4B"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/data/customer.ts",
+    "sha256": "E77012128ECA6B09DB356C54C46DA545850C9959B805D96CA959A0C081A7C883"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/data/fulfillment.ts",
+    "sha256": "EA0AAE29A0986CA28E69836A2D0B6303BD4C4202689553D9CE573BDCC010A758"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/data/locale-actions.ts",
+    "sha256": "2D4DCDE038DEC1F358B66CD0FC3FB4D1468234B5C627C600DB12194CD15D03DC"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/data/locales.ts",
+    "sha256": "910629DFB21AC4A829AB77A1DD5EA6296A8767FC0830401BCC57B706B1883264"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/data/onboarding.ts",
+    "sha256": "611C4D6D5EE753D0897921190E23201028941A4308C060E0013CBD54E20CFF22"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/data/orders.ts",
+    "sha256": "1BBF92C21B66CDFE0BBC566B3060DE99E26D6ED81609940A74761E3D3D344D57"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/data/payment.ts",
+    "sha256": "0DE2C10903D5CF0114FC71B3B0501E019AAB7A0F3E1C55D8E22B2A2F5F89BC4D"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/data/products.ts",
+    "sha256": "449A19C6A51B2FEF1789DBBB20345646272D6DBEF8BB8F2F2C0B8D26C9E5FC03"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/data/regions.ts",
+    "sha256": "EE7666F4E2A6ED6AAFB13FFA697EA6D513B9FAF04A305C676CF1EB3F5F3F8D5E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/data/variants.ts",
+    "sha256": "7F1BAF0647B19CBD7E9D9619B716B9E0543DD94622E5C754E8E18727E420AA70"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/hooks/use-in-view.tsx",
+    "sha256": "E4FBA167ABC17633D4C0494FCCD30B2A399AABF8D3171B14E43E2CFC108C141F"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/hooks/use-toggle-state.tsx",
+    "sha256": "A837B72798D32746F2BC2AA529821AA3C1A74106F7E3C0911700D4FC69FECAA0"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/util/compare-addresses.ts",
+    "sha256": "F73EC72C3647816E5C798C4F44AFE5604C2840935E9AD10B4D5B3322EE53AE9E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/util/customer-product-copy.ts",
+    "sha256": "0AB63029F040C73D7EE088202EAD70D177FFEB286FDCA0498603189E8DE5EE58"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/util/env.ts",
+    "sha256": "CE62606289CA23E7F9AC14020EDDC53D96B7CDBDEDED2E456F041671942DB7B9"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/util/get-locale-header.ts",
+    "sha256": "45A398A26B5515323F322E9B0C6BC9168063A45B9D816DA54BAB025CD897A5CA"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/util/get-percentage-diff.ts",
+    "sha256": "960FFD40FDBD0C26B1D67207129C2F13B2AE24BE7B3D894AE739A9F38871E9C3"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/util/get-product-price.ts",
+    "sha256": "AEE329C5D5BEE4DB846C89D05EA8E8A59A2763E14A614E5CE08636CD3CDD110D"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/util/isEmpty.ts",
+    "sha256": "0283CDF60E1F63C825A1ADB9EE7F1420FA837E4466CEAD18DF1FF3A295CCF157"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/util/medusa-error.ts",
+    "sha256": "A5F2FB425DE4D4721C77BCAA2816F03D5400C023C07B66FD023DE37494B0AB30"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/util/money.ts",
+    "sha256": "0E40C7D3CC46D2141CC25DA5E0A242F734DF06D5E5A49DD06E010376CFA3DA86"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/util/product-option-filters.ts",
+    "sha256": "FE6B75D444E12E21CDD193E289EA485A3955C02A1F97FE2863B156DF0D46D022"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/util/product.ts",
+    "sha256": "012C9270A835420C01875933075B531DBBB6E626764567613E39300871A6EABE"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/util/repeat.ts",
+    "sha256": "86A1CA6C43798DC6573BD6B6D575BA4681A293AD5BAC56261CA68313EDDC7012"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/lib/util/sort-products.ts",
+    "sha256": "40F7A506D07DA72AAAD2BFED359145BF42A2D2F1EC6D2C70B59EAAAE642C57F7"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/middleware.ts",
+    "sha256": "D7AC10108763C9DAAADAC6C9F153E3363BE21C33221D35DE13B83B3423B1756B"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/account/components/account-info/index.tsx",
+    "sha256": "7D64F37F7A8188E9735C8AFA1422196BAF09506B6D68EDB508828D8D67B32F7E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/account/components/account-nav/index.tsx",
+    "sha256": "AF01636DDE4CD721BEA1EF640D18527E53424B561F38FCC38C677A2F14A14DA0"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/account/components/address-book/index.tsx",
+    "sha256": "58EEA0BC8B0BF7634477A9EC29CD919931D844BECDCB33C7F568535FD1CA0496"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/account/components/address-card/add-address.tsx",
+    "sha256": "7645182EAA963B6B1348DA5CED04BD00A7F0638D029FCBDF7AA5D75D87EA6C67"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/account/components/address-card/edit-address-modal.tsx",
+    "sha256": "092701D372EA272218BE51D63E7AA5E44897A1600CA58453E64FFD05E7CAB0AF"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/account/components/login/index.tsx",
+    "sha256": "E2F86F912DC34F2B36B96B3FC911E2EC4180F26FACD3D55E0591E96D1A36BDE3"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/account/components/order-card/index.tsx",
+    "sha256": "5D90E4567C7D62E9F340A1F4764BA1390177C8E8EA2FF85E47F0241A4A3A7975"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/account/components/order-overview/index.tsx",
+    "sha256": "81D13B867AB0A46B0E8EB460A036DF303370D6FA6543CFCA3A710EC79A112E95"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/account/components/overview/index.tsx",
+    "sha256": "88EB00FEBA017633ABF686588B9B3E9EDB2FF6783E0388510A06F0979B77D9AA"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/account/components/profile-billing-address/index.tsx",
+    "sha256": "80B53FCE3385060DEAAAA948BB0A9F3AD3FF9D0F78AAE65FCC25A48CE102C34B"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/account/components/profile-email/index.tsx",
+    "sha256": "529F8186F50293FDF717323D0B3DA89CDC269BAE6DF8C67929B2E2EF834B97B7"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/account/components/profile-name/index.tsx",
+    "sha256": "D8FB65BF9FBA8E720597AC0CB0BCD88938037C3F4A7EEC82A3CD0C74BBC21D32"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/account/components/profile-password/index.tsx",
+    "sha256": "1FE567FAC885D45DF556259BB880E72B244DF8383355453A63A55B9D08C7D39B"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/account/components/profile-phone/index.tsx",
+    "sha256": "CBD38848BD8E38C0C1A0F3BFA66FBA42CF06C260C56E68F9996E886DD24D3662"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/account/components/register/index.tsx",
+    "sha256": "40EF1E44250B474AF5D2D679E572FD037B70CE9BD9F189B5D982DDF5455D4448"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/account/components/transfer-request-form/index.tsx",
+    "sha256": "A168C84546D4F30200A191A73333C8920C321FB911829487F1E72D09EC3C8417"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/account/components/verify-account/index.tsx",
+    "sha256": "0EA1CC55FBCC46899F012F62DFE614D05B596E3B9456C83749F9432676B94C7E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/account/templates/account-layout.tsx",
+    "sha256": "5F3FE5A496E2F431630260340D08FFEDCA1C947B12FC49CE98A719278EB0DC31"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/account/templates/login-template.tsx",
+    "sha256": "E1A0E16D9AB40B2A47E40BCC6B9781B6F42DB3ED08980DD633FB9DBE29CC9D96"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/cart/components/cart-item-select/index.tsx",
+    "sha256": "2725531FEB11325E3585BF8E4BAC2E2C176EB8E99068CD19AB0D9D4BE07AE896"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/cart/components/empty-cart-message/index.tsx",
+    "sha256": "3C049BF10AED7A88B61F5077DD14EEDD11515DC630043A108D5B1556314D9AF6"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/cart/components/item/index.tsx",
+    "sha256": "81E89C41F5017612A92A880A089E8B7CB94C7C7ED339713ECD29DE2790EA5175"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/cart/components/sign-in-prompt/index.tsx",
+    "sha256": "EF665B051E8D61DB0D34A0CDD3A865082D4B81F3423A11B1404261ECA06E3F39"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/cart/templates/index.tsx",
+    "sha256": "28572B08B01995BBACA74188432C39A803B133480760D7B0F2FFB6F6BF157797"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/cart/templates/items.tsx",
+    "sha256": "7DDF26408F50A4347F2E5B585B4975EE2E99E5DA1597F90E0192FF1016473CFE"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/cart/templates/preview.tsx",
+    "sha256": "FCEC831670342DD0C7B197AD61E9992B6A9298763BECEC810AA19FA51F5290F0"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/cart/templates/summary.tsx",
+    "sha256": "BBD5A7BE90A6267ECA2414C1E27248A9F62EE4BA9BC5FE6BB71C6C9B46D81457"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/categories/templates/index.tsx",
+    "sha256": "2F9EE7D327D9D96DB4E7BF3C275AE77A0EA16361530B2ABC162242CF967FA973"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/address-select/index.tsx",
+    "sha256": "0AB6E2A581E883E79D6DDE5FA7BB9B7325D7BA04C089FBDFDD026376DBE8674A"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/addresses/index.tsx",
+    "sha256": "C7AB03B52E3C0473AFD4F6D4383B604A700C147D8E59A810CDB9B44FD3EBEA27"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/billing_address/index.tsx",
+    "sha256": "E9EB711072F7DC293DC2DC4B43BDBCF9E43DC5DD4DE191A27EEFFE70A2C90ADA"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/country-select/index.tsx",
+    "sha256": "EFCEF1CC1D700E5274C017F81CE276064B8E491CE93657900892EFB8BD509B34"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/discount-code/index.tsx",
+    "sha256": "F5F48B975E08F7D38E7A1C65CCA67C14B1856CFFFC6936CFB1C0DDC733362C15"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/error-message/index.tsx",
+    "sha256": "95932ABC5F783BD81BE6E1313A1D25DCABC932AC323C5CD7B085D0113DBFA478"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/payment-button/index.tsx",
+    "sha256": "2F052816824353A5C4193476397F0221CF77D818A4AB0D806B2BA6C14A7D0ECF"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/payment-container/index.tsx",
+    "sha256": "E946F73440F3BE353461962445011D688C62C6BCD4BD4A473C4AE1A3B89BB9D1"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/payment-test/index.tsx",
+    "sha256": "1D4E4EB296D638927A03BB9DF2C4B55DD25839F1BFF79F6BF33D5E7C3B66F512"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/payment-wrapper/index.tsx",
+    "sha256": "2DD2F39887707E3E705530E4D11CF726C76B9B459988AF0B5B65B14C05D207BF"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/payment-wrapper/stripe-wrapper.tsx",
+    "sha256": "B634F0BF8138679BBDA42E99B30E41C28B645830577C9791E93CAAEA80F9C313"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/payment/index.tsx",
+    "sha256": "DFC8991F992C510DE307AC802F0AFA1C81B6E5472CE167CC72B485FA0F27F649"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/review/index.tsx",
+    "sha256": "316BDD5AE79A35808FFEAB9B63908A75AD62EFD441470E5C5C79E17D7C65DF03"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/shipping-address/index.tsx",
+    "sha256": "9053A4FDC4196E0981BDCF305D90AC16065AF89DAF49B26D6B03BBE34349A818"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/shipping/index.tsx",
+    "sha256": "7557B8135B321E28E8FE1D9CD159CCA5D490BB105A87FDAE639608A6A797905E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/submit-button/index.tsx",
+    "sha256": "A532D327062FEEBAF47A7F8012476DFDA2FC98D2943016FF22FBBEB97D6242BE"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/templates/checkout-form/index.tsx",
+    "sha256": "F949387564AD114BD42109D1D2E5E17D8E0553E673577169592D9DEF3A9F33BD"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/templates/checkout-summary/index.tsx",
+    "sha256": "9BF640E57C4247874BB391B7CA4767021495CE4F33AF5393FC01C2CF23EED4AE"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/collections/templates/index.tsx",
+    "sha256": "DA5638019E155F0561E416AEBE75745B37EA3CE23166F9555761B1BDCE2FDEFB"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/components/cart-totals/index.tsx",
+    "sha256": "5EB893AB8CD48C9B5E7F25CB714CFA2E126FD92E0C5D47F558A2AEC031D69CCD"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/components/checkbox/index.tsx",
+    "sha256": "F73793D737CBFB166D89325479201AA3504DE4BDAD090B738EB02A6A9D8D9F1D"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/components/delete-button/index.tsx",
+    "sha256": "E0A9B768C31A86BFDC4C108A04B533BFF24201FBF55DFD1946599EB86460A6BF"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/components/divider/index.tsx",
+    "sha256": "4374BFF6130BB94A75652CBA4CFB8798E53EBDEF592C73E1ADF09447AEB192E2"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/components/filter-radio-group/index.tsx",
+    "sha256": "96C0EF36017A933819200ED122238E567AD7683CB394AE5B544AF008EE158A8D"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/components/input/index.tsx",
+    "sha256": "3B0660C54E316C30FE1F69012149B132BF362693CC631E40A94FD6EDF38AAA96"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/components/interactive-link/index.tsx",
+    "sha256": "6AF8427F04147B7A5620CB9722DD569451D3651C90A109F606F82078A8167481"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/components/line-item-options/index.tsx",
+    "sha256": "8988B6A9803A84E0EF8A2DCCACBA8021AB5095781CA9C28531B6035818670357"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/components/line-item-price/index.tsx",
+    "sha256": "4FD6418FC65A11C18240AF197E3D64D532A013394D11FD6B19ADFFA516AA0102"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/components/line-item-unit-price/index.tsx",
+    "sha256": "0C348CB73F439AF9A567285A8AE546F90DDF41B5AEC8AD84C3B895F5E4FECF7F"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/components/localized-client-link/index.tsx",
+    "sha256": "E65659017D76617FDF8B97E4EC605CE3B7FB963696EE36A12DA055F31DC2E312"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/components/modal/index.tsx",
+    "sha256": "FF1A518CCC20FDDE1372152E358793A494DFB3C8DADD04F52A43411A4FD67A7C"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/components/native-select/index.tsx",
+    "sha256": "7D41FFDB478C03FE4102916E764CBDFC31040C738BAEB235C4541CE6B5768798"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/components/radio/index.tsx",
+    "sha256": "91C5B779D6E97D9A1C6578632D037085778A5700F09F8224AB0F6B9D9E82B2DB"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/components/ui/index.tsx",
+    "sha256": "9B6E0AF4EC89F7DBDE2FDD4BF23D6FFC3EBF5FE82A46BE4E63A239CA838060F2"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/icons/back.tsx",
+    "sha256": "AC368C517C39BC267C6C2748474C9D8F5733B9B464C259FE5B66B49C90C52BD7"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/icons/bancontact.tsx",
+    "sha256": "3CECCB0CC00F940E25423B94A91ABAD083B2DD9C86A0DCE7FECA787825744E5F"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/icons/chevron-down.tsx",
+    "sha256": "203C09A2B36EE478FF8A41CE9CB3590E6FB325E4F96640B6F8E44F06DEFF6E53"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/icons/chevron-up-down.tsx",
+    "sha256": "4885660924EAFF8E92B4B6E47C0A610976190A23795DBD36C5AEEA4E23FBF498"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/icons/eye-off.tsx",
+    "sha256": "D0FF7DA91AC525BBFA5CF2D58D3CAF779E7DF94D22C0773B4EBFEC792B26AACE"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/icons/eye.tsx",
+    "sha256": "B3FE7FAF60AF62928305B7A60084127491A69217F24F143C20552BA2795B8713"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/icons/fast-delivery.tsx",
+    "sha256": "98408F68F822D5E7AB1E2C2D78D1624A518C72E3D663CD6325571E34EA40EEC4"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/icons/ideal.tsx",
+    "sha256": "4A12B20EFAE66E7FED63476ABEAC8FDBB5D51385B3F8452634B4787040062106"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/icons/map-pin.tsx",
+    "sha256": "45197672B7C0A047B10A90D70F4BD031CC451EF7853AE4615526B4FAAF26B071"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/icons/medusa.tsx",
+    "sha256": "A87E093474BD055B187621114FEE3D812D52E8B29EEE01E5A6F58E0DF5F1E20C"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/icons/nextjs.tsx",
+    "sha256": "CB3CFFB5B83FD9C3B16AB5B0AB4DB76A98199F5A4E75E463AD5929D7BD653E3C"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/icons/package.tsx",
+    "sha256": "562B3D4C00033E15705EE8EF91F1CC22EBB9C09C7C1DDA892370FDC7389B33D0"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/icons/paypal.tsx",
+    "sha256": "08274E2E2A97F4F3A6810E1A9A5B45776690A56012AD7B477D0891855934D445"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/icons/placeholder-image.tsx",
+    "sha256": "BB27D75136AEB41971BC9B9D86F321A9240FEAF58E9F53760434E5D1F6E644EE"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/icons/refresh.tsx",
+    "sha256": "CE58F819F913265248B43BD404A6F0209E22D12D6EE529CF502FD165A8C2FEEC"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/icons/spinner.tsx",
+    "sha256": "0F76A0A2E8210C41806422CE114ECF23E571D396E15BD6E9F0CA0EB916BAD97C"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/icons/trash.tsx",
+    "sha256": "897BE48CAC33474D21E5419EDCE00DE20D0FC8E3C0DC2AFD6C1AEA296178D45F"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/icons/user.tsx",
+    "sha256": "98F249E3F066C85444A2CE749AA63EC31686F107371342AD0F7115DBFFC1B28B"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/common/icons/x.tsx",
+    "sha256": "9F368B2E41421C011CD50396CACD3C17077D2DC32AB644BB30342A45BE118B60"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/home/components/featured-products/index.tsx",
+    "sha256": "3AF775ED07CCA0DD80FEADC8428E9C9E11EA44B36BD9641440C2609FA4D5A95A"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/home/components/featured-products/product-rail/index.tsx",
+    "sha256": "A0E176B3CD085C9920210515F8BDB6944B9EEABB8C221BED6CE04234FECEEDE0"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/home/components/hero/index.tsx",
+    "sha256": "C6B5EFE459F276654FD9E04A966E915E818B43866A23E75436ED30A46BA71EA2"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/home/templates/homepage.tsx",
+    "sha256": "7D169F0B7FBEB5BA9528DFA403A22CAA3C5AFE94BD6B1453E4688E0075620AF4"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/layout/components/cart-button/index.tsx",
+    "sha256": "93AECBE24C8E2DD06005A22770B0B28423E47527A47C98DE2D53FE14B1DF4440"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/layout/components/cart-dropdown/index.tsx",
+    "sha256": "7DA15561024911D16D2DEF87DF4EFED8EBBDFEBF6344AEC66ECD08F020F3A0C6"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/layout/components/cart-mismatch-banner/index.tsx",
+    "sha256": "527C0182D45325283DB3D0856D895FEE03E0987DAE17EAF0A8E3F2E0E84BFBB9"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/layout/components/country-select/index.tsx",
+    "sha256": "772B66F5708C2AABFADD2A9B0EDCD88E629AC3A481AE3A6F4A9B2CF99269E7D1"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/layout/components/language-select/index.tsx",
+    "sha256": "DC3DB1E6F051AC8CA877B6DB37404010F0645253F267D6C0C488BD1F1BEA6A6A"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/layout/components/medusa-cta/index.tsx",
+    "sha256": "FC9941CF824D766FC760BA74ACF1E4869F027D4E168B376041DA777855FA107B"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/layout/components/side-menu/index.tsx",
+    "sha256": "075F085AE4CD370702FB36553233F132BB96B6D3DDC1CB16A2C37AAE280111D1"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/layout/templates/footer/index.tsx",
+    "sha256": "6FC77D041518801F101D68CD7A32866E229F8320C3598C2A6AF84216EF3F94B1"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/layout/templates/nav/index.tsx",
+    "sha256": "D48C9BD3C4D55C5F33E2176D8C0D6C5B8C6EB49E1020AE8273FE2A4CCB39F84F"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/order/components/help/index.tsx",
+    "sha256": "B0EC31B111107C557FD2CB651ED5F5B00B8044CAC51173EA20ABD0857306A27D"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/order/components/item/index.tsx",
+    "sha256": "FA46C65A5AB0A09AAD49E39CFBEADE5AB2A8D3E4A6EA9C136E34686B6210F0A3"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/order/components/items/index.tsx",
+    "sha256": "735103E112C3C7B1137DF1C9A5B1EC7C8931BD0BB0D2ACCA1D76FCF472E7AFFB"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/order/components/onboarding-cta/index.tsx",
+    "sha256": "343B2B2F22C68024DCA4606888FA670901D0A006B0FAEA0328BCB288A13B7C5E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/order/components/order-details/index.tsx",
+    "sha256": "901D637B8D79F381F84BAA0F386297162BB672DF58DBC89E33FC6807DDFFB0C6"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/order/components/order-summary/index.tsx",
+    "sha256": "5400463AF6CA15B35AA9E185F0976E0891C589E7DB50068C3C17514FBA65EA8C"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/order/components/payment-details/index.tsx",
+    "sha256": "DEC659D924BA437175BDB91F9839DC1AE2490C6599F019C62C5B77DC887336E9"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/order/components/shipping-details/index.tsx",
+    "sha256": "9895DBC70EE63E386914939FF65E5FEF063A962231E06D1E8E7FE801D0F8AA09"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/order/components/transfer-actions/index.tsx",
+    "sha256": "6AFBA6F4A6F9F7E7FD3DCEC82ED17B8B76075D8CEB68B6D11BB207A4238A5872"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/order/components/transfer-image/index.tsx",
+    "sha256": "FDAD957A8063F6AEDF188DA870D73CD2F686C11BAAB43865FDD57D1B392337E0"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/order/templates/order-completed-template.tsx",
+    "sha256": "C4518F2D7A041AD6F76F3AA0E8D3997F79432AC29266CDC45FE43A3E11A0B358"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/order/templates/order-details-template.tsx",
+    "sha256": "A291CC8CD8DC5E51539CF58AF52761D70BA39AB7F22F0904B740803EA1F2EB6C"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/products/components/image-gallery/index.tsx",
+    "sha256": "55F9AB807DB940F4FC3FD754002427884B3DAFD95238E2D0E12923BE0B60D0D0"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/products/components/product-actions/index.tsx",
+    "sha256": "76B731F2991FD7EC9E163F29BD3DA786246102BD85CF8230F1B017BEADBE16F5"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/products/components/product-actions/mobile-actions.tsx",
+    "sha256": "3BFB1CA1510A02A46ED50D599996A10EBF4BBB596F64F630B350362F0D4186B0"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/products/components/product-actions/option-select.tsx",
+    "sha256": "79BA94328364A5A0B4D19308674D017FF7866B738E7CA44A74CE6E3B5C5CDD4B"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/products/components/product-onboarding-cta/index.tsx",
+    "sha256": "EF8819E76805F9E609A3C8413079E271F402C038DB8D05C2FDD3478D6A6F72E0"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/products/components/product-preview/index.tsx",
+    "sha256": "A27D7E02BE7BC9BC9C94980261A0710D2A6B4D7DE8A18ADC3C6552F0597F86DE"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/products/components/product-preview/price.tsx",
+    "sha256": "219D3F5DE6F9AD1D17134156D0E63EDA99B785ACB7BCC07C47AC1573C4A81167"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/products/components/product-price/index.tsx",
+    "sha256": "8DD5AEABFC9CB96CEF90B35E447B6828C72B0F3882D0FBDBD9499629DB4D69D3"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/products/components/product-tabs/accordion.tsx",
+    "sha256": "160ADBA511FDA71FA8228F8DABC8D780206EE4A48D2B36B8737E368449203855"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/products/components/product-tabs/index.tsx",
+    "sha256": "000026A287EED64E8F541C601031CBC97073B02816788500A5A3DEF540CD4C91"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/products/components/related-products/index.tsx",
+    "sha256": "9521F01994D0B8CCF26631FA14340FE499F85CD6D6B7C305983EBE4085D5AD4E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/products/components/thumbnail/index.tsx",
+    "sha256": "5D91FCA45008B45632CE015B19B6675563104244F1728C9CF5B138F7B57FCCA3"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/products/templates/index.tsx",
+    "sha256": "A6C120C8B9F79A3DF73B414A6DC7CCA1DA6D0E96C2E5397501C174F54AE613CB"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/products/templates/product-actions-wrapper/index.tsx",
+    "sha256": "5D99C94523104E64FE26CABA77B703E9122C3D19C08DF23C3FA3B1B709C9AD3E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/products/templates/product-info/index.tsx",
+    "sha256": "2BE141FC83E6FB3BACBCF0FD3378D736D6AFA7B69631ADE9C5C25AE31233C00A"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/shipping/components/free-shipping-price-nudge/index.tsx",
+    "sha256": "C526F511305B1217DAC2E38301D8D4EF01D4403E4E6521D7007F20571194D1C3"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/skeletons/components/skeleton-button/index.tsx",
+    "sha256": "4D8655319F38248B7DF582D83D2AAE4058E7E55E6CFBE014B1226DC89ED63EC0"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/skeletons/components/skeleton-card-details/index.tsx",
+    "sha256": "A4E83F9A4ABD2973069E91EC320C1F3CC5D7A84F1802AAC7010930E9842F3287"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/skeletons/components/skeleton-cart-item/index.tsx",
+    "sha256": "F992CB3C7B299FCFE3BCA1824AF0BB400A93851CB73772BDB12DDD0DC3EBA17E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/skeletons/components/skeleton-cart-totals/index.tsx",
+    "sha256": "257A846008E11744DC3AB5600A1DD5EC3EC6CD01B92D6055BF4C07AE21C7CEDF"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/skeletons/components/skeleton-code-form/index.tsx",
+    "sha256": "46A4DD25D4E06F4488A5F6923883E297A2764D84D07068277AC1F561649813A4"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/skeletons/components/skeleton-line-item/index.tsx",
+    "sha256": "631E86F4183D3DA436F7F0269674D8EC5BA919E3CC98FCD416FED6A128A17F0F"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/skeletons/components/skeleton-order-confirmed-header/index.tsx",
+    "sha256": "4CDDF3DFC5A652CC6B596ED9856B849652C86CD64552934E5C79A9A5F3760F1A"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/skeletons/components/skeleton-order-information/index.tsx",
+    "sha256": "7B863C23E5E61DF72472834D27E861DFD553E69B557690AA446ED7C181915482"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/skeletons/components/skeleton-order-items/index.tsx",
+    "sha256": "FEC539DD92743B853FDF98BF820219305E4E9FEDA31C61BF4A53EEDEF6ECDF8C"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/skeletons/components/skeleton-order-summary/index.tsx",
+    "sha256": "79D7B09784DCDE8FAA1DA3495E0B224E18C221F5E6079E6C0E48C89C31C58823"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/skeletons/components/skeleton-product-preview/index.tsx",
+    "sha256": "7BC0769E956D6890C2B8B35EE6DD14B28FF18F02CE2B3704B67EE91825F5781B"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/skeletons/templates/skeleton-cart-page/index.tsx",
+    "sha256": "8BD26623725E38083B388265C8091FCCC3CBA2722473B7FF02606A01217D1108"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/skeletons/templates/skeleton-order-confirmed/index.tsx",
+    "sha256": "B2C5B7576B64924570F19DB57E860685B3EC10C88F207C1CF3960D696E993DDD"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/skeletons/templates/skeleton-product-grid/index.tsx",
+    "sha256": "B5A147636F6A940B2F6CB04676DBC11FB2833287F9F361F31680930C0DD7E19E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/skeletons/templates/skeleton-related-products/index.tsx",
+    "sha256": "00F10A0A560592482453A86A346E1E9B2F8E081BC71FE73C7501F76B9CF373AE"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/store/components/catalog-search.tsx",
+    "sha256": "56B1DF81482B9675B4A98841676ED187C21A3B8C719DE796653C4262C3D4FDCD"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/store/components/pagination/index.tsx",
+    "sha256": "4F3ABBBDB0DC8454FE54EEFC500303AA3E06B16CE5D90D97E66F6D41E6933B19"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/store/components/refinement-list/index.tsx",
+    "sha256": "6C88590D7CCF604C5AA80C19C00008D0E2FFB55EED9B91C5EC0EAFCAC8EEE36F"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/store/components/refinement-list/options-picker/index.tsx",
+    "sha256": "FD1C35B5C9AC1BFA7F9598B3DCA3B026890F9985A7FDF7705AA2DFCF91ED6BFF"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/store/components/refinement-list/sort-products/index.tsx",
+    "sha256": "F1FDD8FE02EDF5A38839AAA6BC606880BB928FCFD104783844F306B62727D404"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/store/templates/index.tsx",
+    "sha256": "5404D46BF1ACED988DFFEB6E58B5C3D6866C193605A285B163968BD6D5DB0BDE"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/modules/store/templates/paginated-products.tsx",
+    "sha256": "19F4288BCA9F603261EB575EA91E746C8AF514C092FC22D77C25D69F39357810"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/styles/globals.css",
+    "sha256": "BC24EA1DA5796A706E2018D9B449DDC2ACEC5CACFFBEC2044FABE430F0A48C48"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/types/global.ts",
+    "sha256": "1D39D43C4654FF873DA34002118C0D2DEB62BDE8A9EEA016562D1F3EF5646776"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/src/types/icon.ts",
+    "sha256": "B079B22C0DF9613267FA653099E4AE8A09207C70DC50D08781AB9C9D2939E04A"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/tailwind.config.js",
+    "sha256": "850DE3FEFBABF8DB73F8DC1BE396B22AD55E463ADEFBF8390343206A2190CA45"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/apps/storefront/tsconfig.json",
+    "sha256": "4683993A26C43CE0A707940BB270F4A75E67F08AAF93E51EBF510CB3AC5E07BC"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/docker-compose.local.yml",
+    "sha256": "00114A6ADCDC778855E6546C6BE6711EA2FD52B735FAB67986A0F5DC2514E4B8"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/eslint.config.ts",
+    "sha256": "148C2E94315AA2A28E5FCD4111586E5AAC7904F4573685F09B288B4D52B10CFD"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/package.json",
+    "sha256": "92906D4907EA56279622DA1123060C6E802DD940A0D6BEC525DB101DAAF21238"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/pnpm-lock.yaml",
+    "sha256": "9F0053887096F2A056D481F16B7A897199F43E3AC68FEE1E5F76B4C5EC081A6F"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/pnpm-workspace.yaml",
+    "sha256": "83A9CAF9E0C3DB0E552ADE278805769F969AAC987F6E80D51A65681320374AE1"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/scripts/_common.ps1",
+    "sha256": "175EAC2BE1872D3C23049F89D40109C3D5217CB3B32815310E0F77FBAB730E97"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/scripts/acceptance-smoke.ps1",
+    "sha256": "FDCC960657F69D39C61AC69CAC40B004693709794E50B5271B713E6EDEF9F323"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/scripts/build-production.ps1",
+    "sha256": "AF8D7118FD699401FFB0BD2EE4EA24E5C923C20CCB94DED9A8C8C74540CBA20E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/scripts/medusa-crossborder-augment.ts",
+    "sha256": "DFFA806B62C18AFD322E883DEA06F0D1F5C3A0C7AF474088341A350E2B2A4077"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/scripts/medusa-order-smoke.mjs",
+    "sha256": "25FA8432F2A3BD07D34969D9A210059572E5C5CE09387ACC650E4A3EF28C42EA"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/scripts/setup-local.ps1",
+    "sha256": "3FD63090CBAC8FECB2AE766BAEAA6275E10DF91A53802430651C2094FA5EFC5F"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/scripts/start-local.ps1",
+    "sha256": "41A2E37F428F34CAC16C1EDE2B6DE871512A4C311A0CD31321D39DC470DD334F"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "03_template/medusa-crossborder-base/turbo.json",
+    "sha256": "A05379AEF971914B82DCC9B67B4E1BAECEBBA642A97A7234D3F1C25555AF6A89"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "04_docs/README.md",
+    "sha256": "0B72FFEE70DFD6EE85EFDAC99623F169820D2C3956C157A7C09B5912BD026FF2"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "04_docs/node/medusa-repeat-augment.ts",
+    "sha256": "F91A6B20ADEABA317829AD34699B0D932DF8E8021E2EB1C829DE6009CDC8FF63"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "04_docs/node/medusa-repeat-smoke.mjs",
+    "sha256": "DCA869F15B17883FF678168CD76C92DDBADAF777D2903FD0B752247E5AD3BBE7"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "04_docs/node/spree-source-order-smoke.mjs",
+    "sha256": "876FC7EB961D245B7DE8A9E2CBECC33C86F826CD6771797FBCD32EA67080392E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "04_docs/node/us-order-smoke.mjs",
+    "sha256": "D32866028C0F2AFB8DAF64F4D846DA3AB3A933DDA56D0C8C607ECFE8904DCD5F"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "04_docs/scripts/01-preflight.ps1",
+    "sha256": "D92A774D262DED629C9557C921E2334EF1E3BE5B4EC3FC42A91708525AAD5B72"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "04_docs/scripts/02-start-medusa-db.ps1",
+    "sha256": "AF6B5BC360DBC7DB7CE096270F88719B62C16C8EE345A317596EE75C0AE230CE"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "04_docs/scripts/03-prepare-medusa.ps1",
+    "sha256": "4BA09022271227776202BD4219DE45287A7A7D41A1D58C0792C0A4BC50E9B2C2"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "04_docs/scripts/04-configure-storefront.ps1",
+    "sha256": "6BB61EFFE7F40144E9012187B0BCBA98E93EB209DEC354AADE45608BC808FD47"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "04_docs/scripts/05-us-order-smoke.ps1",
+    "sha256": "DE6DCDB30947D1A72DD1266DB8BD07021A274BE4DD3014D03277BBF0CAC7E6FA"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "04_docs/scripts/06-prepare-spree-source.ps1",
+    "sha256": "8E644B195A6EC1FFE3431DBBA9998E744A7D854A2E005BF0C86B4F76A562CE78"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "04_docs/scripts/07-build-spree-source.ps1",
+    "sha256": "3E45E6366D2E1B282AD1581A6E16B112B78BF562C8F4A03217E8805616EFEB0F"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "04_docs/scripts/08-spree-source-smoke.ps1",
+    "sha256": "071F6162295AAF4329D9B01CDD832A5BBCBE1509ED7FE0BAD5D45297A3B3A215"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "04_docs/scripts/09-start-spree-source-storefront.ps1",
+    "sha256": "E6CCA74660DEBC43080E6C913F4FE1E30FB14F566353E2A2126F62B18F45B449"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "04_docs/scripts/12-start-medusa-repeat.ps1",
+    "sha256": "ED9A9A16700DEC577CB7A35A304B74BA69E5F2CF29A773ECB99DA84118C8FA70"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "04_docs/scripts/13-start-medusa-repeat-storefront.ps1",
+    "sha256": "DBE8A28667802AE4CF744FC257064F593D91D2F00275E7826397C79A31314B9D"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "04_docs/scripts/14-spree-repeatability.ps1",
+    "sha256": "89EE32A301795BCC3F41108CC1E8182CF032E303437BE5F77A164961E2C40322"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "04_docs/scripts/90-build-review-bundle.ps1",
+    "sha256": "70E0FAC2A90A7E67B829A9E8F6AA8932BDCE32CECB3CC87A29088AFB717FA4CB"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "04_docs/scripts/91-check-spree-db-isolation.ps1",
+    "sha256": "6BF8E2E71B6DD516F260C8389CF18D4CD7473F77A6527FDE70073B7264864143"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "04_docs/scripts/92-prepare-review-staging.ps1",
+    "sha256": "4EA241BBFDDB9D4BC4F7ADE1487228AD0B169EA62FBAE721D90C0FC46A76D727"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "04_docs/scripts/99-reset-local.ps1",
+    "sha256": "8B769EBA5CE3031F5A037365412E3FCCAF5D1FD19494DE1DC9D58C43744A1740"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "04_docs/scripts/_common.ps1",
+    "sha256": "08D4F9ABE694D58AEA60B94F2190830C36B302D63A70AF06E13F94E49692ED92"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/README.md",
+    "sha256": "FE3B306C1B7DC36FD2F1F44B7E5AB2952751E42AC24AEA78D7187C2FE22B2EC7"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/assets/README.md",
+    "sha256": "DAC8CD445FC2C42D6A2F8BA09F35DB34AA8D11961CBF2E858B6B9FF23469B303"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/assets/source/COMP-001-main-square.png",
+    "sha256": "FBA393D76A2291B4B152D4E0BCDF321B76F851C3614947D251959FC54A02D04E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/assets/source/COMP-001-source-product-clean.png",
+    "sha256": "846F986C3A32D0CC73C4247904EEB27F4942439159563FDBA91A879D315EEE5E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PREPAYMENT-CLOSURE-001/cart-1440.png",
+    "sha256": "B00CFE23BE5D8432E4CFA760E620B0E026CFCC3381580FC87E0DDBE4E0E65E6C"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PREPAYMENT-CLOSURE-001/cart-390.png",
+    "sha256": "59B060A816467F2E08DF088F7EB47080C2F4078A144A224EF42A2BDEF5248802"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PREPAYMENT-CLOSURE-001/cart-768.png",
+    "sha256": "7E064DA64165D305BF76140F2EF4B895F9241C29FE4CB81D4BA6F013E3CD7652"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PREPAYMENT-CLOSURE-001/checkout-entry-1440.png",
+    "sha256": "A1258E1AAFAAA909BC097BCC2F5774C28648B1700F2DB0F42E363E5ACCC1DF0A"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PREPAYMENT-CLOSURE-001/checkout-entry-390.png",
+    "sha256": "A43F7E24198AF22230E942A645BA1A2B944B1C396AF1416CDA3E275CD19EEA6D"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PREPAYMENT-CLOSURE-001/checkout-entry-768.png",
+    "sha256": "352A0EBC6FB90C0416ABDC7877168EBF02D1402AEBF64F813ABD8E3CE5FEE448"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PREPAYMENT-CLOSURE-001/homepage-1440.png",
+    "sha256": "AE0477E77B1AB66A51569994F223543C23FB61D560CC131785E9EE250FE05B47"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PREPAYMENT-CLOSURE-001/homepage-390.png",
+    "sha256": "EF4BB680916388E70A5D13E2DD8E65B91C98EDAD4A57C32296D3573A0301104A"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PREPAYMENT-CLOSURE-001/homepage-768.png",
+    "sha256": "7B7FC45ED3955B6C0FA64053008AF7E2330B477904A668494C47E7108330C987"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PREPAYMENT-CLOSURE-001/mini-cart-1440.png",
+    "sha256": "6276D8436F125D2EA2DB322C79EE345AEED44B323FE557BE05A8E3946B249F50"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PREPAYMENT-CLOSURE-001/mini-cart-390.png",
+    "sha256": "56E8D9777AD816FEC96B8D2A185D795433AF93C47CEA99754AA3285A680AFC07"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PREPAYMENT-CLOSURE-001/mini-cart-768.png",
+    "sha256": "47CC31BEA126E2D1929CF28E75D1C1E34CF7EF15EFC5E313A3E1184F67AE449C"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PREPAYMENT-CLOSURE-001/pdp-1440.png",
+    "sha256": "CDD986BE4657F1096FF0CB75327D7E9F99263CC83AC2A8E060F27EEFB39134EA"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PREPAYMENT-CLOSURE-001/pdp-390.png",
+    "sha256": "1FE49D433876246EC2139606B86D159B4C3DB862839D478FFAB9BC87D607BEA3"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PREPAYMENT-CLOSURE-001/pdp-768.png",
+    "sha256": "DDF6189F939C044338802F7A0D956B6AAD4D97747617CE7EF731169499041661"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PREPAYMENT-CLOSURE-001/store-1440.png",
+    "sha256": "CA35AF98D4610D5D3805130945A6C3577007AB410A14D0B4443E097035FFD6D1"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PREPAYMENT-CLOSURE-001/store-390.png",
+    "sha256": "391C96A037835881DE4760CF7B9550F7B37CD67B130E07FD99576A65B221745C"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PREPAYMENT-CLOSURE-001/store-768.png",
+    "sha256": "FE3862226DDD8CE423E296FC27FC5D79311454A9DF6B219B10C8EFCD63EFA731"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL-ASSET-UNIFICATION/cart-1440.png",
+    "sha256": "4533AE71D2B3655571D79DDFC3C610B7211532CE63A3DFDD50F24DB286C5265A"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL-ASSET-UNIFICATION/cart-390.png",
+    "sha256": "593B0E651747817A816AA2DFD688C09AC3E25E4C857AA5BC1E394C745564CC0E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL-ASSET-UNIFICATION/cart-768.png",
+    "sha256": "64FB1ED89654F263AFBE19ACCD549C167F5C7502B6373B4B9C4D1C2A408C9B6A"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL-ASSET-UNIFICATION/checkout-entry-1440.png",
+    "sha256": "37BD9A3698E5D8C0EC2138E1147B93CD78C070B8A99A20B6DB54CB7125B9134B"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL-ASSET-UNIFICATION/checkout-entry-390.png",
+    "sha256": "84D69F28A11E242E9B674644CC552E8A7B5DA9423BA8FB499C2D5B031365A11D"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL-ASSET-UNIFICATION/checkout-entry-768.png",
+    "sha256": "352A0EBC6FB90C0416ABDC7877168EBF02D1402AEBF64F813ABD8E3CE5FEE448"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL-ASSET-UNIFICATION/home-1440.png",
+    "sha256": "A27FB7AE2CE70237F20411C3FEA43D460348DFB80B2F78DB0FCB1A0D4A1FEEC2"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL-ASSET-UNIFICATION/home-390.png",
+    "sha256": "67C5AD93DC86EA33A60D26CF8F0131738CB39E054E6BCE50597D60AA0C88599D"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL-ASSET-UNIFICATION/home-768.png",
+    "sha256": "4A891737BC4A3585FFAB47993D8D89B5BD4221501AC66DB16586F286BA7E9E51"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL-ASSET-UNIFICATION/homepage-1440.png",
+    "sha256": "D7655C79F55A37528FE21564945D26FF4F0C10158D693A016394AB817D028BBE"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL-ASSET-UNIFICATION/homepage-390.png",
+    "sha256": "762137A149F05240D1ED31BD7C5FDD19EB691592578D6707F2B8F9EAA36FF950"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL-ASSET-UNIFICATION/homepage-768.png",
+    "sha256": "C673134DC9A7DA80FA1B944CA6499219DF35341790671D8E61124F79B6B1D0A6"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL-ASSET-UNIFICATION/mini-cart-1440.png",
+    "sha256": "2044A9983CDC2DD4FD9F6D06B28EA398618186C1478D64746BAE09C46B861674"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL-ASSET-UNIFICATION/pdp-1440.png",
+    "sha256": "CDD986BE4657F1096FF0CB75327D7E9F99263CC83AC2A8E060F27EEFB39134EA"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL-ASSET-UNIFICATION/pdp-390.png",
+    "sha256": "4645C99F298486412CAAE236F30DC4B98CFFD757420F858ADAC21781D169F021"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL-ASSET-UNIFICATION/pdp-768.png",
+    "sha256": "E38CA4F4ADB086EE034AFA865F7B1BBFB8698D6304DA40762F40057331AF54D7"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL-ASSET-UNIFICATION/store-1440.png",
+    "sha256": "CA35AF98D4610D5D3805130945A6C3577007AB410A14D0B4443E097035FFD6D1"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL-ASSET-UNIFICATION/store-390.png",
+    "sha256": "A540AD9614C2DFE9AF71001830917EFFEE2FB22936761941FEE8236806331F75"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL-ASSET-UNIFICATION/store-768.png",
+    "sha256": "FE3862226DDD8CE423E296FC27FC5D79311454A9DF6B219B10C8EFCD63EFA731"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL/cart-desktop-1440.png",
+    "sha256": "02684940D6F488D72F3C210A3ABC75C1DAD163BC673D0B0B99F028EB4A7E3090"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL/cart-mobile-390.png",
+    "sha256": "448D93A5F7177A811BE28B8A31D9B86876A793F321B416B65D850E8E2E79A8C3"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL/checkout-entry-desktop-1440.png",
+    "sha256": "FE5A9C4BA06CC7BA35BA2930B4D2582EEE284EB785D28575380C25C70CE83C62"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL/checkout-entry-mobile-390.png",
+    "sha256": "21FE4FDBF6D392FBD96C4C9DB640C6BB1AEE5C353F7C25F39E9118A914C6FC2F"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL/mini-cart-desktop-1440.png",
+    "sha256": "BA033E4B0A615FD6C1BF1430EB0C28A73672B409D1596B0F80BB8EDB10A55A1C"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL/mini-cart-mobile-390.png",
+    "sha256": "ED67B678365B6F19EE39B62BEC4CD4315BF48049185B1CFBBA6375E1630C7194"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL/pdp-desktop-1440.png",
+    "sha256": "C823ED5A1FA2FA669013545089153597A85791FF8FF6565F6478E8994BA5D502"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL/pdp-mobile-390.png",
+    "sha256": "6D8AEB3407601F51CC01DD8155D9426E5263904233C70B48D687E60FE8CCC469"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL/store-desktop-1440.png",
+    "sha256": "14A9308A6D06EC515CC29B98C8A7D6A55DE7555CA008FDB850929CA1D1A638B3"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-FINAL/store-mobile-390.png",
+    "sha256": "73177F0234E5440766A8BF7F91D02B516F0E0BA13B108B2BDBD0A1A033004327"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-PREPAYMENT-POLISH/cart-desktop-1440.png",
+    "sha256": "60DFFA27F288D2B586F740EB851AED6ED0F17F7585F71C3B57B2B8AE2B968CC8"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-PREPAYMENT-POLISH/cart-mobile-390.png",
+    "sha256": "FAC209901DA0136BF550C15A24D4171995EEED260FC7D047AEEC54497E67556F"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-PREPAYMENT-POLISH/checkout-entry-desktop-1440.png",
+    "sha256": "98A3F97F8270D6F07398471D7184B41D5E8579DCA53EDD562A3CB6A68B2B7F9B"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-PREPAYMENT-POLISH/checkout-entry-mobile-390.png",
+    "sha256": "03CAD097C33204372C249D28E60FB8D4E9632ACC421C7021D045C8BE7733E476"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-PREPAYMENT-POLISH/mini-cart-desktop-1440.png",
+    "sha256": "0EE3F709A75A2507E63FAAAF82E6F0FE5AD9E0F6B05D0ABD6DCC444547BBD10B"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-PREPAYMENT-POLISH/pdp-desktop-1440.png",
+    "sha256": "D54F2AF63C0AB3C0B6E59462B22BB4F353E9F6CAC07656348B10F7886055885A"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-PREPAYMENT-POLISH/pdp-mobile-390.png",
+    "sha256": "33D152465DF6F42F1461DE81FB70EBD07C7ADB908BF2C9CB0A8A1FE7A3CE7B6D"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-PREPAYMENT-POLISH/store-desktop-1440.png",
+    "sha256": "DE196DD035704CF7A5BEF4546C11950DF7661E431046B827D77DB28CECA0ED8C"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/evidence/CB-PRODUCT-005R-PREPAYMENT-POLISH/store-mobile-390.png",
+    "sha256": "BD605045CB892D632A6A412C1450E8B7CE6C036A1FE213EC2E3D37791C19CA86"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/intake/PRODUCT_INTAKE_TEMPLATE.csv",
+    "sha256": "B84B93373E93621EEA040F56C39C93C5EC029F5C6143AA3F09676EA06C01CDF1"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/intake/PRODUCT_INTAKE_TEMPLATE.json",
+    "sha256": "5EA50B9A1B6590C013C000B40887F6B4E3EF6E67C41DAC9E21A9E498F49E8512"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/intake/TEST_FIXTURE_ONLY.medusa-seed.json",
+    "sha256": "01239592C0045592FEBC304868D5356CF28271A28220472F14D20AD8BCB5BA0E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/normalized/PAWFECTLY-PET-HAIR-REMOVER.json",
+    "sha256": "23C2F831E3112EFD28D1BBFBD9567CCB8D01166BEE2913D365037EC42CF96AA9"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/normalized/README.md",
+    "sha256": "C2A6F2FC9770F43171B7B58E74F71D7E74BA48137C72FF037CFE181E59886F37"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/schemas/product-master.schema.json",
+    "sha256": "6234DBF69F6C79E75C121D09A72366E870985DC9D1B3E3BB5487C23C094A9464"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/scripts/README.md",
+    "sha256": "53C5CE151AA5B64650156C7C1137BEE249F9EE1BE2CC8B39A91AE3B533DD1C51"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/scripts/medusa-product-upsert.mjs",
+    "sha256": "45ED97FE54E445748EEDB833AB4F87C3091FC14BD05792F81B81815DBC98CE63"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/scripts/product-pipeline.mjs",
+    "sha256": "B8AEE59C8A1730DD54DEFCFC7A9BA72CFCFDE6C2A191B2B247D09F1344D733D0"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/sourcing/README.md",
+    "sha256": "CB612DBEAF5EB97593A1027BE542772906332210CCEB5CE51941478E02FA095D"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/sourcing/bom/PET-FUR-RESCUE-KIT.draft.json",
+    "sha256": "BB5D6A9610C2BBD8622418404E79862F154D543DEB523ADA7BDAC8D243116B0D"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/sourcing/components/COMP-001-pet-hair-remover.json",
+    "sha256": "7B3510DECF6E633DE80A138DC00F430E41BA4284F77550D53B66E4E8AA67A01E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/sourcing/evidence/README.md",
+    "sha256": "53B2CEF5D79A7B8916EBEB98D477B60703B45A417596C30C341DFF6EA56D513A"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/sourcing/intake/COMPONENT_INTAKE_TEMPLATE.json",
+    "sha256": "FA31245427B6183E4429BFE90FED3BDBEDE8AE842485CC688D43B8126530737F"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/sourcing/schemas/bundle-bom.schema.json",
+    "sha256": "9BCFA1D89D30CE981E1FA4F18583D18681AC8FBA6C4CC09230D17FFA7A58D078"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/sourcing/schemas/component-master.schema.json",
+    "sha256": "A72667FFBD5355A3CE6EE9A4858356D60127994D833CF4C17E86928BCDAB0CEE"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/sourcing/scripts/README.md",
+    "sha256": "E91433D88608DF62CFC42EC4EC2227A1383F997242EDB626E37BF458F48F2C64"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/sourcing/scripts/component-pipeline.mjs",
+    "sha256": "0D5DD9D05AE54906D099C6310499D021D0A4474CF4272E1B1B77B75C78F27FE0"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/sourcing/testing/PET_HAIR_REMOVER_SAMPLE_SCORECARD.json",
+    "sha256": "35758726BAA46778EB0F8E18B3D53E07B3D74E371DDB45271C255BFB4E6B86D6"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/sourcing/testing/README.md",
+    "sha256": "05AD2B0DD630C9E01D3C8C5AE880D8C0D1511E5A7700E1908EAD482EC9CFF184"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/sourcing/testing/SAMPLE_RECEIPT_TEMPLATE.json",
+    "sha256": "449F6E2A96CBB877AB3BB8372AE6A99BF7BA97BA7A584131D266FE7FEA36E63A"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "05_product/sourcing/testing/SAMPLE_TEST_RESULT_TEMPLATE.json",
+    "sha256": "2244B3FB26AF2BEC453EECBE69DCA652F32F6DB183FC5A56CB0471DDD4D01259"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "06_payment/CB-FULL-REVIEW-CHECKPOINT-002-FIX-R1_VALIDATION.md",
+    "sha256": "0ECE47D3CC4A4AD8DA3630228D797A11B72FFC988A2CC6D24AA3366FA666437E"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "06_payment/CB-FULL-REVIEW-CHECKPOINT-002-FIX-R2-FINAL_VALIDATION.md",
+    "sha256": "C82A0E69E29C029E9BC9316A50FDB5249C1A0BE6E203330AF5C5A36DE2B08EBA"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "06_payment/README.md",
+    "sha256": "713A518C0DF8AC85B53D79B6514449E4EAC1A253517DCFC0A2627487BBF897A4"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "06_payment/providers/payment-provider-adapter.mjs",
+    "sha256": "728233FB6485C2DB48ABE834B46443F55D8F7281909C455D17B507B5AF1353BD"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "06_payment/providers/payment-provider-boundary.test.mjs",
+    "sha256": "892DA01668345758526C0494922D46101A8C814DF32F7A97CD6A3B5D7BF7E0AF"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "06_payment/providers/paypal/README.md",
+    "sha256": "814BA20742CB79BD085B73E625018B8F9614E9258ED93A8F558A815DCD29FCEC"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "06_payment/providers/worldfirst/README.md",
+    "sha256": "409BA4614F16C4E47CB35559844AEBF8797D96249D241BDA0511CCFCB7584AED"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "06_payment/providers/worldfirst/WORLDFIRST_ENV.example",
+    "sha256": "C36AA169A5994155455FDB34FA4BC34F7A9E24917F901FB0BACCA024AC83C82F"
+  },
+  {
+    "repo": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store",
+    "path": "PROJECT_STATUS.json",
+    "sha256": "6D8221AF9E6B21B0CAFACED67E050F601DC6E54DC0D0F69065457ECF2D6B17AB"
+  }
+]

@@ -1,0 +1,284 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pawfectly-home.invalid/schemas/product-master.schema.json",
+  "title": "Pawfectly Home Product Master",
+  "description": "Fact-first product intake contract. Unknown facts remain explicit.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "record_status",
+    "identity",
+    "commerce",
+    "physical",
+    "content",
+    "taxonomy",
+    "assets",
+    "operations",
+    "cross_border",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.1.0" },
+    "record_type": { "type": "string", "enum": ["SELLABLE_PRODUCT", "TEST_FIXTURE_ONLY"] },
+    "record_status": {
+      "type": "string",
+      "enum": ["DRAFT", "TEST_FIXTURE_ONLY", "READY_FOR_REVIEW", "READY_FOR_IMPORT", "PUBLISHED"]
+    },
+    "identity": { "$ref": "#/$defs/identity" },
+    "commerce": { "$ref": "#/$defs/commerce" },
+    "physical": { "$ref": "#/$defs/physical" },
+    "content": { "$ref": "#/$defs/content" },
+    "taxonomy": { "$ref": "#/$defs/taxonomy" },
+    "assets": { "$ref": "#/$defs/assets" },
+    "operations": { "$ref": "#/$defs/operations" },
+    "cross_border": { "$ref": "#/$defs/cross_border" },
+    "provenance": { "$ref": "#/$defs/provenance" },
+    "metadata": {
+      "type": "object",
+      "description": "Optional project-specific fields. Do not use this to hide required facts.",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "text": {
+      "oneOf": [
+        { "type": "string" },
+        { "type": "null" }
+      ]
+    },
+    "string_or_unknown": {
+      "oneOf": [
+        { "type": "string" },
+        { "type": "null" }
+      ]
+    },
+    "number_or_unknown": {
+      "oneOf": [
+        { "type": "number" },
+        { "type": "string", "enum": ["UNKNOWN", "NEEDS_VERIFICATION"] },
+        { "type": "null" }
+      ]
+    },
+    "positive_number_or_unknown": {
+      "oneOf": [
+        { "type": "number", "exclusiveMinimum": 0 },
+        { "type": "string", "enum": ["UNKNOWN", "NEEDS_VERIFICATION"] },
+        { "type": "null" }
+      ]
+    },
+    "string_array": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "currency_or_unknown": {
+      "oneOf": [
+        { "type": "string", "enum": ["USD", "EUR", "UNKNOWN", "NEEDS_VERIFICATION"] },
+        { "type": "null" }
+      ]
+    },
+    "weight": {
+      "type": "object",
+      "required": ["value", "unit"],
+      "properties": {
+        "value": { "$ref": "#/$defs/positive_number_or_unknown" },
+        "unit": { "type": "string", "enum": ["g", "kg", "oz", "lb", "UNKNOWN", "NEEDS_VERIFICATION"] }
+      },
+      "additionalProperties": false
+    },
+    "dimensions": {
+      "type": "object",
+      "required": ["length", "width", "height", "unit"],
+      "properties": {
+        "length": { "$ref": "#/$defs/positive_number_or_unknown" },
+        "width": { "$ref": "#/$defs/positive_number_or_unknown" },
+        "height": { "$ref": "#/$defs/positive_number_or_unknown" },
+        "unit": { "type": "string", "enum": ["mm", "cm", "m", "in", "UNKNOWN", "NEEDS_VERIFICATION"] }
+      },
+      "additionalProperties": false
+    },
+    "purchasability": {
+      "type": "string",
+      "enum": ["YES", "NO", "UNKNOWN", "NEEDS_VERIFICATION"]
+    },
+    "availability_mode": {
+      "type": "string",
+      "enum": ["LOCAL_PREVIEW_AVAILABILITY", "PRODUCTION_INVENTORY", "UNKNOWN", "NEEDS_VERIFICATION"]
+    },
+    "asset": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "required": ["url", "alt", "source", "status"],
+          "properties": {
+            "url": { "$ref": "#/$defs/string_or_unknown" },
+            "alt": { "$ref": "#/$defs/string_or_unknown" },
+            "source": { "$ref": "#/$defs/string_or_unknown" },
+            "status": {
+              "type": "string",
+              "enum": ["VERIFIED", "UNVERIFIED", "NEEDS_VERIFICATION", "TEST_FIXTURE_ONLY"]
+            },
+            "notes": { "$ref": "#/$defs/text" }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "hs_code": {
+      "type": "object",
+      "required": ["value", "status", "evidence"],
+      "properties": {
+        "value": { "$ref": "#/$defs/string_or_unknown" },
+        "status": {
+          "type": "string",
+          "enum": ["VERIFIED", "UNVERIFIED", "NEEDS_VERIFICATION"]
+        },
+        "evidence": { "$ref": "#/$defs/string_or_unknown" }
+      },
+      "additionalProperties": false
+    },
+    "identity": {
+      "type": "object",
+      "properties": {
+        "source_product_id": { "$ref": "#/$defs/string_or_unknown" },
+        "supplier_name": { "$ref": "#/$defs/string_or_unknown" },
+        "supplier_url": { "$ref": "#/$defs/string_or_unknown" },
+        "internal_sku": { "$ref": "#/$defs/string_or_unknown" },
+        "handle": { "$ref": "#/$defs/string_or_unknown" },
+        "title": { "$ref": "#/$defs/string_or_unknown" },
+        "subtitle": { "$ref": "#/$defs/text" }
+      },
+      "additionalProperties": false
+    },
+    "variant": {
+      "type": "object",
+      "required": ["source_variant_id", "internal_sku", "title", "options", "selling_price", "compare_at_price", "inventory_status", "inventory_quantity"],
+      "properties": {
+        "source_variant_id": { "$ref": "#/$defs/string_or_unknown" },
+        "internal_sku": { "$ref": "#/$defs/string_or_unknown" },
+        "title": { "$ref": "#/$defs/string_or_unknown" },
+        "options": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/string_or_unknown" }
+        },
+        "selling_price": { "$ref": "#/$defs/number_or_unknown" },
+        "compare_at_price": { "$ref": "#/$defs/number_or_unknown" },
+        "inventory_status": { "$ref": "#/$defs/string_or_unknown" },
+        "inventory_quantity": { "$ref": "#/$defs/number_or_unknown" },
+        "storefront_purchasable": { "$ref": "#/$defs/purchasability" }
+      },
+      "additionalProperties": false
+    },
+    "commerce": {
+      "type": "object",
+      "required": ["currency", "cost_price", "selling_price", "compare_at_price", "option_names", "variants", "inventory_status", "inventory_quantity"],
+      "properties": {
+        "currency": { "$ref": "#/$defs/currency_or_unknown" },
+        "cost_price": { "$ref": "#/$defs/number_or_unknown" },
+        "selling_price": { "$ref": "#/$defs/number_or_unknown" },
+        "compare_at_price": { "$ref": "#/$defs/number_or_unknown" },
+        "option_names": { "$ref": "#/$defs/string_array" },
+        "variants": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "array", "items": { "$ref": "#/$defs/variant" } }
+          ]
+        },
+        "inventory_status": { "$ref": "#/$defs/string_or_unknown" },
+        "inventory_quantity": { "$ref": "#/$defs/number_or_unknown" },
+        "supplier_stock_status": { "$ref": "#/$defs/string_or_unknown" },
+        "project_owned_inventory": { "$ref": "#/$defs/string_or_unknown" },
+        "storefront_purchasable": { "$ref": "#/$defs/purchasability" },
+        "availability_mode": { "$ref": "#/$defs/availability_mode" }
+      },
+      "additionalProperties": false
+    },
+    "physical": {
+      "type": "object",
+      "required": ["weight", "dimensions", "material", "package_dimensions", "package_weight"],
+      "properties": {
+        "weight": { "$ref": "#/$defs/weight" },
+        "dimensions": {
+          "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/dimensions" }]
+        },
+        "material": { "$ref": "#/$defs/string_or_unknown" },
+        "package_dimensions": {
+          "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/dimensions" }]
+        },
+        "package_weight": { "$ref": "#/$defs/weight" }
+      },
+      "additionalProperties": false
+    },
+    "content": {
+      "type": "object",
+      "required": ["short_description", "long_description", "feature_bullets", "care_instructions", "specifications"],
+      "properties": {
+        "short_description": { "$ref": "#/$defs/text" },
+        "long_description": { "$ref": "#/$defs/text" },
+        "feature_bullets": { "$ref": "#/$defs/string_array" },
+        "care_instructions": { "$ref": "#/$defs/text" },
+        "specifications": { "type": "object", "additionalProperties": true }
+      },
+      "additionalProperties": false
+    },
+    "taxonomy": {
+      "type": "object",
+      "required": ["pet_type", "product_category", "collection", "tags"],
+      "properties": {
+        "pet_type": { "$ref": "#/$defs/string_or_unknown" },
+        "product_category": { "$ref": "#/$defs/string_or_unknown" },
+        "collection": { "$ref": "#/$defs/string_or_unknown" },
+        "tags": { "$ref": "#/$defs/string_array" }
+      },
+      "additionalProperties": false
+    },
+    "assets": {
+      "type": "object",
+      "required": ["main_image", "gallery_images", "lifestyle_images", "thumbnail"],
+      "properties": {
+        "main_image": { "$ref": "#/$defs/asset" },
+        "gallery_images": { "type": "array", "items": { "$ref": "#/$defs/asset" } },
+        "lifestyle_images": { "type": "array", "items": { "$ref": "#/$defs/asset" } },
+        "thumbnail": { "$ref": "#/$defs/asset" }
+      },
+      "additionalProperties": false
+    },
+    "operations": {
+      "type": "object",
+      "required": ["moq", "supplier_lead_time", "domestic_shipping_notes", "fulfillment_notes"],
+      "properties": {
+        "moq": { "$ref": "#/$defs/number_or_unknown" },
+        "supplier_lead_time": { "$ref": "#/$defs/string_or_unknown" },
+        "domestic_shipping_notes": { "$ref": "#/$defs/text" },
+        "fulfillment_notes": { "$ref": "#/$defs/text" }
+      },
+      "additionalProperties": false
+    },
+    "cross_border": {
+      "type": "object",
+      "required": ["country_of_origin", "hs_code", "compliance_notes", "restricted_material_notes"],
+      "properties": {
+        "country_of_origin": { "$ref": "#/$defs/string_or_unknown" },
+        "hs_code": { "$ref": "#/$defs/hs_code" },
+        "compliance_notes": { "$ref": "#/$defs/text" },
+        "restricted_material_notes": { "$ref": "#/$defs/text" }
+      },
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["source_url", "source_evidence", "status", "last_verified_date"],
+      "properties": {
+        "source_url": { "$ref": "#/$defs/string_or_unknown" },
+        "source_evidence": { "type": "array", "items": { "type": "string" } },
+        "status": {
+          "type": "string",
+          "enum": ["VERIFIED", "UNVERIFIED", "NEEDS_VERIFICATION"]
+        },
+        "last_verified_date": { "$ref": "#/$defs/string_or_unknown" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

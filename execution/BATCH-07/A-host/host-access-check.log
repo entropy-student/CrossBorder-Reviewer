@@ -1,0 +1,18 @@
+timestamp=2026-09-08T23:55:23.6742736+08:00 repo=C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base --- CLI availability ---
+vercel: unavailable
+railway: unavailable
+render: unavailable
+flyctl: unavailable
+cloudflared: available cloudflared version 2026.8.3 (built 2026-08-31T02:48 UTC)
+ngrok: unavailable
+gh: unavailable
+docker: available Docker version 29.7.2, build a7dcaa6
+--- Docker contexts ---
+NAME              DESCRIPTION                               DOCKER ENDPOINT                             ERROR
+default           Current DOCKER_HOST based configuration   npipe:////./pipe/docker_engine              
+desktop-linux *   Docker Desktop                            npipe:////./pipe/dockerDesktopLinuxEngine   
+--- cloudflared tunnel list (read-only) ---
+2026-09-08T15:55:24Z ERR Cannot determine default origin certificate path. No file cert.pem in [~/.cloudflared ~/.cloudflare-warp ~/cloudflare-warp]. You need to specify the origin certificate path by specifying the origincert option in the configuration file, or set TUNNEL_ORIGIN_CERT environment variable originCertPath=
+Error locating origin cert: client didn't specify origincert path
+--- cloudflared config filenames only ---
+no .cloudflared directory

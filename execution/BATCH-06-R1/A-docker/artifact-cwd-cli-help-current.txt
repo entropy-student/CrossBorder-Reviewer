@@ -1,0 +1,5 @@
+ARTIFACT_CWD_CLI_HELP_EXIT=0
+Couldn't find tsconfig.json. tsconfig-paths will be skipped
+╔════════════════════════════════════════════════════════════════════════╗
+║                                                                        ║
+║   Medusa collects anonymous usage analytics                            ║

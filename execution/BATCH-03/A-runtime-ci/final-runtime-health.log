@@ -1,0 +1,5 @@
+COMMAND=curl.exe --noproxy * -sS -o NUL -w HTTP_STATUS
+http://127.0.0.1:19600/health=200
+http://127.0.0.1:18600/us=200
+http://127.0.0.1:18600/us/store=200
+http://127.0.0.1:18600/us/products/pet-hair-remover=200

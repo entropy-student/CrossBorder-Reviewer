@@ -1,0 +1,4 @@
+NODE_CHECK=medusa-product-upsert.mjs EXIT=0
+NODE_CHECK=product-pipeline.mjs EXIT=0
+NODE_CHECK=medusa-product-payload.mjs EXIT=0
+NODE_CHECK=component-pipeline.mjs EXIT=0

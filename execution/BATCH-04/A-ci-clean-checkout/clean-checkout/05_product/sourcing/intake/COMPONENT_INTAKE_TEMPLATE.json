@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "SUPPLY_CHAIN_COMPONENT",
+  "bundle_id": null,
+  "identity": {
+    "component_id": null,
+    "source_product_id": null,
+    "supplier_name": null,
+    "supplier_url": null,
+    "source_platform": null,
+    "source_evidence": []
+  },
+  "role": {
+    "component_type": "CORE_COMPONENT",
+    "bundle_candidate_for": null,
+    "candidate_status": "CANDIDATE"
+  },
+  "cost": {
+    "unit_cost": { "value": null, "currency": "UNKNOWN", "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "currency": "UNKNOWN",
+    "moq": { "value": null, "unit": "units", "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "batch_quantity": { "value": null, "unit": "units", "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "batch_product_cost": { "value": null, "currency": "UNKNOWN", "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "batch_shipping_cost": { "value": null, "currency": "UNKNOWN", "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "landed_total": { "value": null, "currency": "UNKNOWN", "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "landed_unit_cost": { "value": null, "currency": "UNKNOWN", "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null }
+  },
+  "physical": {
+    "product_dimensions": { "width": null, "height": null, "depth": null, "unit": "UNKNOWN", "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "product_weight": { "value": null, "unit": "UNKNOWN", "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "material": { "value": null, "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "unit_packaging": { "value": null, "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "unit_package_dimensions": { "width": null, "height": null, "depth": null, "unit": "UNKNOWN", "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "unit_package_weight": { "value": null, "unit": "UNKNOWN", "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null }
+  },
+  "carton": {
+    "units_per_carton": { "value": null, "unit": "units", "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "carton_dimensions": { "length": null, "width": null, "height": null, "unit": "UNKNOWN", "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "carton_gross_weight": { "value": null, "unit": "UNKNOWN", "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "hundred_units_estimate": { "carton_count": { "value": null, "unit": "cartons", "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null }, "approximate_gross_weight": { "value": null, "unit": "UNKNOWN", "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null }, "source": "SUPPLIED_FACT", "status": "UNKNOWN" }
+  },
+  "variants": {
+    "colorways": [],
+    "supplier_variant_ids": { "value": null, "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "variant_price_differences": { "value": null, "currency": "UNKNOWN", "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null }
+  },
+  "supplier_operations": {
+    "stock_status": { "value": null, "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "lead_time": { "value": null, "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "bulk_shipping_quote": { "destination": null, "quantity": null, "mode": null, "quoted_cost": null, "currency": "UNKNOWN", "terms": null, "transit_time": null, "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "dropship_support": { "value": null, "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "fba_support": { "value": null, "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "labeling_support": { "value": null, "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "supplier_claims": []
+  },
+  "cross_border": {
+    "shipping_mode": { "value": null, "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "ddp_terms": { "value": null, "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "transit_time": { "value": null, "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "supplier_hs_code": { "value": null, "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "hs_verification": "UNKNOWN",
+    "country_of_origin": { "value": null, "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "import_notes": { "value": null, "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null }
+  },
+  "risk": {
+    "fto_status": { "value": null, "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "patent_claims": { "value": null, "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "compliance_status": { "value": null, "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "supplier_claims": [],
+    "unresolved_risks": []
+  },
+  "sample": {
+    "quantity": { "value": null, "unit": "units", "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "sample_cost": { "value": null, "currency": "UNKNOWN", "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "shipping_cost": { "value": null, "currency": "UNKNOWN", "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "transit_time": { "value": null, "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "refund_condition": { "value": null, "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "test_status": "UNKNOWN",
+    "test_scope": [],
+    "sampling_plan": { "value": null, "source": "PROJECT_DECISION", "status": "UNKNOWN", "evidence": null },
+    "ab_competitor": { "value": null, "source": "UNKNOWN_SOURCE", "status": "UNKNOWN", "evidence": null },
+    "score": "NOT_TESTED",
+    "hard_fail": "NOT_TESTED",
+    "decision": "NOT_TESTED"
+  },
+  "procurement": {
+    "status": "CANDIDATE",
+    "bulk_order_gate": "HOLD",
+    "approval_reason": { "value": null, "source": "PROJECT_DECISION", "status": "UNKNOWN", "evidence": null },
+    "rejection_reason": { "value": null, "source": "PROJECT_DECISION", "status": "UNKNOWN", "evidence": null }
+  }
+}

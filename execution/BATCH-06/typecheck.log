@@ -1,0 +1,12 @@
+ WARN  Unsupported engine: wanted: {"node":">=22.14.0 <23"} (current: {"node":"v24.19.0","pnpm":"10.11.1"})
+
+> dtc-starter-monorepo@ typecheck C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base
+> pnpm --dir apps/backend run typecheck && pnpm --dir apps/storefront run typecheck
+
+$ tsc --noEmit --incremental false --pretty false
+src/modules/paypal/service.ts(764,34): error TS2339: Property 'retrieveCapture' does not exist on type 'Pick<PayPalTransport, "retrieveOrder">'.
+src/modules/paypal/service.ts(765,37): error TS2339: Property 'retrieveCapture' does not exist on type 'Pick<PayPalTransport, "retrieveOrder">'.
+[ELIFECYCLE] Command failed with exit code 2.
+ ELIFECYCLE  Command failed with exit code 2.
+
+EXIT_CODE=2

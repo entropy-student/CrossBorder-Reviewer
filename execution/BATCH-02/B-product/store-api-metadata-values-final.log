@@ -1,0 +1,12 @@
+HTTP=200
+pawfectly_cost_price=<MISSING>
+pawfectly_supplier_url=<MISSING>
+bulk_shipping_quote=<MISSING>
+pawfectly_store_integration_approved_by_user=YES
+project_owned_inventory=<MISSING>
+VARIANT_MANAGE_INVENTORY=False
+VARIANT_ALLOW_BACKORDER=False
+VARIANT_INVENTORY_QUANTITY=
+VARIANT_OPTIONS={"id":"optval_01M1JG54Z9Q54AFVTD3K96MQ2V","value":"Default","rank":null,"metadata":null,"option_id":"opt_01M1JG54Z67MYTQTST953DG27N","option":{"id":"opt_01M1JG54Z67MYTQTST953DG27N","title":"Variant","is_exclusive":true,"metadata":null,"created_at":"2026-09-03T02:04:22.89Z","updated_at":"2026-09-03T02:04:22.89Z","deleted_at":null},"created_at":"2026-09-03T02:04:22.89Z","updated_at":"2026-09-03T02:04:22.89Z","deleted_at":null}
+variant.pawfectly_cost_price=<MISSING>
+variant.pawfectly_storefront_purchasable=YES

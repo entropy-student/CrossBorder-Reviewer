@@ -1,0 +1,106 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.34kB 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:22.14.0-bookworm-slim
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 275B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 DONE 0.0s
+
+#5 [build  1/10] FROM docker.io/library/node:22.14.0-bookworm-slim@sha256:1c18d9ab3af4585870b92e4dbc5cac5a0dc77dd13df1a5905cea89fc720eb05b
+#5 resolve docker.io/library/node:22.14.0-bookworm-slim@sha256:1c18d9ab3af4585870b92e4dbc5cac5a0dc77dd13df1a5905cea89fc720eb05b 0.0s done
+#5 DONE 0.0s
+
+#6 [runtime 2/7] WORKDIR /app/apps/backend/.medusa/server
+#6 CACHED
+
+#7 [runtime 3/7] RUN corepack enable && useradd --create-home --uid 10001 medusa
+#7 CACHED
+
+#4 [internal] load build context
+#4 transferring context: 4.42kB 0.0s done
+#4 DONE 0.1s
+
+#8 [build  2/10] WORKDIR /app
+#8 CACHED
+
+#9 [build  3/10] COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+#9 CACHED
+
+#10 [build  4/10] RUN corepack enable
+#10 DONE 0.4s
+
+#11 [build  5/10] COPY apps/backend/package.json apps/backend/package.json
+#11 DONE 0.1s
+
+#12 [build  6/10] COPY apps/storefront/package.json apps/storefront/package.json
+#12 DONE 0.0s
+
+#13 [build  7/10] RUN pnpm install --frozen-lockfile
+#13 3.031 /usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:21616
+#13 3.031     throw new Error(
+#13 3.031           ^
+#13 3.031 
+#13 3.031 Error: Error when performing the request to https://registry.npmmirror.com/pnpm/latest; for troubleshooting help, see https://github.com/nodejs/corepack#troubleshooting
+#13 3.031     at fetch (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:21616:11)
+#13 3.031     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+#13 3.031     at async fetchAsJson (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:21630:20)
+#13 3.031     ... 4 lines matching cause stack trace ...
+#13 3.031     at async Object.runMain (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:23110:7) {
+#13 3.031   [cause]: TypeError: fetch failed
+#13 3.031       at node:internal/deps/undici/undici:13502:13
+#13 3.031       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+#13 3.031       at async fetch (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:21610:16)
+#13 3.031       at async fetchAsJson (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:21630:20)
+#13 3.031       at async fetchLatestStableVersion (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:21557:20)
+#13 3.031       at async fetchLatestStableVersion2 (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:21679:14)
+#13 3.031       at async Engine.getDefaultVersion (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:22305:23)
+#13 3.031       at async Engine.executePackageManagerRequest (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:22403:47)
+#13 3.031       at async Object.runMain (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:23110:7) {
+#13 3.031     [cause]: Error: Client network socket disconnected before secure TLS connection was established
+#13 3.031         at TLSSocket.onConnectEnd (node:_tls_wrap:1732:19)
+#13 3.031         at TLSSocket.emit (node:events:530:35)
+#13 3.031         at endReadableNT (node:internal/streams/readable:1698:12)
+#13 3.031         at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+#13 3.031       code: 'ECONNRESET',
+#13 3.031       path: undefined,
+#13 3.031       host: 'registry.npmmirror.com',
+#13 3.031       port: 443,
+#13 3.031       localAddress: null
+#13 3.031     }
+#13 3.031   }
+#13 3.031 }
+#13 3.031 
+#13 3.031 Node.js v22.14.0
+#13 ERROR: process "/bin/sh -c pnpm install --frozen-lockfile" did not complete successfully: exit code: 1
+------
+ > [build  7/10] RUN pnpm install --frozen-lockfile:
+3.031       code: 'ECONNRESET',
+3.031       path: undefined,
+3.031       host: 'registry.npmmirror.com',
+3.031       port: 443,
+3.031       localAddress: null
+3.031     }
+3.031   }
+3.031 }
+3.031 
+3.031 Node.js v22.14.0
+------
+Dockerfile:11
+--------------------
+   9 |     COPY apps/backend/package.json apps/backend/package.json
+  10 |     COPY apps/storefront/package.json apps/storefront/package.json
+  11 | >>> RUN pnpm install --frozen-lockfile
+  12 |     COPY apps/backend apps/backend
+  13 |     RUN pnpm --dir apps/backend build
+--------------------
+ERROR: failed to build: failed to solve: process "/bin/sh -c pnpm install --frozen-lockfile" did not complete successfully: exit code: 1
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/srq3rz4itkcps39fp7m3l1y0y

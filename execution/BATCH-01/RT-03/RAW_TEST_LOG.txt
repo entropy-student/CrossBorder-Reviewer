@@ -1,0 +1,11 @@
+RT03_SERVICE_IDENTITY_TEST= PASS
+PASS_COUNT=7
+FAIL_COUNT=0
+ASSERTION_COUNT=7
+START_BUILD_USE_IDENTITY_DECISION=PASS;HTTP 200 reuse path is guarded by managed identity in both callers
+CORRECT_INSTANCE_REUSE=PASS;status=REUSE;reason=verified managed process owns the port and health returned HTTP 200
+WRONG_PROJECT_200_NOT_REUSED=PASS;status=IDENTITY_CONFLICT;stub-alive=True
+UNKNOWN_IDENTITY_200_NOT_REUSED=PASS;status=IDENTITY_UNKNOWN;stub-alive=True
+UNLISTENING_PORT_START_ALLOWED=PASS;status=START_ALLOWED;reason=port is not listening
+IDENTITY_MATCH_NOT_READY_DISTINCT=PASS;status=SERVICE_NOT_READY;reason=verified managed process owns the port but health did not return HTTP 200
+CONTROLLED_SERVICE_NOT_STOPPED=PASS;identity probe does not stop a controlled service

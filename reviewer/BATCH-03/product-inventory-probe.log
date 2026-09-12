@@ -1,0 +1,12 @@
+{
+  "builder_accepted_production_inventory": true,
+  "variants": [
+    {
+      "sku": "PAW-PHR-001",
+      "manage_inventory": true,
+      "has_inventory_quantity": false
+    }
+  ],
+  "payload_has_location_id": false,
+  "has_inventory_level_write": false
+}

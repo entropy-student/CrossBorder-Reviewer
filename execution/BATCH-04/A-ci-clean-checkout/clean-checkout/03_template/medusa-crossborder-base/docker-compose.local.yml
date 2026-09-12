@@ -1,0 +1,21 @@
+name: ${MEDUSA_PROJECT_NAME:?MEDUSA_PROJECT_NAME must be set by setup-local.ps1}
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: medusa
+      POSTGRES_PASSWORD: medusa_local_dev
+      POSTGRES_DB: medusa_dtc
+    ports:
+      - "127.0.0.1:${MEDUSA_DB_PORT:-54332}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U medusa -d medusa_dtc"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  pgdata:

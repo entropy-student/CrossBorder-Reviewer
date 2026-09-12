@@ -1,0 +1,28 @@
+Couldn't find tsconfig.json. tsconfig-paths will be skipped
+╔════════════════════════════════════════════════════════════════════════╗
+║                                                                        ║
+║   Medusa collects anonymous usage analytics                            ║
+║   to help improve Medusa for all users.                                ║
+║                                                                        ║
+║   If you'd like to opt-out, you can use `medusa telemetry --disable`   ║
+║                                                                        ║
+║                                                                        ║
+╚════════════════════════════════════════════════════════════════════════╝
+[32minfo[39m:    redisUrl not found. A fake redis instance will be used.
+[32minfo[39m:    No link to load from /app/node_modules/.pnpm/@medusajs+draft-order@2.19.0_@medusajs+admin-sdk@2.19.0_@medusajs+cli@2.19.0_@types+nod_ab547186112aa2cacb92323532778ff2/node_modules/@medusajs/draft-order/.medusa/server/src/links. skipped.
+[32minfo[39m:    No link to load from /app/apps/backend/.medusa/server/src/links. skipped.
+[32minfo[39m:    Running migrations...
+[31merror[39m:   Could not connect to the database while running migrations. The connection timed out after 10 seconds, which usually indicates an incorrect database URL or an SSL configuration issue.
+MedusaError: Could not connect to the database while running migrations. The connection timed out after 10 seconds, which usually indicates an incorrect database URL or an SSL configuration issue.
+
+See https://docs.medusajs.com/resources/troubleshooting/database-errors#error-while-running-migrations for troubleshooting steps.
+    at Timeout.<anonymous> (/app/node_modules/.pnpm/@medusajs+modules-sdk@2.19.0_@types+node@20.19.43_express@4.22.2/node_modules/@medusajs/modules-sdk/src/medusa-app.ts:74:9)
+    at listOnTimeout (node:internal/timers:594:17)
+    at processTimers (node:internal/timers:529:7) {
+  __isMedusaError: true,
+  type: 'database_error',
+  code: undefined,
+  date: 2026-09-08T09:13:20.185Z
+}
+
+See https://docs.medusajs.com/resources/troubleshooting/database-errors#error-while-running-migrations for troubleshooting steps.

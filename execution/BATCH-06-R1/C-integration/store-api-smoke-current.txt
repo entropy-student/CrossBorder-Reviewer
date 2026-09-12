@@ -1,0 +1,5 @@
+PATH=/store/regions STATUS=200 keys=regions,count,offset,limit;regions.count=1
+PATH=/store/products?limit=10 STATUS=200 keys=products,count,offset,limit;products.count=4
+PATH=/store/payment-providers STATUS=400 keys=type,message;
+PATH=/store/shipping-options STATUS=400 keys=type,message;
+PATH=/store/custom STATUS=200 non_json

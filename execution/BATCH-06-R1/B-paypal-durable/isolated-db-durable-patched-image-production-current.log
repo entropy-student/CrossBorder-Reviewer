@@ -1,0 +1,24 @@
+╔════════════════════════════════════════════════════════════════════════╗
+║                                                                        ║
+║   Medusa collects anonymous usage analytics                            ║
+║   to help improve Medusa for all users.                                ║
+║                                                                        ║
+║   If you'd like to opt-out, you can use `medusa telemetry --disable`   ║
+║                                                                        ║
+║                                                                        ║
+╚════════════════════════════════════════════════════════════════════════╝
+{"level":"info","message":"Redis cache connection established successfully","timestamp":"2026-09-08 13:16:56"}
+{"level":"info","message":"Connection to Redis in module 'event-bus-redis' established","timestamp":"2026-09-08 13:16:56"}
+{"level":"info","message":"Connection to Redis in \"locking-redis\" provider established","timestamp":"2026-09-08 13:16:56"}
+{"level":"info","message":"Redis cache is ready to accept commands","timestamp":"2026-09-08 13:16:56"}
+{"level":"info","message":"Redis cache connection test successful","timestamp":"2026-09-08 13:16:56"}
+{"level":"info","message":"[Workflow-engine-redis] Connection to Redis in module 'workflow-engine-redis' established","timestamp":"2026-09-08 13:16:56"}
+{"level":"info","message":"[Workflow-engine-redis] Connection to Redis PubSub in module 'workflow-engine-redis' established","timestamp":"2026-09-08 13:16:56"}
+MODULE_LOADED=paypal_reconciliation
+WEBHOOK_FIRST={"replayed":false,"claimed":true,"status":"verified"}
+WEBHOOK_REPLAY={"replayed":true,"claimed":false,"status":"verified"}
+WEBHOOK_LIFECYCLE=dispatch_requested>applied
+REFUND_READBACK={"status":"completed"}
+REFUND_DB_STATUS=completed
+INBOX_DB_STATUS=applied
+REDIS_URL_PRESENT=true

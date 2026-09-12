@@ -1,0 +1,83 @@
+FETCH=PASS
+RETRIEVED_AT=2026-09-07T14:16:50.7408911+08:00
+MATCH_COUNT=80
+## Fixed daily backups occasionally skipped due to a scheduling timeout
+A timing issue could cause daily backups to be silently skipped for every project due in a 10-minute scheduling window. Backup scheduling now retries and recovers automatically.
+Stream Postgres changes to BigQuery in near real time with Supabase Pipelines, a managed CDC service configured right in the Dashboard. Now in public alpha on all paid plans.
+Postgres `log_connections` defaults to off for new projects and existing Free and Pro projects from 2026-07-09, cutting log noise. Re-enable it via the dashboard or Management API.
+2026-05-25 · Breaking Change · Database · [supabase.com/changelog/46320-breaking-change-in-pg-graphql-1-6-0-graphql-introspection-disabled-by-default](https://supabase.com/changelog/46320-breaking-change-in-pg-graphql-1-6-0-graphql-introspection-disabled-by-default)
+## Self-hosted Supabase: switching Studio from supabase_admin to postgres (breaking change)
+2026-05-18 · Breaking Change · Database · [supabase.com/changelog/46081-self-hosted-supabase-switching-studio-from-supabase-admin-to-postgres-breaking-change](https://supabase.com/changelog/46081-self-hosted-supabase-switching-studio-from-supabase-admin-to-postgres-breaking-change)
+Self-hosted Supabase switches Studio and postgres-meta from `supabase_admin` to `postgres` on 2026-06-17. Existing instances must run `utils/reassign-owner.sh` to migrate ownership in `public`.
+2026-05-18 · Breaking Change · Database · [supabase.com/changelog/46080-self-hosted-supabase-upgrading-from-pg-15-to-17-breaking-change](https://supabase.com/changelog/46080-self-hosted-supabase-upgrading-from-pg-15-to-17-breaking-change)
+Self-hosted Supabase's default db image moves from Postgres 15 to Postgres 17 on 2026-06-17. PG 15 data does not auto-upgrade; run the upgrade script, or pin `supabase/postgres:15.x` to stay.
+## Deprecation Notice: Support for Postgres 14 ending on 1st July 2026
+2026-05-12 · Deprecation · Platform · [supabase.com/changelog/45827-deprecation-notice-support-for-postgres-14-ending-on-1st-july-2026](https://supabase.com/changelog/45827-deprecation-notice-support-for-postgres-14-ending-on-1st-july-2026)
+Supabase support for Postgres 14 ends on 2026-07-01. Projects still on Postgres 14 will be upgraded automatically; projects using removed extensions (timescaledb, plv8, pgjwt) will be paused.
+Supabase client libraries (supabase-js, auth-js, realtime-js, functions-js, storage-js, postgrest-js) drop Node.js 20 support on 2026-06-30. Upgrade to Node.js 22 or later before that date.
+2026-05-01 · Breaking Change · Platform · [supabase.com/changelog/45468-breaking-change-oauth-token-endpoint-will-return-http-200-instead-of-201](https://supabase.com/changelog/45468-breaking-change-oauth-token-endpoint-will-return-http-200-instead-of-201)
+2026-04-28 · Breaking Change · Data APIs, Database · [supabase.com/changelog/45329-breaking-change-tables-not-exposed-to-data-and-graphql-api-automatically](https://supabase.com/changelog/45329-breaking-change-tables-not-exposed-to-data-and-graphql-api-automatically)
+## Automatic PostgREST retries for transient errors
+2026-04-20 · Improvement · supabase-flutter, supabase-js, supabase-py, supabase-swift · [supabase.com/changelog/45071-automatic-postgrest-retries-for-transient-errors](https://supabase.com/changelog/45071-automatic-postgrest-retries-for-transient-errors)
+Supabase client libraries (supabase-js, swift, flutter, py) now automatically retry GET and HEAD requests to PostgREST on transient 520, 503, and network errors. Enabled by default, opt-out per call.
+The Supabase CLI now ships pg-delta (Public Alpha): a Postgres 15+ schema diffing engine and declarative SQL workflow. Edit `.sql` files, run `supabase db schema declarative sync`.
+2026-02-17 · Breaking Change · Data APIs · [supabase.com/changelog/42949-breaking-change-removing-access-to-openapi-spec-via-the-anon-key](https://supabase.com/changelog/42949-breaking-change-removing-access-to-openapi-spec-via-the-anon-key)
+Supabase's February developer update: PrivateLink GA, Supabase as an official Claude connector, Postgres best practices for AI agents, and a heads-up that pg_graphql is becoming opt-in.
+2026-01-26 · Breaking Change · Platform · [supabase.com/changelog/42180-breaking-change-pg-graphql-no-longer-enabled-automatically-within-approx-3-weeks-from-today](https://supabase.com/changelog/42180-breaking-change-pg-graphql-no-longer-enabled-automatically-within-approx-3-weeks-from-today)
+Supabase's January developer update: Stripe Sync Engine integration in the Dashboard, Index Advisor in the Table Editor, PostgREST v14 on the Data API, and the 2026 security roadmap.
+## Data API upgrade to PostgREST v14
+2025-12-11 · Improvement · Data APIs · [supabase.com/changelog/41288-data-api-upgrade-to-postgrest-v14](https://supabase.com/changelog/41288-data-api-upgrade-to-postgrest-v14)
+The Data API is upgrading to PostgREST v14 worldwide, starting in `ap-northeast-1`. GET throughput rises ~20% via a JWT cache, and schema cache loading is faster. No breaking changes.
+2025-10-08 · Breaking Change · Database · [supabase.com/changelog/39378-potential-breaking-change-in-pgmq-from-1-4-4-to-1-5-1-and-temporary-halt-on-upgrade-for-existing-projects](https://supabase.com/changelog/39378-potential-breaking-change-in-pgmq-from-1-4-4-to-1-5-1-and-temporary-halt-on-upgrade-for-existing-projects)
+New projects on Postgres 17.6.1.016 and later ship pgmq 1.5.1, which changes `delay` parameter behavior. Upgrades for existing projects are paused until an upstream fix lands.
+The Supabase JS client libraries (supabase-js, auth-js, postgrest-js, realtime-js, storage-js, functions-js) now live in a single monorepo. No action required for package users.
+Data API v13 (PostgREST) tightened JWT validation on 2025-07-24 and broke some custom JWT setups. Re-importing the custom signing key per the updated docs resolves the issue.
+Supabase Postgres image 17.4.1.062 was withdrawn after an issue was found. New projects use an earlier release; existing projects on this version should upgrade once a fix ships.
+Supabase JS libraries (supabase-js, auth-js, realtime-js, functions-js, storage-js, postgrest-js) drop Node.js 18 support on 2025-10-31. Upgrade to Node.js 20 or later.
+## Forthcoming Postgres 17 Release Notes
+2025-05-22 · Improvement · Platform · [supabase.com/changelog/35851-forthcoming-postgres-17-release-notes](https://supabase.com/changelog/35851-forthcoming-postgres-17-release-notes)
+The upcoming Supabase Postgres 17 bundle drops `timescaledb`, `plv8`, `plls`, `plcoffee`, and `pgjwt`. Postgres 15 keeps the extensions until end of life around May 2026; drop them before upgrading.
+## Dedicated Pooler with PgBouncer
+2025-03-25 · New Feature · Platform · [supabase.com/changelog/34404-dedicated-pooler-with-pgbouncer](https://supabase.com/changelog/34404-dedicated-pooler-with-pgbouncer)
+Supabase Dedicated Pooler is now generally available on Pro and above: a co-located PgBouncer instance with lower latency than the Shared Pooler for serverless workloads. Transaction mode, IPv6 only.
+2025-02-18 · Breaking Change · Studio · [supabase.com/changelog/33670-upcoming-breaking-change-to-dashboard-navigation](https://supabase.com/changelog/33670-upcoming-breaking-change-to-dashboard-navigation)
+## Deprecation of Fly.io Postgres Managed by Supabase on April 11, 2025
+2025-02-07 · Deprecation · Platform · [supabase.com/changelog/33413-deprecation-of-fly-io-postgres-managed-by-supabase-on-april-11-2025](https://supabase.com/changelog/33413-deprecation-of-fly-io-postgres-managed-by-supabase-on-april-11-2025)
+Supabase is deprecating Fly.io Postgres managed by Supabase on 2025-04-11. Signups are disabled; existing projects are removed on that date. Migrate to Supabase Postgres or Fly native Postgres.
+## Supabase Connection Pooler Deprecating Session Mode on Port 6543 on February 28, 2025
+2025-01-13 · Deprecation · Platform · [supabase.com/changelog/32755-supabase-connection-pooler-deprecating-session-mode-on-port-6543-on-february-28-2025](https://supabase.com/changelog/32755-supabase-connection-pooler-deprecating-session-mode-on-port-6543-on-february-28-2025)
+Supavisor deprecates Session Mode on port 6543 on 2025-02-28; after that date port 6543 only supports Transaction Mode. Move Session Mode clients to port 5432. Transaction-only users need no action.
+On 2024-11-22, Supabase removes `app.settings.jwt_secret` from the `postgres` database. SQL functions calling `current_setting('app.settings.jwt_secret')` must migrate to Vault.
+## `supabase-js` release candidate `2.46.2-rc.3` incoming types inferences for PostgREST fixes and feedbacks
+2024-11-06 · Bug Fix · Data APIs, supabase-js · [supabase.com/changelog/30324-supabase-js-release-candidate-2-46-2-rc-3-incoming-types-inferences-for-postgrest-fixes-and-feedbacks](https://supabase.com/changelog/30324-supabase-js-release-candidate-2-46-2-rc-3-incoming-types-inferences-for-postgrest-fixes-and-feedbacks)
+`supabase-js` 2.46.2-rc.3 fixes PostgREST type inference: embeddings now correctly infer single vs array results and object embeddings model nullability. May require regenerating database types.
+2024-09-24 · Breaking Change · Security · [supabase.com/changelog/29494-supabase-platform-access-control-project-permissions-breaking-changes-on-october-15-2024](https://supabase.com/changelog/29494-supabase-platform-access-control-project-permissions-breaking-changes-on-october-15-2024)
+August 2024 developer update recaps Launch Week 12: postgres.new in-browser Postgres with an AI interface, Realtime Broadcast and Presence authorization, and Log Drains.
+## Threshold for transitioning projects to physical backups lowered to 15GB
+2024-08-19 · Improvement · Platform · [supabase.com/changelog/28738-threshold-for-transitioning-projects-to-physical-backups-lowered-to-15gb](https://supabase.com/changelog/28738-threshold-for-transitioning-projects-to-physical-backups-lowered-to-15gb)
+Supabase daily backups switch to physical backups for any project larger than 15 GB, down from the previous threshold. Backups taken this way can no longer be downloaded from the dashboard.
+2024-07-15 · Breaking Change · Platform · [supabase.com/changelog/27993-supabase-platform-access-control-organization-permissions-breaking-changes-on-july-26-2024](https://supabase.com/changelog/27993-supabase-platform-access-control-organization-permissions-breaking-changes-on-july-26-2024)
+## Postgres 13 Deprecation Notice
+2024-07-12 · Deprecation · Database · [supabase.com/changelog/27946-postgres-13-deprecation-notice](https://supabase.com/changelog/27946-postgres-13-deprecation-notice)
+Postgres 13 is deprecated on Supabase. Upgrade affected projects to Postgres 15 before 2024-11-15, when remaining Postgres 13 projects will be auto-upgraded or paused.
+Dashboard weekly roll-up: clearer compute pricing during project creation, a default Table Editor sort to keep updated rows in place, and Query Performance index advisor for PostgREST.
+Dashboard weekly roll-up: the conversational AI assistant in the SQL Editor is now on by default, and Postgres errors in the Table Editor surface more contextual hints.
+March 2024 Platform Updates: higher Supavisor client connection limits, a conversational AI assistant in the SQL Editor, port 6543 transaction-mode only, and v2 platform architecture migration.
+## Increased Supavisor Client Connection Limits Across Paid Plans
+2024-04-04 · Improvement · Platform · [supabase.com/changelog/22457-increased-supavisor-client-connection-limits-across-paid-plans](https://supabase.com/changelog/22457-increased-supavisor-client-connection-limits-across-paid-plans)
+Supavisor client connection limits double or more on Small (400), Medium (600), Large (800), and XL (1,000) compute instances. Pricing is unchanged and the limits apply automatically.
+Realtime Authorization for Broadcast and Presence is now in Public Beta, gating channel access via Postgres RLS policies on the `realtime.messages` table.
+Dashboard weekly roll-up: a hybrid RLS policy editor that shows the underlying SQL, and Supavisor pooler port 6543 set to transaction mode only with session mode on 5432.
+Supabase Platform v2 architecture rolls out to Free Plan projects from March 20, 2024, unbundling Storage, Realtime, and the pooler. Existing projects migrate gradually with email notice.
+February 2024 Platform Updates: Matryoshka embeddings for vector search, framework Connect snippets in Studio, PostgREST 12 aggregate functions, and an official Supabase Terraform provider.
+January 2024 Platform Updates: Supavisor replaces PgBouncer for pooling, direct connections move to IPv6 with an IPv4 add-on available, plus Studio table-editor and email-template enhancements.
+Paid Supabase projects can now enable an IPv4 add-on for direct database connections at $4 per month. Projects using Supavisor or supporting IPv6 do not need it.
+## Supavisor starts enforcing Network Restrictions
+2024-01-17 · Improvement · Platform · [supabase.com/changelog/20522-supavisor-starts-enforcing-network-restrictions](https://supabase.com/changelog/20522-supavisor-starts-enforcing-network-restrictions)
+From January 24, 2024, Supavisor enforces project Network Restrictions. Existing restrictions propagate automatically; projects without restrictions are unaffected.
+## Supavisor 1.1.6
+2024-01-11 · Bug Fix · Platform · [supabase.com/changelog/20358-supavisor-1-1-6](https://supabase.com/changelog/20358-supavisor-1-1-6)
+Supavisor 1.1.6 fixes a bug that caused prepared statements to fail when using session mode. No action required.
+## Supavisor 1.1.5
+2024-01-10 · Improvement · Platform · [supabase.com/changelog/20313-supavisor-1-1-5](https://supabase.com/changelog/20313-supavisor-1-1-5)
+Supavisor 1.1.5 starts pools with 10 connections and grows up to the tenant pool size, preventing over-allocation of Postgres `max_connections` during PgBouncer migrations.

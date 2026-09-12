@@ -1,0 +1,32 @@
+{
+  "task": "BATCH-06",
+  "status": "PARTIAL/BLOCKED",
+  "captured_at": "2026-09-08",
+  "source_head": "4b7dd0f371f13cc3ee1f598499dcecbf63b33fec",
+  "document_head": "38e879c42ead6e561939a7881526c2a984c158a2",
+  "node_observed": "24.19.0",
+  "node_ci_target": "22.14.0",
+  "pnpm": "10.11.1",
+  "medusa": "2.19.0",
+  "next": "15.5.24",
+  "paypal_provider_enabled": false,
+  "paypal_customer_exposure": "disabled",
+  "real_paypal_api_called": false,
+  "real_worldfirst_api_called": false,
+  "real_money_charged": false,
+  "new_order_created": false,
+  "database_reset": false,
+  "docker_image_build": "blocked_registry_network",
+  "sandbox_receiver": "not_deployed",
+  "sandbox_transaction": "not_attempted"
+  ,"test_exit_codes": {
+    "typecheck": 0,
+    "unit": 0,
+    "contracts": 0,
+    "deploy_contract": 0,
+    "build": 0,
+    "docker_build": 1,
+    "audit_prod": 1,
+    "audit_all": 1
+  }
+}

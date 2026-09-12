@@ -1,0 +1,30 @@
+{
+  "name": "dtc-starter-monorepo",
+  "private": false,
+  "packageManager": "pnpm@10.11.1",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "dev": "pnpm -r dev",
+    "build": "pnpm -r build",
+    "start": "turbo start",
+    "typecheck": "pnpm --dir apps/backend run typecheck && pnpm --dir apps/storefront run typecheck",
+    "lint": "pnpm --dir apps/backend run lint && pnpm --dir apps/storefront run lint",
+    "test": "pnpm --dir apps/backend run test && pnpm run test:contracts",
+    "test:contracts": "node ../../06_payment/providers/payment-provider-boundary.test.mjs && node ../../05_product/scripts/product-pipeline.mjs test --input ../../05_product/intake/TEST_FIXTURE_ONLY.medusa-seed.json && node ../../05_product/scripts/product-boundary.test.mjs && node ../../05_product/sourcing/scripts/component-pipeline.mjs test --input ../../05_product/sourcing/components/COMP-001-pet-hair-remover.json && node ../../05_product/scripts/medusa-inventory-plan.test.mjs",
+    "test:runtime": "powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File scripts/run-runtime-security-tests.ps1",
+    "verify": "pnpm run typecheck && pnpm run lint && pnpm run test && pnpm run test:runtime",
+    "verify:build": "pnpm -r build",
+    "backend:seed": "turbo seed --filter=@dtc/backend",
+    "backend:dev": "turbo dev --filter=@dtc/backend",
+    "storefront:dev": "turbo dev --filter=@dtc/storefront"
+  },
+  "devDependencies": {
+    "@medusajs/eslint-plugin": "2.19.0",
+    "eslint": "^9.39.4",
+    "jiti": "^2.7.0",
+    "prettier": "^3.2.5",
+    "turbo": "^2.0.14"
+  }
+}

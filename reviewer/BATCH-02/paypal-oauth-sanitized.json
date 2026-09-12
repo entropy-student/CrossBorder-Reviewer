@@ -1,0 +1,13 @@
+{
+  "utc": "2026-09-06T02:25:24.4311537Z",
+  "environment": "sandbox",
+  "client_id_unambiguous": true,
+  "client_secret_unambiguous": true,
+  "webhook_required_for_oauth": false,
+  "oauth_attempted": true,
+  "http_status": 200,
+  "authenticated": true,
+  "expires_in": 32400,
+  "real_money_operations": false,
+  "credentials_logged": false
+}

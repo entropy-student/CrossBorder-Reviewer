@@ -1,0 +1,53 @@
+CHECKED_AT=2026-09-07T14:17:20.2622849+08:00
+AUDIT_COUNTS=critical:0 high:0 moderate:1 low:0
+GHSA=GHSA-2g4f-4pwh-qvx6
+Legend: production dependency, optional only, dev only
+
+@dtc/backend@0.0.1 C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\backend
+
+dependencies:
+@medusajs/caching 2.19.0
+└─┬ @medusajs/framework 2.19.0 peer
+  ├─┬ @medusajs/cli 2.19.0 peer
+  │ ├─┬ @medusajs/deps 2.19.0
+  │ │ └─┬ @mikro-orm/migrations 6.6.14
+  │ │   └─┬ umzug 3.8.2
+  │ │     └─┬ @rushstack/ts-command-line 4.23.7
+  │ │       └─┬ @rushstack/terminal 0.15.2
+  │ │         └─┬ @rushstack/node-core-library 5.13.0
+  │ │           ├── ajv 8.13.0
+  │ │           ├─┬ ajv-draft-04 1.0.0
+  │ │           │ └── ajv 8.13.0 peer
+  │ │           └─┬ ajv-formats 3.0.1
+  │ │             └── ajv 8.13.0 peer
+  │ └─┬ @medusajs/utils 2.19.0
+  │   └─┬ @medusajs/deps 2.19.0
+  │     └─┬ @mikro-orm/migrations 6.6.14
+  │       └─┬ umzug 3.8.2
+  │         └─┬ @rushstack/ts-command-line 4.23.7
+  │           └─┬ @rushstack/terminal 0.15.2
+  │             └─┬ @rushstack/node-core-library 5.13.0
+  │               ├── ajv 8.13.0
+  │               ├─┬ ajv-draft-04 1.0.0
+  │               │ └── ajv 8.13.0 peer
+  │               └─┬ ajv-formats 3.0.1
+  │                 └── ajv 8.13.0 peer
+  ├─┬ @medusajs/deps 2.19.0
+  │ └─┬ @mikro-orm/migrations 6.6.14
+  │   └─┬ umzug 3.8.2
+  │     └─┬ @rushstack/ts-command-line 4.23.7
+  │       └─┬ @rushstack/terminal 0.15.2
+  │         └─┬ @rushstack/node-core-library 5.13.0
+  │           ├── ajv 8.13.0
+  │           ├─┬ ajv-draft-04 1.0.0
+  │           │ └── ajv 8.13.0 peer
+  │           └─┬ ajv-formats 3.0.1
+  │             └── ajv 8.13.0 peer
+  └─┬ @medusajs/modules-sdk 2.19.0
+    └─┬ @medusajs/deps 2.19.0
+      └─┬ @mikro-orm/migrations 6.6.14
+        └─┬ umzug 3.8.2
+          └─┬ @rushstack/ts-command-line 4.23.7
+            └─┬ @rushstack/terminal 0.15.2
+              └─┬ @rushstack/node-core-library 5.13.0
+                └── ajv 8.13.0

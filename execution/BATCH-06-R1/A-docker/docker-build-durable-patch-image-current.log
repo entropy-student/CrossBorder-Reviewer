@@ -1,0 +1,45 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile:
+#1 transferring dockerfile: 319B 0.0s done
+#1 DONE 0.3s
+
+#2 [internal] load metadata for docker.io/library/cb-batch06-r1-medusa:20260908
+#2 DONE 0.2s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.1s
+
+#4 [1/3] FROM docker.io/library/cb-batch06-r1-medusa:20260908@sha256:a64e3d304a30b122b7f15192facc99e0deb731ae70d2baacd51c543327c49987
+#4 resolve docker.io/library/cb-batch06-r1-medusa:20260908@sha256:a64e3d304a30b122b7f15192facc99e0deb731ae70d2baacd51c543327c49987 0.1s done
+#4 DONE 0.1s
+
+#5 [internal] load build context
+#5 transferring context: 17.54kB 0.0s done
+#5 DONE 0.3s
+
+#4 [1/3] FROM docker.io/library/cb-batch06-r1-medusa:20260908@sha256:a64e3d304a30b122b7f15192facc99e0deb731ae70d2baacd51c543327c49987
+#4 DONE 1.6s
+
+#6 [2/3] COPY service.js /app/apps/backend/.medusa/server/src/modules/paypal-reconciliation/service.js
+#6 DONE 0.8s
+
+#7 [3/3] COPY Migration20260908000300.js /app/apps/backend/.medusa/server/src/modules/paypal-reconciliation/migrations/Migration20260908000300.js
+#7 DONE 0.1s
+
+#8 exporting to image
+#8 exporting layers
+#8 exporting layers 0.3s done
+#8 exporting manifest sha256:dc070933a55e666b8376764b56ab92dfd351b2e70e77802abb114eb351472900 0.0s done
+#8 exporting config sha256:65b9854204fc9a307e9ad9d60fedb583a97be30b757927e8f409f996801adb4b 0.0s done
+#8 exporting attestation manifest sha256:80c55f98624885a0f983818a0e4eba2c107dbeed896b85c4b83c8e36fa476131
+#8 exporting attestation manifest sha256:80c55f98624885a0f983818a0e4eba2c107dbeed896b85c4b83c8e36fa476131 0.0s done
+#8 exporting manifest list sha256:54d25140c2307302c543c5c28a9aa2d3f64b9314c8a9e2a02761ef2dac84102b 0.0s done
+#8 naming to docker.io/library/cb-batch06-r1-medusa:20260908-patched done
+#8 unpacking to docker.io/library/cb-batch06-r1-medusa:20260908-patched
+#8 unpacking to docker.io/library/cb-batch06-r1-medusa:20260908-patched 0.2s done
+#8 DONE 0.8s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/syaw37jsjb81ir4u9vsx85czo

@@ -1,0 +1,1 @@
+{"databaseProtocol":"postgresql:","databaseHost":"cb-b06r1-pg-20260908","databasePort":"5432","databaseName":"medusa_b06r1","redisUrlDefined":false,"workerMode":"server"}

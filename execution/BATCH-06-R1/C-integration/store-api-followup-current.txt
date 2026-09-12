@@ -1,0 +1,3 @@
+REGIONS_STATUS=200 REGION_ID_READ=true
+PATH=/store/payment-providers STATUS=200 keys=payment_providers,count,offset,limit;payment_providers.count=0
+PATH=/store/shipping-options STATUS=400 keys=type,message;

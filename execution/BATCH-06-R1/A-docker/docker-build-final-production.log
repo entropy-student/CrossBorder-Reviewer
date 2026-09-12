@@ -1,0 +1,87 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.41kB 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:22.14.0-bookworm-slim
+#2 DONE 0.3s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 275B done
+#3 DONE 0.0s
+
+#4 [build  1/11] FROM docker.io/library/node:22.14.0-bookworm-slim@sha256:1c18d9ab3af4585870b92e4dbc5cac5a0dc77dd13df1a5905cea89fc720eb05b
+#4 resolve docker.io/library/node:22.14.0-bookworm-slim@sha256:1c18d9ab3af4585870b92e4dbc5cac5a0dc77dd13df1a5905cea89fc720eb05b 0.0s done
+#4 DONE 0.0s
+
+#5 [runtime 2/8] WORKDIR /app/apps/backend/.medusa/server
+#5 CACHED
+
+#6 [runtime 3/8] RUN corepack enable && useradd --create-home --uid 10001 medusa
+#6 CACHED
+
+#7 [internal] load build context
+#7 transferring context: 4.42kB 0.1s done
+#7 DONE 0.1s
+
+#8 [build  7/11] COPY apps/storefront/package.json apps/storefront/package.json
+#8 CACHED
+
+#9 [build  9/11] COPY apps/backend apps/backend
+#9 CACHED
+
+#10 [build  5/11] RUN pnpm config set registry "https://registry.npmmirror.com"
+#10 CACHED
+
+#11 [build  6/11] COPY apps/backend/package.json apps/backend/package.json
+#11 CACHED
+
+#12 [build  4/11] RUN npm install --global --ignore-scripts --registry="https://registry.npmmirror.com" pnpm@10.11.1
+#12 CACHED
+
+#13 [build  3/11] COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+#13 CACHED
+
+#14 [build  8/11] RUN pnpm install --frozen-lockfile
+#14 CACHED
+
+#15 [build  2/11] WORKDIR /app
+#15 CACHED
+
+#16 [build 10/11] RUN pnpm --dir apps/backend build
+#16 CACHED
+
+#17 [build 11/11] RUN pnpm prune --prod
+#17 0.904 ? The modules directories will be removed and reinstalled from scratch. Proceed? (Y/n) ‣ true[4D
+#17 DONE 0.9s
+
+#18 [runtime 4/8] COPY --from=build --chown=medusa:medusa /app/node_modules /app/node_modules
+#18 DONE 37.5s
+
+#19 [runtime 5/8] COPY --from=build --chown=medusa:medusa /app/apps/backend/node_modules /app/apps/backend/node_modules
+#19 DONE 1.5s
+
+#20 [runtime 6/8] COPY --from=build --chown=medusa:medusa /app/apps/backend/.medusa/server /app/apps/backend/.medusa/server
+#20 DONE 0.4s
+
+#21 [runtime 7/8] COPY deploy/medusa/entrypoint.sh /app/entrypoint.sh
+#21 DONE 0.1s
+
+#22 [runtime 8/8] RUN chmod 0555 /app/entrypoint.sh   && test -f /app/apps/backend/.medusa/server/medusa-config.js   && test -f /app/apps/backend/.medusa/server/package.json   && test -f /app/node_modules/@medusajs/cli/cli.js
+#22 ERROR: process "/bin/sh -c chmod 0555 /app/entrypoint.sh   && test -f /app/apps/backend/.medusa/server/medusa-config.js   && test -f /app/apps/backend/.medusa/server/package.json   && test -f /app/node_modules/@medusajs/cli/cli.js" did not complete successfully: exit code: 1
+------
+ > [runtime 8/8] RUN chmod 0555 /app/entrypoint.sh   && test -f /app/apps/backend/.medusa/server/medusa-config.js   && test -f /app/apps/backend/.medusa/server/package.json   && test -f /app/node_modules/@medusajs/cli/cli.js:
+------
+Dockerfile:23
+--------------------
+  22 |     COPY deploy/medusa/entrypoint.sh /app/entrypoint.sh
+  23 | >>> RUN chmod 0555 /app/entrypoint.sh \
+  24 | >>>   && test -f /app/apps/backend/.medusa/server/medusa-config.js \
+  25 | >>>   && test -f /app/apps/backend/.medusa/server/package.json \
+  26 | >>>   && test -f /app/node_modules/@medusajs/cli/cli.js
+  27 |     ENV NODE_ENV=production
+--------------------
+ERROR: failed to build: failed to solve: process "/bin/sh -c chmod 0555 /app/entrypoint.sh   && test -f /app/apps/backend/.medusa/server/medusa-config.js   && test -f /app/apps/backend/.medusa/server/package.json   && test -f /app/node_modules/@medusajs/cli/cli.js" did not complete successfully: exit code: 1
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/y80hxhc7f4ce2p8j52mksraz4

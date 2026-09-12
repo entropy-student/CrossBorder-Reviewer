@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pawfectly-home.invalid/schemas/bundle-bom.schema.json",
+  "title": "Pawfectly Home Bundle BOM",
+  "type": "object",
+  "required": ["schema_version", "record_type", "bom_id", "bundle_id", "bundle_candidate_for", "status", "components", "packaging_components", "costing", "notes"],
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0.0" },
+    "record_type": { "type": "string", "const": "BUNDLE_BOM" },
+    "bom_id": { "type": "string" },
+    "bundle_id": { "type": "string", "minLength": 1 },
+    "bundle_candidate_for": { "type": "string" },
+    "sellable_product_id": { "type": ["string", "null"] },
+    "status": { "type": "string", "enum": ["DRAFT", "READY_FOR_REVIEW", "APPROVED", "REJECTED"] },
+    "components": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["component_id", "quantity", "role", "component_status"],
+        "properties": {
+          "component_id": { "type": "string" },
+          "quantity": { "type": "number", "exclusiveMinimum": 0 },
+          "role": { "type": "string", "enum": ["CORE_COMPONENT", "ACCESSORY_COMPONENT", "PACKAGING_COMPONENT"] },
+          "component_status": { "type": "string", "enum": ["CANDIDATE", "SAMPLE_TESTING_PENDING", "APPROVED", "REJECTED"] },
+          "unit_cost": { "type": ["number", "null"] },
+          "landed_unit_cost": { "type": ["number", "null"] },
+          "currency": { "type": "string", "enum": ["USD", "EUR", "UNKNOWN"] }
+        },
+        "additionalProperties": false
+      }
+    },
+    "packaging_components": { "type": "array", "items": { "type": "object" } },
+    "costing": {
+      "type": "object",
+      "required": ["currency", "component_cost", "packaging_cost", "landed_component_cost", "bundle_cogs", "calculation_status"],
+      "properties": {
+        "currency": { "type": "string", "enum": ["USD", "EUR", "UNKNOWN"] },
+        "component_cost": { "type": ["number", "null"] },
+        "packaging_cost": { "type": ["number", "null"] },
+        "landed_component_cost": { "type": ["number", "null"] },
+        "bundle_cogs": { "type": ["number", "null"] },
+        "calculation_status": { "type": "string", "enum": ["PARTIAL", "COMPLETE", "UNKNOWN"] }
+      },
+      "additionalProperties": false
+    },
+    "notes": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,27 @@
+ROUTE_QA_BEGIN
+
+PATH                          HTTP PRIVATE_METADATA SEED_COPY PRODUCT_IMAGE PRICE TITLE AVAILABILITY       ADD_TO_BAG SE
+                                                                                                                      LE
+                                                                                                                      CT
+                                                                                                                      _V
+                                                                                                                      AR
+                                                                                                                      IA
+                                                                                                                      NT
+----                          ---- ---------------- --------- ------------- ----- ----- ------------       ---------- --
+/us                           200  NONE             NONE      N/A           N/A   N/A   N/A                N/A        N…
+/us/store                     200  NONE             NONE      N/A           N/A   N/A   N/A                N/A        N…
+/us/products/pet-hair-remover 200  NONE             NONE      FOUND         FOUND FOUND AVAILABLE_TO_ORDER FOUND      N…
+/us/cart                      200  NONE             NONE      N/A           N/A   N/A   N/A                N/A        N…
+
+
+STORE_API_HTTP=200
+STORE_API_PRODUCT=prod_01M1JG54Z6PFY802QV32EJ174D|pet-hair-remover|Reusable Self-Cleaning Pet Hair Remover
+STORE_API_SKU=PAW-PHR-001
+STORE_API_PRICE=14.99|usd
+STORE_API_IMAGE=/assets/products/COMP-001-main-square.png
+STORE_API_PUBLIC_METADATA=pawfectly_availability_mode,pawfectly_internal_sku,pawfectly_product_master_version,pawfectly_product_status,pawfectly_public_category,pawfectly_public_metadata_version,pawfectly_record_status,pawfectly_record_type,pawfectly_selling_price_confirmed,pawfectly_selling_price_status,pawfectly_source_product_id,pawfectly_storefront_purchasable,pawfectly_store_integration_approved_by_user
+STORE_API_PRIVATE_METADATA_LEAK=False
+PDP_AVAILABILITY=AVAILABLE_TO_ORDER
+PDP_ADD_TO_BAG=FOUND
+PDP_SELECT_VARIANT=N/A
+ROUTE_QA_END

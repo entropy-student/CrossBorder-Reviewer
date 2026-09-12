@@ -1,0 +1,1 @@
+Server=29.7.2 OS=Docker Desktop Arch=x86_64 Rootless=[name=seccomp,profile=builtin name=cgroupns]

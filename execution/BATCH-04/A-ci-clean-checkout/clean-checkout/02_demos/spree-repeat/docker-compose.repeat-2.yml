@@ -1,0 +1,48 @@
+name: spree-demo-repeat-2
+
+services:
+  postgres:
+    image: postgres:18-alpine
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+      PGDATA: /var/lib/postgresql/18/docker
+    ports:
+      - "127.0.0.1:5436:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+
+  web:
+    image: spree-demo-repeat-backend:cb-dev-017
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - ../spree-demo/.env
+    environment:
+      RAILS_ENV: production
+      DATABASE_URL: postgres://postgres@postgres:5432/spree_production
+      RAILS_FORCE_SSL: "false"
+      RAILS_ASSUME_SSL: "false"
+      RAILS_HOST: localhost:9401
+      SPREE_PORT: "9401"
+      SMTP_HOST: localhost
+      SMTP_PORT: "1025"
+    ports:
+      - "127.0.0.1:9401:3000"
+    volumes:
+      - storage_data:/rails/storage
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000/up"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+      start_period: 30s
+
+volumes:
+  postgres_data:
+  storage_data:

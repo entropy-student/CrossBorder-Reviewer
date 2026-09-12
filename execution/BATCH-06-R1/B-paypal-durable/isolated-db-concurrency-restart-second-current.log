@@ -1,0 +1,20 @@
+╔════════════════════════════════════════════════════════════════════════╗
+║                                                                        ║
+║   Medusa collects anonymous usage analytics                            ║
+║   to help improve Medusa for all users.                                ║
+║                                                                        ║
+║   If you'd like to opt-out, you can use `medusa telemetry --disable`   ║
+║                                                                        ║
+║                                                                        ║
+╚════════════════════════════════════════════════════════════════════════╝
+[32minfo[39m:    redisUrl not found. A fake redis instance will be used.
+[33mwarn[39m:    Local Event Bus installed. This is not recommended for production.
+[32minfo[39m:    Locking module: Using "in-memory" as default.
+EVENT_ID_MODE=fixed
+CONCURRENCY_COUNT=1
+FULFILLED=1
+REJECTED=0
+CLAIMED_COUNT=0
+REPLAYED_COUNT=1
+DB_ROW_COUNT=1
+SEQUENTIAL_REPLAY={"replayed":true,"claimed":false,"status":"verified"}

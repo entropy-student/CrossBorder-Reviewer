@@ -1,0 +1,10 @@
+IMAGE_TAG=cb-batch06-r1-medusa:20260908
+IMAGE_CONFIG_ID=sha256:a64e3d304a30b122b7f15192facc99e0deb731ae70d2baacd51c543327c49987
+SCANNED_MANIFEST_LAYER_BLOBS=14
+GZIP_LAYER_BLOBS=14
+HIGH_CONFIDENCE_SECRET_VALUE_HITS=0
+PEM_PAYLOAD_MATCHES=0
+NO_SECRET_VALUES_EMITTED=1
+SCAN_RUNTIME=redis:8-alpine shell; gzip/tar extraction and recursive filename-only grep
+SCAN_SCOPE=all current manifest layer blobs; output contains paths only and no matching values
+TAR_WARNINGS=0

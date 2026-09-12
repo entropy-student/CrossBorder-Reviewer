@@ -1,0 +1,28 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 923B 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/node:22.14.0-bookworm-slim
+#2 ...
+
+#3 [auth] library/node:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:22.14.0-bookworm-slim
+#2 ERROR: failed to authorize: failed to fetch oauth token: Post "https://auth.docker.io/token": dial tcp 157.240.7.8:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+------
+ > [internal] load metadata for docker.io/library/node:22.14.0-bookworm-slim:
+------
+Dockerfile:12
+--------------------
+  10 |     RUN pnpm --dir apps/backend build
+  11 |     
+  12 | >>> FROM node:22.14.0-bookworm-slim AS runtime
+  13 |     
+  14 |     WORKDIR /app
+--------------------
+ERROR: failed to build: failed to solve: failed to fetch oauth token: Post "https://auth.docker.io/token": dial tcp 157.240.7.8:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/i2j6hls0q9ryvlm3umaitnj9o

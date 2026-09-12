@@ -1,0 +1,37 @@
+COMMAND
+& 'C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\04_docs\scripts\92-prepare-review-staging.security.tests.ps1'
+
+EXIT_CODE=0
+RT01_SECURITY_TEST=PASS
+PATH_AND_OWNERSHIP_ASSERTIONS=26
+
+REJECT_SOURCE_ROOT=PASS (child exit=1; rejected canonical source project/descendant)
+REJECT_SOURCE_DESCENDANT=PASS (child exit=1; rejected canonical source project/descendant)
+REJECT_SOURCE_CASE_AND_TRAILING_SEPARATOR=PASS (child exit=1; normalized path rejected)
+REJECT_DOCUMENT_CENTER_ROOT=PASS (child exit=1; rejected document center/descendant)
+REJECT_DOCUMENT_CENTER_DESCENDANT=PASS (child exit=1; rejected document center/descendant)
+REJECT_WORKSPACE_ANCESTOR=PASS (child exit=1; rejected outside trusted staging root)
+REJECT_USER_HOME=PASS (child exit=1; rejected outside trusted staging root)
+REJECT_DISK_ROOT=PASS (child exit=1; rejected outside trusted staging root)
+REJECT_TRUSTED_ROOT=PASS (child exit=1; rejected trusted staging root itself)
+REJECT_TRUSTED_ROOT_SIMILAR_PREFIX=PASS (child exit=1; rejected outside trusted staging root)
+REJECT_OUTSIDE_TARGET=PASS (child exit=1; rejected outside trusted staging root)
+REJECT_NORMALIZED_SOURCE_ANCESTOR=PASS (child exit=1; rejected outside trusted staging root)
+REJECT_EXISTING_NO_MARKER=PASS (child exit=1; refused unowned existing directory)
+NO_MARKER_CONTENT_UNCHANGED=PASS (sentinel-preserved)
+REJECT_INVALID_MARKER=PASS (child exit=1; refused marker with wrong tool/task identity)
+INVALID_MARKER_CONTENT_UNCHANGED=PASS (sentinel-preserved)
+CREATE_VALID_NEW_STAGING=PASS (child exit=0; staging created and copied)
+VALID_MARKER_CREATED=PASS
+OWNERSHIP_MARKER_NO_ABSOLUTE_PATHS=PASS (path-fingerprints-only)
+RERUN_VALID_OWNED_STAGING=PASS (child exit=0; controlled rerun)
+OWNED_RERUN_REPLACED_CONTENT=PASS (owned sentinel removed; marker remains)
+REJECT_JUNCTION_STAGING=PASS (child exit=1; reparse path rejected before delete)
+JUNCTION_TARGET_CONTENT_UNCHANGED=PASS (outside target sentinel-preserved)
+REPARSE_POINT_TEST=PASS (junction-rejected-before-delete)
+SOURCE_PROTECTED_FILE_UNCHANGED=PASS (PROJECT_STATUS.json exists and unchanged)
+DOCUMENT_CENTER_PROTECTED_FILE_UNCHANGED=PASS (00_HANDOFF.md exists and unchanged)
+
+TEST_CLEANUP=PASS
+TEST_ROOT_AND_OUTSIDE_SENTINEL_ROOT_REMOVED=YES
+REAL_PROJECT_OR_PROJECT_ANCESTOR_DELETION=NO

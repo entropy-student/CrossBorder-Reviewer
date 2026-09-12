@@ -1,0 +1,1 @@
+STATUS=Up 20 seconds PORTS=0.0.0.0:19000->9000/tcp, [::]:19000->9000/tcp

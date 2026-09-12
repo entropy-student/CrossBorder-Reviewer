@@ -1,0 +1,15 @@
+import {readFileSync,writeFileSync} from 'node:fs';import path from 'node:path';import vm from 'node:vm';
+const source=process.argv[2];const read=p=>JSON.parse(readFileSync(path.join(source,p),'utf8'));
+function load(relative,names){const absolute=path.join(source,relative);let text=readFileSync(absolute,'utf8').split(/\r?\ntry \{/)[0].replace(/^#!.*\r?\n/,'').replace(/^import .*\r?\n/gm,'').replaceAll('import.meta.dirname',JSON.stringify(path.dirname(absolute)));return vm.runInContext(text+'\n;({'+names.join(',')+'})',vm.createContext({path,URL,console,structuredClone}))}
+const p=load('05_product/scripts/product-pipeline.mjs',['validateRecord','buildMedusaPlan']);const u=load('05_product/scripts/medusa-product-upsert.mjs',['buildPayload','updatePayload','assertProductReadback']);const c=load('05_product/sourcing/scripts/component-pipeline.mjs',['validateComponent']);
+const master=read('05_product/normalized/PAWFECTLY-PET-HAIR-REMOVER.json'),component=read('05_product/sourcing/components/COMP-001-pet-hair-remover.json');const results=[];
+const probe=(name,fn)=>{try{results.push({name,observed:fn()})}catch(e){results.push({name,error:e.message})}};
+probe('PRODUCTION_UPDATE_SETS_MANAGE_INVENTORY',()=>{const r=structuredClone(master);r.commerce.availability_mode='PRODUCTION_INVENTORY';r.commerce.project_owned_inventory='CONFIRMED';const result=u.updatePayload(u.buildPayload(r,'published'),{variants:[{id:'variant_fixture',sku:r.commerce.variants[0].internal_sku,manage_inventory:false}]});return Object.hasOwn(result.variants[0],'manage_inventory')});
+probe('DRY_RUN_WRITE_SAME_METADATA',()=>{const dry=p.buildMedusaPlan(master,p.validateRecord(master)).medusa_payload,actual=u.buildPayload(master,'published');return {same:JSON.stringify(dry.metadata)===JSON.stringify(actual.metadata),onlyActualKeys:Object.keys(actual.metadata).filter(k=>!Object.hasOwn(dry.metadata,k))}});
+probe('MISSING_VARIANT_OPTIONS_BLOCKED',()=>{const r=structuredClone(master);r.commerce.variants[0].options={};return p.validateRecord(r).gates});
+probe('INVALID_IMAGE_PUBLISH_GATE',()=>{const r=structuredClone(master);r.assets.main_image.url='not-a-valid-image-url';return p.validateRecord(r).gates});
+probe('TEST_RECORD_TYPE_PUBLISH_GATE',()=>{const r=structuredClone(master);r.record_type='TEST_FIXTURE_ONLY';return p.validateRecord(r).gates});
+probe('KNOWN_RISK_VERIFIED_STILL_BLOCKED',()=>{const r=structuredClone(component);r.risk.fto_status.value='VERIFIED';r.risk.fto_status.status='VERIFIED';const v=c.validateComponent(r);return {result:v.result,noInvented:v.checks.NO_INVENTED_FIELDS}});
+probe('FAILED_TEST_WITH_NOT_TESTED_DECISION',()=>{const r=structuredClone(component);r.sample.test_status='FAIL';r.sample.hard_fail='NO';r.sample.decision='NOT_TESTED';return c.validateComponent(r).gates});
+probe('HARDFail_REJECTS',()=>{const r=structuredClone(component);r.sample.hard_fail='YES';r.procurement.bulk_order_gate='OPEN';return c.validateComponent(r).gates});
+writeFileSync(path.join(import.meta.dirname,'product-probes.json'),JSON.stringify(results,null,2));console.log(JSON.stringify(results,null,2));

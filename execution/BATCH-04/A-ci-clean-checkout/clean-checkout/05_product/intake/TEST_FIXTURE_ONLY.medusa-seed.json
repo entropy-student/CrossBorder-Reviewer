@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.1.0",
+  "record_status": "TEST_FIXTURE_ONLY",
+  "identity": {
+    "source_product_id": "TEST_FIXTURE_ONLY:medusa-seed-product",
+    "supplier_name": "TEST_FIXTURE_ONLY",
+    "supplier_url": "https://example.invalid/test-fixture",
+    "internal_sku": "TEST_FIXTURE_ONLY-PRODUCT",
+    "handle": "test-fixture-only-medusa-seed-product",
+    "title": "TEST_FIXTURE_ONLY - Medusa Seed Product",
+    "subtitle": "TEST_FIXTURE_ONLY mapping record"
+  },
+  "commerce": {
+    "currency": "USD",
+    "cost_price": 5,
+    "selling_price": 10,
+    "compare_at_price": 15,
+    "option_names": ["Size"],
+    "variants": [
+      {
+        "source_variant_id": "TEST_FIXTURE_ONLY:medusa-seed-variant",
+        "internal_sku": "TEST_FIXTURE_ONLY-PRODUCT-DEFAULT",
+        "title": "TEST_FIXTURE_ONLY default variant",
+        "options": { "Size": "TEST_FIXTURE_ONLY" },
+        "selling_price": 10,
+        "compare_at_price": 15,
+        "inventory_status": "IN_STOCK",
+        "inventory_quantity": 1
+      }
+    ],
+    "inventory_status": "IN_STOCK",
+    "inventory_quantity": 1
+  },
+  "physical": {
+    "weight": {
+      "value": "UNKNOWN",
+      "unit": "UNKNOWN"
+    },
+    "dimensions": {
+      "length": "UNKNOWN",
+      "width": "UNKNOWN",
+      "height": "UNKNOWN",
+      "unit": "UNKNOWN"
+    },
+    "material": "UNKNOWN",
+    "package_dimensions": {
+      "length": "UNKNOWN",
+      "width": "UNKNOWN",
+      "height": "UNKNOWN",
+      "unit": "UNKNOWN"
+    },
+    "package_weight": {
+      "value": "UNKNOWN",
+      "unit": "UNKNOWN"
+    }
+  },
+  "content": {
+    "short_description": "TEST_FIXTURE_ONLY - not customer-facing content",
+    "long_description": "TEST_FIXTURE_ONLY - local Medusa seed mapping fixture only",
+    "feature_bullets": ["TEST_FIXTURE_ONLY"],
+    "care_instructions": "UNKNOWN",
+    "specifications": {}
+  },
+  "taxonomy": {
+    "pet_type": "UNKNOWN",
+    "product_category": "UNKNOWN",
+    "collection": "UNKNOWN",
+    "tags": ["TEST_FIXTURE_ONLY"]
+  },
+  "assets": {
+    "main_image": {
+      "url": "https://example.invalid/test-fixture/main.jpg",
+      "alt": "TEST_FIXTURE_ONLY",
+      "source": "TEST_FIXTURE_ONLY",
+      "status": "TEST_FIXTURE_ONLY",
+      "notes": "Not a real product image"
+    },
+    "gallery_images": [],
+    "lifestyle_images": [],
+    "thumbnail": {
+      "url": "https://example.invalid/test-fixture/thumbnail.jpg",
+      "alt": "TEST_FIXTURE_ONLY",
+      "source": "TEST_FIXTURE_ONLY",
+      "status": "TEST_FIXTURE_ONLY",
+      "notes": "Not a real product image"
+    }
+  },
+  "operations": {
+    "moq": "UNKNOWN",
+    "supplier_lead_time": "UNKNOWN",
+    "domestic_shipping_notes": "UNKNOWN",
+    "fulfillment_notes": "TEST_FIXTURE_ONLY"
+  },
+  "cross_border": {
+    "country_of_origin": "UNKNOWN",
+    "hs_code": {
+      "value": null,
+      "status": "NEEDS_VERIFICATION",
+      "evidence": null
+    },
+    "compliance_notes": "UNKNOWN",
+    "restricted_material_notes": "UNKNOWN"
+  },
+  "provenance": {
+    "source_url": "https://example.invalid/test-fixture",
+    "source_evidence": ["TEST_FIXTURE_ONLY: local seed mapping test; not supplier evidence"],
+    "status": "UNVERIFIED",
+    "last_verified_date": null
+  },
+  "metadata": {
+    "fixture_scope": "TEST_FIXTURE_ONLY",
+    "do_not_import": true
+  }
+}

@@ -1,0 +1,6 @@
+carts=4
+cart_line_items=2
+inventory_items=20
+inventory_levels=20
+positive_inventory_levels=20
+reservation_items=0

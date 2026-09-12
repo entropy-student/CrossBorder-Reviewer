@@ -1,0 +1,2 @@
+cb-b06r1-redis-20260908|redis:8-alpine|Up 8 seconds
+cb-b06r1-pg-20260908|postgres:16-alpine|Up 8 seconds

@@ -1,0 +1,45 @@
+ID
+uid=10001(medusa) gid=10001(medusa) groups=10001(medusa)
+PWD
+/app/apps/backend/.medusa/server
+NODE
+v22.14.0
+ARTIFACT
+ARTIFACT_CONFIG_AND_PACKAGE=present
+CLI
+CLI=present
+CLI_FROM_APP
+Couldn't find tsconfig.json. tsconfig-paths will be skipped
+EXIT=0
+╔════════════════════════════════════════════════════════════════════════╗
+║                                                                        ║
+║   Medusa collects anonymous usage analytics                            ║
+║   to help improve Medusa for all users.                                ║
+║                                                                        ║
+║   If you'd like to opt-out, you can use `medusa telemetry --disable`   ║
+CLI_FROM_ARTIFACT
+Couldn't find tsconfig.json. tsconfig-paths will be skipped
+EXIT=0
+Usage: medusa <command> [options]
+
+Commands:
+  medusa new [root] [starter]          Create a new Medusa project.
+  medusa db:setup                      Create the database, run migrations and sync links
+  medusa db:create                     Create the database used by your application
+SENSITIVE_FILENAMES
+/app/node_modules/.pnpm/@aws-sdk+types@3.974.5/node_modules/@aws-sdk/types/dist-es/credentials.js
+/app/node_modules/.pnpm/@aws-sdk+types@3.974.5/node_modules/@aws-sdk/types/dist-types/credentials.d.ts
+/app/node_modules/.pnpm/@aws-sdk+types@3.974.5/node_modules/@aws-sdk/types/dist-types/ts3.4/credentials.d.ts
+/app/node_modules/.pnpm/@grpc+grpc-js@1.14.4/node_modules/@grpc/grpc-js/build/src/call-credentials.d.ts
+/app/node_modules/.pnpm/@grpc+grpc-js@1.14.4/node_modules/@grpc/grpc-js/build/src/call-credentials.js
+/app/node_modules/.pnpm/@grpc+grpc-js@1.14.4/node_modules/@grpc/grpc-js/build/src/call-credentials.js.map
+/app/node_modules/.pnpm/@grpc+grpc-js@1.14.4/node_modules/@grpc/grpc-js/build/src/channel-credentials.d.ts
+/app/node_modules/.pnpm/@grpc+grpc-js@1.14.4/node_modules/@grpc/grpc-js/build/src/channel-credentials.js
+/app/node_modules/.pnpm/@grpc+grpc-js@1.14.4/node_modules/@grpc/grpc-js/build/src/channel-credentials.js.map
+/app/node_modules/.pnpm/@grpc+grpc-js@1.14.4/node_modules/@grpc/grpc-js/build/src/server-credentials.d.ts
+/app/node_modules/.pnpm/@grpc+grpc-js@1.14.4/node_modules/@grpc/grpc-js/build/src/server-credentials.js
+/app/node_modules/.pnpm/@grpc+grpc-js@1.14.4/node_modules/@grpc/grpc-js/build/src/server-credentials.js.map
+/app/node_modules/.pnpm/@grpc+grpc-js@1.14.4/node_modules/@grpc/grpc-js/src/call-credentials.ts
+/app/node_modules/.pnpm/@grpc+grpc-js@1.14.4/node_modules/@grpc/grpc-js/src/channel-credentials.ts
+/app/node_modules/.pnpm/@grpc+grpc-js@1.14.4/node_modules/@grpc/grpc-js/src/server-credentials.ts
+/app/node_modules/.pnpm/@medusajs+ui-preset@2.19.0_tailwindcss@3.4.19_yaml@2.9.0_/node_modules/@medusajs/ui-preset/.env.template

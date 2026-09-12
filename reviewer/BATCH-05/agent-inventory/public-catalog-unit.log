@@ -1,0 +1,13 @@
+
+> @dtc/backend@0.0.1 test C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\backend
+> pnpm run test:unit "--" "--runInBand" "src/api/__tests__/public-catalog.unit.spec.ts"
+
+[WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.overrides". See https://pnpm.io/settings for the new home of each setting.
+$ node scripts/run-jest.cjs unit --silent --runInBand --forceExit "--" "--runInBand" "src/api/__tests__/public-catalog.unit.spec.ts"
+PASS src/api/__tests__/public-catalog.unit.spec.ts
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        1.269 s
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?

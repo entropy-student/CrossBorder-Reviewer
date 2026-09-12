@@ -1,0 +1,185 @@
+{
+  "schema_version": "1.1.0",
+  "record_type": "SELLABLE_PRODUCT",
+  "record_status": "PUBLISHED",
+  "identity": {
+    "source_product_id": "1601855396569",
+    "supplier_name": "UNKNOWN",
+    "supplier_url": "https://www.alibaba.com/x/MEiXjy?ck=pdp",
+    "internal_sku": "PAW-PHR-001",
+    "handle": "pet-hair-remover",
+    "title": "Reusable Self-Cleaning Pet Hair Remover",
+    "subtitle": "Pawfectly Pet Hair Remover"
+  },
+  "commerce": {
+    "currency": "USD",
+    "cost_price": 1.6,
+    "selling_price": 14.99,
+    "compare_at_price": null,
+      "option_names": ["Variant"],
+    "variants": [
+      {
+        "source_variant_id": null,
+        "internal_sku": "PAW-PHR-001",
+        "title": "Default",
+          "options": {"Variant": "Default"},
+        "selling_price": 14.99,
+        "compare_at_price": null,
+        "inventory_status": "UNKNOWN",
+        "inventory_quantity": null,
+        "storefront_purchasable": "YES"
+      }
+    ],
+    "inventory_status": "UNKNOWN",
+    "inventory_quantity": null,
+    "supplier_stock_status": "AVAILABLE",
+    "project_owned_inventory": "UNKNOWN",
+    "storefront_purchasable": "YES",
+    "availability_mode": "LOCAL_PREVIEW_AVAILABILITY"
+  },
+  "physical": {
+    "weight": {
+      "value": 196,
+      "unit": "g"
+    },
+    "dimensions": {
+      "length": "UNKNOWN",
+      "width": 18.5,
+      "height": 19.5,
+      "unit": "cm"
+    },
+    "material": "PP + velvet strips",
+    "package_dimensions": null,
+    "package_weight": {
+      "value": null,
+      "unit": "UNKNOWN"
+    }
+  },
+  "content": {
+    "short_description": "A reusable pet hair remover with a self-cleaning design for common household fabric surfaces.",
+    "long_description": "A reusable self-cleaning pet hair remover designed to lift loose pet hair from common household fabric surfaces, including upholstery, clothing, bedding and rugs.",
+    "feature_bullets": [
+      "Reusable pet hair removal tool",
+      "Self-cleaning design",
+      "For common household fabric surfaces, including upholstery, clothing, bedding and rugs"
+    ],
+    "care_instructions": "Use on compatible fabric surfaces, empty the collection area after use, and stop if a surface shows snagging or damage.",
+    "specifications": {
+      "product_dimensions": {
+        "width": { "value": 18.5, "unit": "cm", "source": "SUPPLIER_CLAIM", "status": "NEEDS_VERIFICATION" },
+        "height": { "value": 19.5, "unit": "cm", "source": "SUPPLIER_CLAIM", "status": "NEEDS_VERIFICATION" },
+        "depth": { "value": null, "unit": "UNKNOWN", "source": "SUPPLIER_CLAIM", "status": "UNKNOWN" }
+      },
+      "product_weight": { "value": 196, "unit": "g", "source": "SUPPLIER_CLAIM", "status": "NEEDS_VERIFICATION" },
+      "material": { "value": "PP + velvet strips", "source": "SUPPLIER_CLAIM", "status": "NEEDS_VERIFICATION" },
+      "colorways": { "value": ["White & Gray", "White & Blue"], "source": "IMAGE_EVIDENCE_ONLY", "status": "NEEDS_VERIFICATION" }
+    }
+  },
+  "taxonomy": {
+    "pet_type": "Dog + Cat / General Pet",
+    "product_category": "Pet Hair Removal",
+    "collection": "Cleaning & Home Care",
+    "tags": ["pet-hair", "lint-removal", "home-cleaning", "reusable"]
+  },
+  "assets": {
+    "main_image": {
+      "url": "/assets/products/COMP-001-main-square.png",
+      "alt": "Reusable self-cleaning pet hair remover",
+      "source": "SOURCE_PRODUCT_ASSET / PRIMARY_PRODUCT_IMAGE / USER_APPROVED",
+      "status": "VERIFIED",
+      "notes": "User-approved 1:1 source image; SHA256 FBA393D76A2291B4B152D4E0BCDF321B76F851C3614947D251959FC54A02D04E; preserved as the original project asset and not AI-generated."
+    },
+    "gallery_images": [
+      {
+        "url": "/assets/products/COMP-001-main-square.png",
+        "alt": "Reusable self-cleaning pet hair remover",
+        "source": "SOURCE_PRODUCT_ASSET / PRIMARY_PRODUCT_IMAGE / USER_APPROVED",
+        "status": "VERIFIED",
+        "notes": "Primary PDP gallery image; same latest approved 1:1 source asset as main_image."
+      }
+    ],
+    "lifestyle_images": [
+      {
+        "url": "05_product/assets/source/COMP-001-source-product-clean.png",
+        "alt": "Pet hair remover in a home setting",
+        "source": "SECONDARY_LIFESTYLE_ASSET / SOURCE_PRODUCT_ASSET / SUPPLIER_MARKETING_EVIDENCE",
+        "status": "VERIFIED",
+        "notes": "Previous wide source asset preserved as secondary lifestyle evidence; SHA256 846F986C3A32D0CC73C4247904EEB27F4942439159563FDBA91A879D315EEE5E; not the primary product image."
+      }
+    ],
+    "thumbnail": {
+      "url": "/assets/products/COMP-001-main-square.png",
+      "alt": "Reusable self-cleaning pet hair remover",
+      "source": "SOURCE_PRODUCT_ASSET / PRIMARY_PRODUCT_IMAGE / USER_APPROVED",
+      "status": "VERIFIED",
+      "notes": "Approved 1:1 source asset reused without geometry or feature changes."
+    }
+  },
+  "operations": {
+    "moq": 100,
+    "supplier_lead_time": "2-3 days after payment / tracking",
+    "domestic_shipping_notes": "Supplier-claimed bulk US DDP ocean quote: USD 48 for 100 units; this is not a domestic-shipping promise.",
+    "fulfillment_notes": "Bulk DDP terms are supplier claims. China-to-individual-US-consumer dropship support is UNKNOWN."
+  },
+  "cross_border": {
+    "country_of_origin": "UNKNOWN",
+    "hs_code": {
+      "value": "9603909090",
+      "status": "NEEDS_VERIFICATION",
+      "evidence": "Supplier-provided HS code; no independent export or customs record supplied."
+    },
+    "compliance_notes": "UNKNOWN / NEEDS_VERIFICATION",
+    "restricted_material_notes": "UNKNOWN / NEEDS_VERIFICATION"
+  },
+  "provenance": {
+    "source_url": "https://www.alibaba.com/x/MEiXjy?ck=pdp",
+    "source_evidence": [
+      "Alibaba listing: https://www.alibaba.com/x/MEiXjy?ck=pdp",
+      "Project sourcing record: 05_product/sourcing/components/COMP-001-pet-hair-remover.json"
+    ],
+    "status": "NEEDS_VERIFICATION",
+    "last_verified_date": null
+  },
+  "metadata": {
+    "store_integration_approved_by_user": "YES",
+    "store_integration_gate": "APPROVED_FOR_STORE_INTEGRATION",
+    "product_status": "PUBLISHED",
+    "source_component_id": "COMP-001",
+    "source_component_type": "CORE_COMPONENT",
+    "source_bundle_candidate": "Pet Fur Rescue Kit",
+    "selling_price_status": "CONFIRMED_BY_USER",
+    "selling_price_confirmed": "YES",
+    "variant_strategy": "GENERIC_DEFAULT_UNTIL_SUPPLIER_COLOR_AND_SKU_CONFIRMATION",
+    "publish_status": "LOCAL_PUBLISHED_WITH_SUPPLY_CHAIN_FACTS_UNVERIFIED",
+    "sourcing_gate_status": {
+      "sample_gate": "NEEDS_TEST",
+      "procurement_gate": "HOLD",
+      "logistics_gate": "NEEDS_VERIFICATION",
+      "risk_gate": "NEEDS_VERIFICATION"
+    },
+    "asset_status": "PRIMARY_SQUARE_SOURCE_ASSET_ATTACHED_AND_USER_APPROVED",
+    "source_image_sha256": "FBA393D76A2291B4B152D4E0BCDF321B76F851C3614947D251959FC54A02D04E",
+    "primary_image_aspect_ratio": "1:1",
+    "previous_wide_asset": "/assets/products/COMP-001-source-product-clean.png",
+    "previous_wide_asset_sha256": "846F986C3A32D0CC73C4247904EEB27F4942439159563FDBA91A879D315EEE5E",
+    "previous_wide_asset_role": "SECONDARY_LIFESTYLE_ASSET",
+    "supplier_stock_status": "AVAILABLE",
+    "supplier_stock_status_source": "SUPPLIER_CLAIM",
+    "project_owned_inventory": "UNKNOWN",
+    "storefront_purchasable": "YES",
+    "availability_mode": "LOCAL_PREVIEW_AVAILABILITY",
+    "source_fact_boundary": "Supplier claims and sourcing facts remain labelled as unverified; no FTO, HS, origin, owned inventory or logistics fact is inferred. The user-approved source asset is verified as the supplied image for local storefront publication.",
+    "bulk_shipping_quote": {
+      "destination": "US",
+      "quantity": 100,
+      "mode": "DDP ocean",
+      "quoted_cost": 48,
+      "currency": "USD",
+      "status": "NEEDS_VERIFICATION",
+      "source": "SUPPLIER_CLAIM"
+    },
+    "medusa_write": "AUTHORIZED_FOR_LOCAL_PUBLISH_ONLY",
+    "real_payment": "NOT_CONFIGURED",
+    "public_merchandising_copy_review": "PASS"
+  }
+}

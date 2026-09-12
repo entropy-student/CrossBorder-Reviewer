@@ -1,0 +1,3375 @@
+diff --git a/03_template/medusa-crossborder-base/apps/backend/.env.template b/03_template/medusa-crossborder-base/apps/backend/.env.template
+index 0230f02..f70e08d 100644
+--- a/03_template/medusa-crossborder-base/apps/backend/.env.template
++++ b/03_template/medusa-crossborder-base/apps/backend/.env.template
+@@ -14,3 +14,4 @@ PAYPAL_AUTO_CAPTURE=false
+ PAYPAL_CLIENT_ID=
+ PAYPAL_CLIENT_SECRET=
+ PAYPAL_WEBHOOK_ID=
++MEDUSA_CHECKOUT_INSTANCE_MODE=customer
+diff --git a/03_template/medusa-crossborder-base/apps/backend/medusa-config.ts b/03_template/medusa-crossborder-base/apps/backend/medusa-config.ts
+index ba7ae3d..08d0f2b 100644
+--- a/03_template/medusa-crossborder-base/apps/backend/medusa-config.ts
++++ b/03_template/medusa-crossborder-base/apps/backend/medusa-config.ts
+@@ -39,6 +39,13 @@ if (
+   )
+ }
+ 
++if (paypalProviderEnabled && process.env.PAYPAL_ENVIRONMENT?.toLowerCase() === "production") {
++  throw new MedusaError(
++    MedusaError.Types.NOT_ALLOWED,
++    "PayPal production transport is disabled in this review batch; sandbox is the only allowed environment."
++  )
++}
++
+ const paypalModules = paypalProviderEnabled
+   ? {
+       modules: [
+diff --git a/03_template/medusa-crossborder-base/apps/backend/package.json b/03_template/medusa-crossborder-base/apps/backend/package.json
+index e24d485..29e3130 100644
+--- a/03_template/medusa-crossborder-base/apps/backend/package.json
++++ b/03_template/medusa-crossborder-base/apps/backend/package.json
+@@ -17,9 +17,11 @@
+     "start": "medusa start",
+     "dev": "medusa develop",
+     "lint": "medusa lint",
+-    "test:integration:http": "TEST_TYPE=integration:http NODE_OPTIONS=--experimental-vm-modules jest --silent=false --runInBand --forceExit",
+-    "test:integration:modules": "TEST_TYPE=integration:modules NODE_OPTIONS=--experimental-vm-modules jest --silent=false --runInBand --forceExit",
+-    "test:unit": "TEST_TYPE=unit NODE_OPTIONS=--experimental-vm-modules jest --silent --runInBand --forceExit"
++    "typecheck": "tsc --noEmit --incremental false --pretty false",
++    "test": "pnpm run test:unit",
++    "test:integration:http": "node scripts/run-jest.cjs integration:http --silent=false --runInBand --forceExit",
++    "test:integration:modules": "node scripts/run-jest.cjs integration:modules --silent=false --runInBand --forceExit",
++    "test:unit": "node scripts/run-jest.cjs unit --silent --runInBand --forceExit"
+   },
+   "dependencies": {
+     "@medusajs/admin-sdk": "2.19.0",
+@@ -38,6 +40,7 @@
+   },
+   "devDependencies": {
+     "@medusajs/test-utils": "2.19.0",
++    "@medusajs/utils": "2.19.0",
+     "@swc/core": "^1.7.28",
+     "@swc/jest": "^0.2.36",
+     "@types/jest": "^29.5.13",
+diff --git a/03_template/medusa-crossborder-base/apps/backend/src/modules/paypal/__tests__/paypal.unit.spec.ts b/03_template/medusa-crossborder-base/apps/backend/src/modules/paypal/__tests__/paypal.unit.spec.ts
+index 8ff5f4d..cf34c90 100644
+--- a/03_template/medusa-crossborder-base/apps/backend/src/modules/paypal/__tests__/paypal.unit.spec.ts
++++ b/03_template/medusa-crossborder-base/apps/backend/src/modules/paypal/__tests__/paypal.unit.spec.ts
+@@ -8,6 +8,7 @@ import {
+   PayPalPaymentProviderService,
+   type PayPalTransport,
+ } from "../service"
++import { PayPalHttpTransport } from "../transport"
+ 
+ // Read-only evidence from the installed Medusa 2.19.0 local database. The
+ // provider treats this as an opaque identifier; the payses_ spelling is not a
+@@ -265,6 +266,33 @@ describe("PayPal provider scaffold", () => {
+     expect(fakeTransport.refundCapture).not.toHaveBeenCalled()
+   })
+ 
++  it("replays a completed refund from stored operation evidence without a second transport call", async () => {
++    const fakeTransport = transport()
++    const service = enabledService(fakeTransport)
++    const first = await service.refundPayment({ amount: "5.00", data: baseData, context: { idempotency_key: "refund-a" } })
++    const second = await service.refundPayment({ amount: "5.00", data: first.data as Record<string, unknown>, context: { idempotency_key: "refund-a" } })
++    expect(second.data).toMatchObject({ paypal_refund_id: "REFUND-123", refunded_amount: "5.00" })
++    expect(fakeTransport.refundCapture).toHaveBeenCalledTimes(1)
++  })
++
++  it("rejects a status response for a different PayPal order", async () => {
++    const fakeTransport = transport({ retrieveOrder: jest.fn(async () => ({ order_id: "OTHER-ORDER", status: "AUTHORIZED", authorization_id: "AUTH-123", amount: "14.99", currency_code: "USD" })) })
++    await expect(enabledService(fakeTransport).getPaymentStatus({ data: baseData })).rejects.toThrow("different order")
++  })
++
++  it("maps sandbox transport fixtures without making an external request", async () => {
++    const responses = [
++      { ok: true, status: 200, text: async () => JSON.stringify({ access_token: "fixture-token", expires_in: 3600 }) },
++      { ok: true, status: 201, text: async () => JSON.stringify({ id: "ORDER-123", status: "CREATED", links: [{ rel: "approve", href: "https://sandbox.test/approve" }] }) },
++    ]
++    const fetchImpl = jest.fn(async () => responses.shift() as never)
++    const sandbox = new PayPalHttpTransport({ environment: "sandbox", clientId: "fixture-client", clientSecret: "fixture-secret", fetchImpl: fetchImpl as unknown as typeof fetch })
++    await expect(sandbox.createOrder({ amount: "14.99", currency_code: "USD", correlation_id: sessionId, idempotency_key: "pp-fixture-create", intent: "AUTHORIZE" })).resolves.toMatchObject({ order_id: "ORDER-123", approval_url: "https://sandbox.test/approve" })
++    expect(fetchImpl).toHaveBeenCalledTimes(2)
++    const calls = fetchImpl.mock.calls as unknown as Array<[string]>
++    expect(calls[1][0]).toBe("https://api-m.sandbox.paypal.com/v2/checkout/orders")
++  })
++
+   it("requires a Medusa idempotency key for refund operations", async () => {
+     await expect(enabledService(transport()).refundPayment({ amount: "1.00", data: baseData })).rejects.toThrow(
+       "context.idempotency_key"
+diff --git a/03_template/medusa-crossborder-base/apps/backend/src/modules/paypal/service.ts b/03_template/medusa-crossborder-base/apps/backend/src/modules/paypal/service.ts
+index 46c4fe7..09f7d8e 100644
+--- a/03_template/medusa-crossborder-base/apps/backend/src/modules/paypal/service.ts
++++ b/03_template/medusa-crossborder-base/apps/backend/src/modules/paypal/service.ts
+@@ -24,6 +24,7 @@ import type {
+   WebhookActionResult,
+ } from "@medusajs/framework/types"
+ import { AbstractPaymentProvider, MedusaError } from "@medusajs/framework/utils"
++import { PayPalHttpTransport } from "./transport"
+ 
+ export const PAYPAL_PROVIDER_IDENTIFIER = "paypal"
+ export const PAYPAL_PAYMENT_INTENT = "AUTHORIZE" as const
+@@ -57,6 +58,8 @@ export type PayPalPaymentData = {
+   status?: string
+   /** Locally tracked refund total; provider remains the final authority. */
+   refunded_amount?: string
++  /** Stable Medusa refund operation -> provider evidence, for replay-safe retries. */
++  refund_operations?: Record<string, { refund_id: string; amount: string; status: string }>
+ }
+ 
+ type PayPalOperationInput = {
+@@ -287,6 +290,9 @@ function readProviderData(data: Record<string, unknown> | undefined): PayPalPaym
+   const captureId = readString(source.paypal_capture_id) ?? readString(source.capture_id)
+   const refundId = readString(source.paypal_refund_id) ?? readString(source.refund_id)
+   const refundedAmount = readString(source.refunded_amount)
++  const refundOperations = source.refund_operations && typeof source.refund_operations === "object" && !Array.isArray(source.refund_operations)
++    ? source.refund_operations as Record<string, { refund_id?: unknown; amount?: unknown; status?: unknown }>
++    : undefined
+ 
+   for (const [name, value] of [
+     ["authorization", authorizationId],
+@@ -309,6 +315,15 @@ function readProviderData(data: Record<string, unknown> | undefined): PayPalPaym
+     ...(readString(source.approval_url) ? { approval_url: readString(source.approval_url) } : {}),
+     ...(readString(source.status) ? { status: readString(source.status) } : {}),
+     ...(refundedAmount ? { refunded_amount: normalizeAmount(refundedAmount, currencyCode, "refunded_amount") } : {}),
++    ...(refundOperations ? {
++      refund_operations: Object.fromEntries(Object.entries(refundOperations).flatMap(([key, value]) => {
++        const refundOperationId = readString(value?.refund_id)
++        const refundOperationAmount = readString(value?.amount)
++        const refundOperationStatus = readString(value?.status)
++        if (!SAFE_CORRELATION_ID_PATTERN.test(key) || !refundOperationId || !PAYPAL_ID_PATTERN.test(refundOperationId) || !refundOperationAmount || !refundOperationStatus) return []
++        return [[key, { refund_id: refundOperationId, amount: normalizeAmount(refundOperationAmount, currencyCode, "refund operation amount"), status: refundOperationStatus }]]
++      })),
++    } : {}),
+   }
+ }
+ 
+@@ -324,6 +339,7 @@ function safeData(data: PayPalPaymentData): Record<string, unknown> {
+     ...(data.approval_url ? { approval_url: data.approval_url } : {}),
+     ...(data.status ? { status: data.status } : {}),
+     ...(data.refunded_amount ? { refunded_amount: data.refunded_amount } : {}),
++    ...(data.refund_operations ? { refund_operations: data.refund_operations } : {}),
+   }
+ }
+ 
+@@ -387,6 +403,17 @@ function assertOptionalMoney(
+   }
+ }
+ 
++function assertRequiredMoney(
++  response: { amount?: string; currency_code?: string },
++  expectedAmount: string,
++  expectedCurrency: string
++): void {
++  if (response.amount === undefined || response.currency_code === undefined) {
++    return invalid("PayPal response must provide trusted amount and currency evidence.")
++  }
++  assertOptionalMoney(response, expectedAmount, expectedCurrency)
++}
++
+ function requirePayPalId(value: unknown, fieldName: string): string {
+   const id = readString(value)
+   if (!id || !PAYPAL_ID_PATTERN.test(id)) {
+@@ -548,6 +575,9 @@ export function getPayPalProviderOptions(env: NodeJS.ProcessEnv = process.env):
+   if (rawEnvironment !== "sandbox" && rawEnvironment !== "production") {
+     return invalid("PAYPAL_ENVIRONMENT must be sandbox or production.")
+   }
++  if (enabled && rawEnvironment === "production") {
++    return invalid("PAYPAL production transport is disabled in this review batch; sandbox is the only allowed environment.")
++  }
+ 
+   const autoCapture = env.PAYPAL_AUTO_CAPTURE?.toLowerCase() === "true"
+   if (autoCapture) {
+@@ -583,6 +613,9 @@ export class PayPalPaymentProviderService extends AbstractPaymentProvider<PayPal
+     if (options.environment !== "sandbox" && options.environment !== "production") {
+       return invalid("PAYPAL_ENVIRONMENT must be sandbox or production.")
+     }
++    if (options.environment === "production") {
++      return invalid("PayPal production transport is disabled in this review batch; sandbox is the only allowed environment.")
++    }
+     if (options.payment_intent !== PAYPAL_PAYMENT_INTENT) {
+       return invalid("PAYPAL_PAYMENT_INTENT must be AUTHORIZE for the reviewed PayPal path.")
+     }
+@@ -606,7 +639,15 @@ export class PayPalPaymentProviderService extends AbstractPaymentProvider<PayPal
+     if (this.options_.payment_intent !== PAYPAL_PAYMENT_INTENT || this.options_.auto_capture === true) {
+       invalid("PayPal supports only PAYPAL_PAYMENT_INTENT=AUTHORIZE with PAYPAL_AUTO_CAPTURE=false.")
+     }
+-    this.transport_ = options.transport ?? new FailClosedPayPalTransport()
++    this.transport_ = options.transport ?? (
++      options.enabled === true && options.client_id && options.client_secret
++        ? new PayPalHttpTransport({
++            environment: options.environment,
++            clientId: options.client_id,
++            clientSecret: options.client_secret,
++          })
++        : new FailClosedPayPalTransport()
++    )
+   }
+ 
+   getIdentifier(): string {
+@@ -661,7 +702,7 @@ export class PayPalPaymentProviderService extends AbstractPaymentProvider<PayPal
+       return invalid("PayPal authorization response belongs to a different order.")
+     }
+     const authorizationId = requirePayPalId(response.authorization_id, "authorization_id")
+-    assertOptionalMoney(response, source.amount, source.currency_code)
++    assertRequiredMoney(response, source.amount, source.currency_code)
+     const status = statusFromPayPal(response.status, "authorize", { authorization_id: authorizationId })
+     if (status !== "authorized") {
+       return invalid("PayPal authorization response did not provide authorization evidence.")
+@@ -678,7 +719,7 @@ export class PayPalPaymentProviderService extends AbstractPaymentProvider<PayPal
+       idempotency_key: buildOperationKey("capture", source.session_id),
+     })
+     const captureId = requirePayPalId(response.capture_id, "capture_id")
+-    assertOptionalMoney(response, source.amount, source.currency_code)
++    assertRequiredMoney(response, source.amount, source.currency_code)
+     const status = statusFromPayPal(response.status, "capture", { capture_id: captureId })
+     if (status !== "captured") {
+       return invalid("PayPal capture response did not provide capture evidence.")
+@@ -704,12 +745,17 @@ export class PayPalPaymentProviderService extends AbstractPaymentProvider<PayPal
+   async refundPayment(input: RefundPaymentInput): Promise<RefundPaymentOutput> {
+     this.assertEnabled("refundPayment")
+     const source = readProviderData(input.data)
+-    const captureId = requirePayPalId(source.paypal_capture_id, "paypal_capture_id")
+     const requestId = readString(input.context?.idempotency_key)
+     if (!requestId) {
+       return invalid("PayPal refund requires Medusa context.idempotency_key for operation-level idempotency.")
+     }
+     const refundAmount = normalizeAmount(input.amount, source.currency_code, "refund amount")
++    const priorOperation = source.refund_operations?.[requestId]
++    if (priorOperation) {
++      if (priorOperation.amount !== refundAmount) return invalid("PayPal refund retry changed the amount for the same logical operation.")
++      return { data: dataFromResponse(source, priorOperation.status === "COMPLETED" ? "captured" : "pending", { refund_id: priorOperation.refund_id }) }
++    }
++    const captureId = requirePayPalId(source.paypal_capture_id, "paypal_capture_id")
+     const alreadyRefunded = source.refunded_amount
+       ? normalizeAmount(source.refunded_amount, source.currency_code, "refunded_amount")
+       : "0.00"
+@@ -727,15 +773,26 @@ export class PayPalPaymentProviderService extends AbstractPaymentProvider<PayPal
+       idempotency_key: buildOperationKey("refund", source.session_id, requestId),
+     })
+     const refundId = requirePayPalId(response.refund_id, "refund_id")
+-    assertOptionalMoney(response, refundAmount, source.currency_code)
+-    if (!(["COMPLETED", "CAPTURED"].includes(response.status.toUpperCase()))) {
++    assertRequiredMoney(response, refundAmount, source.currency_code)
++    const refundStatus = response.status.toUpperCase()
++    if (["PENDING", "IN_PROGRESS"].includes(refundStatus)) {
++      return { data: dataFromResponse(source, "pending", { refund_id: refundId }) }
++    }
++    if (!["COMPLETED", "CAPTURED"].includes(refundStatus)) {
+       return invalid("PayPal refund response did not confirm a completed refund.")
+     }
+     const nextRefundedMinor = alreadyRefundedMinor + refundMinor
+     const nextRefundedText = `${nextRefundedMinor.toString().padStart(3, "0").slice(0, -2)}.${nextRefundedMinor.toString().padStart(3, "0").slice(-2)}`
+     return {
+       data: dataFromResponse(
+-        { ...source, refunded_amount: nextRefundedText },
++        {
++          ...source,
++          refunded_amount: nextRefundedText,
++          refund_operations: {
++            ...(source.refund_operations || {}),
++            [requestId]: { refund_id: refundId, amount: refundAmount, status: "COMPLETED" },
++          },
++        },
+         "captured",
+         { refund_id: refundId }
+       ),
+@@ -773,7 +830,7 @@ export class PayPalPaymentProviderService extends AbstractPaymentProvider<PayPal
+     if (orderId !== source.paypal_order_id) {
+       return invalid("PayPal retrieve response belongs to a different order.")
+     }
+-    assertOptionalMoney(response, source.amount, source.currency_code)
++    assertRequiredMoney(response, source.amount, source.currency_code)
+     const authorizationId = response.authorization_id ? requirePayPalId(response.authorization_id, "authorization_id") : undefined
+     const captureId = response.capture_id ? requirePayPalId(response.capture_id, "capture_id") : undefined
+     const status = statusFromPayPal(response.status, "retrieve", {
+@@ -799,7 +856,9 @@ export class PayPalPaymentProviderService extends AbstractPaymentProvider<PayPal
+     this.assertEnabled("getPaymentStatus")
+     const source = readProviderData(input.data)
+     const response = await this.transport_.retrieveOrder({ order_id: source.paypal_order_id })
+-    assertOptionalMoney(response, source.amount, source.currency_code)
++    const orderId = requirePayPalId(response.order_id, "order_id")
++    if (orderId !== source.paypal_order_id) return invalid("PayPal status response belongs to a different order.")
++    assertRequiredMoney(response, source.amount, source.currency_code)
+     const authorizationId = response.authorization_id ? requirePayPalId(response.authorization_id, "authorization_id") : undefined
+     const captureId = response.capture_id ? requirePayPalId(response.capture_id, "capture_id") : undefined
+     const status = statusFromPayPal(response.status, "status", {
+diff --git a/03_template/medusa-crossborder-base/apps/storefront/next.config.js b/03_template/medusa-crossborder-base/apps/storefront/next.config.js
+index 16bab5e..7c5a21e 100644
+--- a/03_template/medusa-crossborder-base/apps/storefront/next.config.js
++++ b/03_template/medusa-crossborder-base/apps/storefront/next.config.js
+@@ -18,12 +18,6 @@ const nextConfig = {
+       fullUrl: true,
+     },
+   },
+-  eslint: {
+-    ignoreDuringBuilds: true,
+-  },
+-  typescript: {
+-    ignoreBuildErrors: true,
+-  },
+   images: {
+     unoptimized: true,
+     remotePatterns: [
+diff --git a/03_template/medusa-crossborder-base/apps/storefront/package.json b/03_template/medusa-crossborder-base/apps/storefront/package.json
+index 86e31c8..5f8545e 100644
+--- a/03_template/medusa-crossborder-base/apps/storefront/package.json
++++ b/03_template/medusa-crossborder-base/apps/storefront/package.json
+@@ -11,7 +11,8 @@
+     "dev": "next dev --turbopack -p 8000",
+     "build": "next build",
+     "start": "next start -p 8000",
+-    "lint": "next lint",
++    "lint": "node scripts/run-eslint.cjs",
++    "typecheck": "tsc --noEmit --incremental false --pretty false",
+     "analyze": "ANALYZE=true next build"
+   },
+   "dependencies": {
+diff --git a/03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/order/[id]/transfer/[token]/accept/page.tsx b/03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/order/[id]/transfer/[token]/accept/page.tsx
+index 2b51b9f..1a2881f 100644
+--- a/03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/order/[id]/transfer/[token]/accept/page.tsx
++++ b/03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/order/[id]/transfer/[token]/accept/page.tsx
+@@ -1,6 +1,7 @@
+-import { acceptTransferRequest } from "@lib/data/orders"
++import { acceptTransferRequestAction } from "@lib/data/orders"
+ import { Heading, Text } from "@modules/common/components/ui"
+ import TransferImage from "@modules/order/components/transfer-image"
++import TransferDecisionForm from "@modules/order/components/transfer-decision-form"
+ 
+ export default async function TransferPage({
+   params,
+@@ -9,32 +10,13 @@ export default async function TransferPage({
+ }) {
+   const { id, token } = params
+ 
+-  const { success, error } = await acceptTransferRequest(id, token)
+-
+   return (
+     <div className="flex flex-col gap-y-4 items-start w-2/5 mx-auto mt-10 mb-20">
+       <TransferImage />
+       <div className="flex flex-col gap-y-6">
+-        {success && (
+-          <>
+-            <Heading level="h1" className="text-xl text-zinc-900">
+-              Order transfered!
+-            </Heading>
+-            <Text className="text-zinc-600">
+-              Order {id} has been successfully transfered to the new owner.
+-            </Text>
+-          </>
+-        )}
+-        {!success && (
+-          <>
+-            <Text className="text-zinc-600">
+-              There was an error accepting the transfer. Please try again.
+-            </Text>
+-            {error && (
+-              <Text className="text-red-500">Error message: {error}</Text>
+-            )}
+-          </>
+-        )}
++        <Heading level="h1" className="text-xl text-zinc-900">Confirm order transfer</Heading>
++        <Text className="text-zinc-600">Confirm transfer of order {id} to this account.</Text>
++        <TransferDecisionForm action={acceptTransferRequestAction} orderId={id} token={token} verb="accept" />
+       </div>
+     </div>
+   )
+diff --git a/03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/order/[id]/transfer/[token]/decline/page.tsx b/03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/order/[id]/transfer/[token]/decline/page.tsx
+index 40ae45e..d49f64f 100644
+--- a/03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/order/[id]/transfer/[token]/decline/page.tsx
++++ b/03_template/medusa-crossborder-base/apps/storefront/src/app/[countryCode]/(main)/order/[id]/transfer/[token]/decline/page.tsx
+@@ -1,6 +1,7 @@
+-import { declineTransferRequest } from "@lib/data/orders"
++import { declineTransferRequestAction } from "@lib/data/orders"
+ import { Heading, Text } from "@modules/common/components/ui"
+ import TransferImage from "@modules/order/components/transfer-image"
++import TransferDecisionForm from "@modules/order/components/transfer-decision-form"
+ 
+ export default async function TransferPage({
+   params,
+@@ -9,32 +10,13 @@ export default async function TransferPage({
+ }) {
+   const { id, token } = params
+ 
+-  const { success, error } = await declineTransferRequest(id, token)
+-
+   return (
+     <div className="flex flex-col gap-y-4 items-start w-2/5 mx-auto mt-10 mb-20">
+       <TransferImage />
+       <div className="flex flex-col gap-y-6">
+-        {success && (
+-          <>
+-            <Heading level="h1" className="text-xl text-zinc-900">
+-              Order transfer declined!
+-            </Heading>
+-            <Text className="text-zinc-600">
+-              Transfer of order {id} has been successfully declined.
+-            </Text>
+-          </>
+-        )}
+-        {!success && (
+-          <>
+-            <Text className="text-zinc-600">
+-              There was an error declining the transfer. Please try again.
+-            </Text>
+-            {error && (
+-              <Text className="text-red-500">Error message: {error}</Text>
+-            )}
+-          </>
+-        )}
++        <Heading level="h1" className="text-xl text-zinc-900">Confirm transfer decline</Heading>
++        <Text className="text-zinc-600">Confirm declining transfer of order {id}.</Text>
++        <TransferDecisionForm action={declineTransferRequestAction} orderId={id} token={token} verb="decline" />
+       </div>
+     </div>
+   )
+diff --git a/03_template/medusa-crossborder-base/apps/storefront/src/lib/data/cart.ts b/03_template/medusa-crossborder-base/apps/storefront/src/lib/data/cart.ts
+index dd9b02d..da16ed7 100644
+--- a/03_template/medusa-crossborder-base/apps/storefront/src/lib/data/cart.ts
++++ b/03_template/medusa-crossborder-base/apps/storefront/src/lib/data/cart.ts
+@@ -34,10 +34,6 @@ export async function retrieveCart(cartId?: string, fields?: string) {
+     ...(await getAuthHeaders()),
+   }
+ 
+-  const next = {
+-    ...(await getCacheOptions("carts")),
+-  }
+-
+   return await sdk.client
+     .fetch<HttpTypes.StoreCartResponse>(`/store/carts/${id}`, {
+       method: "GET",
+@@ -45,11 +41,16 @@ export async function retrieveCart(cartId?: string, fields?: string) {
+         fields,
+       },
+       headers,
+-      next,
+-      cache: "force-cache",
++      next: undefined,
++      cache: "no-store",
+     })
+     .then(({ cart }: { cart: HttpTypes.StoreCart }) => cart)
+-    .catch(() => null)
++    .catch((error: unknown) => {
++      const status = (error as { status?: number; response?: { status?: number } })?.status
++        ?? (error as { response?: { status?: number } })?.response?.status
++      if (status === 404) return null
++      throw error
++    })
+ }
+ 
+ export async function getOrSetCart(countryCode: string) {
+@@ -278,7 +279,7 @@ export async function applyPromotions(codes: string[]) {
+     .catch(medusaError)
+ }
+ 
+-export async function applyGiftCard(code: string) {
++export async function applyGiftCard(_code: string) {
+   //   const cartId = getCartId()
+   //   if (!cartId) return "No cartId cookie found"
+   //   try {
+@@ -290,7 +291,7 @@ export async function applyGiftCard(code: string) {
+   //   }
+ }
+ 
+-export async function removeDiscount(code: string) {
++export async function removeDiscount(_code: string) {
+   // const cartId = getCartId()
+   // if (!cartId) return "No cartId cookie found"
+   // try {
+@@ -302,8 +303,8 @@ export async function removeDiscount(code: string) {
+ }
+ 
+ export async function removeGiftCard(
+-  codeToRemove: string,
+-  giftCards: any[]
++  _codeToRemove: string,
++  _giftCards: unknown[]
+   // giftCards: GiftCard[]
+ ) {
+   //   const cartId = getCartId()
+@@ -328,13 +329,18 @@ export async function submitPromotionForm(
+   const code = formData.get("code") as string
+   try {
+     await applyPromotions([code])
+-  } catch (e: any) {
+-    return e.message
++  } catch (e: unknown) {
++    return e instanceof Error ? e.message : String(e)
+   }
+ }
+ 
+ // TODO: Pass a POJO instead of a form entity here
+ export async function setAddresses(currentState: unknown, formData: FormData) {
++  const formValue = (key: string): string | null => {
++    const value = formData.get(key)
++    return typeof value === "string" ? value : null
++  }
++
+   try {
+     if (!formData) {
+       throw new Error("No form data found when setting addresses")
+@@ -346,43 +352,43 @@ export async function setAddresses(currentState: unknown, formData: FormData) {
+ 
+     const data = {
+       shipping_address: {
+-        first_name: formData.get("shipping_address.first_name"),
+-        last_name: formData.get("shipping_address.last_name"),
+-        address_1: formData.get("shipping_address.address_1"),
++        first_name: formValue("shipping_address.first_name"),
++        last_name: formValue("shipping_address.last_name"),
++        address_1: formValue("shipping_address.address_1"),
+         address_2: "",
+-        company: formData.get("shipping_address.company"),
+-        postal_code: formData.get("shipping_address.postal_code"),
+-        city: formData.get("shipping_address.city"),
+-        country_code: formData.get("shipping_address.country_code"),
+-        province: formData.get("shipping_address.province"),
+-        phone: formData.get("shipping_address.phone"),
++        company: formValue("shipping_address.company"),
++        postal_code: formValue("shipping_address.postal_code"),
++        city: formValue("shipping_address.city"),
++        country_code: formValue("shipping_address.country_code"),
++        province: formValue("shipping_address.province"),
++        phone: formValue("shipping_address.phone"),
+       },
+-      email: formData.get("email"),
+-    } as any
++      email: formValue("email"),
++    } as HttpTypes.StoreUpdateCart
+ 
+     const sameAsBilling = formData.get("same_as_billing")
+     if (sameAsBilling === "on") data.billing_address = data.shipping_address
+ 
+     if (sameAsBilling !== "on")
+       data.billing_address = {
+-        first_name: formData.get("billing_address.first_name"),
+-        last_name: formData.get("billing_address.last_name"),
+-        address_1: formData.get("billing_address.address_1"),
++        first_name: formValue("billing_address.first_name"),
++        last_name: formValue("billing_address.last_name"),
++        address_1: formValue("billing_address.address_1"),
+         address_2: "",
+-        company: formData.get("billing_address.company"),
+-        postal_code: formData.get("billing_address.postal_code"),
+-        city: formData.get("billing_address.city"),
+-        country_code: formData.get("billing_address.country_code"),
+-        province: formData.get("billing_address.province"),
+-        phone: formData.get("billing_address.phone"),
++        company: formValue("billing_address.company"),
++        postal_code: formValue("billing_address.postal_code"),
++        city: formValue("billing_address.city"),
++        country_code: formValue("billing_address.country_code"),
++        province: formValue("billing_address.province"),
++        phone: formValue("billing_address.phone"),
+       }
+     await updateCart(data)
+-  } catch (e: any) {
+-    return e.message
++  } catch (e: unknown) {
++    return e instanceof Error ? e.message : String(e)
+   }
+ 
+   redirect(
+-    `/${formData.get("shipping_address.country_code")}/checkout?step=delivery`
++    `/${formValue("shipping_address.country_code")}/checkout?step=delivery`
+   )
+ }
+ 
+@@ -418,7 +424,7 @@ export async function placeOrder(cartId?: string) {
+     const orderCacheTag = await getCacheTag("orders")
+     revalidateTag(orderCacheTag)
+ 
+-    removeCartId()
++    await removeCartId()
+     redirect(`/${countryCode}/order/${cartRes?.order.id}/confirmed`)
+   }
+ 
+diff --git a/03_template/medusa-crossborder-base/apps/storefront/src/lib/data/customer.ts b/03_template/medusa-crossborder-base/apps/storefront/src/lib/data/customer.ts
+index 13624d3..db14136 100644
+--- a/03_template/medusa-crossborder-base/apps/storefront/src/lib/data/customer.ts
++++ b/03_template/medusa-crossborder-base/apps/storefront/src/lib/data/customer.ts
+@@ -8,7 +8,6 @@ import { revalidateTag } from "next/cache"
+ import { redirect } from "next/navigation"
+ import {
+   getAuthHeaders,
+-  getCacheOptions,
+   getCacheTag,
+   getCartId,
+   getPendingCustomer,
+@@ -50,10 +49,6 @@ export const retrieveCustomer =
+       ...authHeaders,
+     }
+ 
+-    const next = {
+-      ...(await getCacheOptions("customers")),
+-    }
+-
+     return await sdk.client
+       .fetch<{ customer: HttpTypes.StoreCustomer }>(`/store/customers/me`, {
+         method: "GET",
+@@ -61,8 +56,8 @@ export const retrieveCustomer =
+           fields: "*orders",
+         },
+         headers,
+-        next,
+-        cache: "force-cache",
++        next: undefined,
++        cache: "no-store",
+       })
+       .then(({ customer }) => customer)
+       .catch(() => null)
+@@ -193,7 +188,8 @@ async function completeLogin(
+     .catch(() => false)
+ 
+   if (!customerExists) {
+-    const pending = await getPendingCustomer()
++    const pendingCandidate = await getPendingCustomer()
++    const pending = pendingCandidate?.email?.toLowerCase() === email.toLowerCase() ? pendingCandidate : null
+ 
+     try {
+       await sdk.store.customer.create(
+diff --git a/03_template/medusa-crossborder-base/apps/storefront/src/lib/data/orders.ts b/03_template/medusa-crossborder-base/apps/storefront/src/lib/data/orders.ts
+index e0b02ba..3d1b2d9 100644
+--- a/03_template/medusa-crossborder-base/apps/storefront/src/lib/data/orders.ts
++++ b/03_template/medusa-crossborder-base/apps/storefront/src/lib/data/orders.ts
+@@ -2,7 +2,7 @@
+ 
+ import { sdk } from "@lib/config"
+ import medusaError from "@lib/util/medusa-error"
+-import { getAuthHeaders, getCacheOptions } from "./cookies"
++import { getAuthHeaders } from "./cookies"
+ import { HttpTypes } from "@medusajs/types"
+ 
+ export const retrieveOrder = async (id: string) => {
+@@ -10,10 +10,6 @@ export const retrieveOrder = async (id: string) => {
+     ...(await getAuthHeaders()),
+   }
+ 
+-  const next = {
+-    ...(await getCacheOptions("orders")),
+-  }
+-
+   return sdk.client
+     .fetch<HttpTypes.StoreOrderResponse>(`/store/orders/${id}`, {
+       method: "GET",
+@@ -22,8 +18,8 @@ export const retrieveOrder = async (id: string) => {
+           "*payment_collections.payments,*items,*items.metadata,*items.variant,*items.product",
+       },
+       headers,
+-      next,
+-      cache: "force-cache",
++      next: undefined,
++      cache: "no-store",
+     })
+     .then(({ order }) => order)
+     .catch((err) => medusaError(err))
+@@ -38,10 +34,6 @@ export const listOrders = async (
+     ...(await getAuthHeaders()),
+   }
+ 
+-  const next = {
+-    ...(await getCacheOptions("orders")),
+-  }
+-
+   return sdk.client
+     .fetch<HttpTypes.StoreOrderListResponse>(`/store/orders`, {
+       method: "GET",
+@@ -53,8 +45,8 @@ export const listOrders = async (
+         ...filters,
+       },
+       headers,
+-      next,
+-      cache: "force-cache",
++      next: undefined,
++      cache: "no-store",
+     })
+     .then(({ orders }) => orders)
+     .catch((err) => medusaError(err))
+@@ -110,3 +102,23 @@ export const declineTransferRequest = async (id: string, token: string) => {
+     .then(({ order }) => ({ success: true, error: null, order }))
+     .catch((err) => ({ success: false, error: err.message, order: null }))
+ }
++
++export const acceptTransferRequestAction = async (
++  _state: { success: boolean; error: string | null; order: HttpTypes.StoreOrder | null },
++  formData: FormData
++) => {
++  const id = String(formData.get("order_id") || "")
++  const token = String(formData.get("token") || "")
++  if (!id || !token) return { success: false, error: "Transfer confirmation is incomplete.", order: null }
++  return acceptTransferRequest(id, token)
++}
++
++export const declineTransferRequestAction = async (
++  _state: { success: boolean; error: string | null; order: HttpTypes.StoreOrder | null },
++  formData: FormData
++) => {
++  const id = String(formData.get("order_id") || "")
++  const token = String(formData.get("token") || "")
++  if (!id || !token) return { success: false, error: "Transfer confirmation is incomplete.", order: null }
++  return declineTransferRequest(id, token)
++}
+diff --git a/03_template/medusa-crossborder-base/apps/storefront/src/lib/data/payment.ts b/03_template/medusa-crossborder-base/apps/storefront/src/lib/data/payment.ts
+index 5439808..5e7fd49 100644
+--- a/03_template/medusa-crossborder-base/apps/storefront/src/lib/data/payment.ts
++++ b/03_template/medusa-crossborder-base/apps/storefront/src/lib/data/payment.ts
+@@ -22,7 +22,7 @@ export const listCartPaymentMethods = async (regionId: string) => {
+         query: { region_id: regionId },
+         headers,
+         next,
+-        cache: "force-cache",
++        cache: "no-store",
+       }
+     )
+     .then(({ payment_providers }) =>
+diff --git a/03_template/medusa-crossborder-base/apps/storefront/src/lib/data/products.ts b/03_template/medusa-crossborder-base/apps/storefront/src/lib/data/products.ts
+index 61a27ad..dc7821a 100644
+--- a/03_template/medusa-crossborder-base/apps/storefront/src/lib/data/products.ts
++++ b/03_template/medusa-crossborder-base/apps/storefront/src/lib/data/products.ts
+@@ -16,6 +16,46 @@ type ProductListQueryParams = (HttpTypes.FindParams &
+ 
+ const REAL_CATALOG_APPROVAL_KEY = "pawfectly_store_integration_approved_by_user"
+ 
++const STOREFRONT_METADATA_KEYS = [
++  REAL_CATALOG_APPROVAL_KEY,
++  "pawfectly_storefront_purchasable",
++  "availability_mode",
++  "selling_price_status",
++] as const
++
++const publicMetadata = <T extends { metadata?: Record<string, unknown> | null }>(
++  value: T
++) => {
++  if (!value.metadata) {
++    return value.metadata
++  }
++
++  return Object.fromEntries(
++    STOREFRONT_METADATA_KEYS.flatMap((key) =>
++      value.metadata?.[key] === undefined ? [] : [[key, value.metadata[key]]]
++    )
++  ) as T["metadata"]
++}
++
++/**
++ * Keep the catalog approval marker and public purchase hints available to the
++ * storefront, but never serialize supplier, cost, logistics, risk, or
++ * sourcing metadata into customer-facing Server Components.
++ */
++const sanitizeStorefrontProduct = (
++  product: HttpTypes.StoreProduct
++): HttpTypes.StoreProduct => ({
++  ...product,
++  metadata: publicMetadata(product),
++  variants:
++    product.variants === null
++      ? null
++      : product.variants?.map((variant) => ({
++          ...variant,
++          metadata: publicMetadata(variant),
++        })),
++}) as HttpTypes.StoreProduct
++
+ const isApprovedRealCatalogProduct = (product: HttpTypes.StoreProduct) => {
+   return product.metadata?.[REAL_CATALOG_APPROVAL_KEY] === "YES"
+ }
+@@ -64,6 +104,7 @@ export const listProducts = async ({
+ 
+   const next = {
+     ...(await getCacheOptions("products")),
++    revalidate: 60,
+   }
+ 
+   const requestedFields = queryParams?.fields
+@@ -96,9 +137,11 @@ export const listProducts = async ({
+       const paginatedProducts = approvedProducts.slice(offset, offset + limit)
+       const nextPage = approvedProducts.length > offset + limit ? pageParam + 1 : null
+ 
++      const storefrontProducts = paginatedProducts.map(sanitizeStorefrontProduct)
++
+       return {
+         response: {
+-          products: paginatedProducts,
++          products: storefrontProducts,
+           count: approvedProducts.length,
+         },
+         nextPage: nextPage,
+diff --git a/03_template/medusa-crossborder-base/apps/storefront/src/lib/data/regions.ts b/03_template/medusa-crossborder-base/apps/storefront/src/lib/data/regions.ts
+index 286668b..a9ea04a 100644
+--- a/03_template/medusa-crossborder-base/apps/storefront/src/lib/data/regions.ts
++++ b/03_template/medusa-crossborder-base/apps/storefront/src/lib/data/regions.ts
+@@ -33,8 +33,11 @@ export const retrieveRegion = async (id: string) => {
+ }
+ 
+ const regionMap = new Map<string, HttpTypes.StoreRegion>()
++let regionMapUpdated = 0
++const REGION_CACHE_TTL_MS = 60 * 60 * 1000
+ 
+ export const getRegion = async (countryCode: string) => {
++  if (Date.now() - regionMapUpdated > REGION_CACHE_TTL_MS) regionMap.clear()
+   if (regionMap.has(countryCode)) {
+     return regionMap.get(countryCode)
+   }
+@@ -50,6 +53,7 @@ export const getRegion = async (countryCode: string) => {
+       regionMap.set(c?.iso_2 ?? "", region)
+     })
+   })
++  regionMapUpdated = Date.now()
+ 
+   const region = countryCode
+     ? regionMap.get(countryCode)
+diff --git a/03_template/medusa-crossborder-base/apps/storefront/src/middleware.ts b/03_template/medusa-crossborder-base/apps/storefront/src/middleware.ts
+index 1ef371b..390ec60 100644
+--- a/03_template/medusa-crossborder-base/apps/storefront/src/middleware.ts
++++ b/03_template/medusa-crossborder-base/apps/storefront/src/middleware.ts
+@@ -23,6 +23,7 @@ async function getRegionMap(cacheId: string) {
+     !regionMap.keys().next().value ||
+     regionMapUpdated < Date.now() - 3600 * 1000
+   ) {
++    regionMap.clear()
+     // Fetch regions from Medusa. We can't use the JS client here because middleware is running on Edge and the client needs a Node environment.
+     const response = await fetch(`${BACKEND_URL}/store/regions`, {
+       method: "GET",
+diff --git a/03_template/medusa-crossborder-base/apps/storefront/src/modules/account/components/profile-email/index.tsx b/03_template/medusa-crossborder-base/apps/storefront/src/modules/account/components/profile-email/index.tsx
+index 267c0e8..a4d7042 100644
+--- a/03_template/medusa-crossborder-base/apps/storefront/src/modules/account/components/profile-email/index.tsx
++++ b/03_template/medusa-crossborder-base/apps/storefront/src/modules/account/components/profile-email/index.tsx
+@@ -1,8 +1,6 @@
+ "use client"
+ 
+-import React, { useEffect, useActionState } from "react";
+-
+-import Input from "@modules/common/components/input"
++import React from "react";
+ 
+ import AccountInfo from "../account-info"
+ import { HttpTypes } from "@medusajs/types"
+@@ -13,58 +11,17 @@ type MyInformationProps = {
+ }
+ 
+ const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
+-  const [successState, setSuccessState] = React.useState(false)
+-
+-  // TODO: It seems we don't support updating emails now?
+-  const updateCustomerEmail = (
+-    _currentState: Record<string, unknown>,
+-    _formData: FormData
+-  ) => {
+-    try {
+-      // email: formData.get("email") as string
+-      return { success: true, error: null }
+-    } catch (error) {
+-      return { success: false, error: String(error) }
+-    }
+-  }
+-
+-  const [state, formAction] = useActionState(updateCustomerEmail, {
+-    error: null as string | null,
+-    success: false,
+-  })
+-
+-  const clearState = () => {
+-    setSuccessState(false)
+-  }
+-
+-  useEffect(() => {
+-    setSuccessState(state.success)
+-  }, [state])
+-
+   return (
+-    <form action={formAction} className="w-full">
+-      <AccountInfo
+-        label="Email"
+-        currentInfo={`${customer.email}`}
+-        isSuccess={successState}
+-        isError={!!state.error}
+-        errorMessage={state.error || undefined}
+-        clearState={clearState}
+-        data-testid="account-email-editor"
+-      >
+-        <div className="grid grid-cols-1 gap-y-2">
+-          <Input
+-            label="Email"
+-            name="email"
+-            type="email"
+-            autoComplete="email"
+-            required
+-            defaultValue={customer.email}
+-            data-testid="email-input"
+-          />
+-        </div>
+-      </AccountInfo>
+-    </form>
++    <AccountInfo
++      label="Email"
++      currentInfo={`${customer.email}`}
++      clearState={() => undefined}
++      data-testid="account-email-editor"
++    >
++      <p className="txt-small text-ui-fg-subtle" data-testid="email-read-only-note">
++        Email changes are not available from this profile yet.
++      </p>
++    </AccountInfo>
+   )
+ }
+ 
+diff --git a/03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/payment/index.tsx b/03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/payment/index.tsx
+index 2b528bf..02d1500 100644
+--- a/03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/payment/index.tsx
++++ b/03_template/medusa-crossborder-base/apps/storefront/src/modules/checkout/components/payment/index.tsx
+@@ -57,9 +57,14 @@ const Payment = ({
+     setError(null)
+     setSelectedPaymentMethod(method)
+     if (isStripeLike(method)) {
+-      await initiatePaymentSession(cart, {
+-        provider_id: method,
+-      })
++      setIsLoading(true)
++      try {
++        await initiatePaymentSession(cart, { provider_id: method })
++      } catch (err) {
++        setError(err instanceof Error ? err.message : "Unable to initialize this payment method.")
++      } finally {
++        setIsLoading(false)
++      }
+     }
+   }
+ 
+diff --git a/03_template/medusa-crossborder-base/apps/storefront/src/modules/layout/components/language-select/index.tsx b/03_template/medusa-crossborder-base/apps/storefront/src/modules/layout/components/language-select/index.tsx
+index efda716..5a164b8 100644
+--- a/03_template/medusa-crossborder-base/apps/storefront/src/modules/layout/components/language-select/index.tsx
++++ b/03_template/medusa-crossborder-base/apps/storefront/src/modules/layout/components/language-select/index.tsx
+@@ -132,7 +132,6 @@ const LanguageSelect = ({
+             {current && (
+               <span className="txt-compact-small flex items-center gap-x-2">
+                 {current.countryCode && (
+-                  /* @ts-ignore */
+                   <ReactCountryFlag
+                     svg
+                     style={{
+@@ -166,7 +165,6 @@ const LanguageSelect = ({
+                   className="py-2 hover:bg-gray-200 px-3 cursor-pointer flex items-center gap-x-2"
+                 >
+                   {o.countryCode ? (
+-                    /* @ts-ignore */
+                     <ReactCountryFlag
+                       svg
+                       style={{
+diff --git a/03_template/medusa-crossborder-base/apps/storefront/src/modules/order/components/payment-details/index.tsx b/03_template/medusa-crossborder-base/apps/storefront/src/modules/order/components/payment-details/index.tsx
+index 6f91d1e..6020b9f 100644
+--- a/03_template/medusa-crossborder-base/apps/storefront/src/modules/order/components/payment-details/index.tsx
++++ b/03_template/medusa-crossborder-base/apps/storefront/src/modules/order/components/payment-details/index.tsx
+@@ -12,6 +12,9 @@ type PaymentDetailsProps = {
+ const PaymentDetails = ({ order }: PaymentDetailsProps) => {
+   const payment = order.payment_collections?.[0].payments?.[0]
+   const paymentInfo = getPaymentInfo(payment?.provider_id)
++  const paymentRecord = payment as unknown as { captured_at?: string; data?: Record<string, unknown>; status?: string; created_at?: string; amount?: number } | undefined
++  const paymentStatus = String(paymentRecord?.data?.status || paymentRecord?.status || "").toLowerCase()
++  const capturedAt = paymentRecord?.captured_at || (typeof paymentRecord?.data?.captured_at === "string" ? paymentRecord.data.captured_at : undefined)
+ 
+   return (
+     <div>
+@@ -43,12 +46,9 @@ const PaymentDetails = ({ order }: PaymentDetailsProps) => {
+                 <Text data-testid="payment-amount">
+                   {isStripeLike(payment.provider_id) && payment.data?.card_last4
+                     ? `**** **** **** ${payment.data.card_last4}`
+-                    : `${convertToLocale({
+-                        amount: payment.amount,
+-                        currency_code: order.currency_code,
+-                      })} paid at ${new Date(
+-                        payment.created_at ?? ""
+-                      ).toLocaleString()}`}
++                    : capturedAt || paymentStatus === "captured"
++                    ? `${convertToLocale({ amount: payment.amount, currency_code: order.currency_code })} paid at ${new Date(capturedAt || payment.created_at || "").toLocaleString()}`
++                    : "Payment authorization recorded; capture is pending."}
+                 </Text>
+               </div>
+             </div>
+diff --git a/03_template/medusa-crossborder-base/apps/storefront/src/modules/products/components/product-actions/index.tsx b/03_template/medusa-crossborder-base/apps/storefront/src/modules/products/components/product-actions/index.tsx
+index 9926caf..f623d7b 100644
+--- a/03_template/medusa-crossborder-base/apps/storefront/src/modules/products/components/product-actions/index.tsx
++++ b/03_template/medusa-crossborder-base/apps/storefront/src/modules/products/components/product-actions/index.tsx
+@@ -36,8 +36,12 @@ export default function ProductActions({
+   const pathname = usePathname()
+   const searchParams = useSearchParams()
+ 
+-  const [options, setOptions] = useState<Record<string, string | undefined>>({})
++  const [options, setOptions] = useState<Record<string, string | undefined>>(() => {
++    const defaultVariant = product.variants?.length === 1 ? product.variants[0] : undefined
++    return optionsAsKeymap(defaultVariant?.options ?? null) ?? {}
++  })
+   const [isAdding, setIsAdding] = useState(false)
++  const [addError, setAddError] = useState<string | null>(null)
+   const countryCode = useParams().countryCode as string
+ 
+   // If there is only 1 variant, preselect the options
+@@ -132,15 +136,19 @@ export default function ProductActions({
+     if (!selectedVariant?.id) return null
+ 
+     setIsAdding(true)
+-
+-    await addToCart({
+-      variantId: selectedVariant.id,
+-      quantity: 1,
+-      countryCode,
+-    })
+-
+-    setIsAdding(false)
+-    router.refresh()
++    setAddError(null)
++    try {
++      await addToCart({
++        variantId: selectedVariant.id,
++        quantity: 1,
++        countryCode,
++      })
++      router.refresh()
++    } catch (error) {
++      setAddError(error instanceof Error ? error.message : "Unable to add this item right now.")
++    } finally {
++      setIsAdding(false)
++    }
+   }
+ 
+   return (
+@@ -181,6 +189,9 @@ export default function ProductActions({
+               : " Available to order · Shipping options shown at checkout"
+             : " Currently unavailable"}
+         </p>
++        {addError && (
++          <p className="ph-pdp-stock is-unavailable" role="alert">{addError}</p>
++        )}
+ 
+         <Button
+           onClick={handleAddToCart}
+diff --git a/03_template/medusa-crossborder-base/package.json b/03_template/medusa-crossborder-base/package.json
+index bf7c8e6..73564b0 100644
+--- a/03_template/medusa-crossborder-base/package.json
++++ b/03_template/medusa-crossborder-base/package.json
+@@ -9,8 +9,13 @@
+     "dev": "pnpm -r dev",
+     "build": "pnpm -r build",
+     "start": "turbo start",
+-    "lint": "turbo lint",
+-    "test": "turbo test",
++    "typecheck": "pnpm --dir apps/backend run typecheck && pnpm --dir apps/storefront run typecheck",
++    "lint": "pnpm --dir apps/backend run lint && pnpm --dir apps/storefront run lint",
++    "test": "pnpm --dir apps/backend run test && pnpm run test:contracts",
++    "test:contracts": "node ../../06_payment/providers/payment-provider-boundary.test.mjs && node ../../05_product/scripts/product-pipeline.mjs test --input ../../05_product/intake/TEST_FIXTURE_ONLY.medusa-seed.json && node ../../05_product/scripts/product-boundary.test.mjs && node ../../05_product/sourcing/scripts/component-pipeline.mjs test --input ../../05_product/sourcing/components/COMP-001-pet-hair-remover.json",
++    "test:runtime": "powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File scripts/run-runtime-security-tests.ps1",
++    "verify": "pnpm run typecheck && pnpm run lint && pnpm run test && pnpm run test:runtime",
++    "verify:build": "pnpm -r build",
+     "backend:seed": "turbo seed --filter=@dtc/backend",
+     "backend:dev": "turbo dev --filter=@dtc/backend",
+     "storefront:dev": "turbo dev --filter=@dtc/storefront"
+diff --git a/03_template/medusa-crossborder-base/pnpm-lock.yaml b/03_template/medusa-crossborder-base/pnpm-lock.yaml
+index bf892bc..e13cd60 100644
+--- a/03_template/medusa-crossborder-base/pnpm-lock.yaml
++++ b/03_template/medusa-crossborder-base/pnpm-lock.yaml
+@@ -73,6 +73,9 @@ importers:
+       '@medusajs/test-utils':
+         specifier: 2.19.0
+         version: 2.19.0(@medusajs/core-flows@2.19.0(@medusajs/framework@2.19.0(@medusajs/cli@2.19.0(@types/node@20.19.43))(@types/node@20.19.43)(ioredis@5.11.1)(vite@7.3.6(@types/node@20.19.43)(jiti@2.7.0)(terser@5.51.0)(yaml@2.9.0))(zod@4.2.0)))(@medusajs/framework@2.19.0(@medusajs/cli@2.19.0(@types/node@20.19.43))(@types/node@20.19.43)(ioredis@5.11.1)(vite@7.3.6(@types/node@20.19.43)(jiti@2.7.0)(terser@5.51.0)(yaml@2.9.0))(zod@4.2.0))(@medusajs/medusa@2.19.0)
++      '@medusajs/utils':
++        specifier: 2.19.0
++        version: 2.19.0(@types/node@20.19.43)(express@4.22.2)
+       '@swc/core':
+         specifier: ^1.7.28
+         version: 1.16.1(@swc/helpers@0.5.23)
+diff --git a/03_template/medusa-crossborder-base/scripts/_common.ps1 b/03_template/medusa-crossborder-base/scripts/_common.ps1
+index 8b126fc..ad42ff9 100644
+--- a/03_template/medusa-crossborder-base/scripts/_common.ps1
++++ b/03_template/medusa-crossborder-base/scripts/_common.ps1
+@@ -178,6 +178,173 @@ function Set-ProcessEnvironment([hashtable]$Values) {
+   foreach ($key in $Values.Keys) { Set-Item -Path "Env:$key" -Value ([string]$Values[$key]) }
+ }
+ 
++function Get-ManagedIdentityPath([string]$Path) {
++  if ([string]::IsNullOrWhiteSpace($Path)) { return "" }
++  $full = [System.IO.Path]::GetFullPath($Path)
++  $root = [System.IO.Path]::GetPathRoot($full)
++  if ($full.Length -gt $root.Length) { $full = $full.TrimEnd([char[]]"/\") }
++  return $full
++}
++
++function ConvertTo-ManagedProcessSnapshot($CimProcess) {
++  if (-not $CimProcess) { return $null }
++  $startedAtUtc = $null
++  if ($CimProcess.CreationDate) {
++    try {
++      if ($CimProcess.CreationDate -is [datetime]) { $startedAtUtc = $CimProcess.CreationDate.ToUniversalTime() }
++      else { $startedAtUtc = ([System.Management.ManagementDateTimeConverter]::ToDateTime([string]$CimProcess.CreationDate)).ToUniversalTime() }
++    } catch {}
++  }
++  return [pscustomobject]@{
++    ProcessId = [int]$CimProcess.ProcessId
++    ParentProcessId = [int]$CimProcess.ParentProcessId
++    StartedAtUtc = $startedAtUtc
++    ExecutablePath = [string]$CimProcess.ExecutablePath
++    CommandLine = [string]$CimProcess.CommandLine
++  }
++}
++
++function Get-ManagedProcessSnapshot([int]$ProcessId) {
++  if ($ProcessId -le 0) { return $null }
++  $cim = Get-CimInstance Win32_Process -Filter ("ProcessId=" + $ProcessId) -ErrorAction SilentlyContinue
++  return ConvertTo-ManagedProcessSnapshot $cim
++}
++
++function Test-ManagedSnapshotEqual($Expected, $Actual) {
++  if (-not $Expected -or -not $Actual) { return $false }
++  if ([int]$Expected.ProcessId -ne [int]$Actual.ProcessId) { return $false }
++  if ([int]$Expected.ParentProcessId -ne [int]$Actual.ParentProcessId) { return $false }
++  if ([string]$Expected.ExecutablePath -cne [string]$Actual.ExecutablePath) { return $false }
++  if ([string]$Expected.CommandLine -cne [string]$Actual.CommandLine) { return $false }
++  if ($null -eq $Expected.StartedAtUtc -or $null -eq $Actual.StartedAtUtc) { return $false }
++  return $Expected.StartedAtUtc.ToUniversalTime().Ticks -eq $Actual.StartedAtUtc.ToUniversalTime().Ticks
++}
++
++function Write-ManagedProcessRecord([string]$Path, [int]$ProcessId, [string]$Role, [string]$ProjectName, [string]$ProjectRoot, [string]$WorkingDirectory) {
++  $deadline = (Get-Date).AddSeconds(5)
++  $snapshot = $null
++  do {
++    $snapshot = Get-ManagedProcessSnapshot $ProcessId
++    if ($snapshot -and $snapshot.StartedAtUtc -and $snapshot.ExecutablePath -and $snapshot.CommandLine) { break }
++    Start-Sleep -Milliseconds 100
++  } while ((Get-Date) -lt $deadline)
++  if (-not $snapshot -or -not $snapshot.StartedAtUtc -or [string]::IsNullOrWhiteSpace($snapshot.ExecutablePath) -or [string]::IsNullOrWhiteSpace($snapshot.CommandLine)) {
++    throw "Managed process identity could not be read for PID $ProcessId. Refusing to write a stoppable record."
++  }
++  $record = [ordered]@{
++    schema_version = 2
++    process_id = $snapshot.ProcessId
++    started_at_utc = $snapshot.StartedAtUtc.ToString("o")
++    executable_path = $snapshot.ExecutablePath
++    command_line = $snapshot.CommandLine
++    project_name = $ProjectName
++    project_root = Get-ManagedIdentityPath $ProjectRoot
++    working_directory = Get-ManagedIdentityPath $WorkingDirectory
++    role = $Role
++  }
++  Set-Utf8NoBomFile $Path (($record | ConvertTo-Json -Depth 5) + [Environment]::NewLine)
++  return [pscustomobject]$record
++}
++
++function Read-ManagedProcessRecord([string]$Path) {
++  if (-not (Test-Path -LiteralPath $Path)) { throw "Managed process record is missing." }
++  $record = [System.IO.File]::ReadAllText($Path, [System.Text.Encoding]::UTF8) | ConvertFrom-Json
++  foreach ($name in @("schema_version", "process_id", "started_at_utc", "executable_path", "command_line", "project_root", "working_directory", "role")) {
++    if ($null -eq $record.$name -or [string]::IsNullOrWhiteSpace([string]$record.$name)) { throw "Managed process record is missing identity field: $name" }
++  }
++  if ([int]$record.schema_version -ne 2 -or [int]$record.process_id -le 0) { throw "Managed process record format is stale or invalid." }
++  return $record
++}
++
++function Test-ManagedProcessIdentity($Record, $Live, [string]$ExpectedRole, [string]$ExpectedWorkingDirectory) {
++  if (-not $Record -or -not $Live) { return [pscustomobject]@{ Matched = $false; Reason = "process is not running or identity could not be read" } }
++  if ([int]$Record.process_id -ne [int]$Live.ProcessId) { return [pscustomobject]@{ Matched = $false; Reason = "PID does not match the managed record" } }
++  if ($ExpectedRole -and [string]$Record.role -cne $ExpectedRole) { return [pscustomobject]@{ Matched = $false; Reason = "managed role does not match" } }
++  if ($ExpectedWorkingDirectory -and (Get-ManagedIdentityPath $Record.working_directory) -cne (Get-ManagedIdentityPath $ExpectedWorkingDirectory)) { return [pscustomobject]@{ Matched = $false; Reason = "working directory identity does not match" } }
++  if ((Get-ManagedIdentityPath $Record.project_root) -cne (Get-ManagedIdentityPath $script:TemplateRoot)) { return [pscustomobject]@{ Matched = $false; Reason = "project identity does not match this template" } }
++  if ([string]$Record.executable_path -cne [string]$Live.ExecutablePath) { return [pscustomobject]@{ Matched = $false; Reason = "executable path does not match" } }
++  if ([string]$Record.command_line -cne [string]$Live.CommandLine) { return [pscustomobject]@{ Matched = $false; Reason = "command identity does not match" } }
++  try {
++    $recordStartedAt = if ($Record.started_at_utc -is [datetime]) { ([datetime]$Record.started_at_utc).ToUniversalTime() } else { ([datetime]::Parse([string]$Record.started_at_utc)).ToUniversalTime() }
++    if ($null -eq $Live.StartedAtUtc -or $recordStartedAt.Ticks -ne $Live.StartedAtUtc.ToUniversalTime().Ticks) { return [pscustomobject]@{ Matched = $false; Reason = "startup time does not match" } }
++  } catch { return [pscustomobject]@{ Matched = $false; Reason = "startup time identity could not be read" } }
++  return [pscustomobject]@{ Matched = $true; Reason = "PID, startup time, executable, project and command identity match" }
++}
++
++function Test-ManagedProcessEdge($Parent, $Child) {
++  if (-not $Parent -or -not $Child) { return $false }
++  if ([int]$Child.ParentProcessId -ne [int]$Parent.ProcessId) { return $false }
++  if ($null -eq $Parent.StartedAtUtc -or $null -eq $Child.StartedAtUtc) { return $false }
++  if ($Child.StartedAtUtc.ToUniversalTime().Ticks -lt $Parent.StartedAtUtc.ToUniversalTime().Ticks) { return $false }
++  if ([string]::IsNullOrWhiteSpace([string]$Child.ExecutablePath) -or [string]::IsNullOrWhiteSpace([string]$Child.CommandLine)) { return $false }
++  return $true
++}
++
++function Get-ManagedProcessTree([int]$RootProcessId, $RootSnapshot = $null) {
++  $root = if ($RootSnapshot) { $RootSnapshot } else { Get-ManagedProcessSnapshot $RootProcessId }
++  if (-not $root -or [int]$root.ProcessId -ne $RootProcessId) { return @() }
++  $processes = @(Get-CimInstance Win32_Process -ErrorAction SilentlyContinue | ForEach-Object { ConvertTo-ManagedProcessSnapshot $_ })
++  $childrenByParent = @{}
++  foreach ($process in $processes) {
++    if (-not $childrenByParent.ContainsKey([int]$process.ParentProcessId)) { $childrenByParent[[int]$process.ParentProcessId] = New-Object System.Collections.ArrayList }
++    [void]$childrenByParent[[int]$process.ParentProcessId].Add($process)
++  }
++  $result = New-Object System.Collections.ArrayList
++  $visited = New-Object 'System.Collections.Generic.HashSet[int]'
++  [void]$visited.Add($RootProcessId)
++  function Add-ManagedDescendants($Parent, [int]$Depth) {
++    $parentId = [int]$Parent.ProcessId
++    if (-not $childrenByParent.ContainsKey($parentId)) { return }
++    foreach ($child in @($childrenByParent[$ParentId])) {
++      if ($visited.Contains([int]$child.ProcessId)) { continue }
++      if (-not (Test-ManagedProcessEdge $Parent $child)) { continue }
++      [void]$visited.Add([int]$child.ProcessId)
++      [void]$result.Add([pscustomobject]@{ Snapshot = $child; Depth = $Depth })
++      Add-ManagedDescendants $child ($Depth + 1)
++    }
++  }
++  Add-ManagedDescendants $root 1
++  return @($result.ToArray())
++}
++
++function Get-ListeningProcessIds([int]$Port) {
++  try {
++    return @((Get-NetTCPConnection -LocalPort $Port -State Listen -ErrorAction Stop | Select-Object -ExpandProperty OwningProcess | ForEach-Object { [int]$_ }) | Sort-Object -Unique)
++  } catch {
++    $lines = @(netstat.exe -ano -p tcp 2>$null)
++    $ids = New-Object System.Collections.Generic.List[int]
++    foreach ($line in $lines) {
++      if ($line -match "^\s*TCP\s+[^\s]+:$Port\s+[^\s]+\s+LISTENING\s+(\d+)\s*$") { [void]$ids.Add([int]$Matches[1]) }
++    }
++    return @($ids | Sort-Object -Unique)
++  }
++}
++
++function Test-LocalHttp200([string]$Uri) {
++  try {
++    $code = (& curl.exe --noproxy "*" -sS -o NUL -w "%{http_code}" $Uri 2>$null).Trim()
++    return $LASTEXITCODE -eq 0 -and $code -eq "200"
++  } catch { return $false }
++}
++
++function Get-ManagedServiceReuseDecision([string]$PidPath, [string]$Role, [string]$WorkingDirectory, [int]$Port, [string]$HealthUri) {
++  try { $listeners = @(Get-ListeningProcessIds $Port) } catch { return [pscustomobject]@{ Status = "INSPECTION_UNAVAILABLE"; Reason = "listening-process inspection failed"; ProcessId = 0 } }
++  if ($listeners.Count -eq 0) { return [pscustomobject]@{ Status = "START_ALLOWED"; Reason = "port is not listening"; ProcessId = 0 } }
++  try { $record = Read-ManagedProcessRecord $PidPath } catch { return [pscustomobject]@{ Status = "IDENTITY_UNKNOWN"; Reason = "port is listening but the managed identity record is missing or invalid"; ProcessId = $listeners[0] } }
++  $live = Get-ManagedProcessSnapshot ([int]$record.process_id)
++  $identity = Test-ManagedProcessIdentity $record $live $Role $WorkingDirectory
++  if (-not $identity.Matched) { return [pscustomobject]@{ Status = "IDENTITY_CONFLICT"; Reason = $identity.Reason; ProcessId = [int]$record.process_id } }
++  $tree = @(Get-ManagedProcessTree ([int]$record.process_id) $live)
++  $trustedProcessIds = @([int]$record.process_id) + @($tree | ForEach-Object { [int]$_.Snapshot.ProcessId })
++  $untrustedListeners = @($listeners | Where-Object { $trustedProcessIds -notcontains [int]$_ })
++  $trustedListeners = @($listeners | Where-Object { $trustedProcessIds -contains [int]$_ })
++  if ($untrustedListeners.Count -gt 0 -or $trustedListeners.Count -eq 0) {
++    return [pscustomobject]@{ Status = "IDENTITY_CONFLICT"; Reason = "port listener PID is outside the verified managed process chain"; ProcessId = [int]$record.process_id }
++  }
++  if (-not (Test-LocalHttp200 $HealthUri)) { return [pscustomobject]@{ Status = "SERVICE_NOT_READY"; Reason = "verified managed process owns the port but health did not return HTTP 200"; ProcessId = [int]$record.process_id } }
++  return [pscustomobject]@{ Status = "REUSE"; Reason = "verified managed process owns the port and health returned HTTP 200"; ProcessId = [int]$record.process_id }
++}
++
+ function Invoke-LocalHttp {
+   param(
+     [Parameter(Mandatory=$true)][ValidateSet("GET","POST")][string]$Method,
+@@ -222,32 +389,52 @@ function Wait-LocalHttp([string]$Uri, [int]$TimeoutSeconds = 90) {
+   throw "Local HTTP endpoint did not become ready: $Uri"
+ }
+ 
+-function Stop-ManagedProcess([string]$PidPath) {
+-  if (-not (Test-Path -LiteralPath $PidPath)) { return }
+-  $pidValue = 0
+-  [void][int]::TryParse((Get-Content -LiteralPath $PidPath -Raw).Trim(), [ref]$pidValue)
+-  if ($pidValue -gt 0) {
+-    $processes = @(Get-CimInstance Win32_Process -ErrorAction SilentlyContinue)
+-    $descendants = New-Object System.Collections.Generic.List[int]
+-    function Stop-ManagedTree([int]$ParentId) {
+-      foreach ($child in @($processes | Where-Object { $_.ParentProcessId -eq $ParentId })) {
+-        if (-not $descendants.Contains([int]$child.ProcessId)) {
+-          $descendants.Add([int]$child.ProcessId)
+-          Stop-ManagedTree ([int]$child.ProcessId)
+-          Stop-Process -Id ([int]$child.ProcessId) -Force -ErrorAction SilentlyContinue
+-        }
++function Stop-ManagedProcess([string]$PidPath, [string]$ExpectedRole = "") {
++  if (-not (Test-Path -LiteralPath $PidPath)) { return [pscustomobject]@{ Status = "NOT_RUNNING"; Reason = "managed process record is absent" } }
++  $role = if ($ExpectedRole) { $ExpectedRole } elseif ((Split-Path -Leaf $PidPath) -ieq "backend.pid") { "backend" } elseif ((Split-Path -Leaf $PidPath) -ieq "storefront.pid") { "storefront" } else { "" }
++  try {
++    $record = Read-ManagedProcessRecord $PidPath
++    if (-not $role) { throw "managed role is unknown" }
++    $expectedWorkingDirectory = if ($role -eq "backend") { Join-Path $script:BackendRoot ".medusa/server" } elseif ($role -eq "storefront") { $script:StorefrontRoot } else { $script:TemplateRoot }
++    $live = Get-ManagedProcessSnapshot ([int]$record.process_id)
++    $identity = Test-ManagedProcessIdentity $record $live $role $expectedWorkingDirectory
++    if (-not $identity.Matched) { throw $identity.Reason }
++
++    $freshRoot = Get-ManagedProcessSnapshot ([int]$record.process_id)
++    $freshIdentity = Test-ManagedProcessIdentity $record $freshRoot $role $expectedWorkingDirectory
++    if (-not $freshIdentity.Matched) { throw "managed root identity changed before termination: $($freshIdentity.Reason)" }
++    $tree = @(Get-ManagedProcessTree ([int]$record.process_id) $freshRoot)
++    foreach ($entry in $tree) {
++      $freshChild = Get-ManagedProcessSnapshot ([int]$entry.Snapshot.ProcessId)
++      if ($freshChild -and -not (Test-ManagedSnapshotEqual $entry.Snapshot $freshChild)) { throw "managed child identity changed before termination: PID $($entry.Snapshot.ProcessId)" }
++    }
++
++    foreach ($entry in @($tree | Sort-Object Depth -Descending)) {
++      $freshChild = Get-ManagedProcessSnapshot ([int]$entry.Snapshot.ProcessId)
++      if ($freshChild) {
++        if (-not (Test-ManagedSnapshotEqual $entry.Snapshot $freshChild)) { throw "managed child identity changed immediately before termination: PID $($entry.Snapshot.ProcessId)" }
++        Stop-Process -Id ([int]$entry.Snapshot.ProcessId) -Force -ErrorAction Stop
+       }
+     }
+-    Stop-ManagedTree $pidValue
+-    Stop-Process -Id $pidValue -Force -ErrorAction SilentlyContinue
+-    Start-Sleep -Milliseconds 500
+-    $remaining = @(Get-CimInstance Win32_Process -ErrorAction SilentlyContinue | Where-Object { $_.ProcessId -eq $pidValue -or $descendants.Contains([int]$_.ProcessId) })
+-    if ($remaining.Count -gt 0) {
+-      $remainingIds = ($remaining.ProcessId -join ",")
+-      throw "Managed process tree did not exit: $remainingIds"
++    $freshRootBeforeKill = Get-ManagedProcessSnapshot ([int]$record.process_id)
++    if ($freshRootBeforeKill) {
++      $rootIdentityBeforeKill = Test-ManagedProcessIdentity $record $freshRootBeforeKill $role $expectedWorkingDirectory
++      if (-not $rootIdentityBeforeKill.Matched) { throw "managed root identity changed immediately before termination: $($rootIdentityBeforeKill.Reason)" }
++      Stop-Process -Id ([int]$record.process_id) -Force -ErrorAction Stop
+     }
++    Start-Sleep -Milliseconds 500
++    $remainingIds = @(Get-CimInstance Win32_Process -ErrorAction SilentlyContinue | Where-Object {
++      $_.ProcessId -eq [int]$record.process_id -or @($tree.Snapshot.ProcessId) -contains [int]$_.ProcessId
++    } | Select-Object -ExpandProperty ProcessId)
++    if ($remainingIds.Count -gt 0) { throw ("Managed process tree did not exit: " + ($remainingIds -join ",")) }
++    Remove-Item -LiteralPath $PidPath -Force -ErrorAction SilentlyContinue
++    Write-Host "MANAGED_PROCESS_STOP=PASS"
++    return [pscustomobject]@{ Status = "STOPPED"; Reason = "verified managed process tree terminated" }
++  } catch {
++    Write-Host "MANAGED_PROCESS_STOP=REFUSED_STALE"
++    Write-Host ("MANAGED_PROCESS_REASON=" + $_.Exception.Message)
++    return [pscustomobject]@{ Status = "REFUSED"; Reason = $_.Exception.Message }
+   }
+-  Remove-Item -LiteralPath $PidPath -Force -ErrorAction SilentlyContinue
+ }
+ 
+ function Move-GeneratedTree([string]$Path, [string]$Label) {
+diff --git a/03_template/medusa-crossborder-base/scripts/acceptance-smoke.ps1 b/03_template/medusa-crossborder-base/scripts/acceptance-smoke.ps1
+index 3f1381c..aa89425 100644
+--- a/03_template/medusa-crossborder-base/scripts/acceptance-smoke.ps1
++++ b/03_template/medusa-crossborder-base/scripts/acceptance-smoke.ps1
+@@ -6,6 +6,8 @@ param(
+   [string]$ProjectName
+ )
+ 
++# MUTATING TEST: creates technical Medusa test orders. Not a read-only regression.
++
+ $ErrorActionPreference = "Stop"
+ . (Join-Path $PSScriptRoot "_common.ps1")
+ 
+diff --git a/03_template/medusa-crossborder-base/scripts/build-production.ps1 b/03_template/medusa-crossborder-base/scripts/build-production.ps1
+index 27eaebb..a825f14 100644
+--- a/03_template/medusa-crossborder-base/scripts/build-production.ps1
++++ b/03_template/medusa-crossborder-base/scripts/build-production.ps1
+@@ -21,9 +21,11 @@ $storefrontEnvPath = Join-Path $script:StorefrontRoot ".env.local"
+ if (-not (Test-Path -LiteralPath $storefrontEnvPath)) { throw "Storefront runtime env is missing. Run setup-local.ps1 first." }
+ 
+ if (-not $StorefrontOnly) {
+-  Stop-ManagedProcess (Join-Path $script:RuntimeRoot "backend.pid")
++  $backendStop = Stop-ManagedProcess (Join-Path $script:RuntimeRoot "backend.pid")
++  if ($backendStop.Status -notin @("STOPPED", "NOT_RUNNING")) { throw "BUILD_BLOCKED: backend managed process could not be stopped safely. $($backendStop.Reason)" }
+ }
+-Stop-ManagedProcess (Join-Path $script:RuntimeRoot "storefront.pid")
++$storefrontStop = Stop-ManagedProcess (Join-Path $script:RuntimeRoot "storefront.pid")
++if ($storefrontStop.Status -notin @("STOPPED", "NOT_RUNNING")) { throw "BUILD_BLOCKED: storefront managed process could not be stopped safely. $($storefrontStop.Reason)" }
+ 
+ if (-not $StorefrontOnly) {
+   Set-ProcessEnvironment (Read-KeyValueFile $backendEnvPath)
+@@ -38,12 +40,11 @@ if (-not $StorefrontOnly) {
+   if (-not (Test-Path -LiteralPath (Join-Path $script:BackendRoot ".medusa/server/package.json"))) { throw "Backend production artifact was not generated." }
+   Write-Host "BACKEND_PRODUCTION_BUILD=PASS"
+ 
+-  $backendReady = $false
+-  try { $backendReady = ((& curl.exe --noproxy "*" -sS -o NUL -w "%{http_code}" "http://127.0.0.1:$($settings.BackendPort)/health" 2>$null).Trim() -eq "200") } catch {}
+-  if (-not $backendReady) {
++  $backendDecision = Get-ManagedServiceReuseDecision (Join-Path $script:RuntimeRoot "backend.pid") "backend" (Join-Path $script:BackendRoot ".medusa/server") $settings.BackendPort "http://127.0.0.1:$($settings.BackendPort)/health"
++  if ($backendDecision.Status -eq "START_ALLOWED") {
+     & (Join-Path $PSScriptRoot "start-local.ps1") -DatabasePort $settings.DatabasePort -BackendPort $settings.BackendPort -StorefrontPort $settings.StorefrontPort -ProjectName $settings.ProjectName -BackendOnly
+     if ($LASTEXITCODE -ne 0) { throw "Backend could not be restarted before the storefront production build." }
+-  }
++  } elseif ($backendDecision.Status -ne "REUSE") { throw ("SERVICE_IDENTITY_CONFLICT: backend cannot be reused or replaced safely. " + $backendDecision.Status + ": " + $backendDecision.Reason) }
+ }
+ 
+ Set-ProcessEnvironment (Read-KeyValueFile $storefrontEnvPath)
+diff --git a/03_template/medusa-crossborder-base/scripts/start-local.ps1 b/03_template/medusa-crossborder-base/scripts/start-local.ps1
+index 4074138..fefb3c1 100644
+--- a/03_template/medusa-crossborder-base/scripts/start-local.ps1
++++ b/03_template/medusa-crossborder-base/scripts/start-local.ps1
+@@ -56,20 +56,19 @@ if (-not $StorefrontOnly) {
+ }
+ 
+ if (-not $StorefrontOnly) {
+-  $alreadyReady = $false
+-  try { $alreadyReady = ((& curl.exe --noproxy "*" -sS -o NUL -w "%{http_code}" "http://127.0.0.1:$($settings.BackendPort)/health" 2>$null).Trim() -eq "200") } catch {}
+-  if (-not $alreadyReady) {
++  $backendDecision = Get-ManagedServiceReuseDecision (Join-Path $script:RuntimeRoot "backend.pid") "backend" (Join-Path $script:BackendRoot ".medusa/server") $settings.BackendPort "http://127.0.0.1:$($settings.BackendPort)/health"
++  if ($backendDecision.Status -eq "START_ALLOWED") {
+     $logs = Join-Path $script:RuntimeRoot "logs"
+     New-Item -ItemType Directory -Force -Path $logs | Out-Null
+     $process = Start-Process -FilePath "node.exe" -ArgumentList @($cli, "start", "--port", "$($settings.BackendPort)") -WorkingDirectory $server -RedirectStandardOutput (Join-Path $logs "backend.out.log") -RedirectStandardError (Join-Path $logs "backend.err.log") -WindowStyle Hidden -PassThru
+-    Set-Utf8NoBomFile (Join-Path $script:RuntimeRoot "backend.pid") (($process.Id.ToString()) + [Environment]::NewLine)
++    try { Write-ManagedProcessRecord (Join-Path $script:RuntimeRoot "backend.pid") $process.Id "backend" $settings.ProjectName $script:TemplateRoot $server | Out-Null } catch { Stop-Process -Id $process.Id -Force -ErrorAction SilentlyContinue; throw }
+     Write-Host "MEDUSA_TEMPLATE_BACKEND_PID=$($process.Id)"
+-    try { $null = Wait-LocalHttp "http://127.0.0.1:$($settings.BackendPort)/health" 90 } catch {
++    try { $null = Wait-LocalHttp "http://127.0.0.1:$($settings.BackendPort)/health" 90; $startedIdentity = Get-ManagedServiceReuseDecision (Join-Path $script:RuntimeRoot "backend.pid") "backend" $server $settings.BackendPort "http://127.0.0.1:$($settings.BackendPort)/health"; if ($startedIdentity.Status -ne "REUSE") { throw "Started backend failed managed listener identity verification: $($startedIdentity.Status): $($startedIdentity.Reason)" } } catch {
+       Get-Content (Join-Path $logs "backend.out.log") -Tail 80 -ErrorAction SilentlyContinue
+       Get-Content (Join-Path $logs "backend.err.log") -Tail 80 -ErrorAction SilentlyContinue
+       throw
+     }
+-  } else { Write-Host "MEDUSA_TEMPLATE_BACKEND_REUSED=PASS" }
++  } elseif ($backendDecision.Status -eq "REUSE") { Write-Host "MEDUSA_TEMPLATE_BACKEND_REUSED=PASS" } else { throw ("SERVICE_IDENTITY_CONFLICT: backend cannot be reused or replaced safely. " + $backendDecision.Status + ": " + $backendDecision.Reason) }
+   Write-Host "MEDUSA_TEMPLATE_BACKEND_READY=PASS"
+ }
+ 
+@@ -79,20 +78,19 @@ if (-not $BackendOnly) {
+   $env:NEXT_PUBLIC_MEDUSA_BACKEND_URL = "http://127.0.0.1:$($settings.BackendPort)"
+   $env:NEXT_PUBLIC_DEFAULT_REGION = "us"
+   $env:NEXT_PUBLIC_BASE_URL = "http://localhost:$($settings.StorefrontPort)"
+-  $alreadyReady = $false
+-  try { $alreadyReady = ((& curl.exe --noproxy "*" -sS -o NUL -w "%{http_code}" "http://127.0.0.1:$($settings.StorefrontPort)/us" 2>$null).Trim() -eq "200") } catch {}
+-  if (-not $alreadyReady) {
++  $storefrontDecision = Get-ManagedServiceReuseDecision (Join-Path $script:RuntimeRoot "storefront.pid") "storefront" $script:StorefrontRoot $settings.StorefrontPort "http://127.0.0.1:$($settings.StorefrontPort)/us"
++  if ($storefrontDecision.Status -eq "START_ALLOWED") {
+     $logs = Join-Path $script:RuntimeRoot "logs"
+     New-Item -ItemType Directory -Force -Path $logs | Out-Null
+     $process = Start-Process -FilePath $script:Corepack -ArgumentList @(("pnpm@" + (Get-RequiredPnpmVersion)), "exec", "next", "start", "-p", "$($settings.StorefrontPort)") -WorkingDirectory $script:StorefrontRoot -RedirectStandardOutput (Join-Path $logs "storefront.out.log") -RedirectStandardError (Join-Path $logs "storefront.err.log") -WindowStyle Hidden -PassThru
+-    Set-Utf8NoBomFile (Join-Path $script:RuntimeRoot "storefront.pid") (($process.Id.ToString()) + [Environment]::NewLine)
++    try { Write-ManagedProcessRecord (Join-Path $script:RuntimeRoot "storefront.pid") $process.Id "storefront" $settings.ProjectName $script:TemplateRoot $script:StorefrontRoot | Out-Null } catch { Stop-Process -Id $process.Id -Force -ErrorAction SilentlyContinue; throw }
+     Write-Host "MEDUSA_TEMPLATE_STOREFRONT_PID=$($process.Id)"
+-    try { $null = Wait-LocalHttp "http://127.0.0.1:$($settings.StorefrontPort)/us" 90 } catch {
++    try { $null = Wait-LocalHttp "http://127.0.0.1:$($settings.StorefrontPort)/us" 90; $startedIdentity = Get-ManagedServiceReuseDecision (Join-Path $script:RuntimeRoot "storefront.pid") "storefront" $script:StorefrontRoot $settings.StorefrontPort "http://127.0.0.1:$($settings.StorefrontPort)/us"; if ($startedIdentity.Status -ne "REUSE") { throw "Started storefront failed managed listener identity verification: $($startedIdentity.Status): $($startedIdentity.Reason)" } } catch {
+       Get-Content (Join-Path $logs "storefront.out.log") -Tail 80 -ErrorAction SilentlyContinue
+       Get-Content (Join-Path $logs "storefront.err.log") -Tail 80 -ErrorAction SilentlyContinue
+       throw
+     }
+-  } else { Write-Host "MEDUSA_TEMPLATE_STOREFRONT_REUSED=PASS" }
++  } elseif ($storefrontDecision.Status -eq "REUSE") { Write-Host "MEDUSA_TEMPLATE_STOREFRONT_REUSED=PASS" } else { throw ("SERVICE_IDENTITY_CONFLICT: storefront cannot be reused or replaced safely. " + $storefrontDecision.Status + ": " + $storefrontDecision.Reason) }
+   Write-Host "MEDUSA_TEMPLATE_STOREFRONT_READY=PASS"
+ }
+ 
+diff --git a/04_docs/scripts/92-prepare-review-staging.ps1 b/04_docs/scripts/92-prepare-review-staging.ps1
+index bae55ac..e938ba2 100644
+--- a/04_docs/scripts/92-prepare-review-staging.ps1
++++ b/04_docs/scripts/92-prepare-review-staging.ps1
+@@ -9,13 +9,25 @@ param(
+ 
+ $ErrorActionPreference = "Stop"
+ 
++function Get-NormalizedPath([string]$Path) {
++  if ([string]::IsNullOrWhiteSpace($Path)) { throw "Path must not be empty." }
++  $full = [System.IO.Path]::GetFullPath($Path)
++  $root = [System.IO.Path]::GetPathRoot($full)
++  if ($full.Length -gt $root.Length) {
++    $full = $full.TrimEnd([char[]]"/\")
++  }
++  return $full
++}
++
+ # The one reproducible Reviewer package entry point. It creates a staging tree
+ # shaped like the live workspace: document-center files at the root and the
+ # canonical source project once under CrossBorder-Independent-Store/.
+ $projectRoot = (Resolve-Path (Join-Path $PSScriptRoot "../..")).Path
+-$projectRootFull = [System.IO.Path]::GetFullPath($projectRoot).TrimEnd('\')
++$projectRootFull = Get-NormalizedPath $projectRoot
+ $documentCenterRoot = (Split-Path -Parent $projectRootFull)
+ $workspaceParent = (Split-Path -Parent $documentCenterRoot)
++$trustedStagingRoot = Get-NormalizedPath (Join-Path $workspaceParent "_review_stage")
++$stagingMarkerName = '.review-staging.marker.json'
+ 
+ if (-not $StagingPath) {
+   $StagingPath = Join-Path $workspaceParent "_review_stage\FULL-REVIEW-CHECKPOINT-002-FINAL-ROUND-3"
+@@ -30,16 +42,9 @@ if (-not $PackageId) {
+   $PackageId = 'CB-FULL-REVIEW-CHECKPOINT-002-FINAL-ROUND-3'
+ }
+ 
+-$stagingRoot = [System.IO.Path]::GetFullPath($StagingPath).TrimEnd('\')
+-$packageFullPath = [System.IO.Path]::GetFullPath($PackagePath)
+-$packageManifestFullPath = [System.IO.Path]::GetFullPath($PackageManifestPath)
+-
+-if ($stagingRoot -ieq $projectRootFull -or $stagingRoot.StartsWith($projectRootFull + '\', [System.StringComparison]::OrdinalIgnoreCase)) {
+-  throw "StagingPath must be outside the canonical source project."
+-}
+-if ($stagingRoot -ieq $documentCenterRoot -or $stagingRoot.StartsWith($documentCenterRoot.TrimEnd('\') + '\', [System.StringComparison]::OrdinalIgnoreCase)) {
+-  throw "StagingPath must be outside the document center."
+-}
++$stagingRoot = Get-NormalizedPath $StagingPath
++$packageFullPath = Get-NormalizedPath $PackagePath
++$packageManifestFullPath = Get-NormalizedPath $PackageManifestPath
+ if ($packageFullPath -ieq $projectRootFull -or $packageFullPath.StartsWith($projectRootFull + '\', [System.StringComparison]::OrdinalIgnoreCase)) {
+   throw "PackagePath must be outside the canonical source project."
+ }
+@@ -63,6 +68,166 @@ function Read-StagedText([string]$Path) {
+   return [System.IO.File]::ReadAllText((ConvertTo-ExtendedPath $Path))
+ }
+ 
++function Get-PathFingerprint([string]$Path) {
++  $normalized = (Get-NormalizedPath $Path).ToLowerInvariant()
++  $sha256 = [System.Security.Cryptography.SHA256]::Create()
++  try {
++    $bytes = [System.Text.Encoding]::UTF8.GetBytes($normalized)
++    return ([System.BitConverter]::ToString($sha256.ComputeHash($bytes)) -replace '-', '').ToLowerInvariant()
++  } finally {
++    $sha256.Dispose()
++  }
++}
++
++function Get-TrustedStagingRelativePath([string]$Path) {
++  return $Path.Substring($trustedStagingRoot.Length).TrimStart('\','/') -replace '\\','/'
++}
++
++function Test-SameOrDescendantPath([string]$Candidate, [string]$Ancestor) {
++  $candidatePath = Get-NormalizedPath $Candidate
++  $ancestorPath = Get-NormalizedPath $Ancestor
++  if ($candidatePath -ieq $ancestorPath) { return $true }
++  if ($candidatePath.Length -le $ancestorPath.Length) { return $false }
++  if (-not $candidatePath.StartsWith($ancestorPath, [System.StringComparison]::OrdinalIgnoreCase)) { return $false }
++  return $candidatePath[$ancestorPath.Length] -in @('\','/')
++}
++
++function Get-PathAncestors([string]$Path) {
++  $current = Get-NormalizedPath $Path
++  while ($true) {
++    $parent = [System.IO.DirectoryInfo]::new($current).Parent
++    if (-not $parent) { break }
++    $parentPath = Get-NormalizedPath $parent.FullName
++    if ($parentPath -ieq $current) { break }
++    Write-Output $parentPath
++    $current = $parentPath
++  }
++}
++
++function Assert-NoReparsePointsAlongPath([string]$Path) {
++  $current = Get-NormalizedPath $Path
++  while ($true) {
++    $item = Get-Item -LiteralPath $current -Force -ErrorAction SilentlyContinue
++    if ($item -and (($item.Attributes -band [System.IO.FileAttributes]::ReparsePoint) -ne 0)) {
++      throw "StagingPath is rejected because an existing path component is a reparse point: $current"
++    }
++    $parent = [System.IO.DirectoryInfo]::new($current).Parent
++    if (-not $parent) { break }
++    $parentPath = Get-NormalizedPath $parent.FullName
++    if ($parentPath -ieq $current) { break }
++    $current = $parentPath
++  }
++}
++
++function Assert-NoReparsePointsInsideDirectory([string]$Path) {
++  $rootItem = Get-Item -LiteralPath $Path -Force -ErrorAction Stop
++  if (-not ($rootItem -is [System.IO.DirectoryInfo])) {
++    throw "Existing StagingPath is rejected because it is not a directory: $Path"
++  }
++
++  $stack = New-Object 'System.Collections.Generic.Stack[System.IO.DirectoryInfo]'
++  $stack.Push([System.IO.DirectoryInfo]::new($Path))
++  while ($stack.Count -gt 0) {
++    $directory = $stack.Pop()
++    foreach ($entry in $directory.EnumerateFileSystemInfos()) {
++      if (($entry.Attributes -band [System.IO.FileAttributes]::ReparsePoint) -ne 0) {
++        throw "Existing StagingPath is rejected because it contains a reparse point: $($entry.FullName)"
++      }
++      if ($entry -is [System.IO.DirectoryInfo]) {
++        $stack.Push([System.IO.DirectoryInfo]::new($entry.FullName))
++      }
++    }
++  }
++}
++
++function Assert-SafeStagingPath([string]$Path) {
++  $candidate = Get-NormalizedPath $Path
++  if (Test-SameOrDescendantPath $candidate $projectRootFull) {
++    throw "StagingPath is rejected because it is the canonical source project or a descendant of it."
++  }
++  if (Test-SameOrDescendantPath $candidate $documentCenterRoot) {
++    throw "StagingPath is rejected because it is the document center or a descendant of it."
++  }
++  if ($candidate -ieq $trustedStagingRoot) {
++    throw "StagingPath is rejected because it is the trusted staging root itself; use a dedicated child directory."
++  }
++  if (-not (Test-SameOrDescendantPath $candidate $trustedStagingRoot)) {
++    throw "StagingPath is rejected because it is outside the trusted staging root."
++  }
++
++  $protectedExactPaths = @(
++    $projectRootFull,
++    $documentCenterRoot,
++    $trustedStagingRoot,
++    [System.IO.Path]::GetPathRoot($projectRootFull),
++    [Environment]::GetFolderPath([Environment+SpecialFolder]::UserProfile)
++  )
++  $protectedExactPaths += @(Get-PathAncestors $projectRootFull)
++  $protectedExactPaths += @(Get-PathAncestors $documentCenterRoot)
++  foreach ($protectedPath in $protectedExactPaths) {
++    if ($protectedPath -and $candidate -ieq (Get-NormalizedPath $protectedPath)) {
++      throw "StagingPath is rejected because it is a protected project/workspace ancestor or root."
++    }
++  }
++
++  Assert-NoReparsePointsAlongPath $candidate
++  return $candidate
++}
++
++function Assert-ToolOwnedStaging([string]$Path) {
++  Assert-NoReparsePointsInsideDirectory $Path
++  $markerPath = Join-Path $Path $stagingMarkerName
++  $markerItem = Get-Item -LiteralPath $markerPath -Force -ErrorAction SilentlyContinue
++  if (-not $markerItem -or $markerItem -isnot [System.IO.FileInfo]) {
++    throw "Existing StagingPath is rejected because it has no valid tool-ownership marker; use a new child directory."
++  }
++  if (($markerItem.Attributes -band [System.IO.FileAttributes]::ReparsePoint) -ne 0) {
++    throw "Existing StagingPath is rejected because its ownership marker is a reparse point."
++  }
++
++  try {
++    $marker = Read-StagedText $markerPath | ConvertFrom-Json
++  } catch {
++    throw "Existing StagingPath is rejected because its ownership marker is invalid."
++  }
++
++  $expected = @{
++    marker_version = 1
++    marker_type = 'review-staging'
++    tool = '92-prepare-review-staging.ps1'
++    package_id = $PackageId
++    source_identity = 'CrossBorder-Independent-Store'
++    document_center_identity = 'document-center'
++    source_path_fingerprint = (Get-PathFingerprint $projectRootFull)
++    document_center_path_fingerprint = (Get-PathFingerprint $documentCenterRoot)
++    staging_path_fingerprint = (Get-PathFingerprint $Path)
++    staging_relative_path = (Get-TrustedStagingRelativePath $Path)
++  }
++  foreach ($field in $expected.Keys) {
++    $actual = [string]$marker.$field
++    if ($actual -ne [string]$expected[$field]) {
++      throw "Existing StagingPath is rejected because its ownership marker does not match this tool/task."
++    }
++  }
++}
++
++function Write-StagingOwnershipMarker([string]$Path) {
++  $marker = [ordered]@{
++    marker_version = 1
++    marker_type = 'review-staging'
++    tool = '92-prepare-review-staging.ps1'
++    package_id = $PackageId
++    source_identity = 'CrossBorder-Independent-Store'
++    document_center_identity = 'document-center'
++    source_path_fingerprint = (Get-PathFingerprint $projectRootFull)
++    document_center_path_fingerprint = (Get-PathFingerprint $documentCenterRoot)
++    staging_path_fingerprint = (Get-PathFingerprint $Path)
++    staging_relative_path = (Get-TrustedStagingRelativePath $Path)
++    created_utc = (Get-Date).ToUniversalTime().ToString('o')
++  }
++  Write-Utf8NoBom (Join-Path $Path $stagingMarkerName) (($marker | ConvertTo-Json -Compress) + [Environment]::NewLine)
++}
++
+ function Get-ProjectRelativePath([string]$FullPath) {
+   return $FullPath.Substring($projectRootFull.Length).TrimStart('\','/') -replace '\\','/'
+ }
+@@ -258,10 +423,13 @@ function Get-MarkdownLinkFindings {
+   return $findings
+ }
+ 
++$stagingRoot = Assert-SafeStagingPath $stagingRoot
+ if (Test-Path -LiteralPath $stagingRoot) {
++  Assert-ToolOwnedStaging $stagingRoot
+   [System.IO.Directory]::Delete((ConvertTo-ExtendedPath $stagingRoot), $true)
+ }
+ New-Item -ItemType Directory -Force -Path $stagingRoot | Out-Null
++Write-StagingOwnershipMarker $stagingRoot
+ 
+ $sourceDestinationRoot = Join-Path $stagingRoot 'CrossBorder-Independent-Store'
+ $projectCopy = Copy-Tree $projectRootFull $sourceDestinationRoot ${function:Get-ProjectRelativePath} ${function:Test-ExcludedSourcePath}
+@@ -457,6 +625,8 @@ if ($CreateZip) {
+     'The external manifest is intentionally written after ZIP creation so the ZIP hash is not circular. The in-package manifest carries the same package identity and explicitly points to this external hash record.'
+   )
+   Write-Utf8NoBom $packageManifestFullPath (($externalManifestLines -join [Environment]::NewLine) + [Environment]::NewLine)
++  $stagingRoot = Assert-SafeStagingPath $stagingRoot
++  Assert-ToolOwnedStaging $stagingRoot
+   [System.IO.Directory]::Delete((ConvertTo-ExtendedPath $stagingRoot), $true)
+   Write-Host 'STAGING_DELETED=YES'
+ }
+diff --git a/05_product/scripts/medusa-product-upsert.mjs b/05_product/scripts/medusa-product-upsert.mjs
+index 6894290..f037465 100644
+--- a/05_product/scripts/medusa-product-upsert.mjs
++++ b/05_product/scripts/medusa-product-upsert.mjs
+@@ -114,6 +114,27 @@ function assetUrl(asset) {
+   return asset && typeof asset === "object" && typeof asset.url === "string" && asset.url && !asset.url.includes("example.invalid") ? asset.url : null
+ }
+ 
++function buildPublicMetadata(record) {
++  // Store API product metadata is customer-visible. Keep only stable identity,
++  // publication and presentation fields; sourcing/cost/risk facts stay in the
++  // Product Master and are never copied into the public catalog payload.
++  return Object.fromEntries(Object.entries({
++    pawfectly_public_metadata_version: "1",
++    pawfectly_product_master_version: record.schema_version,
++    pawfectly_record_type: record.record_type || "SELLABLE_PRODUCT",
++    pawfectly_source_product_id: record.identity.source_product_id,
++    pawfectly_internal_sku: record.identity.internal_sku,
++    pawfectly_record_status: record.record_status,
++    pawfectly_product_status: record.metadata?.product_status || record.record_status,
++    pawfectly_store_integration_approved_by_user: record.metadata?.store_integration_approved_by_user,
++    pawfectly_selling_price_status: record.metadata?.selling_price_status || (record.commerce.selling_price === null ? "NEEDS_USER_CONFIRMATION" : "CONFIRMED_BY_USER"),
++    pawfectly_selling_price_confirmed: record.metadata?.selling_price_confirmed || (record.commerce.selling_price === null ? "NO" : "YES"),
++    pawfectly_storefront_purchasable: record.commerce.storefront_purchasable,
++    pawfectly_availability_mode: record.commerce.availability_mode,
++    pawfectly_public_category: record.taxonomy?.product_category,
++  }).map(([key, value]) => [key, metadataValue(value)]).filter(([, value]) => value !== null && value !== undefined))
++}
++
+ function medusaRuntimeAmount(value) {
+   // The frozen Mother Template's migration seed and storefront formatter use
+   // Medusa amounts in currency units (for example 14.99), not minor units.
+@@ -126,28 +147,7 @@ function buildPayload(record, productStatus = "draft") {
+   const currency = String(record.commerce.currency).toUpperCase()
+   const currencyCode = currency.toLowerCase()
+   const imageUrls = [assetUrl(record.assets.thumbnail), assetUrl(record.assets.main_image), ...record.assets.gallery_images.map(assetUrl)].filter(Boolean).filter((url, index, array) => array.indexOf(url) === index)
+-  const metadata = Object.fromEntries(Object.entries({
+-    ...(record.metadata || {}),
+-    pawfectly_product_master_version: record.schema_version,
+-    pawfectly_record_type: record.record_type || "SELLABLE_PRODUCT",
+-    pawfectly_source_product_id: record.identity.source_product_id,
+-    pawfectly_supplier_name: record.identity.supplier_name,
+-    pawfectly_supplier_url: record.identity.supplier_url,
+-    pawfectly_internal_sku: record.identity.internal_sku,
+-    pawfectly_currency: currency,
+-    pawfectly_cost_price: record.commerce.cost_price,
+-    pawfectly_selling_price: record.commerce.selling_price,
+-    pawfectly_compare_at_price: record.commerce.compare_at_price,
+-    pawfectly_record_status: record.record_status,
+-    pawfectly_product_status: record.metadata?.product_status || record.record_status,
+-    pawfectly_store_integration_approved_by_user: "YES",
+-    pawfectly_selling_price_status: record.metadata?.selling_price_status || (record.commerce.selling_price === null ? "NEEDS_USER_CONFIRMATION" : "CONFIRMED_BY_USER"),
+-    pawfectly_selling_price_confirmed: record.metadata?.selling_price_confirmed || (record.commerce.selling_price === null ? "NO" : "YES"),
+-    pawfectly_supplier_stock_status: record.commerce.supplier_stock_status,
+-    pawfectly_project_owned_inventory: record.commerce.project_owned_inventory,
+-    pawfectly_storefront_purchasable: record.commerce.storefront_purchasable,
+-    pawfectly_availability_mode: record.commerce.availability_mode,
+-  }).map(([key, value]) => [key, metadataValue(value)]))
++  const metadata = buildPublicMetadata(record)
+   const localPreviewAvailability = record.commerce.availability_mode === "LOCAL_PREVIEW_AVAILABILITY" && record.commerce.storefront_purchasable === "YES"
+   const variants = record.commerce.variants.map((variant) => {
+     const amount = medusaRuntimeAmount(variant.selling_price ?? record.commerce.selling_price)
+@@ -158,12 +158,7 @@ function buildPayload(record, productStatus = "draft") {
+       prices: amount === null ? [] : [{ amount, currency_code: currencyCode }],
+       ...(localPreviewAvailability ? { manage_inventory: false } : {}),
+       metadata: {
+-        pawfectly_source_variant_id: metadataValue(variant.source_variant_id),
+-        pawfectly_inventory_status: metadataValue(variant.inventory_status),
+-        pawfectly_inventory_quantity: metadataValue(variant.inventory_quantity),
+         pawfectly_storefront_purchasable: metadataValue(variant.storefront_purchasable),
+-        pawfectly_cost_price: metadataValue(record.commerce.cost_price),
+-        pawfectly_compare_at_price: metadataValue(variant.compare_at_price ?? record.commerce.compare_at_price),
+       },
+     }
+   })
+@@ -243,6 +238,16 @@ function findExistingProduct(products, record) {
+   return null
+ }
+ 
++function replaceMetadata(existingMetadata, desiredMetadata) {
++  const cleared = {}
++  for (const key of Object.keys(existingMetadata || {})) {
++    // Medusa 2.19's mergeMetadata contract treats an empty string as an
++    // explicit delete marker; null is retained as a public JSON key.
++    if (!Object.prototype.hasOwnProperty.call(desiredMetadata || {}, key)) cleared[key] = ""
++  }
++  return { ...cleared, ...(desiredMetadata || {}) }
++}
++
+ function updatePayload(payload, existing) {
+   const existingVariants = existing.variants || []
+   const bySku = new Map()
+@@ -254,8 +259,17 @@ function updatePayload(payload, existing) {
+   const { options: _options, ...productFields } = payload
+   return {
+     ...productFields,
+-    metadata: { ...(existing.metadata || {}), ...payload.metadata },
+-    variants: payload.variants.map((variant) => ({ ...variant, ...(bySku.get(variant.sku)?.id ? { id: bySku.get(variant.sku).id } : {}) })),
++    // Send explicit nulls for legacy keys because Medusa product metadata
++    // updates merge objects rather than treating an omitted key as a delete.
++    metadata: replaceMetadata(existing.metadata, payload.metadata),
++    variants: payload.variants.map((variant) => {
++      const existingVariant = bySku.get(variant.sku)
++      return {
++        ...variant,
++        ...(existingVariant?.id ? { id: existingVariant.id } : {}),
++        metadata: replaceMetadata(existingVariant?.metadata, variant.metadata),
++      }
++    }),
+   }
+ }
+ 
+@@ -269,8 +283,10 @@ function assertProductReadback(product, record, expectedStatus) {
+   if (String(product.status).toLowerCase() !== expectedStatus) throw new Error(`Admin product read-back is not ${expectedStatus.toUpperCase()}.`)
+   const variants = product.variants || []
+   const skus = variants.map((variant) => variant.sku).filter(Boolean)
+-  if (new Set(skus).size !== skus.length || !skus.includes(record.commerce.variants[0].internal_sku)) throw new Error("Admin product read-back variant identity is invalid.")
+-  const targetVariant = variants.find((variant) => variant.sku === record.commerce.variants[0].internal_sku)
++  const expectedVariants = record.commerce.variants
++  const expectedSkus = expectedVariants.map((variant) => variant.internal_sku)
++  if (new Set(skus).size !== skus.length || variants.length !== expectedVariants.length || expectedSkus.some((sku) => !skus.includes(sku))) throw new Error("Admin product read-back variant identity is invalid.")
++  const targetVariant = variants.find((variant) => variant.sku === expectedVariants[0].internal_sku)
+   const localPreviewAvailability = record.commerce.availability_mode === "LOCAL_PREVIEW_AVAILABILITY" && record.commerce.storefront_purchasable === "YES"
+   if (localPreviewAvailability && targetVariant?.manage_inventory !== false) throw new Error("Admin product read-back did not preserve LOCAL_PREVIEW_AVAILABILITY without owned inventory.")
+   const expectedImage = assetUrl(record.assets.main_image)
+@@ -279,7 +295,13 @@ function assertProductReadback(product, record, expectedStatus) {
+   const prices = targetVariant?.prices || []
+   if (expectedAmount === null && prices.length !== 0) throw new Error("Admin product read-back unexpectedly contains a selling price without a confirmed master price.")
+   if (expectedAmount !== null && !prices.some((price) => String(price.currency_code).toLowerCase() === String(record.commerce.currency).toLowerCase() && Number(price.amount) === expectedAmount)) throw new Error("Admin product read-back did not confirm the expected USD selling price.")
+-  if (record.commerce.option_names.length > 0 && readVariantOption(targetVariant, record.commerce.option_names[0]) !== record.commerce.variants[0].options?.[record.commerce.option_names[0]]) throw new Error("Admin product read-back variant option identity is invalid.")
++  for (const expectedVariant of expectedVariants) {
++    const actualVariant = variants.find((variant) => variant.sku === expectedVariant.internal_sku)
++    if (record.commerce.option_names.some((name) => readVariantOption(actualVariant, name) !== expectedVariant.options?.[name])) throw new Error("Admin product read-back variant option identity is invalid.")
++    const expectedVariantAmount = medusaRuntimeAmount(expectedVariant.selling_price ?? record.commerce.selling_price)
++    const actualPrices = actualVariant?.prices || []
++    if (expectedVariantAmount !== null && !actualPrices.some((price) => String(price.currency_code).toLowerCase() === String(record.commerce.currency).toLowerCase() && Number(price.amount) === expectedVariantAmount)) throw new Error(`Admin product read-back did not confirm the price for variant ${expectedVariant.internal_sku}.`)
++  }
+   return product
+ }
+ 
+@@ -290,7 +312,8 @@ function postgresReadback(target, product, record) {
+   const rows = productRows ? productRows.split(/\r?\n/).filter(Boolean) : []
+   if (rows.length !== 1) throw new Error("PostgreSQL product read-back did not find exactly one matching product.")
+   const variantRows = runDocker(["exec", target.container, "psql", "-U", "medusa", "-d", target.databaseName, "-At", "-F", "|", "-c", `SELECT sku,count(*) FROM product_variant WHERE product_id='${productId}' GROUP BY sku ORDER BY sku;`])
+-  if (!variantRows.split(/\r?\n/).some((row) => row.startsWith(`${record.commerce.variants[0].internal_sku}|1`))) throw new Error("PostgreSQL variant read-back did not confirm the stable internal SKU.")
++  const variantEntries = variantRows.split(/\r?\n/).filter(Boolean)
++  if (variantEntries.length !== record.commerce.variants.length || record.commerce.variants.some((variant) => !variantEntries.includes(`${variant.internal_sku}|1`))) throw new Error("PostgreSQL variant read-back did not confirm every stable variant SKU exactly once.")
+   const currency = String(record.commerce.currency).toUpperCase()
+   const currencyCode = currency.toLowerCase()
+   const expectedAmount = medusaRuntimeAmount(record.commerce.variants[0].selling_price ?? record.commerce.selling_price)
+@@ -329,6 +352,7 @@ async function execute(options) {
+   const expectedStatus = options.publish ? "published" : "draft"
+   if (options.publish && record.record_status !== "PUBLISHED") throw new Error("Publish requires record_status=PUBLISHED after the publish gate has passed; no write attempted.")
+   if (options.publish && validation.gates?.PUBLISH_REQUIRED !== "PASS") throw new Error("Publish gate is not PASS; no write attempted.")
++  if (options.publish && record.commerce.project_owned_inventory === "UNKNOWN" && record.commerce.availability_mode !== "LOCAL_PREVIEW_AVAILABILITY") throw new Error("Production publication is blocked until owned inventory/fulfillment semantics are explicit; use LOCAL_PREVIEW_AVAILABILITY only for local validation.")
+   const payload = buildPayload(record, expectedStatus)
+   if (!options.write) {
+     console.log("DRY_RUN=YES")
+diff --git a/05_product/scripts/product-pipeline.mjs b/05_product/scripts/product-pipeline.mjs
+index 161122b..f13eb54 100644
+--- a/05_product/scripts/product-pipeline.mjs
++++ b/05_product/scripts/product-pipeline.mjs
+@@ -445,6 +445,8 @@ function validateRecord(record) {
+ 
+   const variants = get(record, "commerce.variants")
+   const variantSkus = new Set()
++  const optionNames = Array.isArray(get(record, "commerce.option_names")) ? get(record, "commerce.option_names") : []
++  if (new Set(optionNames).size !== optionNames.length) issue(issues, "IMPORT_REQUIRED", "commerce.option_names", "INVALID", "Option names must be unique.", blockerLabel("IMPORT_REQUIRED"), "BLOCKER")
+   if (!Array.isArray(variants) || variants.length === 0) issue(issues, "IMPORT_REQUIRED", "commerce.variants", "MISSING", "At least one real variant is required.", blockerLabel("IMPORT_REQUIRED"), "BLOCKER")
+   else variants.forEach((variant, index) => {
+     const prefix = `commerce.variants[${index}]`
+@@ -454,7 +456,13 @@ function validateRecord(record) {
+     else variantSkus.add(String(sku))
+     const variantPrice = variant.selling_price ?? get(record, "commerce.selling_price")
+     checkPrice(issues, "IMPORT_REQUIRED", `${prefix}.selling_price`, variantPrice, !productPriceKnown && !draftIntegration)
++    if (variant.options && typeof variant.options === "object") {
++      const variantOptionNames = Object.keys(variant.options)
++      if (variantOptionNames.some((name) => !optionNames.includes(name))) issue(issues, "IMPORT_REQUIRED", `${prefix}.options`, "INVALID", "Variant options must be declared in commerce.option_names.", blockerLabel("IMPORT_REQUIRED"), "BLOCKER")
++      if (optionNames.some((name) => isUnknown(variant.options[name]))) issue(issues, "IMPORT_REQUIRED", `${prefix}.options`, "MISSING", "Every declared option needs a value for every variant.", blockerLabel("IMPORT_REQUIRED"), "BLOCKER")
++    } else if (optionNames.length > 0) issue(issues, "IMPORT_REQUIRED", `${prefix}.options`, "MISSING", "Variants must provide values for the declared options.", blockerLabel("IMPORT_REQUIRED"), "BLOCKER")
+     if (isKnown(variant.compare_at_price) && isKnown(variantPrice) && Number(variant.compare_at_price) < Number(variantPrice)) issue(issues, "IMPORT_REQUIRED", `${prefix}.compare_at_price`, "INVALID", "Compare-at price cannot be lower than selling price.", blockerLabel("IMPORT_REQUIRED"), "BLOCKER")
++    if (isKnown(variant.inventory_quantity) && Number(variant.inventory_quantity) < 0) issue(issues, "PUBLISH_REQUIRED", `${prefix}.inventory_quantity`, "INVALID", "Inventory quantity cannot be negative.", blockerLabel("PUBLISH_REQUIRED"), "BLOCKER")
+   })
+ 
+   const userApprovedStoreIntegration = record.metadata?.store_integration_approved_by_user === "YES" && record.metadata?.store_integration_gate === "APPROVED_FOR_STORE_INTEGRATION"
+@@ -570,30 +578,20 @@ function buildMedusaPlan(record, validation) {
+   const optionNames = Array.from(new Set([...(Array.isArray(commerce.option_names) ? commerce.option_names : []), ...variants.flatMap((variant) => Object.keys(variant?.options || {}))].filter((value) => isKnown(value))))
+   const imageUrls = [assetUrl(assets.main_image), ...(assets.gallery_images || []).map(assetUrl)].filter(Boolean).filter((value, index, array) => array.indexOf(value) === index)
+   const localPreviewAvailability = commerce.availability_mode === "LOCAL_PREVIEW_AVAILABILITY" && commerce.storefront_purchasable === "YES"
+-  const metadata = {
++  const metadata = Object.fromEntries(Object.entries({
++    pawfectly_public_metadata_version: "1",
+     pawfectly_product_master_version: normalized.schema_version,
++    pawfectly_record_type: normalized.record_type || "SELLABLE_PRODUCT",
+     pawfectly_source_product_id: identity.source_product_id,
+-    pawfectly_supplier_name: identity.supplier_name,
+-    pawfectly_supplier_url: identity.supplier_url,
+     pawfectly_internal_sku: identity.internal_sku,
+-    pawfectly_currency: commerce.currency,
+-    pawfectly_currency_minor_exponent: currencyCode ? SUPPORTED_CURRENCIES.get(currencyCode) : null,
+-    pawfectly_cost_price: commerce.cost_price,
+-    pawfectly_selling_price: commerce.selling_price,
+-    pawfectly_compare_at_price: commerce.compare_at_price,
+-    pawfectly_weight: JSON.stringify(normalized.physical?.weight || null),
+-    pawfectly_package_weight: JSON.stringify(normalized.physical?.package_weight || null),
+-    pawfectly_hs_code: JSON.stringify(normalized.cross_border?.hs_code || null),
+-    pawfectly_taxonomy: JSON.stringify(normalized.taxonomy || {}),
+-    pawfectly_physical: JSON.stringify(normalized.physical || {}),
+-    pawfectly_operations: JSON.stringify(normalized.operations || {}),
+-    pawfectly_cross_border: JSON.stringify(normalized.cross_border || {}),
+-    pawfectly_provenance: JSON.stringify(normalized.provenance || {}),
+-    pawfectly_supplier_stock_status: commerce.supplier_stock_status,
+-    pawfectly_project_owned_inventory: commerce.project_owned_inventory,
++    pawfectly_record_status: normalized.record_status,
++    pawfectly_store_integration_approved_by_user: normalized.metadata?.store_integration_approved_by_user,
++    pawfectly_selling_price_status: normalized.metadata?.selling_price_status || (commerce.selling_price === null ? "NEEDS_USER_CONFIRMATION" : "CONFIRMED_BY_USER"),
++    pawfectly_selling_price_confirmed: normalized.metadata?.selling_price_confirmed || (commerce.selling_price === null ? "NO" : "YES"),
+     pawfectly_storefront_purchasable: commerce.storefront_purchasable,
+     pawfectly_availability_mode: commerce.availability_mode,
+-  }
++    pawfectly_public_category: normalized.taxonomy?.product_category,
++  }).filter(([, value]) => value !== null && value !== undefined).map(([key, value]) => [key, typeof value === "object" ? JSON.stringify(value) : value]))
+   const payload = {
+     title: identity.title,
+     handle: identity.handle,
+@@ -615,12 +613,7 @@ function buildMedusaPlan(record, validation) {
+         : [],
+       ...(localPreviewAvailability ? { manage_inventory: false } : {}),
+       metadata: {
+-        pawfectly_source_variant_id: variant.source_variant_id,
+-        pawfectly_inventory_status: variant.inventory_status,
+-        pawfectly_inventory_quantity: variant.inventory_quantity,
+         pawfectly_storefront_purchasable: variant.storefront_purchasable,
+-        pawfectly_cost_price: commerce.cost_price,
+-        pawfectly_compare_at_price: variant.compare_at_price ?? commerce.compare_at_price,
+       },
+     })),
+   }
+@@ -714,6 +707,12 @@ function runSelfTests(options) {
+   add("NORMALIZE_IDEMPOTENT", JSON.stringify(normalizedOnce) === JSON.stringify(normalizedTwice))
+   const dryRun = buildMedusaPlan(fixture, validateRecord(fixture))
+   add("DRY_RUN_WRITE_PERFORMED_NO", dryRun.write_performed === false && dryRun.warnings.some((warning) => warning.includes("No HTTP request")))
++  add("PUBLIC_METADATA_EXCLUDES_SOURCING", !Object.keys(dryRun.medusa_payload.metadata).some((key) => /cost|supplier|operations|cross_border|physical|hs_code|provenance/i.test(key)))
++  const twoVariant = clone(fixture)
++  twoVariant.commerce.option_names = ["Size"]
++  twoVariant.commerce.variants.push({ ...clone(twoVariant.commerce.variants[0]), internal_sku: "TEST_FIXTURE_ONLY-PRODUCT-L", options: { Size: "L" }, selling_price: 12 })
++  const twoVariantPlan = buildMedusaPlan(twoVariant, validateRecord(twoVariant))
++  add("DRY_RUN_MAPS_ALL_VARIANTS", twoVariantPlan.medusa_payload.variants.length === 2 && twoVariantPlan.medusa_payload.variants.every((variant) => variant.sku))
+   const oldVersion = clone(fixture)
+   oldVersion.schema_version = "1.0.0"
+   let oldRejected = false
+diff --git a/05_product/sourcing/scripts/component-pipeline.mjs b/05_product/sourcing/scripts/component-pipeline.mjs
+index db51fc8..faa976b 100644
+--- a/05_product/sourcing/scripts/component-pipeline.mjs
++++ b/05_product/sourcing/scripts/component-pipeline.mjs
+@@ -250,7 +250,14 @@ function packageUnknown(record) {
+ }
+ 
+ function noInventedFields(record) {
+-  return record.identity?.supplier_name === "UNKNOWN" && record.physical?.product_dimensions?.depth === null && packageUnknown(record) && record.variants?.supplier_variant_ids?.value === null && record.variants?.variant_price_differences?.value === null && record.cross_border?.country_of_origin?.value === null && record.supplier_operations?.dropship_support?.value === null && record.risk?.fto_status?.value === "NEEDS_VERIFICATION" && record.risk?.fto_status?.status !== "VERIFIED"
++  // Unknown is a valid state in this contract. The check is evidence-based:
++  // only supplier-labelled claims and explicit verification states may drive
++  // a conclusion; it must not require today's exact list of unknown fields.
++  const hasSourceIdentity = sourceGate(record)
++  const claimsAreSeparated = allClaimItemsLabeled(record)
++  const unresolvedRiskIsExplicit = record.risk?.fto_status?.value !== "VERIFIED" && record.risk?.compliance_status?.value !== "VERIFIED"
++  const unresolvedLogisticsIsExplicit = record.cross_border?.hs_verification !== "VERIFIED" || record.cross_border?.country_of_origin?.value === null
++  return hasSourceIdentity && claimsAreSeparated && unresolvedRiskIsExplicit && unresolvedLogisticsIsExplicit
+ }
+ 
+ function safeUrl(value) {
+@@ -265,13 +272,24 @@ function validateComponent(record) {
+   const issues = []
+   const identityUrl = safeUrl(record.identity.supplier_url)
+   const source = sourceGate(record) && identityUrl
+-  const sample = record.sample.test_status === "PENDING" ? "NEEDS_TEST" : record.sample.test_status === "PASS" ? "PASS" : "NEEDS_TEST"
+-  const procurement = record.procurement.bulk_order_gate
++  const sample = record.sample.hard_fail === "YES" || record.sample.decision === "FAIL"
++    ? "FAIL"
++    : record.sample.decision === "PASS" && record.sample.hard_fail === "NO" && record.sample.test_status === "PASS"
++      ? "PASS"
++      : "NEEDS_TEST"
+   const logistics = packageUnknown(record) || record.physical.product_dimensions.depth === null || record.cross_border.country_of_origin.value === null || record.cross_border.hs_verification !== "VERIFIED" ? "NEEDS_VERIFICATION" : "PASS"
+   const risk = record.risk.fto_status.value !== "VERIFIED" || record.risk.compliance_status.value === "UNKNOWN" ? "NEEDS_VERIFICATION" : "PASS"
+   if (!source) issues.push({ field: "identity", state: "INVALID", message: "Source identity or evidence is incomplete." })
+   if (!allClaimItemsLabeled(record)) issues.push({ field: "supplier_claims", state: "INVALID", message: "Supplier claims must retain source SUPPLIER_CLAIM and cannot be marked VERIFIED." })
++  const procurement = sample === "FAIL"
++    ? "REJECT"
++    : sample !== "PASS"
++      ? "HOLD"
++      : logistics === "PASS" && risk === "PASS" && record.procurement.bulk_order_gate === "OPEN"
++        ? "READY_FOR_APPROVAL"
++        : "HOLD"
+   const gates = { SOURCE_GATE: source ? "PASS" : "BLOCKED", SAMPLE_GATE: sample, PROCUREMENT_GATE: procurement, LOGISTICS_GATE: logistics, RISK_GATE: risk }
++  if (sample === "FAIL") issues.push({ field: "sample", state: "BLOCKED", message: "A hard-failed or failed sample blocks procurement." })
+   const checks = {
+     BUNDLE_ID: record.bundle_id === BUNDLE_ID ? "PASS" : "FAIL",
+     NO_INVENTED_FIELDS: noInventedFields(record) ? "PASS" : "FAIL",
+@@ -285,7 +303,7 @@ function validateComponent(record) {
+     SAMPLE_SCORE: record.sample.score,
+     HARD_FAIL: record.sample.hard_fail,
+     QUOTE_RECONFIRMATION_REQUIRED: "YES",
+-    BULK_ORDER_GATE: procurement === "HOLD" ? "HOLD" : procurement,
++    BULK_ORDER_GATE: procurement,
+     MEDUSA_WRITE: "NO",
+   }
+   if (Object.values(checks).some((value) => value === "FAIL")) issues.push({ field: "checks", state: "INVALID", message: "One or more evidence-preservation checks failed." })
+@@ -362,6 +380,9 @@ function runTests(options) {
+     ["HARD_FAIL_NOT_TESTED", validation.checks.HARD_FAIL === "NOT_TESTED"],
+     ["QUOTE_RECONFIRMATION_REQUIRED_YES", validation.checks.QUOTE_RECONFIRMATION_REQUIRED === "YES"],
+     ["DRAFT_BOM_PASS", bom.result === "PASS" && bom.bundle_id_stable === "PASS"],
++    ["HARD_FAIL_BLOCKS_PROCUREMENT", (() => { const candidate = JSON.parse(JSON.stringify(record)); candidate.sample.hard_fail = "YES"; candidate.sample.decision = "PASS"; candidate.procurement.bulk_order_gate = "OPEN"; const result = validateComponent(candidate); return result.result === "BLOCKED" && result.gates.SAMPLE_GATE === "FAIL" && result.gates.PROCUREMENT_GATE === "REJECT" })()],
++    ["FAILED_SAMPLE_REJECTS", (() => { const candidate = JSON.parse(JSON.stringify(record)); candidate.sample.hard_fail = "NO"; candidate.sample.decision = "FAIL"; candidate.sample.test_status = "PASS"; candidate.procurement.bulk_order_gate = "OPEN"; const result = validateComponent(candidate); return result.result === "BLOCKED" && result.gates.PROCUREMENT_GATE === "REJECT" })()],
++    ["OPEN_INPUT_CANNOT_OVERRIDE_UNVERIFIED", (() => { const candidate = JSON.parse(JSON.stringify(record)); candidate.sample.hard_fail = "NO"; candidate.sample.decision = "PASS"; candidate.sample.test_status = "PASS"; candidate.procurement.bulk_order_gate = "OPEN"; const result = validateComponent(candidate); return result.gates.PROCUREMENT_GATE === "HOLD" })()],
+   ]
+   for (const [name, passed] of cases) console.log(`CASE_${name}=${passed ? "PASS" : "FAIL"}`)
+   const passed = cases.every(([, value]) => value)
+diff --git a/.github/workflows/verify.yml b/.github/workflows/verify.yml
+new file mode 100644
+index 0000000..20842ba
+--- /dev/null
++++ b/.github/workflows/verify.yml
+@@ -0,0 +1,54 @@
++name: Verify canonical template
++
++on:
++  push:
++  pull_request:
++
++permissions:
++  contents: read
++
++jobs:
++  verify:
++    runs-on: windows-2022
++    timeout-minutes: 30
++    env:
++      NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY: ci-public-key-fixture
++      NEXT_PUBLIC_MEDUSA_BACKEND_URL: http://127.0.0.1:9999
++      NEXT_PUBLIC_BASE_URL: http://127.0.0.1:9998
++    defaults:
++      run:
++        working-directory: 03_template/medusa-crossborder-base
++    steps:
++      - name: Checkout source repository
++        uses: actions/checkout@v4
++
++      - name: Set up Node.js
++        uses: actions/setup-node@v4
++        with:
++          node-version: 20.19.0
++
++      - name: Enable pnpm 10.11.1
++        shell: bash
++        run: corepack prepare pnpm@10.11.1 --activate
++
++      - name: Resolve pnpm store
++        id: pnpm-store
++        shell: pwsh
++        run: '"path=$(pnpm store path --silent)" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append'
++
++      - name: Cache locked pnpm store
++        uses: actions/cache@v4
++        with:
++          path: ${{ steps.pnpm-store.outputs.path }}
++          key: ${{ runner.os }}-pnpm-10.11.1-${{ hashFiles('03_template/medusa-crossborder-base/pnpm-lock.yaml') }}
++          restore-keys: |
++            ${{ runner.os }}-pnpm-10.11.1-
++
++      - name: Install locked dependencies
++        run: pnpm install --frozen-lockfile
++
++      - name: Unified type, lint and provider test gate
++        run: pnpm run verify
++
++      - name: Production build gate
++        run: pnpm run verify:build
+diff --git a/03_template/medusa-crossborder-base/apps/backend/scripts/run-jest.cjs b/03_template/medusa-crossborder-base/apps/backend/scripts/run-jest.cjs
+new file mode 100644
+index 0000000..8759ce7
+--- /dev/null
++++ b/03_template/medusa-crossborder-base/apps/backend/scripts/run-jest.cjs
+@@ -0,0 +1,27 @@
++const { spawnSync } = require("node:child_process")
++const path = require("node:path")
++
++const testType = process.argv[2]
++const supportedTypes = new Set(["unit", "integration:http", "integration:modules"])
++
++if (!supportedTypes.has(testType)) {
++  console.error(`Unsupported TEST_TYPE: ${testType || "missing"}`)
++  process.exit(2)
++}
++
++const nodeOptions = [process.env.NODE_OPTIONS, "--experimental-vm-modules"].filter(Boolean).join(" ")
++const result = spawnSync(
++  process.execPath,
++  [path.join(path.dirname(require.resolve("jest/package.json")), "bin", "jest.js"), ...process.argv.slice(3)],
++  {
++    stdio: "inherit",
++    env: { ...process.env, TEST_TYPE: testType, NODE_OPTIONS: nodeOptions },
++  },
++)
++
++if (result.error) {
++  console.error(result.error.message)
++  process.exit(1)
++}
++
++process.exit(result.status ?? 1)
+diff --git a/03_template/medusa-crossborder-base/apps/backend/src/api/checkout-boundary.ts b/03_template/medusa-crossborder-base/apps/backend/src/api/checkout-boundary.ts
+new file mode 100644
+index 0000000..6791cbb
+--- /dev/null
++++ b/03_template/medusa-crossborder-base/apps/backend/src/api/checkout-boundary.ts
+@@ -0,0 +1,42 @@
++export type CustomerPaymentProvider = { id?: string | null }
++
++export type CustomerShippingOption = {
++  name?: string | null
++  provider_id?: string | null
++  type?: { code?: string | null; description?: string | null } | null
++}
++
++export const technicalTestCheckoutEnabled =
++  process.env.MEDUSA_CHECKOUT_INSTANCE_MODE === "technical_test"
++
++export const isTechnicalPaymentProvider = (providerId?: string | null) =>
++  Boolean(providerId?.startsWith("pp_system_default"))
++
++export const isTechnicalShippingOption = (
++  option: CustomerShippingOption
++) => {
++  const name = option.name?.trim() || ""
++  const code = option.type?.code?.toLowerCase() || ""
++  const description = option.type?.description?.toLowerCase() || ""
++
++  return (
++    name.startsWith("Test ") ||
++    new Set(["US Standard Shipping", "Standard Shipping", "Express Shipping"]).has(name) ||
++    code.startsWith("technical_test") ||
++    description.includes("local validation only")
++  )
++}
++
++export const filterCustomerPaymentProviders = <T extends CustomerPaymentProvider>(
++  providers: T[]
++) =>
++  technicalTestCheckoutEnabled
++    ? providers
++    : providers.filter((provider) => !isTechnicalPaymentProvider(provider.id))
++
++export const filterCustomerShippingOptions = <T extends CustomerShippingOption>(
++  options: T[]
++) =>
++  technicalTestCheckoutEnabled
++    ? options
++    : options.filter((option) => !isTechnicalShippingOption(option))
+diff --git a/03_template/medusa-crossborder-base/apps/backend/src/api/middlewares.ts b/03_template/medusa-crossborder-base/apps/backend/src/api/middlewares.ts
+new file mode 100644
+index 0000000..f654941
+--- /dev/null
++++ b/03_template/medusa-crossborder-base/apps/backend/src/api/middlewares.ts
+@@ -0,0 +1,77 @@
++import {
++  defineMiddlewares,
++  MedusaNextFunction,
++  MedusaRequest,
++  MedusaResponse,
++} from "@medusajs/framework/http"
++import {
++  filterCustomerPaymentProviders,
++  filterCustomerShippingOptions,
++  isTechnicalPaymentProvider,
++  technicalTestCheckoutEnabled,
++} from "./checkout-boundary"
++
++const readProviderId = (request: MedusaRequest) => {
++  const body = (request.body || {}) as { provider_id?: unknown }
++  return typeof body.provider_id === "string" ? body.provider_id : undefined
++}
++
++const rejectTechnicalPaymentSession = (
++  request: MedusaRequest,
++  response: MedusaResponse,
++  next: MedusaNextFunction
++) => {
++  if (!technicalTestCheckoutEnabled && isTechnicalPaymentProvider(readProviderId(request))) {
++    return response.status(403).json({
++      type: "not_allowed",
++      message: "Technical payment providers are disabled in customer mode.",
++    })
++  }
++
++  return next()
++}
++
++const filterResponseCollection = (
++  key: "payment_providers" | "shipping_options",
++  filter: (items: unknown[]) => unknown[]
++) => (_request: MedusaRequest, response: MedusaResponse, next: MedusaNextFunction) => {
++  const json = response.json.bind(response)
++  response.json = ((body: Record<string, unknown>) => {
++    const items = body && Array.isArray(body[key]) ? body[key] : null
++    if (!items || technicalTestCheckoutEnabled) {
++      return json(body)
++    }
++
++    return json({ ...body, [key]: filter(items) })
++  }) as typeof response.json
++
++  return next()
++}
++
++export default defineMiddlewares({
++  routes: [
++    {
++      matcher: "/store/payment-providers",
++      methods: ["GET"],
++      middlewares: [
++        filterResponseCollection("payment_providers", (items) =>
++          filterCustomerPaymentProviders(items as { id?: string | null }[])
++        ),
++      ],
++    },
++    {
++      matcher: "/store/payment-collections/:id/payment-sessions",
++      methods: ["POST"],
++      middlewares: [rejectTechnicalPaymentSession],
++    },
++    {
++      matcher: "/store/shipping-options",
++      methods: ["GET"],
++      middlewares: [
++        filterResponseCollection("shipping_options", (items) =>
++          filterCustomerShippingOptions(items as { name?: string | null; provider_id?: string | null; type?: { code?: string | null; description?: string | null } | null }[])
++        ),
++      ],
++    },
++  ],
++})
+diff --git a/03_template/medusa-crossborder-base/apps/backend/src/modules/paypal/transport.ts b/03_template/medusa-crossborder-base/apps/backend/src/modules/paypal/transport.ts
+new file mode 100644
+index 0000000..1e875b0
+--- /dev/null
++++ b/03_template/medusa-crossborder-base/apps/backend/src/modules/paypal/transport.ts
+@@ -0,0 +1,174 @@
++import type {
++  PayPalAuthorizeOrderResponse,
++  PayPalCaptureAuthorizationResponse,
++  PayPalCreateOrderResponse,
++  PayPalRefundCaptureResponse,
++  PayPalRetrieveOrderResponse,
++  PayPalTransport,
++  PayPalUpdateOrderResponse,
++  PayPalVoidAuthorizationResponse,
++} from "./service"
++
++type PayPalHttpTransportOptions = {
++  environment: "sandbox" | "production"
++  clientId: string
++  clientSecret: string
++  fetchImpl?: typeof fetch
++  timeoutMs?: number
++  maxRetries?: number
++}
++
++function stringValue(value: unknown): string | undefined {
++  return typeof value === "string" && value.trim() ? value.trim() : undefined
++}
++
++function money(value: unknown): { amount?: string; currency_code?: string } {
++  if (!value || typeof value !== "object") return {}
++  const source = value as Record<string, unknown>
++  return {
++    ...(stringValue(source.value) ? { amount: stringValue(source.value) } : {}),
++    ...(stringValue(source.currency_code) ? { currency_code: stringValue(source.currency_code) } : {}),
++  }
++}
++
++function approvalUrl(body: Record<string, unknown>): string | undefined {
++  const items = Array.isArray(body.links) ? body.links : []
++  const link = items.find((item) => item && typeof item === "object" && (item as Record<string, unknown>).rel === "approve")
++  return link && typeof link === "object" ? stringValue((link as Record<string, unknown>).href) : undefined
++}
++
++function paymentEvidence(body: Record<string, unknown>) {
++  const purchaseUnit = Array.isArray(body.purchase_units) ? body.purchase_units[0] : undefined
++  const payments = purchaseUnit && typeof purchaseUnit === "object" ? (purchaseUnit as Record<string, unknown>).payments : undefined
++  const paymentRecord = payments && typeof payments === "object" ? payments as Record<string, unknown> : {}
++  const authorizations = Array.isArray(paymentRecord.authorizations) ? paymentRecord.authorizations : []
++  const captures = Array.isArray(paymentRecord.captures) ? paymentRecord.captures : []
++  const authorization = authorizations[0] && typeof authorizations[0] === "object" ? authorizations[0] as Record<string, unknown> : {}
++  const capture = captures[0] && typeof captures[0] === "object" ? captures[0] as Record<string, unknown> : {}
++  const rawAmount = capture.amount || authorization.amount || (purchaseUnit && typeof purchaseUnit === "object" ? (purchaseUnit as Record<string, unknown>).amount : undefined)
++  return {
++    ...(stringValue(authorization.id) ? { authorization_id: stringValue(authorization.id) } : {}),
++    ...(stringValue(capture.id) ? { capture_id: stringValue(capture.id) } : {}),
++    ...money(rawAmount),
++  }
++}
++
++export class PayPalHttpTransport implements PayPalTransport {
++  private readonly baseUrl = "https://api-m.sandbox.paypal.com"
++  private readonly clientId: string
++  private readonly clientSecret: string
++  private readonly fetchImpl: typeof fetch
++  private readonly timeoutMs: number
++  private readonly maxRetries: number
++  private tokenCache?: { value: string; expiresAt: number }
++
++  constructor(options: PayPalHttpTransportOptions) {
++    if (options.environment !== "sandbox") throw new Error("PayPal live transport is disabled until a separate live-readiness review.")
++    this.clientId = options.clientId
++    this.clientSecret = options.clientSecret
++    this.fetchImpl = options.fetchImpl || fetch
++    this.timeoutMs = options.timeoutMs ?? 10000
++    this.maxRetries = options.maxRetries ?? 2
++  }
++
++  private async accessToken(): Promise<string> {
++    if (this.tokenCache && this.tokenCache.expiresAt > Date.now() + 30000) return this.tokenCache.value
++    const body = await this.request("/v1/oauth2/token", {
++      method: "POST",
++      headers: {
++        Authorization: "Basic " + Buffer.from(this.clientId + ":" + this.clientSecret).toString("base64"),
++        "Content-Type": "application/x-www-form-urlencoded",
++        Accept: "application/json",
++      },
++      body: "grant_type=client_credentials",
++    }, false)
++    const token = stringValue(body.access_token)
++    const expiresIn = Number(body.expires_in)
++    if (!token || !Number.isFinite(expiresIn) || expiresIn <= 0) throw new Error("PayPal OAuth response did not contain a valid temporary access token.")
++    this.tokenCache = { value: token, expiresAt: Date.now() + expiresIn * 1000 }
++    return token
++  }
++
++  private async request(pathname: string, init: RequestInit, authenticate = true): Promise<Record<string, unknown>> {
++    let lastError: unknown
++    for (let attempt = 0; attempt <= this.maxRetries; attempt += 1) {
++      const controller = new AbortController()
++      const timer = setTimeout(() => controller.abort(), this.timeoutMs)
++      try {
++        const headers = new Headers(init.headers)
++        if (authenticate && !headers.has("Authorization")) headers.set("Authorization", "Bearer " + await this.accessToken())
++        const response = await this.fetchImpl(this.baseUrl + pathname, { ...init, headers, signal: controller.signal })
++        const text = await response.text()
++        let body: Record<string, unknown> = {}
++        try { body = text ? JSON.parse(text) as Record<string, unknown> : {} } catch { body = {} }
++        if (response.ok) return body
++        if (![408, 429, 500, 502, 503, 504].includes(response.status) || attempt >= this.maxRetries) throw new Error("PayPal sandbox request failed with HTTP " + response.status + ".")
++        lastError = new Error("PayPal sandbox request retryable HTTP " + response.status + ".")
++      } catch (error) {
++        lastError = error
++        if (attempt >= this.maxRetries) throw error
++      } finally {
++        clearTimeout(timer)
++      }
++    }
++    throw lastError instanceof Error ? lastError : new Error("PayPal request failed.")
++  }
++
++  async createOrder(input: Parameters<PayPalTransport["createOrder"]>[0]): Promise<PayPalCreateOrderResponse> {
++    const body = await this.request("/v2/checkout/orders", {
++      method: "POST",
++      headers: { "PayPal-Request-Id": input.idempotency_key, Prefer: "return=representation" },
++      body: JSON.stringify({ intent: input.intent, purchase_units: [{ reference_id: "default", custom_id: input.correlation_id, amount: { currency_code: input.currency_code, value: input.amount } }] }),
++    })
++    const id = stringValue(body.id)
++    if (!id || !stringValue(body.status)) throw new Error("PayPal create-order response was malformed.")
++    const url = approvalUrl(body)
++    return { order_id: id, status: String(body.status), ...(url ? { approval_url: url } : {}) }
++  }
++
++  async authorizeOrder(input: Parameters<PayPalTransport["authorizeOrder"]>[0]): Promise<PayPalAuthorizeOrderResponse> {
++    const body = await this.request("/v2/checkout/orders/" + encodeURIComponent(input.order_id) + "/authorize", { method: "POST", headers: { "PayPal-Request-Id": input.idempotency_key, Prefer: "return=representation" } })
++    const orderId = stringValue(body.id)
++    const evidence = paymentEvidence(body)
++    if (!orderId || !stringValue(body.status) || !evidence.authorization_id) throw new Error("PayPal authorize response was malformed.")
++    return { order_id: orderId, status: String(body.status), authorization_id: evidence.authorization_id, ...money({ value: evidence.amount, currency_code: evidence.currency_code }) }
++  }
++
++  async captureAuthorization(input: Parameters<PayPalTransport["captureAuthorization"]>[0]): Promise<PayPalCaptureAuthorizationResponse> {
++    const body = await this.request("/v2/payments/authorizations/" + encodeURIComponent(input.authorization_id) + "/capture", { method: "POST", headers: { "PayPal-Request-Id": input.idempotency_key, Prefer: "return=representation" } })
++    const id = stringValue(body.id)
++    if (!id || !stringValue(body.status)) throw new Error("PayPal capture response was malformed.")
++    return { capture_id: id, status: String(body.status), ...money(body.amount) }
++  }
++
++  async updateOrder(input: Parameters<PayPalTransport["updateOrder"]>[0]): Promise<PayPalUpdateOrderResponse> {
++    await this.request("/v2/checkout/orders/" + encodeURIComponent(input.order_id), { method: "PATCH", headers: { Prefer: "return=representation" }, body: JSON.stringify([{ op: "replace", path: "/purchase_units/@reference_id=='default'/amount", value: { currency_code: input.currency_code, value: input.amount } }]) })
++    return {}
++  }
++
++  async retrieveOrder(input: Parameters<PayPalTransport["retrieveOrder"]>[0]): Promise<PayPalRetrieveOrderResponse> {
++    const body = await this.request("/v2/checkout/orders/" + encodeURIComponent(input.order_id), { method: "GET" })
++    const id = stringValue(body.id)
++    if (!id || !stringValue(body.status)) throw new Error("PayPal retrieve-order response was malformed.")
++    return { order_id: id, status: String(body.status), ...paymentEvidence(body) }
++  }
++
++  async voidAuthorization(input: Parameters<PayPalTransport["voidAuthorization"]>[0]): Promise<PayPalVoidAuthorizationResponse> {
++    const body = await this.request("/v2/payments/authorizations/" + encodeURIComponent(input.authorization_id) + "/void", { method: "POST", headers: { "PayPal-Request-Id": input.idempotency_key } })
++    return { status: String(body.status || "VOIDED") }
++  }
++
++  async refundCapture(input: Parameters<PayPalTransport["refundCapture"]>[0]): Promise<PayPalRefundCaptureResponse> {
++    const body = await this.request("/v2/payments/captures/" + encodeURIComponent(input.capture_id) + "/refund", { method: "POST", headers: { "PayPal-Request-Id": input.idempotency_key, Prefer: "return=representation" }, body: JSON.stringify({ amount: { currency_code: input.currency_code, value: input.amount } }) })
++    const id = stringValue(body.id)
++    if (!id || !stringValue(body.status)) throw new Error("PayPal refund response was malformed.")
++    return { refund_id: id, status: String(body.status), ...money(body.amount) }
++  }
++
++  async verifyWebhook(input: Parameters<PayPalTransport["verifyWebhook"]>[0]): Promise<boolean> {
++    const payload = input.payload as { headers?: Record<string, string>; data?: unknown }
++    const headers = payload.headers || {}
++    const body = await this.request("/v1/notifications/verify-webhook-signature", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ auth_algo: headers["paypal-auth-algo"], cert_url: headers["paypal-cert-url"], transmission_id: headers["paypal-transmission-id"], transmission_sig: headers["paypal-transmission-sig"], transmission_time: headers["paypal-transmission-time"], webhook_id: input.webhook_id, webhook_event: payload.data }) })
++    return body.verification_status === "SUCCESS"
++  }
++}
+diff --git a/03_template/medusa-crossborder-base/apps/storefront/scripts/run-eslint.cjs b/03_template/medusa-crossborder-base/apps/storefront/scripts/run-eslint.cjs
+new file mode 100644
+index 0000000..9ee4b30
+--- /dev/null
++++ b/03_template/medusa-crossborder-base/apps/storefront/scripts/run-eslint.cjs
+@@ -0,0 +1,15 @@
++const { spawnSync } = require("node:child_process")
++const path = require("node:path")
++
++const eslintBin = path.join(path.dirname(require.resolve("eslint/package.json")), "bin", "eslint.js")
++const result = spawnSync(process.execPath, [eslintBin, "src"], {
++  stdio: "inherit",
++  env: { ...process.env, ESLINT_USE_FLAT_CONFIG: "false" },
++})
++
++if (result.error) {
++  console.error(result.error.message)
++  process.exit(1)
++}
++
++process.exit(result.status ?? 1)
+diff --git a/03_template/medusa-crossborder-base/apps/storefront/src/modules/order/components/transfer-decision-form/index.tsx b/03_template/medusa-crossborder-base/apps/storefront/src/modules/order/components/transfer-decision-form/index.tsx
+new file mode 100644
+index 0000000..1716caf
+--- /dev/null
++++ b/03_template/medusa-crossborder-base/apps/storefront/src/modules/order/components/transfer-decision-form/index.tsx
+@@ -0,0 +1,31 @@
++"use client"
++
++import { useActionState } from "react"
++import { Button, Text } from "@modules/common/components/ui"
++import { HttpTypes } from "@medusajs/types"
++
++type TransferState = { success: boolean; error: string | null; order: HttpTypes.StoreOrder | null }
++
++export default function TransferDecisionForm({
++  action,
++  orderId,
++  token,
++  verb,
++}: {
++  action: (state: TransferState, formData: FormData) => Promise<TransferState>
++  orderId: string
++  token: string
++  verb: "accept" | "decline"
++}) {
++  const [state, formAction, pending] = useActionState(action, { success: false, error: null, order: null })
++  return state.success ? (
++    <Text>Order transfer {verb === "accept" ? "accepted" : "declined"}.</Text>
++  ) : (
++    <form action={formAction} className="flex flex-col gap-y-3">
++      <input type="hidden" name="order_id" value={orderId} />
++      <input type="hidden" name="token" value={token} />
++      <Button type="submit" disabled={pending}>{pending ? "Working…" : `Confirm ${verb}`}</Button>
++      {state.error && <Text className="text-red-500" role="alert">{state.error}</Text>}
++    </form>
++  )
++}
+diff --git a/03_template/medusa-crossborder-base/scripts/process-management.security.tests.ps1 b/03_template/medusa-crossborder-base/scripts/process-management.security.tests.ps1
+new file mode 100644
+index 0000000..8d14d38
+--- /dev/null
++++ b/03_template/medusa-crossborder-base/scripts/process-management.security.tests.ps1
+@@ -0,0 +1,163 @@
++[CmdletBinding()]
++param()
++
++$ErrorActionPreference = 'Stop'
++. (Join-Path $PSScriptRoot '_common.ps1')
++
++$testRoot = Join-Path $env:TEMP ('cb-rt02-' + [Guid]::NewGuid().ToString('N'))
++$shell = (Get-Command pwsh -ErrorAction SilentlyContinue).Source
++if (-not $shell) { $shell = (Get-Command powershell -ErrorAction Stop).Source }
++$results = New-Object System.Collections.Generic.List[object]
++$failures = New-Object System.Collections.Generic.List[string]
++$passCount = 0
++$failCount = 0
++$knownProcesses = New-Object System.Collections.Generic.List[int]
++$knownSnapshots = @{}
++
++function Add-Result([string]$Name, [ValidateSet('PASS', 'FAIL', 'SKIP')][string]$Status, [string]$Detail) {
++  [void]$results.Add([pscustomobject]@{ Name = $Name; Status = $Status; Detail = $Detail })
++  if ($Status -eq 'PASS') { $script:passCount++ }
++  if ($Status -eq 'FAIL') { $script:failCount++; [void]$script:failures.Add($Name) }
++}
++
++function Start-HarmlessProcess([string]$WorkingDirectory = $script:TemplateRoot) {
++  $process = Start-Process -FilePath $shell -ArgumentList @('-NoLogo', '-NoProfile', '-Command', 'Start-Sleep -Seconds 120') -WorkingDirectory $WorkingDirectory -PassThru -WindowStyle Hidden
++  [void]$knownProcesses.Add([int]$process.Id)
++  $deadline = (Get-Date).AddSeconds(5)
++  do {
++    $snapshot = Get-ManagedProcessSnapshot $process.Id
++    if ($snapshot -and $snapshot.StartedAtUtc -and $snapshot.ExecutablePath -and $snapshot.CommandLine) { $knownSnapshots[[int]$process.Id] = $snapshot; return $process }
++    Start-Sleep -Milliseconds 100
++  } while ((Get-Date) -lt $deadline)
++  throw "Harmless test process identity did not become readable: $($process.Id)"
++}
++
++function New-TestPidPath([string]$Name) {
++  return Join-Path $testRoot ($Name + '.pid')
++}
++
++function Invoke-TestStop([string]$PidPath) {
++  $output = @(& { Stop-ManagedProcess -PidPath $PidPath -ExpectedRole 'test' } *>&1 | ForEach-Object { $_.ToString() })
++  return ($output -join [Environment]::NewLine)
++}
++
++function Test-ProcessAlive([int]$ProcessId) {
++  return $null -ne (Get-ManagedProcessSnapshot $ProcessId)
++}
++
++function Assert-ProcessAlive([string]$Name, [int]$ProcessId) {
++  Add-Result $Name $(if (Test-ProcessAlive $ProcessId) { 'PASS' } else { 'FAIL' }) "pid=$ProcessId"
++}
++
++function Assert-ProcessStopped([string]$Name, [int]$ProcessId) {
++  Add-Result $Name $(if (-not (Test-ProcessAlive $ProcessId)) { 'PASS' } else { 'FAIL' }) "pid=$ProcessId"
++}
++
++function Rewrite-Record([string]$Path, [scriptblock]$Mutator) {
++  $record = Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json
++  & $Mutator $record
++  Set-Utf8NoBomFile $Path (($record | ConvertTo-Json -Depth 5) + [Environment]::NewLine)
++}
++
++$parentScript = Join-Path $testRoot 'spawn-child.ps1'
++$childPidFile = Join-Path $testRoot 'child.pid'
++$parentScriptContent = @"
++`$child = Start-Process -FilePath '$(($shell -replace "'", "''"))' -ArgumentList @('-NoLogo', '-NoProfile', '-Command', 'Start-Sleep -Seconds 120') -WorkingDirectory '$(($script:TemplateRoot -replace "'", "''"))' -PassThru -WindowStyle Hidden
++[System.IO.File]::WriteAllText('$(($childPidFile -replace "'", "''"))', [string]`$child.Id)
++Start-Sleep -Seconds 120
++"@
++
++$parents = New-Object System.Collections.Generic.List[int]
++$children = New-Object System.Collections.Generic.List[int]
++$sentinel = $null
++
++try {
++  New-Item -ItemType Directory -Path $testRoot -Force | Out-Null
++  Set-Utf8NoBomFile $parentScript $parentScriptContent
++
++  $owned = Start-HarmlessProcess
++  $ownedPidPath = New-TestPidPath 'owned'
++  Write-ManagedProcessRecord $ownedPidPath $owned.Id 'test' 'rt02-test' $script:TemplateRoot $script:TemplateRoot | Out-Null
++  $stopOutput = Invoke-TestStop $ownedPidPath
++  Add-Result 'CORRECT_OWNERSHIP_CAN_STOP' $(if ($stopOutput -match 'MANAGED_PROCESS_STOP=PASS' -and -not (Test-ProcessAlive $owned.Id) -and -not (Test-Path -LiteralPath $ownedPidPath)) { 'PASS' } else { 'FAIL' }) 'exact identity matched; root and descendants were terminated'
++
++  $exited = Start-HarmlessProcess
++  $exitedPidPath = New-TestPidPath 'exited'
++  Write-ManagedProcessRecord $exitedPidPath $exited.Id 'test' 'rt02-test' $script:TemplateRoot $script:TemplateRoot | Out-Null
++  Stop-Process -Id $exited.Id -Force
++  Start-Sleep -Milliseconds 250
++  $stopOutput = Invoke-TestStop $exitedPidPath
++  Add-Result 'ALREADY_EXITED_IS_STALE' $(if ($stopOutput -match 'MANAGED_PROCESS_STOP=REFUSED_STALE' -and (Test-Path -LiteralPath $exitedPidPath)) { 'PASS' } else { 'FAIL' }) 'missing live PID is refused without termination'
++
++  $identitySource = Start-HarmlessProcess
++  $identityTarget = Start-HarmlessProcess
++  $identityPidPath = New-TestPidPath 'pid-reuse'
++  Write-ManagedProcessRecord $identityPidPath $identitySource.Id 'test' 'rt02-test' $script:TemplateRoot $script:TemplateRoot | Out-Null
++  Rewrite-Record $identityPidPath { param($record) $record.process_id = $identityTarget.Id; $record.executable_path = Join-Path $env:SystemRoot 'System32\notepad.exe'; $record.started_at_utc = '2000-01-01T00:00:00.0000000Z' }
++  $stopOutput = Invoke-TestStop $identityPidPath
++  $identityTargetAlive = Test-ProcessAlive $identityTarget.Id
++  Add-Result 'PID_REUSE_IDENTITY_MISMATCH_REFUSED' $(if ($stopOutput -match 'REFUSED_STALE' -and $identityTargetAlive) { 'PASS' } else { 'FAIL' }) "record PID was injected to another live process; target-alive=$identityTargetAlive;stop-output=$stopOutput"
++  Stop-Process -Id $identitySource.Id -Force -ErrorAction SilentlyContinue
++  Stop-Process -Id $identityTarget.Id -Force -ErrorAction SilentlyContinue
++
++  $startupMismatch = Start-HarmlessProcess
++  $startupPath = New-TestPidPath 'startup-mismatch'
++  Write-ManagedProcessRecord $startupPath $startupMismatch.Id 'test' 'rt02-test' $script:TemplateRoot $script:TemplateRoot | Out-Null
++  Rewrite-Record $startupPath { param($record) $record.started_at_utc = '2000-01-01T00:00:00.0000000Z' }
++  $stopOutput = Invoke-TestStop $startupPath
++  Add-Result 'STARTUP_TIME_MISMATCH_REFUSED' $(if ($stopOutput -match 'REFUSED_STALE' -and (Test-ProcessAlive $startupMismatch.Id)) { 'PASS' } else { 'FAIL' }) 'stale startup timestamp refused'
++
++  $projectMismatch = Start-HarmlessProcess
++  $projectPath = New-TestPidPath 'project-mismatch'
++  Write-ManagedProcessRecord $projectPath $projectMismatch.Id 'test' 'rt02-test' $script:TemplateRoot $script:TemplateRoot | Out-Null
++  Rewrite-Record $projectPath { param($record) $record.project_root = Join-Path $env:TEMP 'other-project' }
++  $stopOutput = Invoke-TestStop $projectPath
++  Add-Result 'PROJECT_IDENTITY_MISMATCH_REFUSED' $(if ($stopOutput -match 'REFUSED_STALE' -and (Test-ProcessAlive $projectMismatch.Id)) { 'PASS' } else { 'FAIL' }) 'record project identity did not match this template'
++
++  $readFailure = Start-HarmlessProcess
++  $readFailurePath = New-TestPidPath 'identity-read-failure'
++  Set-Utf8NoBomFile $readFailurePath '{"schema_version":2,"process_id":' + $readFailure.Id + ',"role":"test"}'
++  $stopOutput = Invoke-TestStop $readFailurePath
++  Add-Result 'IDENTITY_READ_FAILURE_REFUSED' $(if ($stopOutput -match 'REFUSED_STALE' -and (Test-ProcessAlive $readFailure.Id)) { 'PASS' } else { 'FAIL' }) 'missing identity fields refused'
++
++  $oldFormat = Start-HarmlessProcess
++  $oldFormatPath = New-TestPidPath 'old-format'
++  Set-Utf8NoBomFile $oldFormatPath ([string]$oldFormat.Id + [Environment]::NewLine)
++  $stopOutput = Invoke-TestStop $oldFormatPath
++  Add-Result 'OLD_PID_FORMAT_REFUSED' $(if ($stopOutput -match 'REFUSED_STALE' -and (Test-ProcessAlive $oldFormat.Id)) { 'PASS' } else { 'FAIL' }) 'legacy PID-only record refused'
++
++  $sentinel = Start-HarmlessProcess
++  $staleParent = Start-Process -FilePath $shell -ArgumentList @('-NoLogo', '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', $parentScript) -WorkingDirectory $script:TemplateRoot -PassThru -WindowStyle Hidden
++  [void]$knownProcesses.Add([int]$staleParent.Id)
++  [void]$parents.Add([int]$staleParent.Id)
++  $deadline = (Get-Date).AddSeconds(5)
++  do {
++    if (Test-Path -LiteralPath $childPidFile) { break }
++    Start-Sleep -Milliseconds 100
++  } while ((Get-Date) -lt $deadline)
++  if (-not (Test-Path -LiteralPath $childPidFile)) { throw 'Child fixture did not publish its PID.' }
++  $staleChildId = [int](Get-Content -LiteralPath $childPidFile -Raw).Trim()
++  [void]$children.Add($staleChildId)
++  $staleTreePath = New-TestPidPath 'stale-tree'
++  Write-ManagedProcessRecord $staleTreePath $staleParent.Id 'test' 'rt02-test' $script:TemplateRoot $script:TemplateRoot | Out-Null
++  Rewrite-Record $staleTreePath { param($record) $record.command_line = 'different-project-command' }
++  $stopOutput = Invoke-TestStop $staleTreePath
++  Add-Result 'STALE_PARENT_DOES_NOT_KILL_CHILD' $(if ($stopOutput -match 'REFUSED_STALE' -and (Test-ProcessAlive $staleParent.Id) -and (Test-ProcessAlive $staleChildId)) { 'PASS' } else { 'FAIL' }) 'stale parent identity refused; child and external sentinel remain alive'
++  Assert-ProcessAlive 'EXTERNAL_SENTINEL_SURVIVES' $sentinel.Id
++} catch {
++  Add-Result 'TEST_HARNESS_UNEXPECTED_EXCEPTION' 'FAIL' $_.Exception.Message
++} finally {
++  foreach ($processId in @($children + $parents + $knownProcesses | Sort-Object -Unique)) {
++    $expected = $knownSnapshots[[int]$processId]
++    $live = Get-ManagedProcessSnapshot ([int]$processId)
++    if ($expected -and $live -and (Test-ManagedSnapshotEqual $expected $live)) { Stop-Process -Id ([int]$processId) -Force -ErrorAction SilentlyContinue }
++  }
++  if (Test-Path -LiteralPath $testRoot) { [System.IO.Directory]::Delete($testRoot, $true) }
++}
++
++Write-Output "RT02_PROCESS_SECURITY_TEST= $(if ($failCount -eq 0) { 'PASS' } else { 'FAIL' })"
++Write-Output "PASS_COUNT=$passCount"
++Write-Output "FAIL_COUNT=$failCount"
++Write-Output "ASSERTION_COUNT=$($results.Count)"
++foreach ($result in $results) { Write-Output ("$($result.Name)=$($result.Status);$($result.Detail)") }
++if ($failCount -gt 0) { Write-Output ('FAILED_ASSERTIONS=' + ($failures -join ',')); exit 1 }
+diff --git a/03_template/medusa-crossborder-base/scripts/run-runtime-security-tests.ps1 b/03_template/medusa-crossborder-base/scripts/run-runtime-security-tests.ps1
+new file mode 100644
+index 0000000..53fb993
+--- /dev/null
++++ b/03_template/medusa-crossborder-base/scripts/run-runtime-security-tests.ps1
+@@ -0,0 +1,18 @@
++[CmdletBinding()]
++param()
++
++$ErrorActionPreference = "Stop"
++$securityTestShell = (Get-Command pwsh -ErrorAction SilentlyContinue).Source
++if (-not $securityTestShell) { $securityTestShell = (Get-Command powershell -ErrorAction Stop).Source }
++
++function Invoke-IsolatedSecurityTest {
++  param([Parameter(Mandatory = $true)][string]$Path)
++
++  & $securityTestShell -NoLogo -NoProfile -ExecutionPolicy Bypass -File $Path
++  if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
++}
++
++Invoke-IsolatedSecurityTest (Join-Path $PSScriptRoot "process-management.security.tests.ps1")
++Invoke-IsolatedSecurityTest (Join-Path $PSScriptRoot "service-identity.security.tests.ps1")
++Invoke-IsolatedSecurityTest (Join-Path $PSScriptRoot "verification-gate.security.tests.ps1")
++Invoke-IsolatedSecurityTest (Join-Path $PSScriptRoot "..\..\..\04_docs\scripts\92-prepare-review-staging.security.tests.ps1")
+diff --git a/03_template/medusa-crossborder-base/scripts/service-identity.security.tests.ps1 b/03_template/medusa-crossborder-base/scripts/service-identity.security.tests.ps1
+new file mode 100644
+index 0000000..402b6ec
+--- /dev/null
++++ b/03_template/medusa-crossborder-base/scripts/service-identity.security.tests.ps1
+@@ -0,0 +1,140 @@
++[CmdletBinding()]
++param()
++
++$ErrorActionPreference = 'Stop'
++. (Join-Path $PSScriptRoot '_common.ps1')
++
++$testRoot = Join-Path $env:TEMP ('cb-rt03-' + [Guid]::NewGuid().ToString('N'))
++$shell = (Get-Command pwsh -ErrorAction SilentlyContinue).Source
++if (-not $shell) { $shell = (Get-Command powershell -ErrorAction Stop).Source }
++$port = 48100 + (Get-Random -Minimum 0 -Maximum 500)
++$healthUri = "http://127.0.0.1:$port/health"
++$pidPath = Join-Path $testRoot 'service.pid'
++$stubPath = Join-Path $testRoot 'http-stub.ps1'
++$results = New-Object System.Collections.Generic.List[object]
++$failures = New-Object System.Collections.Generic.List[string]
++$passCount = 0
++$failCount = 0
++$serviceProcesses = New-Object System.Collections.Generic.List[int]
++$serviceSnapshots = @{}
++
++function Add-Result([string]$Name, [ValidateSet('PASS', 'FAIL', 'SKIP')][string]$Status, [string]$Detail) {
++  [void]$results.Add([pscustomobject]@{ Name = $Name; Status = $Status; Detail = $Detail })
++  if ($Status -eq 'PASS') { $script:passCount++ }
++  if ($Status -eq 'FAIL') { $script:failCount++; [void]$script:failures.Add($Name) }
++}
++
++function Write-Stub([int]$StatusCode) {
++  $content = @"
++`$listener = New-Object System.Net.Sockets.TcpListener([System.Net.IPAddress]::Parse('127.0.0.1'), $port)
++`$listener.Start()
++while (`$true) {
++  `$client = `$listener.AcceptTcpClient()
++  `$stream = `$client.GetStream()
++  `$buffer = New-Object byte[] 1024
++  [void]`$stream.Read(`$buffer, 0, `$buffer.Length)
++  `$body = [System.Text.Encoding]::UTF8.GetBytes('rt03-stub')
++  `$header = [System.Text.Encoding]::ASCII.GetBytes("HTTP/1.1 $StatusCode OK`r`nContent-Length: `$(`$body.Length)`r`nConnection: close`r`n`r`n")
++  `$stream.Write(`$header, 0, `$header.Length)
++  `$stream.Write(`$body, 0, `$body.Length)
++  `$stream.Close()
++  `$client.Close()
++}
++"@
++  Set-Utf8NoBomFile $stubPath $content
++}
++
++function Start-Stub([int]$StatusCode) {
++  Write-Stub $StatusCode
++  $process = Start-Process -FilePath $shell -ArgumentList @('-NoLogo', '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', $stubPath) -WorkingDirectory $script:TemplateRoot -PassThru -WindowStyle Hidden
++  [void]$serviceProcesses.Add([int]$process.Id)
++  $deadline = (Get-Date).AddSeconds(8)
++  do {
++    Start-Sleep -Milliseconds 150
++    $listeners = @(Get-ListeningProcessIds $port)
++    if ($listeners -contains [int]$process.Id) { $serviceSnapshots[[int]$process.Id] = Get-ManagedProcessSnapshot $process.Id; return $process }
++  } while ((Get-Date) -lt $deadline)
++  $snapshot = Get-ManagedProcessSnapshot $process.Id
++  throw "HTTP stub did not listen on the exclusive test port: $port;pid=$($process.Id);alive=$([bool]$snapshot);command=$($snapshot.CommandLine)"
++}
++
++function Start-LauncherStub([int]$StatusCode) {
++  Write-Stub $StatusCode
++  $launcherPath = Join-Path $testRoot 'http-launcher.ps1'
++  $childPidPath = Join-Path $testRoot 'http-child.pid'
++  $content = @"
++`$child = Start-Process -FilePath '$($shell.Replace("'", "''"))' -ArgumentList @('-NoLogo','-NoProfile','-ExecutionPolicy','Bypass','-File','$($stubPath.Replace("'", "''"))') -WorkingDirectory '$($script:TemplateRoot.Replace("'", "''"))' -PassThru -WindowStyle Hidden
++[IO.File]::WriteAllText('$($childPidPath.Replace("'", "''"))',[string]`$child.Id)
++while (`$true) { Start-Sleep -Seconds 1 }
++"@
++  Set-Utf8NoBomFile $launcherPath $content
++  $process = Start-Process -FilePath $shell -ArgumentList @('-NoLogo','-NoProfile','-ExecutionPolicy','Bypass','-File',$launcherPath) -WorkingDirectory $script:TemplateRoot -PassThru -WindowStyle Hidden
++  [void]$serviceProcesses.Add([int]$process.Id)
++  $deadline = (Get-Date).AddSeconds(8)
++  do {
++    Start-Sleep -Milliseconds 150
++    $listeners = @(Get-ListeningProcessIds $port)
++    if ($listeners.Count -gt 0 -and (Get-ManagedProcessSnapshot $process.Id)) { $serviceSnapshots[[int]$process.Id] = Get-ManagedProcessSnapshot $process.Id; return $process }
++  } while ((Get-Date) -lt $deadline)
++  throw "HTTP child launcher did not start the exclusive test port: $port"
++}
++
++function Stop-TestProcess([int]$ProcessId) {
++  Stop-Process -Id $ProcessId -Force -ErrorAction SilentlyContinue
++  Start-Sleep -Milliseconds 250
++}
++
++function Rewrite-Record([scriptblock]$Mutator) {
++  $record = Get-Content -LiteralPath $pidPath -Raw | ConvertFrom-Json
++  & $Mutator $record
++  Set-Utf8NoBomFile $pidPath (($record | ConvertTo-Json -Depth 5) + [Environment]::NewLine)
++}
++
++try {
++  New-Item -ItemType Directory -Path $testRoot -Force | Out-Null
++
++  $sourceStartText = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'start-local.ps1') -Raw
++  $buildText = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'build-production.ps1') -Raw
++  Add-Result 'START_BUILD_USE_IDENTITY_DECISION' $(if ($sourceStartText.Contains('Get-ManagedServiceReuseDecision') -and $buildText.Contains('Get-ManagedServiceReuseDecision') -and -not $sourceStartText.Contains('$alreadyReady') -and -not $buildText.Contains('$backendReady')) { 'PASS' } else { 'FAIL' }) 'HTTP 200 reuse path is guarded by managed identity in both callers'
++
++  $healthy = Start-LauncherStub 200
++  Write-ManagedProcessRecord $pidPath $healthy.Id 'test-service' 'rt03-test' $script:TemplateRoot $script:TemplateRoot | Out-Null
++  $decision = Get-ManagedServiceReuseDecision $pidPath 'test-service' $script:TemplateRoot $port $healthUri
++  Add-Result 'CORRECT_INSTANCE_REUSE' $(if ($decision.Status -eq 'REUSE') { 'PASS' } else { 'FAIL' }) "status=$($decision.Status);reason=$($decision.Reason);launcher_to_listener_chain=verified"
++
++  Rewrite-Record { param($record) $record.project_root = Join-Path $env:TEMP 'unrelated-project' }
++  $decision = Get-ManagedServiceReuseDecision $pidPath 'test-service' $script:TemplateRoot $port $healthUri
++  Add-Result 'WRONG_PROJECT_200_NOT_REUSED' $(if ($decision.Status -eq 'IDENTITY_CONFLICT' -and (Get-ManagedProcessSnapshot $healthy.Id)) { 'PASS' } else { 'FAIL' }) "status=$($decision.Status);stub-alive=$([bool](Get-ManagedProcessSnapshot $healthy.Id))"
++
++  Remove-Item -LiteralPath $pidPath -Force
++  $decision = Get-ManagedServiceReuseDecision $pidPath 'test-service' $script:TemplateRoot $port $healthUri
++  Add-Result 'UNKNOWN_IDENTITY_200_NOT_REUSED' $(if ($decision.Status -eq 'IDENTITY_UNKNOWN' -and (Get-ManagedProcessSnapshot $healthy.Id)) { 'PASS' } else { 'FAIL' }) "status=$($decision.Status);stub-alive=$([bool](Get-ManagedProcessSnapshot $healthy.Id))"
++
++  Write-ManagedProcessRecord $pidPath $healthy.Id 'test-service' 'rt03-test' $script:TemplateRoot $script:TemplateRoot | Out-Null
++  $stopHealthy = Stop-ManagedProcess -PidPath $pidPath -ExpectedRole 'test-service'
++  if ($stopHealthy.Status -ne 'STOPPED') { throw "Controlled launcher cleanup failed: $($stopHealthy.Reason)" }
++  $decision = Get-ManagedServiceReuseDecision $pidPath 'test-service' $script:TemplateRoot $port $healthUri
++  Add-Result 'UNLISTENING_PORT_START_ALLOWED' $(if ($decision.Status -eq 'START_ALLOWED') { 'PASS' } else { 'FAIL' }) "status=$($decision.Status);reason=$($decision.Reason)"
++
++  $notReady = Start-Stub 503
++  Write-ManagedProcessRecord $pidPath $notReady.Id 'test-service' 'rt03-test' $script:TemplateRoot $script:TemplateRoot | Out-Null
++  $decision = Get-ManagedServiceReuseDecision $pidPath 'test-service' $script:TemplateRoot $port $healthUri
++  Add-Result 'IDENTITY_MATCH_NOT_READY_DISTINCT' $(if ($decision.Status -eq 'SERVICE_NOT_READY') { 'PASS' } else { 'FAIL' }) "status=$($decision.Status);reason=$($decision.Reason)"
++  Add-Result 'CONTROLLED_SERVICE_NOT_STOPPED' $(if (Get-ManagedProcessSnapshot $notReady.Id) { 'PASS' } else { 'FAIL' }) 'identity probe does not stop a controlled service'
++} catch {
++  Add-Result 'TEST_HARNESS_UNEXPECTED_EXCEPTION' 'FAIL' $_.Exception.Message
++} finally {
++  foreach ($processId in @($serviceProcesses)) {
++    $expected = $serviceSnapshots[[int]$processId]
++    $live = Get-ManagedProcessSnapshot ([int]$processId)
++    if ($expected -and $live -and (Test-ManagedSnapshotEqual $expected $live)) { Stop-Process -Id ([int]$processId) -Force -ErrorAction SilentlyContinue }
++  }
++  if (Test-Path -LiteralPath $testRoot) { [System.IO.Directory]::Delete($testRoot, $true) }
++}
++
++Write-Output "RT03_SERVICE_IDENTITY_TEST= $(if ($failCount -eq 0) { 'PASS' } else { 'FAIL' })"
++Write-Output "PASS_COUNT=$passCount"
++Write-Output "FAIL_COUNT=$failCount"
++Write-Output "ASSERTION_COUNT=$($results.Count)"
++foreach ($result in $results) { Write-Output ("$($result.Name)=$($result.Status);$($result.Detail)") }
++if ($failCount -gt 0) { Write-Output ('FAILED_ASSERTIONS=' + ($failures -join ',')); exit 1 }
+diff --git a/03_template/medusa-crossborder-base/scripts/verification-gate.security.tests.ps1 b/03_template/medusa-crossborder-base/scripts/verification-gate.security.tests.ps1
+new file mode 100644
+index 0000000..e3ed490
+--- /dev/null
++++ b/03_template/medusa-crossborder-base/scripts/verification-gate.security.tests.ps1
+@@ -0,0 +1,90 @@
++[CmdletBinding()]
++param(
++  [string]$EvidencePath
++)
++
++$ErrorActionPreference = "Stop"
++$templateRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
++$backendRoot = Join-Path $templateRoot "apps\backend"
++$storefrontRoot = Join-Path $templateRoot "apps\storefront"
++$tempRoot = Join-Path ([IO.Path]::GetTempPath()) ("rt04-gate-tests-" + [guid]::NewGuid().ToString("N"))
++$failureLog = [System.Collections.Generic.List[string]]::new()
++$testFixture = Join-Path $backendRoot ("src\__tests__\rt04-injected-failure-" + [guid]::NewGuid().ToString("N") + ".unit.spec.ts")
++$typeFixture = Join-Path $storefrontRoot "src\__rt04_injected_type_error.ts"
++
++function Add-FailureEvidence([string]$Command, [object[]]$Output, [int]$ExitCode) {
++  $failureLog.Add("COMMAND=$Command")
++  foreach ($line in $Output) { $failureLog.Add([string]$line) }
++  $failureLog.Add("EXIT_CODE=$ExitCode")
++}
++
++function Invoke-CapturedPnpm([string]$WorkingDirectory, [string]$CommandLine, [string]$OutputStem) {
++  $stdoutPath = Join-Path $tempRoot ($OutputStem + ".stdout.log")
++  $stderrPath = Join-Path $tempRoot ($OutputStem + ".stderr.log")
++  $startInfo = [Diagnostics.ProcessStartInfo]::new()
++  $startInfo.FileName = "cmd.exe"
++  $startInfo.Arguments = "/d /c " + $CommandLine
++  $startInfo.WorkingDirectory = $WorkingDirectory
++  $startInfo.UseShellExecute = $false
++  $startInfo.CreateNoWindow = $true
++  $startInfo.RedirectStandardOutput = $true
++  $startInfo.RedirectStandardError = $true
++  $process = [Diagnostics.Process]::new()
++  $process.StartInfo = $startInfo
++  [void]$process.Start()
++  $stdout = $process.StandardOutput.ReadToEnd()
++  $stderr = $process.StandardError.ReadToEnd()
++  $process.WaitForExit()
++  [IO.File]::WriteAllText($stdoutPath, $stdout)
++  [IO.File]::WriteAllText($stderrPath, $stderr)
++  return [pscustomobject]@{
++    Output = @($stdout -split "`r?`n") + @($stderr -split "`r?`n")
++    ExitCode = $process.ExitCode
++  }
++}
++
++New-Item -ItemType Directory -Force -Path $tempRoot, (Split-Path -Parent $testFixture) | Out-Null
++try {
++  [IO.File]::WriteAllText(
++    $testFixture,
++    'describe("RT04 injected failure", () => { test("must fail unified test gate", () => { throw new Error("intentional RT04 gate probe") }) })'
++  )
++
++  Push-Location $backendRoot
++  try {
++    $testRun = Invoke-CapturedPnpm $backendRoot ("corepack pnpm@10.11.1 run test:unit -- --runTestsByPath `"" + $testFixture + "`"") "rt04-test"
++    $testOutput = $testRun.Output
++    $testExitCode = $testRun.ExitCode
++  } finally {
++    Pop-Location
++  }
++  Add-FailureEvidence "corepack pnpm@10.11.1 run test:unit -- --runTestsByPath <temporary-failing-test>" $testOutput $testExitCode
++  if ($testExitCode -eq 0) { throw "Unified test gate accepted an intentional failing test." }
++
++  [IO.File]::WriteAllText(
++    $typeFixture,
++    "const rt04InjectedTypeError: string = 1`nexport default rt04InjectedTypeError`n"
++  )
++  Push-Location $templateRoot
++  try {
++    $typeRun = Invoke-CapturedPnpm $templateRoot "corepack pnpm@10.11.1 run typecheck" "rt04-typecheck"
++    $typeOutput = $typeRun.Output
++    $typeExitCode = $typeRun.ExitCode
++  } finally {
++    Pop-Location
++  }
++  Add-FailureEvidence "corepack pnpm@10.11.1 run typecheck (with temporary source type error)" $typeOutput $typeExitCode
++  if ($typeExitCode -eq 0) { throw "Unified typecheck gate accepted an intentional type error." }
++
++  if ($EvidencePath) {
++    $failureLog | Set-Content -LiteralPath $EvidencePath -Encoding utf8
++  }
++  Write-Host "RT04_FAILURE_INJECTION_TEST= PASS"
++  Write-Host "TEST_GATE_REJECTED_INJECTED_FAILURE=PASS"
++  Write-Host "TYPECHECK_GATE_REJECTED_INJECTED_ERROR=PASS"
++  Write-Host "PERMANENT_FAILURE_FIXTURE=NO"
++} finally {
++  if (Test-Path -LiteralPath $typeFixture) { Remove-Item -LiteralPath $typeFixture -Force }
++  if (Test-Path -LiteralPath $testFixture) { Remove-Item -LiteralPath $testFixture -Force }
++  if (Test-Path -LiteralPath $tempRoot) { Remove-Item -LiteralPath $tempRoot -Recurse -Force }
++}
+diff --git a/04_docs/scripts/92-prepare-review-staging.security.tests.ps1 b/04_docs/scripts/92-prepare-review-staging.security.tests.ps1
+new file mode 100644
+index 0000000..f74c7eb
+--- /dev/null
++++ b/04_docs/scripts/92-prepare-review-staging.security.tests.ps1
+@@ -0,0 +1,454 @@
++[CmdletBinding()]
++param()
++
++$ErrorActionPreference = 'Stop'
++
++$scriptPath = Join-Path $PSScriptRoot '92-prepare-review-staging.ps1'
++$sourceRoot = (Resolve-Path (Join-Path $PSScriptRoot '../..')).Path
++$documentCenterRoot = Split-Path -Parent $sourceRoot
++$workspaceParent = Split-Path -Parent $documentCenterRoot
++$trustedStagingRoot = Join-Path $workspaceParent '_review_stage'
++$runId = 'RT-01-R1-' + [Guid]::NewGuid().ToString('N')
++$fixtureRoot = Join-Path $trustedStagingRoot ('security-tests\' + $runId)
++$externalTarget = Join-Path $fixtureRoot 'external-target'
++$outsideCandidate = Join-Path $workspaceParent ('_' + $runId + '-outside-candidate')
++$packageRoot = Join-Path $fixtureRoot 'outputs'
++$packagePath = Join-Path $packageRoot 'package.zip'
++$packageManifestPath = Join-Path $packageRoot 'manifest.md'
++$packageId = 'RT-01-R1-' + $runId
++
++$results = New-Object System.Collections.Generic.List[object]
++$failures = New-Object System.Collections.Generic.List[string]
++$passCount = 0
++$failCount = 0
++$skipCount = 0
++$dangerousChildEntrypointCalls = 0
++$shell = (Get-Command pwsh -ErrorAction SilentlyContinue).Source
++if (-not $shell) { $shell = (Get-Command powershell -ErrorAction Stop).Source }
++
++function Add-Result([string]$Name, [ValidateSet('PASS', 'FAIL', 'SKIP')][string]$Status, [string]$Detail) {
++  $result = [pscustomobject]@{ Name = $Name; Status = $Status; Detail = $Detail }
++  [void]$results.Add($result)
++  switch ($Status) {
++    'PASS' { $script:passCount++ }
++    'FAIL' { $script:failCount++; [void]$script:failures.Add($Name) }
++    'SKIP' { $script:skipCount++ }
++  }
++}
++
++function Get-TestNormalizedPath([string]$Path) {
++  if ([string]::IsNullOrWhiteSpace($Path)) { throw 'Test path is empty.' }
++  return [System.IO.Path]::GetFullPath($Path)
++}
++
++function Test-TestSameOrDescendant([string]$Candidate, [string]$Ancestor) {
++  $candidateFull = Get-TestNormalizedPath $Candidate
++  $ancestorFull = Get-TestNormalizedPath $Ancestor
++  if ([string]::Equals($candidateFull, $ancestorFull, [System.StringComparison]::OrdinalIgnoreCase)) { return $true }
++  $ancestorWithSeparator = $ancestorFull.TrimEnd([System.IO.Path]::DirectorySeparatorChar, [System.IO.Path]::AltDirectorySeparatorChar) + [System.IO.Path]::DirectorySeparatorChar
++  return $candidateFull.StartsWith($ancestorWithSeparator, [System.StringComparison]::OrdinalIgnoreCase)
++}
++
++function Assert-TestNoReparseChain([string]$Path) {
++  $current = Get-TestNormalizedPath $Path
++  while ($true) {
++    if (Test-Path -LiteralPath $current) {
++      $item = Get-Item -LiteralPath $current -Force
++      if (($item.Attributes -band [System.IO.FileAttributes]::ReparsePoint) -ne 0) {
++        throw "Test boundary contains a reparse point: $current"
++      }
++    }
++    $parent = Split-Path -Parent $current
++    if ([string]::IsNullOrEmpty($parent) -or [string]::Equals($parent, $current, [System.StringComparison]::OrdinalIgnoreCase)) { break }
++    $current = $parent
++  }
++}
++
++function Assert-TestFixturePath([string]$Path, [switch]$MustExist) {
++  $candidate = Get-TestNormalizedPath $Path
++  $fixture = Get-TestNormalizedPath $fixtureRoot
++  if ([string]::Equals($candidate, $fixture, [System.StringComparison]::OrdinalIgnoreCase)) {
++    if ($MustExist -and -not (Test-Path -LiteralPath $candidate -PathType Container)) { throw 'Test fixture root is missing.' }
++  } elseif (-not (Test-TestSameOrDescendant $candidate $fixture)) {
++    throw "Test path is outside the dedicated fixture root: $candidate"
++  }
++  if ($MustExist -and -not (Test-Path -LiteralPath $candidate)) { throw "Test path is missing: $candidate" }
++  Assert-TestNoReparseChain $candidate
++}
++
++function Assert-FixtureCreateBoundary() {
++  $trusted = Get-TestNormalizedPath $trustedStagingRoot
++  $fixture = Get-TestNormalizedPath $fixtureRoot
++  if ([string]::Equals($fixture, $trusted, [System.StringComparison]::OrdinalIgnoreCase)) { throw 'Test fixture cannot equal the trusted staging root.' }
++  if (-not (Test-TestSameOrDescendant $fixture $trusted)) { throw 'Test fixture is outside the trusted staging root.' }
++  if (Test-Path -LiteralPath $fixture) { throw 'Test fixture unexpectedly already exists.' }
++  Assert-TestNoReparseChain $trusted
++}
++
++function Assert-FixtureCleanupBoundary() {
++  $trusted = Get-TestNormalizedPath $trustedStagingRoot
++  $fixture = Get-TestNormalizedPath $fixtureRoot
++  if ([string]::Equals($fixture, $trusted, [System.StringComparison]::OrdinalIgnoreCase)) { throw 'Cleanup refused to target the trusted staging root.' }
++  if (-not (Test-TestSameOrDescendant $fixture $trusted)) { throw 'Cleanup target is outside the trusted staging root.' }
++  if (-not (Test-Path -LiteralPath $fixture -PathType Container)) { throw 'Cleanup fixture is missing.' }
++  $rootItem = Get-Item -LiteralPath $fixture -Force
++  if (($rootItem.Attributes -band [System.IO.FileAttributes]::ReparsePoint) -ne 0) { throw 'Cleanup refused a reparse-point fixture root.' }
++  Assert-TestNoReparseChain $fixture
++}
++
++function Assert-TestTreeNoReparse([string]$Path) {
++  Assert-TestFixturePath $Path -MustExist
++  $reparse = Get-ChildItem -LiteralPath $Path -Force -Recurse -ErrorAction SilentlyContinue | Where-Object {
++    ($_.Attributes -band [System.IO.FileAttributes]::ReparsePoint) -ne 0
++  }
++  if ($reparse) { throw "Test tree contains a reparse point: $($reparse[0].FullName)" }
++}
++
++function Remove-TestTreeSafely([string]$Path) {
++  Assert-TestFixturePath $Path -MustExist
++  Assert-TestTreeNoReparse $Path
++  $entries = @(Get-ChildItem -LiteralPath $Path -Force -Recurse -ErrorAction SilentlyContinue | Sort-Object { $_.FullName.Length } -Descending)
++  foreach ($entry in $entries) {
++    if (-not (Test-Path -LiteralPath $entry.FullName)) { continue }
++    if (($entry.Attributes -band [System.IO.FileAttributes]::ReparsePoint) -ne 0) {
++      throw "Test cleanup encountered a reparse point after validation: $($entry.FullName)"
++    }
++    if ($entry.PSIsContainer) {
++      [System.IO.Directory]::Delete($entry.FullName, $false)
++    } else {
++      [System.IO.File]::SetAttributes($entry.FullName, [System.IO.FileAttributes]::Normal)
++      [System.IO.File]::Delete($entry.FullName)
++    }
++  }
++  for ($attempt = 0; $attempt -lt 4 -and (Test-Path -LiteralPath $Path); $attempt++) {
++    Remove-Item -LiteralPath $Path -Recurse -Force -Confirm:$false -ErrorAction SilentlyContinue
++    if (Test-Path -LiteralPath $Path) { Start-Sleep -Milliseconds 100 }
++  }
++  if (Test-Path -LiteralPath $Path) { [System.IO.Directory]::Delete($Path, $false) }
++  if (Test-Path -LiteralPath $Path) { throw 'Fixture cleanup did not remove the exact validated test root.' }
++}
++
++function New-TestDirectory([string]$Path) {
++  Assert-TestFixturePath $Path
++  [System.IO.Directory]::CreateDirectory($Path) | Out-Null
++}
++
++function Write-TestFile([string]$Path, [string]$Content) {
++  Assert-TestFixturePath $Path
++  [System.IO.Directory]::CreateDirectory((Split-Path -Parent $Path)) | Out-Null
++  [System.IO.File]::WriteAllText($Path, $Content, (New-Object System.Text.UTF8Encoding($false)))
++}
++
++function Get-TestFileText([string]$Path) {
++  Assert-TestFixturePath $Path -MustExist
++  return [System.IO.File]::ReadAllText($Path)
++}
++
++function Set-Utf8NoBomFile([string]$Path, [string]$Content) {
++  [System.IO.File]::WriteAllText($Path, $Content, (New-Object System.Text.UTF8Encoding($false)))
++}
++
++function Assert-Unchanged([string]$Name, [string]$Path, [string]$Before) {
++  $exists = Test-Path -LiteralPath $Path
++  $after = if ($exists) { [System.IO.File]::ReadAllText($Path) } else { '<MISSING>' }
++  Add-Result $Name $(if ($exists -and $after -ceq $Before) { 'PASS' } else { 'FAIL' }) "exists=$exists;content-comparison=exact"
++}
++
++function ConvertTo-PsLiteral([string]$Value) {
++  return "'" + $Value.Replace("'", "''") + "'"
++}
++
++$scriptText = [System.IO.File]::ReadAllText($scriptPath)
++$tokens = $null
++$parseErrors = $null
++$scriptAst = [System.Management.Automation.Language.Parser]::ParseInput($scriptText, [ref]$tokens, [ref]$parseErrors)
++if ($parseErrors.Count -gt 0) { throw "Source staging script parse failed with $($parseErrors.Count) error(s)." }
++
++function Get-FunctionSource([string]$Name) {
++  $matches = @($scriptAst.FindAll({ param($node)
++        $node -is [System.Management.Automation.Language.FunctionDefinitionAst] -and $node.Name -eq $Name
++      }, $true))
++  if ($matches.Count -ne 1) { throw "Expected exactly one source function definition for $Name; found $($matches.Count)." }
++  return $matches[0].Extent.Text
++}
++
++$pureFunctionNames = @(
++  'Get-NormalizedPath',
++  'Test-SameOrDescendantPath',
++  'Get-PathAncestors',
++  'Assert-NoReparsePointsAlongPath',
++  'Assert-NoReparsePointsInsideDirectory',
++  'Assert-SafeStagingPath'
++)
++$pureFunctionSource = ($pureFunctionNames | ForEach-Object { Get-FunctionSource $_ }) -join [Environment]::NewLine
++Add-Result 'AST_FUNCTION_EXTRACTION' 'PASS' 'loaded pure validation functions only; full script entrypoint not dot-sourced'
++
++function Invoke-PurePathValidation([string]$Candidate) {
++  $blockText = @(
++    '$ErrorActionPreference = ''Stop''',
++    ('$projectRootFull = ' + (ConvertTo-PsLiteral $sourceRoot)),
++    ('$documentCenterRoot = ' + (ConvertTo-PsLiteral $documentCenterRoot)),
++    ('$trustedStagingRoot = ' + (ConvertTo-PsLiteral $trustedStagingRoot)),
++    ('$candidate = ' + (ConvertTo-PsLiteral $Candidate)),
++    $pureFunctionSource,
++    'Assert-SafeStagingPath $candidate'
++  ) -join [Environment]::NewLine
++  try {
++    $output = @(& ([scriptblock]::Create($blockText)) 2>&1 | ForEach-Object { $_.ToString() })
++    return [pscustomobject]@{ Accepted = $true; ErrorMessage = $null; Output = ($output -join [Environment]::NewLine) }
++  } catch {
++    return [pscustomobject]@{ Accepted = $false; ErrorMessage = $_.Exception.Message; Output = '' }
++  }
++}
++
++function Invoke-PureDirectoryValidation([string]$Candidate) {
++  $blockText = @(
++    '$ErrorActionPreference = ''Stop''',
++    ('$candidate = ' + (ConvertTo-PsLiteral $Candidate)),
++    $pureFunctionSource,
++    'Assert-NoReparsePointsInsideDirectory $candidate'
++  ) -join [Environment]::NewLine
++  try {
++    $output = @(& ([scriptblock]::Create($blockText)) 2>&1 | ForEach-Object { $_.ToString() })
++    return [pscustomobject]@{ Accepted = $true; ErrorMessage = $null; Output = ($output -join [Environment]::NewLine) }
++  } catch {
++    return [pscustomobject]@{ Accepted = $false; ErrorMessage = $_.Exception.Message; Output = '' }
++  }
++}
++
++function Test-ExpectedRejection([scriptblock]$Action, [string]$ExpectedPattern) {
++  try {
++    $output = @(& $Action 2>&1 | ForEach-Object { $_.ToString() })
++    return [pscustomobject]@{ Rejected = $false; ExpectedReason = $false; ErrorMessage = $null; Output = ($output -join [Environment]::NewLine) }
++  } catch {
++    $message = $_.Exception.Message
++    return [pscustomobject]@{ Rejected = $true; ExpectedReason = ($message -match $ExpectedPattern); ErrorMessage = $message; Output = '' }
++  }
++}
++
++function Quote-ProcessArgument([string]$Value) {
++  return '"' + $Value.Replace('"', '\"') + '"'
++}
++
++function Invoke-ChildStaging([string]$Name, [string]$StagingPath, [bool]$ExpectedSuccess, [string]$ExpectedPattern, [switch]$AllowReparseStaging) {
++  if ($AllowReparseStaging) {
++    if (-not (Test-TestSameOrDescendant $StagingPath $fixtureRoot)) { throw 'Reparse staging test path escaped the fixture root.' }
++    Assert-TestNoReparseChain (Split-Path -Parent $StagingPath)
++    $reparseItem = Get-Item -LiteralPath $StagingPath -Force
++    if (($reparseItem.Attributes -band [System.IO.FileAttributes]::ReparsePoint) -eq 0) { throw 'Reparse staging test path is not a reparse point.' }
++  } else {
++    Assert-TestFixturePath $StagingPath
++  }
++  Assert-TestFixturePath $packageRoot
++  Assert-TestFixturePath $packagePath
++  Assert-TestFixturePath $packageManifestPath
++  $psi = New-Object System.Diagnostics.ProcessStartInfo
++  $psi.FileName = $shell
++  $psi.Arguments = '-NoLogo -NoProfile -ExecutionPolicy Bypass -File ' + (Quote-ProcessArgument $scriptPath) +
++    ' -StagingPath ' + (Quote-ProcessArgument $StagingPath) +
++    ' -PackagePath ' + (Quote-ProcessArgument $packagePath) +
++    ' -PackageManifestPath ' + (Quote-ProcessArgument $packageManifestPath) +
++    ' -PackageId ' + (Quote-ProcessArgument $packageId)
++  $psi.UseShellExecute = $false
++  $psi.CreateNoWindow = $true
++  $psi.RedirectStandardOutput = $true
++  $psi.RedirectStandardError = $true
++  $process = New-Object System.Diagnostics.Process
++  $process.StartInfo = $psi
++  [void]$process.Start()
++  $stdoutTask = $process.StandardOutput.ReadToEndAsync()
++  $stderrTask = $process.StandardError.ReadToEndAsync()
++  $process.WaitForExit()
++  $stdout = $stdoutTask.GetAwaiter().GetResult()
++  $stderr = $stderrTask.GetAwaiter().GetResult()
++  $exitCode = $process.ExitCode
++  $actualSuccess = $exitCode -eq 0
++  $combined = $stdout + [Environment]::NewLine + $stderr
++  $outcome = if ($ExpectedSuccess) {
++    $actualSuccess -and $stdout -match 'REVIEW_STAGING=PASS'
++  } else {
++    (-not $actualSuccess) -and ($combined -match $ExpectedPattern)
++  }
++  $detail = "exit=$exitCode;expected=$ExpectedSuccess;expected-reason=$ExpectedPattern"
++  Add-Result $Name $(if ($outcome) { 'PASS' } else { 'FAIL' }) $detail
++  Write-Output "CHILD_CASE=$Name"
++  Write-Output "CHILD_EXIT_CODE=$exitCode"
++  Write-Output 'CHILD_STDOUT_BEGIN'
++  Write-Output $stdout -NoEnumerate
++  Write-Output 'CHILD_STDOUT_END'
++  Write-Output 'CHILD_STDERR_BEGIN'
++  Write-Output $stderr -NoEnumerate
++  Write-Output 'CHILD_STDERR_END'
++  return [pscustomobject]@{ ExitCode = $exitCode; Stdout = $stdout; Stderr = $stderr }
++}
++
++function Assert-Sentinel([string]$Name, [string]$Path, [string]$ExpectedText) {
++  $exists = Test-Path -LiteralPath $Path
++  $content = if ($exists) { Get-TestFileText $Path } else { '<MISSING>' }
++  Add-Result $Name $(if ($exists -and $content -ceq $ExpectedText) { 'PASS' } else { 'FAIL' }) 'sentinel-content-comparison=exact'
++}
++
++$sourceProtectedFile = Join-Path $sourceRoot 'PROJECT_STATUS.json'
++$documentProtectedFile = Join-Path $documentCenterRoot '00_HANDOFF.md'
++$documentProtectedFileCreatedForTest = $false
++if (-not (Test-Path -LiteralPath $documentProtectedFile)) {
++  Set-Utf8NoBomFile $documentProtectedFile "RT-01 isolated clean-checkout document fixture`n"
++  $documentProtectedFileCreatedForTest = $true
++}
++$sourceBefore = [System.IO.File]::ReadAllText($sourceProtectedFile)
++$documentBefore = [System.IO.File]::ReadAllText($documentProtectedFile)
++$fixtureCreated = $false
++$junction = Join-Path $fixtureRoot 'junction-stage'
++$junctionTarget = Join-Path $fixtureRoot 'junction-target'
++$internalReparseRoot = Join-Path $fixtureRoot 'internal-reparse-root'
++$internalReparseChild = Join-Path $internalReparseRoot 'linked-child'
++
++try {
++  Assert-FixtureCreateBoundary
++  New-TestDirectory $fixtureRoot
++  $fixtureCreated = $true
++  Assert-TestFixturePath $fixtureRoot -MustExist
++  New-TestDirectory $externalTarget
++  Write-TestFile (Join-Path $externalTarget 'outside-sentinel.txt') 'outside-sentinel'
++
++  $invalidPaths = @(
++    @{ Name = 'REJECT_SOURCE_ROOT'; Path = $sourceRoot; Pattern = 'canonical source project' },
++    @{ Name = 'REJECT_SOURCE_DESCENDANT'; Path = Join-Path $sourceRoot 'not-a-stage'; Pattern = 'canonical source project' },
++    @{ Name = 'REJECT_SOURCE_CASE_AND_TRAILING_SEPARATOR'; Path = $sourceRoot.ToUpperInvariant() + '\'; Pattern = 'canonical source project' },
++    @{ Name = 'REJECT_DOCUMENT_CENTER_ROOT'; Path = $documentCenterRoot; Pattern = 'document center' },
++    @{ Name = 'REJECT_DOCUMENT_CENTER_DESCENDANT'; Path = Join-Path $documentCenterRoot 'not-a-stage'; Pattern = 'document center' },
++    @{ Name = 'REJECT_WORKSPACE_ANCESTOR'; Path = $workspaceParent; Pattern = 'protected ancestor|outside the trusted staging root' },
++    @{ Name = 'REJECT_USER_HOME'; Path = [Environment]::GetFolderPath([Environment+SpecialFolder]::UserProfile); Pattern = 'protected ancestor|outside the trusted staging root' },
++    @{ Name = 'REJECT_DISK_ROOT'; Path = [System.IO.Path]::GetPathRoot($sourceRoot); Pattern = 'protected ancestor|outside the trusted staging root' },
++    @{ Name = 'REJECT_TRUSTED_ROOT'; Path = $trustedStagingRoot; Pattern = 'trusted staging root itself' },
++    @{ Name = 'REJECT_TRUSTED_ROOT_SIMILAR_PREFIX'; Path = $trustedStagingRoot + '-sibling'; Pattern = 'outside the trusted staging root' },
++    @{ Name = 'REJECT_EXTERNAL_TARGET'; Path = $outsideCandidate; Pattern = 'outside the trusted staging root' },
++    @{ Name = 'REJECT_NORMALIZED_SOURCE_ANCESTOR'; Path = Join-Path $trustedStagingRoot ('..\..\CrossBorder-Independent-Store'); Pattern = 'canonical source project|protected ancestor|outside the trusted staging root' }
++  )
++  foreach ($case in $invalidPaths) {
++    $probe = Invoke-PurePathValidation $case.Path
++    $rejection = Test-ExpectedRejection { if ($probe.Accepted) { return $probe.Output }; throw $probe.ErrorMessage } $case.Pattern
++    $passed = $probe.Accepted -eq $false -and $rejection.Rejected -and $rejection.ExpectedReason
++    $detail = "pure-validation-only;expected-reason=$($case.Pattern);actual-error=$($probe.ErrorMessage)"
++    Add-Result $case.Name $(if ($passed) { 'PASS' } else { 'FAIL' }) $detail
++  }
++  Add-Result 'DANGEROUS_PATHS_FULL_ENTRYPOINT_CALLS' $(if ($dangerousChildEntrypointCalls -eq 0) { 'PASS' } else { 'FAIL' }) 'dangerous paths never invoked the top-level staging script'
++
++  $legalPurePath = Join-Path $fixtureRoot 'pure-legal-child'
++  $legalProbe = Invoke-PurePathValidation $legalPurePath
++  Add-Result 'ACCEPT_LEGAL_TRUSTED_CHILD' $(if ($legalProbe.Accepted) { 'PASS' } else { 'FAIL' }) 'pure validation accepted a strict descendant of trusted staging root'
++
++  $selfCheck = Test-ExpectedRejection { throw 'ordinary runtime failure' } 'StagingPath is rejected|Existing StagingPath is rejected|ownership marker'
++  $selfCheckPassed = $selfCheck.Rejected -and -not $selfCheck.ExpectedReason
++  Add-Result 'REJECTION_ASSERTION_SELF_CHECK' $(if ($selfCheckPassed) { 'PASS' } else { 'FAIL' }) 'ordinary runtime exception is not accepted as a valid safety rejection'
++
++  $unowned = Join-Path $fixtureRoot 'unowned'
++  New-TestDirectory $unowned
++  $unownedSentinel = Join-Path $unowned 'sentinel.txt'
++  Write-TestFile $unownedSentinel 'unowned-sentinel'
++  [void](Invoke-ChildStaging 'REJECT_EXISTING_NO_MARKER' $unowned $false 'no valid tool-ownership marker')
++  Assert-Sentinel 'NO_MARKER_CONTENT_UNCHANGED' $unownedSentinel 'unowned-sentinel'
++
++  $wrongMarker = Join-Path $fixtureRoot 'wrong-marker'
++  New-TestDirectory $wrongMarker
++  $wrongMarkerSentinel = Join-Path $wrongMarker 'sentinel.txt'
++  Write-TestFile $wrongMarkerSentinel 'wrong-marker-sentinel'
++  Write-TestFile (Join-Path $wrongMarker '.review-staging.marker.json') '{"marker_version":1,"marker_type":"review-staging","tool":"other-tool","package_id":"other-task"}'
++  [void](Invoke-ChildStaging 'REJECT_WRONG_MARKER_IDENTITY' $wrongMarker $false 'ownership marker does not match')
++  Assert-Sentinel 'WRONG_MARKER_CONTENT_UNCHANGED' $wrongMarkerSentinel 'wrong-marker-sentinel'
++
++  $corruptMarker = Join-Path $fixtureRoot 'corrupt-marker'
++  New-TestDirectory $corruptMarker
++  $corruptSentinel = Join-Path $corruptMarker 'sentinel.txt'
++  Write-TestFile $corruptSentinel 'corrupt-marker-sentinel'
++  Write-TestFile (Join-Path $corruptMarker '.review-staging.marker.json') '{not-json'
++  [void](Invoke-ChildStaging 'REJECT_CORRUPT_MARKER' $corruptMarker $false 'ownership marker is invalid')
++  Assert-Sentinel 'CORRUPT_MARKER_CONTENT_UNCHANGED' $corruptSentinel 'corrupt-marker-sentinel'
++
++  $valid = Join-Path $fixtureRoot 'owned-valid'
++  [void](Invoke-ChildStaging 'CREATE_VALID_NEW_STAGING' $valid $true 'success')
++  $validMarker = Join-Path $valid '.review-staging.marker.json'
++  Add-Result 'VALID_MARKER_CREATED' $(if (Test-Path -LiteralPath $validMarker) { 'PASS' } else { 'FAIL' }) 'marker-exists'
++  $markerText = Get-TestFileText $validMarker
++  Add-Result 'OWNERSHIP_MARKER_NO_ABSOLUTE_PATHS' $(if ($markerText -notmatch '(?i)[A-Z]:[\\/]Users[\\/]') { 'PASS' } else { 'FAIL' }) 'path-fingerprints-only'
++  $wrongPathMarker = Join-Path $fixtureRoot 'wrong-path-marker'
++  New-TestDirectory $wrongPathMarker
++  $wrongPathSentinel = Join-Path $wrongPathMarker 'sentinel.txt'
++  Write-TestFile $wrongPathSentinel 'wrong-path-sentinel'
++  $copiedMarker = Get-TestFileText $validMarker | ConvertFrom-Json
++  $copiedMarker.staging_path_fingerprint = 'wrong-path'
++  Write-TestFile (Join-Path $wrongPathMarker '.review-staging.marker.json') (($copiedMarker | ConvertTo-Json -Compress) + [Environment]::NewLine)
++  [void](Invoke-ChildStaging 'REJECT_WRONG_MARKER_PATH' $wrongPathMarker $false 'ownership marker does not match')
++  Assert-Sentinel 'WRONG_PATH_MARKER_CONTENT_UNCHANGED' $wrongPathSentinel 'wrong-path-sentinel'
++  Write-TestFile (Join-Path $valid 'owned-sentinel.txt') 'owned-sentinel'
++  [void](Invoke-ChildStaging 'RERUN_VALID_OWNED_STAGING' $valid $true 'success')
++  Add-Result 'OWNED_RERUN_REPLACED_CONTENT' $(if ((Test-Path -LiteralPath $validMarker) -and -not (Test-Path -LiteralPath (Join-Path $valid 'owned-sentinel.txt'))) { 'PASS' } else { 'FAIL' }) 'marker-remains;old-owned-file-removed'
++
++  $junctionCreated = $false
++  try {
++    New-TestDirectory $junctionTarget
++    Write-TestFile (Join-Path $junctionTarget 'junction-sentinel.txt') 'junction-sentinel'
++    New-Item -ItemType Junction -Path $junction -Target $junctionTarget -ErrorAction Stop | Out-Null
++    $junctionCreated = $true
++  } catch {
++    Add-Result 'REPARSE_POINT_CREATION' 'SKIP' 'junction creation unavailable in this environment; no unsafe deletion attempted'
++  }
++  if ($junctionCreated) {
++    $pureJunction = Invoke-PurePathValidation $junction
++    $pureJunctionRejected = $pureJunction.Accepted -eq $false -and $pureJunction.ErrorMessage -match 'reparse point'
++    Add-Result 'PURE_REPARSE_PATH_REJECTED' $(if ($pureJunctionRejected) { 'PASS' } else { 'FAIL' }) "expected-reason=reparse point;actual-error=$($pureJunction.ErrorMessage)"
++    [void](Invoke-ChildStaging 'REJECT_JUNCTION_STAGING' $junction $false 'existing path component is a reparse point' -AllowReparseStaging)
++    Assert-Sentinel 'JUNCTION_TARGET_CONTENT_UNCHANGED' (Join-Path $junctionTarget 'junction-sentinel.txt') 'junction-sentinel'
++    Add-Result 'REPARSE_POINT_TEST' 'PASS' 'junction rejected before recursive delete'
++
++    New-TestDirectory $internalReparseRoot
++    New-Item -ItemType Junction -Path $internalReparseChild -Target $junctionTarget -ErrorAction Stop | Out-Null
++    $pureDirectory = Invoke-PureDirectoryValidation $internalReparseRoot
++    $pureDirectoryRejected = $pureDirectory.Accepted -eq $false -and $pureDirectory.ErrorMessage -match 'contains a reparse point'
++    Add-Result 'PURE_INTERNAL_REPARSE_TREE_REJECTED' $(if ($pureDirectoryRejected) { 'PASS' } else { 'FAIL' }) "expected-reason=contains a reparse point;actual-error=$($pureDirectory.ErrorMessage)"
++  }
++  Add-Result 'SYMBOLIC_LINK_TEST' 'SKIP' 'not attempted; symbolic-link privilege/elevation was not requested for this non-destructive test run'
++} catch {
++  Add-Result 'TEST_HARNESS_UNEXPECTED_EXCEPTION' 'FAIL' $_.Exception.Message
++} finally {
++  Assert-Unchanged 'SOURCE_PROTECTED_FILE_UNCHANGED' $sourceProtectedFile $sourceBefore
++  Assert-Unchanged 'DOCUMENT_CENTER_PROTECTED_FILE_UNCHANGED' $documentProtectedFile $documentBefore
++  if ($fixtureCreated -and (Test-Path -LiteralPath $fixtureRoot)) {
++    try {
++      Assert-FixtureCleanupBoundary
++      if (Test-Path -LiteralPath $junction -PathType Container) {
++        $junctionItem = Get-Item -LiteralPath $junction -Force
++        if (($junctionItem.Attributes -band [System.IO.FileAttributes]::ReparsePoint) -eq 0) { throw 'Cleanup refused to remove a non-reparse junction test path.' }
++        if (-not (Test-TestSameOrDescendant $junction $fixtureRoot)) { throw 'Cleanup junction path escaped the fixture root.' }
++        Assert-TestNoReparseChain (Split-Path -Parent $junction)
++        [System.IO.Directory]::Delete($junction, $false)
++      }
++      if (Test-Path -LiteralPath $internalReparseChild) {
++        $childItem = Get-Item -LiteralPath $internalReparseChild -Force
++        if (($childItem.Attributes -band [System.IO.FileAttributes]::ReparsePoint) -eq 0) { throw 'Cleanup refused a non-reparse internal link path.' }
++        if (-not (Test-TestSameOrDescendant $internalReparseChild $fixtureRoot)) { throw 'Cleanup internal link path escaped the fixture root.' }
++        Assert-TestNoReparseChain (Split-Path -Parent $internalReparseChild)
++        [System.IO.Directory]::Delete($internalReparseChild, $false)
++      }
++      Assert-TestTreeNoReparse $fixtureRoot
++      Remove-TestTreeSafely $fixtureRoot
++      Add-Result 'FIXTURE_CLEANUP_BOUNDARY_VERIFIED' 'PASS' 'fixture exact path, trusted-root descendant, and reparse-free tree verified before delete'
++    } catch {
++      Add-Result 'FIXTURE_CLEANUP_BOUNDARY_VERIFIED' 'FAIL' (($_.Exception.ToString() -replace "`r?`n", ' | '))
++    }
++  }
++  if ($documentProtectedFileCreatedForTest -and (Test-Path -LiteralPath $documentProtectedFile)) {
++    Remove-Item -LiteralPath $documentProtectedFile -Force -ErrorAction SilentlyContinue
++  }
++}
++
++Write-Output "RT01_SECURITY_TEST= $(if ($failCount -eq 0) { 'PASS' } else { 'FAIL' })"
++Write-Output "PASS_COUNT=$passCount"
++Write-Output "FAIL_COUNT=$failCount"
++Write-Output "SKIP_COUNT=$skipCount"
++Write-Output "PATH_AND_OWNERSHIP_ASSERTIONS=$($results.Count)"
++foreach ($result in $results) { Write-Output ("$($result.Name)=$($result.Status);$($result.Detail)") }
++if ($failCount -gt 0) {
++  Write-Output ('FAILED_ASSERTIONS=' + ($failures -join ','))
++  exit 1
++}
+diff --git a/05_product/scripts/product-boundary.test.mjs b/05_product/scripts/product-boundary.test.mjs
+new file mode 100644
+index 0000000..0b59d3d
+--- /dev/null
++++ b/05_product/scripts/product-boundary.test.mjs
+@@ -0,0 +1,19 @@
++#!/usr/bin/env node
++
++import { spawnSync } from "node:child_process"
++import path from "node:path"
++
++const root = path.resolve(import.meta.dirname, "../..")
++const pipeline = path.join(root, "05_product", "scripts", "product-pipeline.mjs")
++const fixture = path.join(root, "05_product", "intake", "TEST_FIXTURE_ONLY.medusa-seed.json")
++
++const result = spawnSync(process.execPath, [pipeline, "dry-run", "--input", fixture, "--json"], { cwd: root, encoding: "utf8" })
++if (result.status !== 0) throw new Error(result.stderr || "product dry-run failed")
++const plan = JSON.parse(result.stdout)
++const metadata = plan.medusa_payload.metadata || {}
++const privateKeys = Object.keys(metadata).filter((key) => /cost|supplier|operations|cross_border|physical|hs_code|provenance/i.test(key))
++if (privateKeys.length) throw new Error("public metadata contains private keys: " + privateKeys.join(","))
++if (!Array.isArray(plan.medusa_payload.variants) || plan.medusa_payload.variants.length !== 1) throw new Error("dry-run variant mapping is incomplete")
++console.log("PRODUCT_PUBLIC_METADATA=PASS")
++console.log("PRODUCT_DRY_RUN_ALL_VARIANTS=PASS")
++console.log("PRODUCT_BOUNDARY_TEST=PASS")

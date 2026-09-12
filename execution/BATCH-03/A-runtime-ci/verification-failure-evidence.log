@@ -1,0 +1,39 @@
+﻿COMMAND=corepack pnpm@10.11.1 run test:unit -- --runTestsByPath <temporary-failing-test>
+
+> @dtc/backend@0.0.1 test:unit C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\backend
+> node scripts/run-jest.cjs unit --silent --runInBand --forceExit "--" "--runTestsByPath" "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商\\CrossBorder-Independent-Store\\03_template\\medusa-crossborder-base\\apps\\backend\\src\\__tests__\\rt04-injected-failure-0aebbfb18b23414aa9a34e538cdde934.unit.spec.ts"
+
+ ELIFECYCLE  Command failed with exit code 1.
+
+FAIL src/__tests__/rt04-injected-failure-0aebbfb18b23414aa9a34e538cdde934.unit.spec.ts
+  ● RT04 injected failure › must fail unified test gate
+
+    intentional RT04 gate probe
+
+    > 1 | describe("RT04 injected failure", () => { test("must fail unified test gate", () => { throw new Error("intentional RT04 gate probe") }) })
+        |                                                                                             ^
+
+      at Object.<anonymous> (src/__tests__/rt04-injected-failure-0aebbfb18b23414aa9a34e538cdde934.unit.spec.ts:1:93)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.335 s
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?
+
+EXIT_CODE=1
+COMMAND=corepack pnpm@10.11.1 run typecheck (with temporary source type error)
+
+> dtc-starter-monorepo@ typecheck C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base
+> pnpm --dir apps/backend run typecheck && pnpm --dir apps/storefront run typecheck
+
+src/__rt04_injected_type_error-67cfffb152a942d2876cfe0c51199680.ts(1,7): error TS2322: Type 'number' is not assignable to type 'string'.
+[ELIFECYCLE] Command failed with exit code 2.
+ ELIFECYCLE  Command failed with exit code 2.
+
+[WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.overrides". See https://pnpm.io/settings for the new home of each setting.
+$ tsc --noEmit --incremental false --pretty false
+[WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.overrides". See https://pnpm.io/settings for the new home of each setting.
+$ tsc --noEmit --incremental false --pretty false
+
+EXIT_CODE=2

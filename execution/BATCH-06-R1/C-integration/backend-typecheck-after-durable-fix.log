@@ -1,0 +1,4 @@
+
+> @dtc/backend@0.0.1 typecheck C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\backend
+> tsc --noEmit --incremental false --pretty false
+

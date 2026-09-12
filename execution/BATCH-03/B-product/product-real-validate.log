@@ -1,0 +1,17 @@
+VALIDATE_RESULT=BLOCKED
+VALIDATION_RESULT=BLOCKED
+IMPORT_REQUIRED=PASS
+PUBLISH_REQUIRED=BLOCKED
+LOGISTICS_REQUIRED=NEEDS_VERIFICATION
+SCHEMA_VALID=YES
+ISSUE_COUNT=10
+INVALID|PUBLISH_REQUIRED|assets.main_image.url|publish blocker|Invalid URL
+INVALID|PUBLISH_REQUIRED|assets.gallery_images[0].url|publish blocker|Invalid URL
+INVALID|PUBLISH_REQUIRED|assets.lifestyle_images[0].url|publish blocker|Invalid URL
+INVALID|PUBLISH_REQUIRED|assets.thumbnail.url|publish blocker|Invalid URL
+BLOCKED|PUBLISH_REQUIRED|commerce.project_owned_inventory|publish blocker|Local preview availability is not formal production inventory; publish requires explicit owned inventory and fulfillment data.
+MISSING|LOGISTICS_REQUIRED|physical.dimensions|logistics blocker|All dimensions and a controlled unit must be verified for logistics.
+MISSING|LOGISTICS_REQUIRED|physical.package_dimensions|logistics blocker|Dimensions and unit are required for the logistics gate.
+MISSING|LOGISTICS_REQUIRED|physical.package_weight|logistics blocker|Measurement value and controlled unit are required for logistics.
+MISSING|LOGISTICS_REQUIRED|cross_border.country_of_origin|logistics blocker|Country of origin is required for cross-border logistics review.
+UNVERIFIED|LOGISTICS_REQUIRED|cross_border.hs_code.status|logistics blocker|Known HS code values require status VERIFIED.

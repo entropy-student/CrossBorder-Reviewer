@@ -1,0 +1,53 @@
+﻿# Dependencies / build
+**/node_modules/
+**/.next/
+**/.medusa/
+**/.turbo/
+**/.cache/
+**/dist/
+**/build/
+**/coverage/
+**/.venv/
+**/venv/
+**/vendor/
+
+# Runtime / databases
+**/.runtime/
+**/postgres_data/
+**/*.sqlite
+**/*.db
+
+# Secrets
+**/.env
+**/.env.*
+!**/.env.example
+!**/*.example
+**/*.pem
+**/*.key
+**/credentials.json
+
+# Archives
+**/*.zip
+**/*.7z
+**/*.rar
+**/*.tar
+**/*.gz
+
+# Large media not useful for textual review
+**/*.mp4
+**/*.mov
+**/*.avi
+**/*.mkv
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Reviewer generated/staging copies - duplicated source, not review evidence
+**/_review_stage/
+**/clean-checkout-*/
+**/clean-checkout-final/
+**/owned-valid/
+

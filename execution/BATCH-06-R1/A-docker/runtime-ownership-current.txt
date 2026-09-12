@@ -1,0 +1,9 @@
+drwxr-xr-x 1 root root 4096 Sep  8 09:05 /app
+drwxr-xr-x 1 root root 4096 Sep  8 08:22 /app/apps
+drwxr-xr-x 1 root root 4096 Sep  8 08:48 /app/apps/backend
+drwxr-xr-x 1 root root 4096 Sep  8 08:22 /app/apps/backend/.medusa
+drwxr-xr-x 1 root root 4096 Sep  8 08:55 /app/apps/backend/.medusa/server
+root:root 755 /app/apps/backend/.medusa/server
+10001:10001 Tue Sep  8 08:55:11.0000000000 2026 instrumentation.js
+10001:10001 Tue Sep  8 08:55:11.0000000000 2026 medusa-config.js
+10001:10001 Tue Sep  8 08:55:11.0000000000 2026 package.json

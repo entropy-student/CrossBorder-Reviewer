@@ -1,0 +1,8 @@
+
+> dtc-starter-monorepo@ typecheck C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base
+> pnpm --dir apps/backend run typecheck && pnpm --dir apps/storefront run typecheck
+
+[WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.overrides". See https://pnpm.io/settings for the new home of each setting.
+$ tsc --noEmit --incremental false --pretty false
+[WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.overrides". See https://pnpm.io/settings for the new home of each setting.
+$ tsc --noEmit --incremental false --pretty false

@@ -1,0 +1,402 @@
+diff --git a/04_docs/scripts/92-prepare-review-staging.ps1 b/04_docs/scripts/92-prepare-review-staging.ps1
+index bae55ac..e938ba2 100644
+--- a/04_docs/scripts/92-prepare-review-staging.ps1
++++ b/04_docs/scripts/92-prepare-review-staging.ps1
+@@ -9,13 +9,25 @@ param(
+ 
+ $ErrorActionPreference = "Stop"
+ 
++function Get-NormalizedPath([string]$Path) {
++  if ([string]::IsNullOrWhiteSpace($Path)) { throw "Path must not be empty." }
++  $full = [System.IO.Path]::GetFullPath($Path)
++  $root = [System.IO.Path]::GetPathRoot($full)
++  if ($full.Length -gt $root.Length) {
++    $full = $full.TrimEnd([char[]]"/\")
++  }
++  return $full
++}
++
+ # The one reproducible Reviewer package entry point. It creates a staging tree
+ # shaped like the live workspace: document-center files at the root and the
+ # canonical source project once under CrossBorder-Independent-Store/.
+ $projectRoot = (Resolve-Path (Join-Path $PSScriptRoot "../..")).Path
+-$projectRootFull = [System.IO.Path]::GetFullPath($projectRoot).TrimEnd('\')
++$projectRootFull = Get-NormalizedPath $projectRoot
+ $documentCenterRoot = (Split-Path -Parent $projectRootFull)
+ $workspaceParent = (Split-Path -Parent $documentCenterRoot)
++$trustedStagingRoot = Get-NormalizedPath (Join-Path $workspaceParent "_review_stage")
++$stagingMarkerName = '.review-staging.marker.json'
+ 
+ if (-not $StagingPath) {
+   $StagingPath = Join-Path $workspaceParent "_review_stage\FULL-REVIEW-CHECKPOINT-002-FINAL-ROUND-3"
+@@ -30,16 +42,9 @@ if (-not $PackageId) {
+   $PackageId = 'CB-FULL-REVIEW-CHECKPOINT-002-FINAL-ROUND-3'
+ }
+ 
+-$stagingRoot = [System.IO.Path]::GetFullPath($StagingPath).TrimEnd('\')
+-$packageFullPath = [System.IO.Path]::GetFullPath($PackagePath)
+-$packageManifestFullPath = [System.IO.Path]::GetFullPath($PackageManifestPath)
+-
+-if ($stagingRoot -ieq $projectRootFull -or $stagingRoot.StartsWith($projectRootFull + '\', [System.StringComparison]::OrdinalIgnoreCase)) {
+-  throw "StagingPath must be outside the canonical source project."
+-}
+-if ($stagingRoot -ieq $documentCenterRoot -or $stagingRoot.StartsWith($documentCenterRoot.TrimEnd('\') + '\', [System.StringComparison]::OrdinalIgnoreCase)) {
+-  throw "StagingPath must be outside the document center."
+-}
++$stagingRoot = Get-NormalizedPath $StagingPath
++$packageFullPath = Get-NormalizedPath $PackagePath
++$packageManifestFullPath = Get-NormalizedPath $PackageManifestPath
+ if ($packageFullPath -ieq $projectRootFull -or $packageFullPath.StartsWith($projectRootFull + '\', [System.StringComparison]::OrdinalIgnoreCase)) {
+   throw "PackagePath must be outside the canonical source project."
+ }
+@@ -63,6 +68,166 @@ function Read-StagedText([string]$Path) {
+   return [System.IO.File]::ReadAllText((ConvertTo-ExtendedPath $Path))
+ }
+ 
++function Get-PathFingerprint([string]$Path) {
++  $normalized = (Get-NormalizedPath $Path).ToLowerInvariant()
++  $sha256 = [System.Security.Cryptography.SHA256]::Create()
++  try {
++    $bytes = [System.Text.Encoding]::UTF8.GetBytes($normalized)
++    return ([System.BitConverter]::ToString($sha256.ComputeHash($bytes)) -replace '-', '').ToLowerInvariant()
++  } finally {
++    $sha256.Dispose()
++  }
++}
++
++function Get-TrustedStagingRelativePath([string]$Path) {
++  return $Path.Substring($trustedStagingRoot.Length).TrimStart('\','/') -replace '\\','/'
++}
++
++function Test-SameOrDescendantPath([string]$Candidate, [string]$Ancestor) {
++  $candidatePath = Get-NormalizedPath $Candidate
++  $ancestorPath = Get-NormalizedPath $Ancestor
++  if ($candidatePath -ieq $ancestorPath) { return $true }
++  if ($candidatePath.Length -le $ancestorPath.Length) { return $false }
++  if (-not $candidatePath.StartsWith($ancestorPath, [System.StringComparison]::OrdinalIgnoreCase)) { return $false }
++  return $candidatePath[$ancestorPath.Length] -in @('\','/')
++}
++
++function Get-PathAncestors([string]$Path) {
++  $current = Get-NormalizedPath $Path
++  while ($true) {
++    $parent = [System.IO.DirectoryInfo]::new($current).Parent
++    if (-not $parent) { break }
++    $parentPath = Get-NormalizedPath $parent.FullName
++    if ($parentPath -ieq $current) { break }
++    Write-Output $parentPath
++    $current = $parentPath
++  }
++}
++
++function Assert-NoReparsePointsAlongPath([string]$Path) {
++  $current = Get-NormalizedPath $Path
++  while ($true) {
++    $item = Get-Item -LiteralPath $current -Force -ErrorAction SilentlyContinue
++    if ($item -and (($item.Attributes -band [System.IO.FileAttributes]::ReparsePoint) -ne 0)) {
++      throw "StagingPath is rejected because an existing path component is a reparse point: $current"
++    }
++    $parent = [System.IO.DirectoryInfo]::new($current).Parent
++    if (-not $parent) { break }
++    $parentPath = Get-NormalizedPath $parent.FullName
++    if ($parentPath -ieq $current) { break }
++    $current = $parentPath
++  }
++}
++
++function Assert-NoReparsePointsInsideDirectory([string]$Path) {
++  $rootItem = Get-Item -LiteralPath $Path -Force -ErrorAction Stop
++  if (-not ($rootItem -is [System.IO.DirectoryInfo])) {
++    throw "Existing StagingPath is rejected because it is not a directory: $Path"
++  }
++
++  $stack = New-Object 'System.Collections.Generic.Stack[System.IO.DirectoryInfo]'
++  $stack.Push([System.IO.DirectoryInfo]::new($Path))
++  while ($stack.Count -gt 0) {
++    $directory = $stack.Pop()
++    foreach ($entry in $directory.EnumerateFileSystemInfos()) {
++      if (($entry.Attributes -band [System.IO.FileAttributes]::ReparsePoint) -ne 0) {
++        throw "Existing StagingPath is rejected because it contains a reparse point: $($entry.FullName)"
++      }
++      if ($entry -is [System.IO.DirectoryInfo]) {
++        $stack.Push([System.IO.DirectoryInfo]::new($entry.FullName))
++      }
++    }
++  }
++}
++
++function Assert-SafeStagingPath([string]$Path) {
++  $candidate = Get-NormalizedPath $Path
++  if (Test-SameOrDescendantPath $candidate $projectRootFull) {
++    throw "StagingPath is rejected because it is the canonical source project or a descendant of it."
++  }
++  if (Test-SameOrDescendantPath $candidate $documentCenterRoot) {
++    throw "StagingPath is rejected because it is the document center or a descendant of it."
++  }
++  if ($candidate -ieq $trustedStagingRoot) {
++    throw "StagingPath is rejected because it is the trusted staging root itself; use a dedicated child directory."
++  }
++  if (-not (Test-SameOrDescendantPath $candidate $trustedStagingRoot)) {
++    throw "StagingPath is rejected because it is outside the trusted staging root."
++  }
++
++  $protectedExactPaths = @(
++    $projectRootFull,
++    $documentCenterRoot,
++    $trustedStagingRoot,
++    [System.IO.Path]::GetPathRoot($projectRootFull),
++    [Environment]::GetFolderPath([Environment+SpecialFolder]::UserProfile)
++  )
++  $protectedExactPaths += @(Get-PathAncestors $projectRootFull)
++  $protectedExactPaths += @(Get-PathAncestors $documentCenterRoot)
++  foreach ($protectedPath in $protectedExactPaths) {
++    if ($protectedPath -and $candidate -ieq (Get-NormalizedPath $protectedPath)) {
++      throw "StagingPath is rejected because it is a protected project/workspace ancestor or root."
++    }
++  }
++
++  Assert-NoReparsePointsAlongPath $candidate
++  return $candidate
++}
++
++function Assert-ToolOwnedStaging([string]$Path) {
++  Assert-NoReparsePointsInsideDirectory $Path
++  $markerPath = Join-Path $Path $stagingMarkerName
++  $markerItem = Get-Item -LiteralPath $markerPath -Force -ErrorAction SilentlyContinue
++  if (-not $markerItem -or $markerItem -isnot [System.IO.FileInfo]) {
++    throw "Existing StagingPath is rejected because it has no valid tool-ownership marker; use a new child directory."
++  }
++  if (($markerItem.Attributes -band [System.IO.FileAttributes]::ReparsePoint) -ne 0) {
++    throw "Existing StagingPath is rejected because its ownership marker is a reparse point."
++  }
++
++  try {
++    $marker = Read-StagedText $markerPath | ConvertFrom-Json
++  } catch {
++    throw "Existing StagingPath is rejected because its ownership marker is invalid."
++  }
++
++  $expected = @{
++    marker_version = 1
++    marker_type = 'review-staging'
++    tool = '92-prepare-review-staging.ps1'
++    package_id = $PackageId
++    source_identity = 'CrossBorder-Independent-Store'
++    document_center_identity = 'document-center'
++    source_path_fingerprint = (Get-PathFingerprint $projectRootFull)
++    document_center_path_fingerprint = (Get-PathFingerprint $documentCenterRoot)
++    staging_path_fingerprint = (Get-PathFingerprint $Path)
++    staging_relative_path = (Get-TrustedStagingRelativePath $Path)
++  }
++  foreach ($field in $expected.Keys) {
++    $actual = [string]$marker.$field
++    if ($actual -ne [string]$expected[$field]) {
++      throw "Existing StagingPath is rejected because its ownership marker does not match this tool/task."
++    }
++  }
++}
++
++function Write-StagingOwnershipMarker([string]$Path) {
++  $marker = [ordered]@{
++    marker_version = 1
++    marker_type = 'review-staging'
++    tool = '92-prepare-review-staging.ps1'
++    package_id = $PackageId
++    source_identity = 'CrossBorder-Independent-Store'
++    document_center_identity = 'document-center'
++    source_path_fingerprint = (Get-PathFingerprint $projectRootFull)
++    document_center_path_fingerprint = (Get-PathFingerprint $documentCenterRoot)
++    staging_path_fingerprint = (Get-PathFingerprint $Path)
++    staging_relative_path = (Get-TrustedStagingRelativePath $Path)
++    created_utc = (Get-Date).ToUniversalTime().ToString('o')
++  }
++  Write-Utf8NoBom (Join-Path $Path $stagingMarkerName) (($marker | ConvertTo-Json -Compress) + [Environment]::NewLine)
++}
++
+ function Get-ProjectRelativePath([string]$FullPath) {
+   return $FullPath.Substring($projectRootFull.Length).TrimStart('\','/') -replace '\\','/'
+ }
+@@ -258,10 +423,13 @@ function Get-MarkdownLinkFindings {
+   return $findings
+ }
+ 
++$stagingRoot = Assert-SafeStagingPath $stagingRoot
+ if (Test-Path -LiteralPath $stagingRoot) {
++  Assert-ToolOwnedStaging $stagingRoot
+   [System.IO.Directory]::Delete((ConvertTo-ExtendedPath $stagingRoot), $true)
+ }
+ New-Item -ItemType Directory -Force -Path $stagingRoot | Out-Null
++Write-StagingOwnershipMarker $stagingRoot
+ 
+ $sourceDestinationRoot = Join-Path $stagingRoot 'CrossBorder-Independent-Store'
+ $projectCopy = Copy-Tree $projectRootFull $sourceDestinationRoot ${function:Get-ProjectRelativePath} ${function:Test-ExcludedSourcePath}
+@@ -457,6 +625,8 @@ if ($CreateZip) {
+     'The external manifest is intentionally written after ZIP creation so the ZIP hash is not circular. The in-package manifest carries the same package identity and explicitly points to this external hash record.'
+   )
+   Write-Utf8NoBom $packageManifestFullPath (($externalManifestLines -join [Environment]::NewLine) + [Environment]::NewLine)
++  $stagingRoot = Assert-SafeStagingPath $stagingRoot
++  Assert-ToolOwnedStaging $stagingRoot
+   [System.IO.Directory]::Delete((ConvertTo-ExtendedPath $stagingRoot), $true)
+   Write-Host 'STAGING_DELETED=YES'
+ }
+
+--- UNTRACKED SECURITY TEST FILE ---
+diff --git "a/C:\\Users\\34707\\Documents\\ChatGPT\\\350\267\250\345\242\203\347\224\265\345\225\206\\CrossBorder-Independent-Store\\04_docs\\scripts\\92-prepare-review-staging.security.tests.ps1" "b/C:\\Users\\34707\\Documents\\ChatGPT\\\350\267\250\345\242\203\347\224\265\345\225\206\\CrossBorder-Independent-Store\\04_docs\\scripts\\92-prepare-review-staging.security.tests.ps1"
+new file mode 100644
+index 0000000..6cdb0af
+--- /dev/null
++++ "b/C:\\Users\\34707\\Documents\\ChatGPT\\\350\267\250\345\242\203\347\224\265\345\225\206\\CrossBorder-Independent-Store\\04_docs\\scripts\\92-prepare-review-staging.security.tests.ps1"
+@@ -0,0 +1,152 @@
++[CmdletBinding()]
++param()
++
++$ErrorActionPreference = "Stop"
++
++$scriptPath = Join-Path $PSScriptRoot "92-prepare-review-staging.ps1"
++$sourceRoot = (Resolve-Path (Join-Path $PSScriptRoot "../..")).Path
++$documentCenterRoot = Split-Path -Parent $sourceRoot
++$workspaceParent = Split-Path -Parent $documentCenterRoot
++$trustedStagingRoot = Join-Path $workspaceParent "_review_stage"
++$runId = "RT-01-" + [Guid]::NewGuid().ToString("N")
++$testRoot = Join-Path $trustedStagingRoot ("security-tests\" + $runId)
++$outsideTarget = Join-Path $workspaceParent ("_" + $runId + "-outside-target")
++$packageRoot = Join-Path $testRoot "outputs"
++$packagePath = Join-Path $packageRoot "package.zip"
++$packageManifestPath = Join-Path $packageRoot "manifest.md"
++$packageId = "RT-01-$runId"
++$junction = Join-Path $testRoot "junction-stage"
++
++$failures = New-Object System.Collections.Generic.List[string]
++$results = New-Object System.Collections.Generic.List[string]
++$shell = (Get-Command pwsh -ErrorAction SilentlyContinue).Source
++if (-not $shell) { $shell = (Get-Command powershell -ErrorAction Stop).Source }
++
++function Add-Result([string]$Name, [bool]$Passed, [string]$Detail) {
++  $state = if ($Passed) { "PASS" } else { "FAIL" }
++  [void]$results.Add("$Name=$state;$Detail")
++  if (-not $Passed) { [void]$failures.Add($Name) }
++}
++
++function New-TestDirectory([string]$Path) {
++  [System.IO.Directory]::CreateDirectory($Path) | Out-Null
++}
++
++function Write-TestFile([string]$Path, [string]$Content) {
++  [System.IO.Directory]::CreateDirectory((Split-Path -Parent $Path)) | Out-Null
++  [System.IO.File]::WriteAllText($Path, $Content, (New-Object System.Text.UTF8Encoding($false)))
++}
++
++function Get-TestFileText([string]$Path) {
++  return [System.IO.File]::ReadAllText($Path)
++}
++
++function Invoke-StagingScript([string]$Name, [string]$StagingPath, [bool]$ExpectedSuccess) {
++  $output = @(& $shell -NoLogo -NoProfile -ExecutionPolicy Bypass -File $scriptPath `
++    -StagingPath $StagingPath `
++    -PackagePath $packagePath `
++    -PackageManifestPath $packageManifestPath `
++    -PackageId $packageId 2>&1 | ForEach-Object { $_.ToString() })
++  $exitCode = $LASTEXITCODE
++  $actualSuccess = $exitCode -eq 0
++  Add-Result $Name ($actualSuccess -eq $ExpectedSuccess) ("exit=$exitCode;output=" + (($output -join " ").Trim()))
++  return [pscustomobject]@{ ExitCode = $exitCode; Output = $output }
++}
++
++function Assert-Unchanged([string]$Name, [string]$Path, [string]$Before) {
++  $exists = Test-Path -LiteralPath $Path
++  $after = if ($exists) { Get-TestFileText $Path } else { "<MISSING>" }
++  Add-Result $Name ($exists -and $after -ceq $Before) "exists=$exists"
++}
++
++$sourceProtectedFile = Join-Path $sourceRoot "PROJECT_STATUS.json"
++$documentProtectedFile = Join-Path $documentCenterRoot "00_HANDOFF.md"
++$sourceBefore = Get-TestFileText $sourceProtectedFile
++$documentBefore = Get-TestFileText $documentProtectedFile
++
++try {
++  New-TestDirectory $testRoot
++  New-TestDirectory $outsideTarget
++  Write-TestFile (Join-Path $outsideTarget "outside-sentinel.txt") "outside-sentinel"
++
++  $invalidPaths = @(
++    @{ Name = "REJECT_SOURCE_ROOT"; Path = $sourceRoot },
++    @{ Name = "REJECT_SOURCE_DESCENDANT"; Path = Join-Path $sourceRoot "not-a-stage" },
++    @{ Name = "REJECT_SOURCE_CASE_AND_TRAILING_SEPARATOR"; Path = $sourceRoot.ToUpperInvariant() + "\" },
++    @{ Name = "REJECT_DOCUMENT_CENTER_ROOT"; Path = $documentCenterRoot },
++    @{ Name = "REJECT_DOCUMENT_CENTER_DESCENDANT"; Path = Join-Path $documentCenterRoot "not-a-stage" },
++    @{ Name = "REJECT_WORKSPACE_ANCESTOR"; Path = $workspaceParent },
++    @{ Name = "REJECT_USER_HOME"; Path = [Environment]::GetFolderPath([Environment+SpecialFolder]::UserProfile) },
++    @{ Name = "REJECT_DISK_ROOT"; Path = [System.IO.Path]::GetPathRoot($sourceRoot) },
++    @{ Name = "REJECT_TRUSTED_ROOT"; Path = $trustedStagingRoot },
++    @{ Name = "REJECT_TRUSTED_ROOT_SIMILAR_PREFIX"; Path = $trustedStagingRoot + "-sibling" },
++    @{ Name = "REJECT_OUTSIDE_TARGET"; Path = $outsideTarget },
++    @{ Name = "REJECT_NORMALIZED_SOURCE_ANCESTOR"; Path = Join-Path $trustedStagingRoot ("..\..\CrossBorder-Independent-Store") }
++  )
++  foreach ($case in $invalidPaths) {
++    [void](Invoke-StagingScript $case.Name $case.Path $false)
++  }
++
++  $unowned = Join-Path $testRoot "unowned"
++  New-TestDirectory $unowned
++  $unownedSentinel = Join-Path $unowned "sentinel.txt"
++  Write-TestFile $unownedSentinel "unowned-sentinel"
++  [void](Invoke-StagingScript "REJECT_EXISTING_NO_MARKER" $unowned $false)
++  Add-Result "NO_MARKER_CONTENT_UNCHANGED" ((Test-Path -LiteralPath $unownedSentinel) -and (Get-TestFileText $unownedSentinel) -ceq "unowned-sentinel") "sentinel-preserved"
++
++  $wrongMarker = Join-Path $testRoot "wrong-marker"
++  New-TestDirectory $wrongMarker
++  $wrongMarkerSentinel = Join-Path $wrongMarker "sentinel.txt"
++  Write-TestFile $wrongMarkerSentinel "wrong-marker-sentinel"
++  Write-TestFile (Join-Path $wrongMarker ".review-staging.marker.json") '{"marker_version":1,"marker_type":"review-staging","tool":"other-tool","package_id":"other-task"}'
++  [void](Invoke-StagingScript "REJECT_INVALID_MARKER" $wrongMarker $false)
++  Add-Result "INVALID_MARKER_CONTENT_UNCHANGED" ((Test-Path -LiteralPath $wrongMarkerSentinel) -and (Get-TestFileText $wrongMarkerSentinel) -ceq "wrong-marker-sentinel") "sentinel-preserved"
++
++  $valid = Join-Path $testRoot "owned-valid"
++  [void](Invoke-StagingScript "CREATE_VALID_NEW_STAGING" $valid $true)
++  $validMarker = Join-Path $valid ".review-staging.marker.json"
++  Add-Result "VALID_MARKER_CREATED" (Test-Path -LiteralPath $validMarker) "marker=$validMarker"
++  $markerText = Get-TestFileText $validMarker
++  Add-Result "OWNERSHIP_MARKER_NO_ABSOLUTE_PATHS" ($markerText -notmatch '(?i)[A-Z]:[\\/]Users[\\/]') "path-fingerprints-only"
++  Write-TestFile (Join-Path $valid "owned-sentinel.txt") "owned-sentinel"
++  [void](Invoke-StagingScript "RERUN_VALID_OWNED_STAGING" $valid $true)
++  Add-Result "OWNED_RERUN_REPLACED_CONTENT" ((Test-Path -LiteralPath $validMarker) -and -not (Test-Path -LiteralPath (Join-Path $valid "owned-sentinel.txt"))) "marker-remains;old-owned-file-removed"
++
++  $junctionCreated = $false
++  try {
++    New-Item -ItemType Junction -Path $junction -Target $outsideTarget -ErrorAction Stop | Out-Null
++    $junctionCreated = $true
++  } catch {
++    Add-Result "REPARSE_POINT_TEST" $true ("NOT_TESTED;environment-restriction=" + $_.Exception.Message)
++  }
++  if ($junctionCreated) {
++    $outsideSentinel = Join-Path $outsideTarget "outside-sentinel.txt"
++    [void](Invoke-StagingScript "REJECT_JUNCTION_STAGING" $junction $false)
++    Add-Result "JUNCTION_TARGET_CONTENT_UNCHANGED" ((Test-Path -LiteralPath $outsideSentinel) -and (Get-TestFileText $outsideSentinel) -ceq "outside-sentinel") "target-preserved"
++    Add-Result "REPARSE_POINT_TEST" $true "junction-rejected-before-delete"
++  }
++} finally {
++  Assert-Unchanged "SOURCE_PROTECTED_FILE_UNCHANGED" $sourceProtectedFile $sourceBefore
++  Assert-Unchanged "DOCUMENT_CENTER_PROTECTED_FILE_UNCHANGED" $documentProtectedFile $documentBefore
++  if (Test-Path -LiteralPath $junction) {
++    $junctionItem = Get-Item -LiteralPath $junction -Force
++    if (($junctionItem.Attributes -band [System.IO.FileAttributes]::ReparsePoint) -eq 0) {
++      throw "Test cleanup refused to remove a non-reparse junction test path."
++    }
++    Remove-Item -LiteralPath $junction -Force
++  }
++  if (Test-Path -LiteralPath $testRoot) {
++    [System.IO.Directory]::Delete($testRoot, $true)
++  }
++  if (Test-Path -LiteralPath $outsideTarget) {
++    [System.IO.Directory]::Delete($outsideTarget, $true)
++  }
++}
++
++Write-Output "RT01_SECURITY_TEST= $(if ($failures.Count -eq 0) { 'PASS' } else { 'FAIL' })"
++Write-Output "PATH_AND_OWNERSHIP_ASSERTIONS=$($results.Count)"
++foreach ($result in $results) { Write-Output $result }
++if ($failures.Count -gt 0) {
++  Write-Output ("FAILED_ASSERTIONS=" + ($failures -join ','))
++  exit 1
++}
+

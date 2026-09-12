@@ -1,0 +1,41 @@
+INDEPENDENT_REVIEW_START=2026-09-07T09:42:14.0135823+08:00
+
+> @dtc/backend@0.0.1 test C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\backend
+> pnpm run test:unit "--" "--runInBand" "src/api/__tests__/public-catalog.unit.spec.ts"
+
+$ node scripts/run-jest.cjs unit --silent --runInBand --forceExit "--" "--runInBand" "src/api/__tests__/public-catalog.unit.spec.ts"
+PASS src/api/__tests__/public-catalog.unit.spec.ts
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        1.043 s, estimated 2 s
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?
+BACKEND_CATALOG_TEST_EXIT=0
+node:internal/modules/cjs/loader:1520
+  throw err;
+  ^
+
+Error: Cannot find module 'C:\Users\34707\Documents\ChatGPT\跨境电商\05_product\scripts\medusa-inventory-plan.test.mjs'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1517:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1071:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1095:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1122:12)
+    at Module._load (node:internal/modules/cjs/loader:1294:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v24.19.0
+INVENTORY_PLAN_TEST_EXIT=1
+
+> @dtc/storefront@1.0.3 typecheck C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\storefront
+> tsc --noEmit --incremental false --pretty false
+
+STOREFRONT_TYPECHECK_EXIT=0
+MEDUSA_INVENTORY_PLAN_TEST=PASS
+MEDUSA_WRITE=NO
+INVENTORY_PLAN_TEST_RERUN_EXIT=0

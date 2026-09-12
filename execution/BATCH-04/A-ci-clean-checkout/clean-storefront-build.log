@@ -1,0 +1,53 @@
+
+> @dtc/storefront@1.0.3 build C:\Users\34707\Documents\ChatGPT\跨境电商-review\execution\BATCH-04\A-ci-clean-checkout\clean-checkout\03_template\medusa-crossborder-base\apps\storefront
+> next build
+
+   ▲ Next.js 15.5.24
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 32.1s
+   Linting and checking validity of types ...
+   Collecting page data ...
+Failed to generate static paths for product pages: fetch failed.
+   Generating static pages (0/6) ...
+   Generating static pages (1/6) 
+   Generating static pages (2/6) 
+   Generating static pages (4/6) 
+ ✓ Generating static pages (6/6)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                                Size  First Load JS
+┌ ○ /_not-found                                           145 B         103 kB
+├ ƒ /[countryCode]                                        339 B         112 kB
+├ ƒ /[countryCode]/account                              4.69 kB         111 kB
+├ ƒ /[countryCode]/account/addresses                    5.25 kB         131 kB
+├ ƒ /[countryCode]/account/orders                       5.43 kB         117 kB
+├ ƒ /[countryCode]/account/orders/details/[id]          3.15 kB         118 kB
+├ ƒ /[countryCode]/account/profile                      4.33 kB         121 kB
+├ ƒ /[countryCode]/cart                                 1.96 kB         120 kB
+├ ● /[countryCode]/categories/[...category]               206 B         156 kB
+├ ƒ /[countryCode]/checkout                             31.9 kB         188 kB
+├ ● /[countryCode]/collections/[handle]                   503 B         156 kB
+├ ƒ /[countryCode]/order/[id]/confirmed                 3.02 kB         115 kB
+├ ƒ /[countryCode]/order/[id]/transfer/[token]          2.36 kB         105 kB
+├ ƒ /[countryCode]/order/[id]/transfer/[token]/accept   2.02 kB         105 kB
+├ ƒ /[countryCode]/order/[id]/transfer/[token]/decline  2.02 kB         105 kB
+├ ● /[countryCode]/products/[handle]                    7.87 kB         152 kB
+├ ƒ /[countryCode]/store                                  503 B         156 kB
+├ ƒ /[countryCode]/verify-account                       2.59 kB         109 kB
+├ ƒ /api/payment-return                                   145 B         103 kB
+├ ○ /opengraph-image.jpg                                    0 B            0 B
+└ ○ /twitter-image.jpg                                      0 B            0 B
++ First Load JS shared by all                            103 kB
+  ├ chunks/2389-7903ca1a00af8816.js                     46.5 kB
+  ├ chunks/edd402d7-676662679f3983af.js                 54.2 kB
+  └ other shared chunks (total)                         2.05 kB
+
+
+ƒ Middleware                                            32.8 kB
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+

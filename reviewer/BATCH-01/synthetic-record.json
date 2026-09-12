@@ -1,0 +1,10 @@
+{
+  "schema_version": 2,
+  "process_id": 101,
+  "started_at_utc": "2026-09-05T23:42:22.3027384Z",
+  "executable_path": "test.exe",
+  "command_line": "test",
+  "project_root": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商-review\\reviewer\\BATCH-01",
+  "working_directory": "C:\\Users\\34707\\Documents\\ChatGPT\\跨境电商-review\\reviewer\\BATCH-01",
+  "role": "test"
+}

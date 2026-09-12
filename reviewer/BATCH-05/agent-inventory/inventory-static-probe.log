@@ -1,0 +1,16 @@
+{
+  "main_project_write": false,
+  "bogus_location_accepted_by_plan": true,
+  "shared_inventory_item_location_pair_accepted": true,
+  "plan_error": null,
+  "missing_customer_response_route_matchers": [
+    "/store/product-variants",
+    "/store/product-variants/:id",
+    "/store/carts/:id/customer",
+    "/store/carts/:id/promotions",
+    "/store/carts/:id/taxes"
+  ],
+  "available_quantity_numeric_value_asserted": false,
+  "reserved_quantity_numeric_value_asserted": false,
+  "sales_channel_relation_checked_by_inventory_sync": false
+}

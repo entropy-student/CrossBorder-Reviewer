@@ -1,0 +1,49 @@
+╔════════════════════════════════════════════════════════════════════════╗
+Couldn't find tsconfig.json. tsconfig-paths will be skipped
+- Creating server
+║                                                                        ║
+║   Medusa collects anonymous usage analytics                            ║
+║   to help improve Medusa for all users.                                ║
+║                                                                        ║
+║   If you'd like to opt-out, you can use `medusa telemetry --disable`   ║
+║                                                                        ║
+║                                                                        ║
+╚════════════════════════════════════════════════════════════════════════╝
+[32minfo[39m:    redisUrl not found. A fake redis instance will be used.
+[32minfo[39m:    redisUrl not found. A fake redis instance will be used.
+[32minfo[39m:    Skipping instrumentation registration. No register function found.
+Error: EACCES: permission denied, mkdir '/app/apps/backend/.medusa/server/.medusa'
+    at async mkdir (node:internal/fs/promises:857:10)
+    at async writeStaticFiles (/app/node_modules/.pnpm/@medusajs+admin-bundler@2.19.0_@sinclair+typebox@0.34.52_@types+node@20.19.43_@types+re_af81c011d8478b81be4901ecf0d686d6/node_modules/@medusajs/admin-bundler/dist/index.js:1221:3)
+    at async PluginContext.buildStart (/app/node_modules/.pnpm/@medusajs+admin-bundler@2.19.0_@sinclair+typebox@0.34.52_@types+node@20.19.43_@types+re_af81c011d8478b81be4901ecf0d686d6/node_modules/@medusajs/admin-bundler/dist/index.js:1301:7)
+    at async Promise.all (index 6)
+    at async EnvironmentPluginContainer.hookParallel (file:///app/node_modules/.pnpm/vite@7.3.6_@types+node@20.19.43_jiti@2.7.0_terser@5.51.0_yaml@2.9.0/node_modules/vite/dist/node/chunks/config.js:28741:3)
+    at async EnvironmentPluginContainer.buildStart (file:///app/node_modules/.pnpm/vite@7.3.6_@types+node@20.19.43_jiti@2.7.0_terser@5.51.0_yaml@2.9.0/node_modules/vite/dist/node/chunks/config.js:28751:3)
+    at async file:///app/node_modules/.pnpm/vite@7.3.6_@types+node@20.19.43_jiti@2.7.0_terser@5.51.0_yaml@2.9.0/node_modules/vite/dist/node/chunks/config.js:25712:4
+    at async _createServer (file:///app/node_modules/.pnpm/vite@7.3.6_@types+node@20.19.43_jiti@2.7.0_terser@5.51.0_yaml@2.9.0/node_modules/vite/dist/node/chunks/config.js:25730:9)
+[32minfo[39m:    redisUrl not found. A fake redis instance will be used.
+[32minfo[39m:    No link to load from /app/node_modules/.pnpm/@medusajs+draft-order@2.19.0_@medusajs+admin-sdk@2.19.0_@medusajs+cli@2.19.0_@types+nod_ab547186112aa2cacb92323532778ff2/node_modules/@medusajs/draft-order/.medusa/server/src/links. skipped.
+[32minfo[39m:    No link to load from /app/apps/backend/.medusa/server/src/links. skipped.
+[33mwarn[39m:    Local Event Bus installed. This is not recommended for production.
+[32minfo[39m:    Locking module: Using "in-memory" as default.
+    at async develop (/app/node_modules/.pnpm/@medusajs+admin-bundler@2.19.0_@sinclair+typebox@0.34.52_@types+node@20.19.43_@types+re_af81c011d8478b81be4901ecf0d686d6/node_modules/@medusajs/admin-bundler/dist/index.js:1512:20)
+    at async initDevelopmentServer (/app/node_modules/.pnpm/@medusajs+medusa@2.19.0_55fd7992ca4da9f7822a18399b6ccf4a/node_modules/@medusajs/medusa/src/loaders/admin.ts:82:27) {
+[32minfo[39m:    No workflow to load from /app/node_modules/.pnpm/@medusajs+draft-order@2.19.0_@medusajs+admin-sdk@2.19.0_@medusajs+cli@2.19.0_@types+nod_ab547186112aa2cacb92323532778ff2/node_modules/@medusajs/draft-order/.medusa/server/src/workflows. skipped.
+  errno: -13,
+[32minfo[39m:    No workflow to load from /app/apps/backend/.medusa/server/src/workflows. skipped.
+  code: 'EACCES',
+  syscall: 'mkdir',
+  path: '/app/apps/backend/.medusa/server/.medusa'
+}
+Error: Failed to start admin development server. See error above.
+[32minfo[39m:    No subscriber to load from /app/apps/backend/.medusa/server/src/subscribers. skipped.
+[32minfo[39m:    No subscriber to load from /app/node_modules/.pnpm/@medusajs+draft-order@2.19.0_@medusajs+admin-sdk@2.19.0_@medusajs+cli@2.19.0_@types+nod_ab547186112aa2cacb92323532778ff2/node_modules/@medusajs/draft-order/.medusa/server/src/subscribers. skipped.
+[31merror[39m:   Error starting server: Failed to start admin development server. See error above.
+    at develop (/app/node_modules/.pnpm/@medusajs+admin-bundler@2.19.0_@sinclair+typebox@0.34.52_@types+node@20.19.43_@types+re_af81c011d8478b81be4901ecf0d686d6/node_modules/@medusajs/admin-bundler/dist/index.js:1517:11)
+    at async initDevelopmentServer (/app/node_modules/.pnpm/@medusajs+medusa@2.19.0_55fd7992ca4da9f7822a18399b6ccf4a/node_modules/@medusajs/medusa/src/loaders/admin.ts:82:27)
+    at async Promise.allSettled (index 1)
+    at async promiseAll (/app/node_modules/.pnpm/@medusajs+utils@2.19.0_@types+node@20.19.43_express@4.22.2/node_modules/@medusajs/utils/src/common/promise-all.ts:27:18)
+    at async loadEntrypoints (/app/node_modules/.pnpm/@medusajs+medusa@2.19.0_55fd7992ca4da9f7822a18399b6ccf4a/node_modules/@medusajs/medusa/src/loaders/index.ts:118:26)
+    at async exports.default (/app/node_modules/.pnpm/@medusajs+medusa@2.19.0_55fd7992ca4da9f7822a18399b6ccf4a/node_modules/@medusajs/medusa/src/loaders/index.ts:225:7)
+    at async internalStart (/app/node_modules/.pnpm/@medusajs+medusa@2.19.0_55fd7992ca4da9f7822a18399b6ccf4a/node_modules/@medusajs/medusa/src/commands/start.ts:272:59)
+    at async start (/app/node_modules/.pnpm/@medusajs+medusa@2.19.0_55fd7992ca4da9f7822a18399b6ccf4a/node_modules/@medusajs/medusa/src/commands/start.ts:426:12)

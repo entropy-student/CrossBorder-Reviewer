@@ -1,0 +1,6 @@
+SANDBOX_ENDPOINT=https://api-m.sandbox.paypal.com/v1/oauth2/token
+SANDBOX_OAUTH_HTTP=401
+SANDBOX_TRANSACTION_CREATED=NO
+SANDBOX_BUYER_ACTION_REQUIRED=YES
+SANDBOX_AUTH_CAPTURE_REFUND=NOT_ATTEMPTED
+NOTE=Existing BATCH-02 reviewer evidence records OAuth success; no secret, token, response body, account identifier, or buyer credential is stored here. No further credential request was made.

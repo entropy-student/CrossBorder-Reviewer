@@ -1,0 +1,14 @@
+RT02_PROCESS_SECURITY_TEST= PASS
+PASS_COUNT=9
+FAIL_COUNT=0
+ASSERTION_COUNT=9
+CORRECT_OWNERSHIP_CAN_STOP=PASS;exact identity matched; root and descendants were terminated
+ALREADY_EXITED_IS_STALE=PASS;missing live PID is refused without termination
+PID_REUSE_IDENTITY_MISMATCH_REFUSED=PASS;record PID was injected to another live process; target-alive=True;stop-output=MANAGED_PROCESS_STOP=REFUSED_STALE
+MANAGED_PROCESS_REASON=executable path does not match
+STARTUP_TIME_MISMATCH_REFUSED=PASS;stale startup timestamp refused
+PROJECT_IDENTITY_MISMATCH_REFUSED=PASS;record project identity did not match this template
+IDENTITY_READ_FAILURE_REFUSED=PASS;missing identity fields refused
+OLD_PID_FORMAT_REFUSED=PASS;legacy PID-only record refused
+STALE_PARENT_DOES_NOT_KILL_CHILD=PASS;stale parent identity refused; child and external sentinel remain alive
+EXTERNAL_SENTINEL_SURVIVES=PASS;pid=7432

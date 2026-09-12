@@ -1,0 +1,72 @@
+
+> @dtc/storefront@1.0.3 build C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\storefront
+> next build
+
+   ▲ Next.js 15.5.24
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 13.0s
+   Linting and checking validity of types ...
+
+./src/modules/checkout/components/shipping/index.tsx
+119:6  Warning: React Hook useEffect has missing dependencies: '_pickupMethods', '_shippingMethods', 'cart.id', and 'shippingMethodId'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/modules/checkout/components/shipping-address/index.tsx
+84:6  Warning: React Hook useEffect has a missing dependency: 'customer.email'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/modules/products/components/product-actions/index.tsx
+104:6  Warning: React Hook useEffect has missing dependencies: 'pathname', 'router', and 'searchParams'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+   Collecting page data ...
+   Generating static pages (0/46) ...
+   Generating static pages (11/46) 
+   Generating static pages (22/46) 
+   Generating static pages (34/46) 
+ ✓ Generating static pages (46/46)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                                Size  First Load JS
+┌ ○ /_not-found                                           145 B         103 kB
+├ ƒ /[countryCode]                                        343 B         112 kB
+├ ƒ /[countryCode]/account                              4.64 kB         111 kB
+├ ƒ /[countryCode]/account/addresses                    5.26 kB         131 kB
+├ ƒ /[countryCode]/account/orders                       5.43 kB         117 kB
+├ ƒ /[countryCode]/account/orders/details/[id]          3.15 kB         118 kB
+├ ƒ /[countryCode]/account/profile                      4.33 kB         121 kB
+├ ƒ /[countryCode]/cart                                 1.96 kB         120 kB
+├ ● /[countryCode]/categories/[...category]               206 B         156 kB
+├   ├ /dk/categories/shirts
+├   ├ /dk/categories/sweatshirts
+├   ├ /dk/categories/pants
+├   └ [+29 more paths]
+├ ƒ /[countryCode]/checkout                             31.4 kB         188 kB
+├ ● /[countryCode]/collections/[handle]                   504 B         156 kB
+├ ƒ /[countryCode]/order/[id]/confirmed                 3.02 kB         115 kB
+├ ƒ /[countryCode]/order/[id]/transfer/[token]          2.36 kB         105 kB
+├ ƒ /[countryCode]/order/[id]/transfer/[token]/accept   2.02 kB         105 kB
+├ ƒ /[countryCode]/order/[id]/transfer/[token]/decline  2.02 kB         105 kB
+├ ● /[countryCode]/products/[handle]                    7.84 kB         152 kB
+├   ├ /dk/products/pet-hair-remover
+├   ├ /fr/products/pet-hair-remover
+├   ├ /de/products/pet-hair-remover
+├   └ [+5 more paths]
+├ ƒ /[countryCode]/store                                  504 B         156 kB
+├ ƒ /[countryCode]/verify-account                       2.59 kB         109 kB
+├ ƒ /api/payment-return                                   145 B         103 kB
+├ ○ /opengraph-image.jpg                                    0 B            0 B
+└ ○ /twitter-image.jpg                                      0 B            0 B
++ First Load JS shared by all                            103 kB
+  ├ chunks/2389-7903ca1a00af8816.js                     46.5 kB
+  ├ chunks/edd402d7-676662679f3983af.js                 54.2 kB
+  └ other shared chunks (total)                         2.05 kB
+
+
+ƒ Middleware                                            33.2 kB
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+

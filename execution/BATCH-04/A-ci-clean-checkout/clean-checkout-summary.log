@@ -1,0 +1,11 @@
+FIXTURE=clean-checkout-final
+SOURCE_COPY_EXCLUDES=node_modules,.next,.medusa,.runtime,.env,build-cache,tsbuildinfo
+FROZEN_INSTALL=PASS
+FROZEN_INSTALL_EXIT_CODE=0
+TOP_LEVEL_VERIFY=PASS
+TOP_LEVEL_VERIFY_EXIT_CODE=0
+STOREFRONT_BUILD_WITH_BACKEND_UNREACHABLE=PASS_CONTROLLED_FALLBACK
+STOREFRONT_BUILD_EXIT_CODE=0
+NEXT_VERSION=15.5.24
+CONTROLLED_BUILD_NOTE=product static paths reported fetch failed and returned controlled empty params; dynamic runtime route remained available
+REMOTE_GITHUB_ACTIONS=NOT_RUN_REMOTE

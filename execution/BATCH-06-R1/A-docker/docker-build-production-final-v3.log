@@ -1,0 +1,83 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.47kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:22.14.0-bookworm-slim
+#2 DONE 0.1s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 275B done
+#3 DONE 0.0s
+
+#4 [build  1/11] FROM docker.io/library/node:22.14.0-bookworm-slim@sha256:1c18d9ab3af4585870b92e4dbc5cac5a0dc77dd13df1a5905cea89fc720eb05b
+#4 resolve docker.io/library/node:22.14.0-bookworm-slim@sha256:1c18d9ab3af4585870b92e4dbc5cac5a0dc77dd13df1a5905cea89fc720eb05b 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 4.42kB 0.2s done
+#5 DONE 0.2s
+
+#6 [build 10/11] RUN pnpm --dir apps/backend build
+#6 CACHED
+
+#7 [build 11/11] RUN pnpm prune --prod
+#7 CACHED
+
+#8 [runtime 4/8] COPY --from=build --chown=medusa:medusa /app/node_modules /app/node_modules
+#8 CACHED
+
+#9 [build  2/11] WORKDIR /app
+#9 CACHED
+
+#10 [build  3/11] COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+#10 CACHED
+
+#11 [runtime 6/8] COPY --from=build --chown=medusa:medusa /app/apps/backend/.medusa/server /app/apps/backend/.medusa/server
+#11 CACHED
+
+#12 [runtime 2/8] WORKDIR /app/apps/backend/.medusa/server
+#12 CACHED
+
+#13 [build  8/11] RUN pnpm install --frozen-lockfile
+#13 CACHED
+
+#14 [runtime 5/8] COPY --from=build --chown=medusa:medusa /app/apps/backend/node_modules /app/apps/backend/node_modules
+#14 CACHED
+
+#15 [build  5/11] RUN pnpm config set registry "https://registry.npmmirror.com"
+#15 CACHED
+
+#16 [build  4/11] RUN npm install --global --ignore-scripts --registry="https://registry.npmmirror.com" pnpm@10.11.1
+#16 CACHED
+
+#17 [build  6/11] COPY apps/backend/package.json apps/backend/package.json
+#17 CACHED
+
+#18 [runtime 3/8] RUN corepack enable && useradd --create-home --uid 10001 medusa
+#18 CACHED
+
+#19 [build  9/11] COPY apps/backend apps/backend
+#19 CACHED
+
+#20 [build  7/11] COPY apps/storefront/package.json apps/storefront/package.json
+#20 CACHED
+
+#21 [runtime 7/8] COPY deploy/medusa/entrypoint.sh /app/entrypoint.sh
+#21 CACHED
+
+#22 [runtime 8/8] RUN sed -i 's/\r$//' /app/entrypoint.sh   && chmod 0555 /app/entrypoint.sh   && test -f /app/apps/backend/.medusa/server/medusa-config.js   && test -f /app/apps/backend/.medusa/server/package.json   && test -f /app/apps/backend/node_modules/@medusajs/cli/cli.js
+#22 DONE 0.3s
+
+#23 exporting to image
+#23 exporting layers 0.1s done
+#23 exporting manifest sha256:80c997fe8c8ad9f12302b50ff49391ee7726083d3ea38f49b5d420f7b9bd0cd6 0.0s done
+#23 exporting config sha256:394c412b4d89bd29f40ae45fb957727fdd03661f118ecd692c48800e0061fe7e 0.0s done
+#23 exporting attestation manifest sha256:5baf3bc3ec24ac610eda337c38f6e2e61f367a2163ae0da0e178972cb8890365 0.0s done
+#23 exporting manifest list sha256:c809f71df1dea9f5234a05c8db29924f5647fad134a56d08eb6d9bde9b67e591 0.0s done
+#23 naming to docker.io/library/cb-batch06-r1-medusa:20260908 done
+#23 unpacking to docker.io/library/cb-batch06-r1-medusa:20260908 0.0s done
+#23 DONE 0.3s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/5jhm9cj1llp0w4ps62oz4oe24

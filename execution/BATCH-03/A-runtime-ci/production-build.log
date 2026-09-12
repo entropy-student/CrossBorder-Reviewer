@@ -1,0 +1,61 @@
+
+> dtc-starter-monorepo@ verify:build C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base
+> pnpm -r build
+
+[WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.overrides". See https://pnpm.io/settings for the new home of each setting.
+Scope: 2 of 3 workspace projects
+apps/storefront build$ next build
+apps/backend build$ medusa build
+apps/storefront build:    ▲ Next.js 15.5.24
+apps/storefront build:    - Environments: .env.local
+apps/storefront build:    Creating an optimized production build ...
+apps/backend build: [32minfo[39m:    redisUrl not found. A fake redis instance will be used.
+apps/backend build: [32minfo[39m:    Generating types...
+apps/backend build: [32minfo[39m:    No link to load from C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\node_modules\.pnpm\@medusajs+draft-order@2.19._ab547186112aa2cacb92323532778ff2\node_modules\@medusajs\draft-order\.medusa\server\src\links. skipped.
+apps/backend build: [32minfo[39m:    Types generated successfully
+apps/backend build: [32minfo[39m:    Linting project...
+apps/backend build: C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\backend\src\modules\paypal\transport.ts
+apps/backend build:    79:50  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+apps/backend build:   100:72  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+apps/backend build:   138:49  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+apps/backend build:   147:84  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+apps/backend build:   154:49  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+apps/backend build:   166:49  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+apps/backend build:   178:49  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+apps/backend build: ✖ 7 problems (0 errors, 7 warnings)
+apps/backend build: [33mwarn[39m:    Lint produced 7 warning(s).
+apps/backend build: [32minfo[39m:    Starting build...
+apps/backend build: [32minfo[39m:    Compiling backend source...
+apps/backend build: [32minfo[39m:    Removing existing ".medusa\server" folder
+apps/backend build: [32minfo[39m:    Compiling frontend source...
+apps/storefront build:  ✓ Compiled successfully in 15.7s
+apps/storefront build:    Linting and checking validity of types ...
+apps/backend build: [32minfo[39m:    Backend build completed successfully (13.88s)
+apps/storefront build: ./src/modules/checkout/components/shipping/index.tsx
+apps/storefront build: 119:6  Warning: React Hook useEffect has missing dependencies: '_pickupMethods', '_shippingMethods', 'cart.id', and 'shippingMethodId'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+apps/storefront build: ./src/modules/checkout/components/shipping-address/index.tsx
+apps/storefront build: 84:6  Warning: React Hook useEffect has a missing dependency: 'customer.email'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+apps/storefront build: ./src/modules/products/components/product-actions/index.tsx
+apps/storefront build: 104:6  Warning: React Hook useEffect has missing dependencies: 'pathname', 'router', and 'searchParams'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+apps/storefront build: info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+apps/storefront build:    Collecting page data ...
+apps/storefront build: Failed to generate static paths for product pages: fetch failed.
+apps/storefront build: [TypeError: fetch failed] {
+apps/storefront build:   [cause]: Error: connect ECONNREFUSED 127.0.0.1:19600
+apps/storefront build:       at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:19600) {
+apps/storefront build:     errno: -4078,
+apps/storefront build:     code: 'ECONNREFUSED',
+apps/storefront build:     syscall: 'connect',
+apps/storefront build:     address: '127.0.0.1',
+apps/storefront build:     port: 19600
+apps/storefront build:   }
+apps/storefront build: }
+apps/storefront build: > Build error occurred
+apps/storefront build: [Error: Failed to collect page data for /[countryCode]/categories/[...category]] {
+apps/storefront build:   type: 'Error'
+apps/storefront build: }
+apps/storefront build: Failed
+C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\storefront:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @dtc/storefront@1.0.3 build: `next build`
+Exit status 1
+ ELIFECYCLE  Command failed with exit code 1.

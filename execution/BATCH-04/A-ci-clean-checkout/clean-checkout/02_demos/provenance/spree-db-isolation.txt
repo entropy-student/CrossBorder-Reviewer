@@ -1,0 +1,10 @@
+prebuilt_compose=docker-compose.yml
+prebuilt_postgres_image=postgres:16-alpine
+prebuilt_project=spree-demo
+prebuilt_physical_volume=spree-demo_postgres_data
+source_compose=docker-compose.dev.yml
+source_postgres_image=postgres:18-alpine
+source_project=spree-demo-source (required for CB-DEV-016)
+source_physical_volume=spree-demo-source_postgres_data (required for CB-DEV-016)
+guard=04_docs/scripts/91-check-spree-db-isolation.ps1
+status=logical volume names overlap in compose files; distinct project names produce distinct physical volumes. Do not let PostgreSQL 16 and 18 access the same physical volume.

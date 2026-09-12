@@ -1,0 +1,28 @@
+
+> @dtc/backend@0.0.1 build C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\backend
+> medusa build
+
+[32minfo[39m:    redisUrl not found. A fake redis instance will be used.
+[32minfo[39m:    Generating types...
+[32minfo[39m:    No link to load from C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\node_modules\.pnpm\@medusajs+draft-order@2.19._ab547186112aa2cacb92323532778ff2\node_modules\@medusajs\draft-order\.medusa\server\src\links. skipped.
+[32minfo[39m:    Types generated successfully
+[32minfo[39m:    Linting project...
+
+C:\Users\34707\Documents\ChatGPT\跨境电商\CrossBorder-Independent-Store\03_template\medusa-crossborder-base\apps\backend\src\modules\paypal\transport.ts
+   66:50   warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+   87:72   warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+  105:108  warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+  124:49   warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+  133:84   warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+  140:49   warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+  152:49   warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+  164:49   warning  Throw `MedusaError` instead of a generic `Error`. Use `new MedusaError(MedusaError.Types.X, "...")` so the error maps to the correct HTTP status  @medusajs/use-medusa-error-not-generic-error
+
+✖ 8 problems (0 errors, 8 warnings)
+[33mwarn[39m:    Lint produced 8 warning(s).
+[32minfo[39m:    Starting build...
+[32minfo[39m:    Compiling backend source...
+[32minfo[39m:    Removing existing ".medusa\server" folder
+[32minfo[39m:    Compiling frontend source...
+[32minfo[39m:    Backend build completed successfully (12.42s)
+[32minfo[39m:    Frontend build completed successfully (50.14s)

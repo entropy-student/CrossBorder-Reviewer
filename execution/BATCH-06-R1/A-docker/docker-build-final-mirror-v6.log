@@ -1,0 +1,381 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.37kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:22.14.0-bookworm-slim
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 275B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 DONE 0.0s
+
+#5 [build  1/11] FROM docker.io/library/node:22.14.0-bookworm-slim@sha256:1c18d9ab3af4585870b92e4dbc5cac5a0dc77dd13df1a5905cea89fc720eb05b
+#5 resolve docker.io/library/node:22.14.0-bookworm-slim@sha256:1c18d9ab3af4585870b92e4dbc5cac5a0dc77dd13df1a5905cea89fc720eb05b 0.0s done
+#5 DONE 0.0s
+
+#6 [runtime 2/7] WORKDIR /app/apps/backend/.medusa/server
+#6 CACHED
+
+#7 [runtime 3/7] RUN corepack enable && useradd --create-home --uid 10001 medusa
+#7 CACHED
+
+#4 [internal] load build context
+#4 transferring context: 4.42kB 0.1s done
+#4 DONE 0.1s
+
+#8 [build  2/11] WORKDIR /app
+#8 CACHED
+
+#9 [build  3/11] COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+#9 CACHED
+
+#10 [build  4/11] RUN npm install --global --ignore-scripts --registry="https://registry.npmmirror.com" pnpm@10.11.1
+#10 CACHED
+
+#11 [build  5/11] RUN pnpm config set registry "https://registry.npmmirror.com"
+#11 DONE 1.0s
+
+#12 [build  6/11] COPY apps/backend/package.json apps/backend/package.json
+#12 DONE 0.0s
+
+#13 [build  7/11] COPY apps/storefront/package.json apps/storefront/package.json
+#13 DONE 0.0s
+
+#14 [build  8/11] RUN pnpm install --frozen-lockfile
+#14 0.764 Scope: all 3 workspace projects
+#14 0.893 Lockfile is up to date, resolution step is skipped
+#14 1.022 Progress: resolved 1, reused 0, downloaded 0, added 0
+#14 1.272 Packages: +1481
+#14 1.272 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#14 2.023 Progress: resolved 1481, reused 0, downloaded 0, added 0
+#14 3.563 Progress: resolved 1481, reused 0, downloaded 1, added 0
+#14 3.794 
+#14 3.794    ╭─────────────────────────────────────────╮
+#14 3.794    │                                         │
+#14 3.794    │   Update available! 10.11.1 → 12.3.4.   │
+#14 3.794    │   Changelog: https://pnpm.io/v/12.3.4   │
+#14 3.794    │    To update, run: pnpm add -g pnpm     │
+#14 3.794    │                                         │
+#14 3.794    ╰─────────────────────────────────────────╯
+#14 3.794 
+#14 4.566 Progress: resolved 1481, reused 0, downloaded 11, added 13
+#14 5.563 Progress: resolved 1481, reused 0, downloaded 22, added 25
+#14 6.564 Progress: resolved 1481, reused 0, downloaded 30, added 33
+#14 7.565 Progress: resolved 1481, reused 0, downloaded 45, added 49
+#14 8.565 Progress: resolved 1481, reused 0, downloaded 54, added 58
+#14 9.567 Progress: resolved 1481, reused 0, downloaded 71, added 75
+#14 10.57 Progress: resolved 1481, reused 0, downloaded 89, added 93
+#14 11.57 Progress: resolved 1481, reused 0, downloaded 94, added 97
+#14 12.57 Progress: resolved 1481, reused 0, downloaded 101, added 106
+#14 13.57 Progress: resolved 1481, reused 0, downloaded 104, added 109
+#14 14.57 Progress: resolved 1481, reused 0, downloaded 116, added 123
+#14 15.57 Progress: resolved 1481, reused 0, downloaded 118, added 126
+#14 16.57 Progress: resolved 1481, reused 0, downloaded 120, added 128
+#14 17.57 Progress: resolved 1481, reused 0, downloaded 124, added 133
+#14 18.57 Progress: resolved 1481, reused 0, downloaded 130, added 138
+#14 19.57 Progress: resolved 1481, reused 0, downloaded 136, added 145
+#14 20.57 Progress: resolved 1481, reused 0, downloaded 141, added 152
+#14 21.57 Progress: resolved 1481, reused 0, downloaded 148, added 159
+#14 22.57 Progress: resolved 1481, reused 0, downloaded 150, added 161
+#14 23.00  WARN  GET https://registry.npmmirror.com/fetch-event-stream/-/fetch-event-stream-0.1.6.tgz error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#14 23.57 Progress: resolved 1481, reused 0, downloaded 154, added 165
+#14 24.57 Progress: resolved 1481, reused 0, downloaded 159, added 170
+#14 25.57 Progress: resolved 1481, reused 0, downloaded 165, added 176
+#14 26.57 Progress: resolved 1481, reused 0, downloaded 172, added 183
+#14 27.57 Progress: resolved 1481, reused 0, downloaded 181, added 191
+#14 28.57 Progress: resolved 1481, reused 0, downloaded 189, added 201
+#14 29.57 Progress: resolved 1481, reused 0, downloaded 199, added 211
+#14 30.58 Progress: resolved 1481, reused 0, downloaded 210, added 222
+#14 31.58 Progress: resolved 1481, reused 0, downloaded 216, added 228
+#14 32.58 Progress: resolved 1481, reused 0, downloaded 221, added 233
+#14 33.58 Progress: resolved 1481, reused 0, downloaded 225, added 236
+#14 34.58 Progress: resolved 1481, reused 0, downloaded 231, added 243
+#14 34.64  WARN  GET https://registry.npmmirror.com/js-tokens/-/js-tokens-4.0.0.tgz error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#14 35.58 Progress: resolved 1481, reused 0, downloaded 232, added 244
+#14 36.58 Progress: resolved 1481, reused 0, downloaded 236, added 248
+#14 37.58 Progress: resolved 1481, reused 0, downloaded 244, added 256
+#14 38.58 Progress: resolved 1481, reused 0, downloaded 253, added 265
+#14 39.58 Progress: resolved 1481, reused 0, downloaded 260, added 272
+#14 40.58 Progress: resolved 1481, reused 0, downloaded 264, added 276
+#14 41.58 Progress: resolved 1481, reused 0, downloaded 268, added 281
+#14 42.58 Progress: resolved 1481, reused 0, downloaded 276, added 289
+#14 43.58 Progress: resolved 1481, reused 0, downloaded 278, added 291
+#14 44.58 Progress: resolved 1481, reused 0, downloaded 285, added 299
+#14 45.58 Progress: resolved 1481, reused 0, downloaded 287, added 301
+#14 46.58 Progress: resolved 1481, reused 0, downloaded 293, added 307
+#14 47.58 Progress: resolved 1481, reused 0, downloaded 294, added 308
+#14 48.40  WARN  GET https://registry.npmmirror.com/bignumber.js/-/bignumber.js-9.3.1.tgz error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#14 48.58 Progress: resolved 1481, reused 0, downloaded 296, added 310
+#14 49.58 Progress: resolved 1481, reused 0, downloaded 300, added 314
+#14 50.55  WARN  GET https://registry.npmmirror.com/@types/node/-/node-17.0.21.tgz error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#14 50.58 Progress: resolved 1481, reused 0, downloaded 303, added 317
+#14 51.43  WARN  GET https://registry.npmmirror.com/redis-errors/-/redis-errors-1.2.0.tgz error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#14 51.58 Progress: resolved 1481, reused 0, downloaded 306, added 322
+#14 52.58 Progress: resolved 1481, reused 0, downloaded 309, added 325
+#14 53.59 Progress: resolved 1481, reused 0, downloaded 315, added 331
+#14 54.59 Progress: resolved 1481, reused 0, downloaded 321, added 337
+#14 55.59 Progress: resolved 1481, reused 0, downloaded 323, added 339
+#14 56.59 Progress: resolved 1481, reused 0, downloaded 326, added 342
+#14 57.59 Progress: resolved 1481, reused 0, downloaded 334, added 350
+#14 58.59 Progress: resolved 1481, reused 0, downloaded 341, added 357
+#14 59.59 Progress: resolved 1481, reused 0, downloaded 351, added 367
+#14 60.59 Progress: resolved 1481, reused 0, downloaded 354, added 370
+#14 61.18  WARN  GET https://registry.npmmirror.com/@webassemblyjs/floating-point-hex-parser/-/floating-point-hex-parser-1.13.2.tgz error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#14 61.59 Progress: resolved 1481, reused 0, downloaded 358, added 374
+#14 62.59 Progress: resolved 1481, reused 0, downloaded 365, added 381
+#14 63.34  WARN  GET https://registry.npmmirror.com/@webassemblyjs/utf8/-/utf8-1.13.2.tgz error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#14 63.59 Progress: resolved 1481, reused 0, downloaded 371, added 386
+#14 64.59 Progress: resolved 1481, reused 0, downloaded 377, added 393
+#14 65.59 Progress: resolved 1481, reused 0, downloaded 382, added 399
+#14 66.59 Progress: resolved 1481, reused 0, downloaded 386, added 403
+#14 67.59 Progress: resolved 1481, reused 0, downloaded 391, added 408
+#14 68.59 Progress: resolved 1481, reused 0, downloaded 394, added 411
+#14 69.59 Progress: resolved 1481, reused 0, downloaded 406, added 423
+#14 69.70  WARN  GET https://registry.npmmirror.com/define-data-property/-/define-data-property-1.1.4.tgz error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#14 70.59 Progress: resolved 1481, reused 0, downloaded 410, added 427
+#14 71.59 Progress: resolved 1481, reused 0, downloaded 416, added 433
+#14 72.59 Progress: resolved 1481, reused 0, downloaded 421, added 438
+#14 73.59 Progress: resolved 1481, reused 0, downloaded 426, added 443
+#14 74.59 Progress: resolved 1481, reused 0, downloaded 439, added 456
+#14 75.59 Progress: resolved 1481, reused 0, downloaded 451, added 468
+#14 76.59 Progress: resolved 1481, reused 0, downloaded 455, added 472
+#14 77.59 Progress: resolved 1481, reused 0, downloaded 461, added 478
+#14 78.59 Progress: resolved 1481, reused 0, downloaded 465, added 482
+#14 79.59 Progress: resolved 1481, reused 0, downloaded 467, added 484
+#14 80.59 Progress: resolved 1481, reused 0, downloaded 472, added 489
+#14 81.59 Progress: resolved 1481, reused 0, downloaded 479, added 496
+#14 82.59 Progress: resolved 1481, reused 0, downloaded 489, added 506
+#14 83.59 Progress: resolved 1481, reused 0, downloaded 501, added 518
+#14 84.59 Progress: resolved 1481, reused 0, downloaded 507, added 524
+#14 85.59 Progress: resolved 1481, reused 0, downloaded 511, added 528
+#14 86.59 Progress: resolved 1481, reused 0, downloaded 516, added 533
+#14 87.60 Progress: resolved 1481, reused 0, downloaded 522, added 539
+#14 88.60 Progress: resolved 1481, reused 0, downloaded 530, added 547
+#14 89.60 Progress: resolved 1481, reused 0, downloaded 535, added 551
+#14 90.60 Progress: resolved 1481, reused 0, downloaded 540, added 557
+#14 91.60 Progress: resolved 1481, reused 0, downloaded 547, added 564
+#14 92.60 Progress: resolved 1481, reused 0, downloaded 554, added 571
+#14 93.60 Progress: resolved 1481, reused 0, downloaded 561, added 579
+#14 94.60 Progress: resolved 1481, reused 0, downloaded 572, added 591
+#14 95.60 Progress: resolved 1481, reused 0, downloaded 581, added 600
+#14 96.60 Progress: resolved 1481, reused 0, downloaded 589, added 608
+#14 97.60 Progress: resolved 1481, reused 0, downloaded 598, added 617
+#14 98.60 Progress: resolved 1481, reused 0, downloaded 605, added 624
+#14 99.60 Progress: resolved 1481, reused 0, downloaded 610, added 629
+#14 100.6 Progress: resolved 1481, reused 0, downloaded 615, added 634
+#14 101.6 Progress: resolved 1481, reused 0, downloaded 621, added 640
+#14 102.6 Progress: resolved 1481, reused 0, downloaded 625, added 644
+#14 103.6 Progress: resolved 1481, reused 0, downloaded 632, added 651
+#14 104.8 Progress: resolved 1481, reused 0, downloaded 638, added 657
+#14 105.8 Progress: resolved 1481, reused 0, downloaded 647, added 666
+#14 106.8 Progress: resolved 1481, reused 0, downloaded 653, added 672
+#14 107.8 Progress: resolved 1481, reused 0, downloaded 662, added 681
+#14 108.8 Progress: resolved 1481, reused 0, downloaded 674, added 693
+#14 109.8 Progress: resolved 1481, reused 0, downloaded 680, added 699
+#14 110.8 Progress: resolved 1481, reused 0, downloaded 690, added 709
+#14 111.8 Progress: resolved 1481, reused 0, downloaded 698, added 717
+#14 112.8 Progress: resolved 1481, reused 0, downloaded 708, added 727
+#14 113.8 Progress: resolved 1481, reused 0, downloaded 716, added 735
+#14 114.8 Progress: resolved 1481, reused 0, downloaded 724, added 743
+#14 115.8 Progress: resolved 1481, reused 0, downloaded 735, added 754
+#14 116.8 Progress: resolved 1481, reused 0, downloaded 746, added 765
+#14 117.8  WARN  GET https://registry.npmmirror.com/sponge-case/-/sponge-case-1.0.1.tgz error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#14 117.8 Progress: resolved 1481, reused 0, downloaded 758, added 776
+#14 118.8 Progress: resolved 1481, reused 0, downloaded 770, added 789
+#14 119.8 Progress: resolved 1481, reused 0, downloaded 784, added 803
+#14 120.8 Progress: resolved 1481, reused 0, downloaded 792, added 811
+#14 121.8 Progress: resolved 1481, reused 0, downloaded 801, added 820
+#14 122.8 Progress: resolved 1481, reused 0, downloaded 812, added 831
+#14 123.8 Progress: resolved 1481, reused 0, downloaded 827, added 846
+#14 124.8 Progress: resolved 1481, reused 0, downloaded 836, added 855
+#14 125.8 Progress: resolved 1481, reused 0, downloaded 840, added 859
+#14 126.8 Progress: resolved 1481, reused 0, downloaded 849, added 868
+#14 127.8 Progress: resolved 1481, reused 0, downloaded 861, added 880
+#14 128.8 Progress: resolved 1481, reused 0, downloaded 874, added 892
+#14 129.8 Progress: resolved 1481, reused 0, downloaded 885, added 904
+#14 130.8 Progress: resolved 1481, reused 0, downloaded 896, added 915
+#14 131.8 Progress: resolved 1481, reused 0, downloaded 901, added 920
+#14 132.8 Progress: resolved 1481, reused 0, downloaded 907, added 926
+#14 133.8 Progress: resolved 1481, reused 0, downloaded 917, added 936
+#14 134.8 Progress: resolved 1481, reused 0, downloaded 924, added 943
+#14 135.8 Progress: resolved 1481, reused 0, downloaded 932, added 951
+#14 136.8 Progress: resolved 1481, reused 0, downloaded 936, added 955
+#14 137.8 Progress: resolved 1481, reused 0, downloaded 940, added 959
+#14 138.8 Progress: resolved 1481, reused 0, downloaded 945, added 963
+#14 139.8 Progress: resolved 1481, reused 0, downloaded 947, added 966
+#14 140.8 Progress: resolved 1481, reused 0, downloaded 952, added 970
+#14 141.8 Progress: resolved 1481, reused 0, downloaded 959, added 978
+#14 142.8 Progress: resolved 1481, reused 0, downloaded 968, added 987
+#14 143.8 Progress: resolved 1481, reused 0, downloaded 979, added 998
+#14 144.8 Progress: resolved 1481, reused 0, downloaded 987, added 1005
+#14 145.8 Progress: resolved 1481, reused 0, downloaded 993, added 1012
+#14 146.8 Progress: resolved 1481, reused 0, downloaded 999, added 1018
+#14 147.8 Progress: resolved 1481, reused 0, downloaded 1010, added 1029
+#14 148.8 Progress: resolved 1481, reused 0, downloaded 1013, added 1032
+#14 149.8 Progress: resolved 1481, reused 0, downloaded 1021, added 1039
+#14 150.8 Progress: resolved 1481, reused 0, downloaded 1028, added 1047
+#14 151.8 Progress: resolved 1481, reused 0, downloaded 1035, added 1054
+#14 152.8 Progress: resolved 1481, reused 0, downloaded 1038, added 1057
+#14 153.9 Progress: resolved 1481, reused 0, downloaded 1045, added 1064
+#14 154.1  WARN  GET https://registry.npmmirror.com/react-remove-scroll/-/react-remove-scroll-2.5.4.tgz error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#14 154.9 Progress: resolved 1481, reused 0, downloaded 1050, added 1069
+#14 155.9 Progress: resolved 1481, reused 0, downloaded 1057, added 1076
+#14 156.9 Progress: resolved 1481, reused 0, downloaded 1063, added 1082
+#14 157.9 Progress: resolved 1481, reused 0, downloaded 1066, added 1085
+#14 158.9 Progress: resolved 1481, reused 0, downloaded 1071, added 1090
+#14 159.1  WARN  GET https://registry.npmmirror.com/cookie/-/cookie-1.1.1.tgz error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#14 159.9 Progress: resolved 1481, reused 0, downloaded 1075, added 1093
+#14 160.9 Progress: resolved 1481, reused 0, downloaded 1080, added 1099
+#14 161.9 Progress: resolved 1481, reused 0, downloaded 1084, added 1102
+#14 162.9 Progress: resolved 1481, reused 0, downloaded 1089, added 1108
+#14 163.9 Progress: resolved 1481, reused 0, downloaded 1094, added 1113
+#14 164.9 Progress: resolved 1481, reused 0, downloaded 1097, added 1115
+#14 165.9 Progress: resolved 1481, reused 0, downloaded 1104, added 1123
+#14 166.9 Progress: resolved 1481, reused 0, downloaded 1113, added 1132
+#14 167.9 Progress: resolved 1481, reused 0, downloaded 1114, added 1133
+#14 168.9 Progress: resolved 1481, reused 0, downloaded 1125, added 1143
+#14 169.9 Progress: resolved 1481, reused 0, downloaded 1136, added 1155
+#14 169.9  WARN  GET https://registry.npmmirror.com/@posthog/types/-/types-1.407.0.tgz error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#14 170.9 Progress: resolved 1481, reused 0, downloaded 1143, added 1162
+#14 171.9 Progress: resolved 1481, reused 0, downloaded 1152, added 1171
+#14 172.9 Progress: resolved 1481, reused 0, downloaded 1161, added 1180
+#14 173.9 Progress: resolved 1481, reused 0, downloaded 1165, added 1184
+#14 174.9 Progress: resolved 1481, reused 0, downloaded 1173, added 1191
+#14 175.9 Progress: resolved 1481, reused 0, downloaded 1178, added 1197
+#14 176.9 Progress: resolved 1481, reused 0, downloaded 1180, added 1199
+#14 177.9 Progress: resolved 1481, reused 0, downloaded 1186, added 1205
+#14 178.9 Progress: resolved 1481, reused 0, downloaded 1192, added 1211
+#14 179.9 Progress: resolved 1481, reused 0, downloaded 1202, added 1221
+#14 180.9 Progress: resolved 1481, reused 0, downloaded 1208, added 1227
+#14 181.9 Progress: resolved 1481, reused 0, downloaded 1218, added 1237
+#14 182.9 Progress: resolved 1481, reused 0, downloaded 1224, added 1243
+#14 183.9 Progress: resolved 1481, reused 0, downloaded 1232, added 1251
+#14 184.9 Progress: resolved 1481, reused 0, downloaded 1245, added 1264
+#14 185.9 Progress: resolved 1481, reused 0, downloaded 1256, added 1275
+#14 186.9 Progress: resolved 1481, reused 0, downloaded 1267, added 1286
+#14 187.9 Progress: resolved 1481, reused 0, downloaded 1280, added 1299
+#14 188.9 Progress: resolved 1481, reused 0, downloaded 1292, added 1311
+#14 189.9 Progress: resolved 1481, reused 0, downloaded 1302, added 1321
+#14 190.9 Progress: resolved 1481, reused 0, downloaded 1309, added 1328
+#14 191.9 Progress: resolved 1481, reused 0, downloaded 1313, added 1332
+#14 192.9 Progress: resolved 1481, reused 0, downloaded 1318, added 1337
+#14 193.9 Progress: resolved 1481, reused 0, downloaded 1330, added 1349
+#14 194.9 Progress: resolved 1481, reused 0, downloaded 1337, added 1356
+#14 195.9 Progress: resolved 1481, reused 0, downloaded 1346, added 1365
+#14 196.9 Progress: resolved 1481, reused 0, downloaded 1354, added 1373
+#14 197.9 Progress: resolved 1481, reused 0, downloaded 1365, added 1384
+#14 198.9 Progress: resolved 1481, reused 0, downloaded 1376, added 1395
+#14 199.9 Progress: resolved 1481, reused 0, downloaded 1390, added 1409
+#14 200.9 Progress: resolved 1481, reused 0, downloaded 1398, added 1417
+#14 201.9 Progress: resolved 1481, reused 0, downloaded 1405, added 1424
+#14 202.9 Progress: resolved 1481, reused 0, downloaded 1413, added 1432
+#14 203.9 Progress: resolved 1481, reused 0, downloaded 1424, added 1443
+#14 204.9 Progress: resolved 1481, reused 0, downloaded 1427, added 1446
+#14 205.9 Progress: resolved 1481, reused 0, downloaded 1435, added 1454
+#14 206.9 Progress: resolved 1481, reused 0, downloaded 1443, added 1462
+#14 207.9 Progress: resolved 1481, reused 0, downloaded 1449, added 1468
+#14 208.9 Progress: resolved 1481, reused 0, downloaded 1452, added 1471
+#14 209.9 Progress: resolved 1481, reused 0, downloaded 1454, added 1473
+#14 210.9 Progress: resolved 1481, reused 0, downloaded 1458, added 1477
+#14 211.9 Progress: resolved 1481, reused 0, downloaded 1459, added 1478
+#14 219.4 Progress: resolved 1481, reused 0, downloaded 1460, added 1478
+#14 220.4 Progress: resolved 1481, reused 0, downloaded 1460, added 1479
+#14 221.4 Progress: resolved 1481, reused 0, downloaded 1461, added 1479
+#14 222.4 Progress: resolved 1481, reused 0, downloaded 1461, added 1480
+#14 223.3 Progress: resolved 1481, reused 0, downloaded 1462, added 1481, done
+#14 225.1 
+#14 225.1 devDependencies:
+#14 225.1 + @medusajs/eslint-plugin 2.19.0
+#14 225.1 + eslint 9.39.5
+#14 225.1 + jiti 2.7.0
+#14 225.1 + prettier 3.9.6
+#14 225.1 + turbo 2.10.12
+#14 225.1 
+#14 225.1 ╭ Warning ─────────────────────────────────────────────────────────────────────╮
+#14 225.1 │                                                                              │
+#14 225.1 │   Ignored build scripts: @medusajs/telemetry, @swc/core, esbuild,            │
+#14 225.1 │   msgpackr-extract, protobufjs, unrs-resolver.                               │
+#14 225.1 │   Run "pnpm approve-builds" to pick which dependencies should be allowed     │
+#14 225.1 │   to run scripts.                                                            │
+#14 225.1 │                                                                              │
+#14 225.1 ╰──────────────────────────────────────────────────────────────────────────────╯
+#14 225.1 
+#14 225.2 Done in 3m 44.9s using pnpm v10.11.1
+#14 DONE 226.4s
+
+#15 [build  9/11] COPY apps/backend apps/backend
+#15 DONE 2.6s
+
+#16 [build 10/11] RUN pnpm --dir apps/backend build
+#16 1.406 
+#16 1.406 > @dtc/backend@0.0.1 build /app/apps/backend
+#16 1.406 > medusa build
+#16 1.406 
+#16 2.075 ╔════════════════════════════════════════════════════════════════════════╗
+#16 2.075 ║                                                                        ║
+#16 2.075 ║   Medusa collects anonymous usage analytics                            ║
+#16 2.075 ║   to help improve Medusa for all users.                                ║
+#16 2.075 ║                                                                        ║
+#16 2.075 ║   If you'd like to opt-out, you can use `medusa telemetry --disable`   ║
+#16 2.075 ║                                                                        ║
+#16 2.075 ║                                                                        ║
+#16 2.075 ╚════════════════════════════════════════════════════════════════════════╝
+#16 4.731 info:    redisUrl not found. A fake redis instance will be used.
+#16 4.768 info:    Generating types...
+#16 4.784 info:    No link to load from /app/node_modules/.pnpm/@medusajs+draft-order@2.19.0_@medusajs+admin-sdk@2.19.0_@medusajs+cli@2.19.0_@types+nod_ab547186112aa2cacb92323532778ff2/node_modules/@medusajs/draft-order/.medusa/server/src/links. skipped.
+#16 5.762 info:    Types generated successfully
+#16 5.984 info:    Linting project...
+#16 7.241 info:    Starting build...
+#16 7.617 info:    Compiling backend source...
+#16 7.617 info:    Removing existing ".medusa/server" folder
+#16 14.01 info:    Compiling frontend source...
+#16 14.01 info:    Backend build completed successfully (6.40s)
+#16 40.91 info:    Frontend build completed successfully (26.91s)
+#16 DONE 41.4s
+
+#17 [build 11/11] RUN pnpm --filter @dtc/backend deploy --prod --legacy /app/medusa-deploy
+#17 0.828  WARN  Shared workspace lockfile detected but configuration forces legacy deploy implementation.
+#17 0.921 Packages are copied from the content-addressable store to the virtual store.
+#17 0.921   Content-addressable store is at: /root/.local/share/pnpm/store/v10
+#17 0.921   Virtual store is at:             medusa-deploy/node_modules/.pnpm
+#17 2.306 Progress: resolved 1, reused 0, downloaded 0, added 0
+#17 3.310 Progress: resolved 2, reused 0, downloaded 0, added 0
+#17 3.686  WARN  GET https://registry.npmmirror.com/@medusajs%2Ffile-s3 error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#17 3.695  WARN  GET https://registry.npmmirror.com/@medusajs%2Fcaching-redis error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#17 3.697  WARN  GET https://registry.npmmirror.com/@medusajs%2Fcaching error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#17 3.704  WARN  GET https://registry.npmmirror.com/@medusajs%2Fworkflow-engine-redis error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#17 3.705  WARN  GET https://registry.npmmirror.com/@medusajs%2Fdraft-order error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#17 3.707  WARN  GET https://registry.npmmirror.com/@medusajs%2Fmedusa error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#17 3.708  WARN  GET https://registry.npmmirror.com/@medusajs%2Fadmin-sdk error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#17 3.709  WARN  GET https://registry.npmmirror.com/react-i18next error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#17 3.710  WARN  GET https://registry.npmmirror.com/@medusajs%2Flocking-redis error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#17 3.711  WARN  GET https://registry.npmmirror.com/@tanstack%2Freact-query error (ECONNRESET). Will retry in 10 seconds. 2 retries left.
+#17 4.310 Progress: resolved 4, reused 0, downloaded 0, added 0
+#17 5.311 Progress: resolved 7, reused 0, downloaded 0, added 0
+#17 6.312 Progress: resolved 9, reused 0, downloaded 0, added 0
+#17 6.894 apps/backend                             |  WARN  deprecated eslint@9.39.4
+#17 7.313 Progress: resolved 15, reused 0, downloaded 0, added 0
+#17 8.313 Progress: resolved 19, reused 0, downloaded 0, added 0
+#17 9.313 Progress: resolved 20, reused 0, downloaded 0, added 0
+#17 9.605 .                                        |  WARN  deprecated eslint@9.39.5
+#17 10.31 Progress: resolved 24, reused 0, downloaded 0, added 0
+#17 11.32 Progress: resolved 28, reused 0, downloaded 0, added 0
+#17 12.32 Progress: resolved 34, reused 0, downloaded 0, added 0
+#17 13.32 Progress: resolved 43, reused 0, downloaded 0, added 0
+#17 14.32 Progress: resolved 46, reused 0, downloaded 0, added 0
+#17 15.32 Progress: resolved 54, reused 0, downloaded 0, added 0
+#17 16.28  WARN  GET https://registry.npmmirror.com/@medusajs%2Fmedusa error (ECONNRESET). Will retry in 1 minute. 1 retries left.
+#17 16.28  WARN  GET https://registry.npmmirror.com/@medusajs%2Fworkflow-engine-redis error (ECONNRESET). Will retry in 1 minute. 1 retries left.
+#17 16.29  WARN  GET https://registry.npmmirror.com/@medusajs%2Fadmin-sdk error (ECONNRESET). Will retry in 1 minute. 1 retries left.
+#17 16.29  WARN  GET https://registry.npmmirror.com/@tanstack%2Freact-query error (ECONNRESET). Will retry in 1 minute. 1 retries left.
+#17 16.30  WARN  GET https://registry.npmmirror.com/react-i18next error (ECONNRESET). Will retry in 1 minute. 1 retries left.
+#17 16.32 Progress: resolved 59, reused 0, downloaded 0, added 0
+#17 17.62 Progress: resolved 60, reused 0, downloaded 0, added 0
+#17 18.62 Progress: resolved 62, reused 0, downloaded 0, added 0
+#17 19.62 Progress: resolved 64, reused 0, downloaded 0, added 0
+#17 20.62 Progress: resolved 65, reused 0, downloaded 0, added 0

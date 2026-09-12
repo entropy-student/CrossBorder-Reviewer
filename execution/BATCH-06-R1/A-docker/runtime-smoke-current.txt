@@ -1,0 +1,7 @@
+uid=10001(medusa) gid=10001(medusa) groups=10001(medusa)
+PWD=/app/apps/backend/.medusa/server
+medusa:medusa 755 /app/apps/backend/.medusa/server
+v22.14.0
+ARTIFACT_CONFIG=present
+ARTIFACT_PACKAGE=present
+CLI=present
