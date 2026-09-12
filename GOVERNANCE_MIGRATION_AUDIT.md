@@ -34,7 +34,7 @@ CrossBorder-Reviewer/
 ├── REVIEWER_HANDOFF.md        # only current Reviewer truth
 ├── EXECUTOR_HANDOFF.md        # current/last Executor facts
 ├── EXECUTION_EVIDENCE.md      # evidence index
-├── reviewer/                  # historical formal Reviewer decisions
+├── reviewer/                  # formal Reviewer decisions / history
 ├── tasks/                     # historical/current Gate prompts
 ├── execution/                 # execution facts, logs, results
 ├── evidence/                  # supporting evidence
@@ -85,9 +85,9 @@ The root `01_...` through `07_...` reports remain useful dated Review material, 
 - Kept historical batch evidence in place; evidence provenance is more valuable than physically moving old files.
 - Removed/ignored generated Jest cache because it is neither source nor durable evidence.
 
-## 6. Remaining documentation debt
+## 6. Documentation debt identified at migration time
 
-The dated `01_...` through `07_...` full-review reports contain old findings and should not be mass-rewritten. During P0 current-state rebase, each material finding will be classified as:
+The dated `01_...` through `07_...` full-review reports contain old findings and should not be mass-rewritten. The migration therefore required a P0 current-state rebase using four classifications:
 
 - `CONFIRMED_CURRENT`
 - `OBSOLETE_FIXED`
@@ -100,4 +100,18 @@ This avoids rewriting history while preventing stale conclusions from being trea
 
 `GOVERNANCE_NORMALIZATION = PASS`
 
-The next technical step is a read-only current-state rebase defined in `REVIEWER_HANDOFF.md`. No legacy execution batch is automatically authorized by this migration.
+At migration time, the next technical step was the read-only P0 current-state rebase. No legacy execution batch was automatically authorized.
+
+## 8. Closure update — 2026-09-12
+
+The documentation debt above is now closed:
+
+- `reviewer/P0-CURRENT-STATE-REBASE/REVIEW_DECISION.md` records `P0_CURRENT_STATE_REBASE=PASS`;
+- `reviewer/P0-CURRENT-STATE-REBASE/FINDING_REBASE_MATRIX.md` classifies the historical material findings with the four required labels;
+- source comparison found no application/runtime/payment/storefront code drift after the reviewed baseline, so accepted local Gates were not rerun solely due to governance migration;
+- root `REVIEWER_HANDOFF.md` now authorizes one bounded next Gate;
+- current execution prompt is `tasks/P1-RECONCILIATION-DURABILITY.md`;
+- historical BATCH-07 is not resumed automatically;
+- hosted Sandbox, external provider transactions and Live remain closed.
+
+Current authority remains root `REVIEWER_HANDOFF.md`; this audit is a migration record, not a competing status document.
