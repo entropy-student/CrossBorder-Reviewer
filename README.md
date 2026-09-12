@@ -1,6 +1,6 @@
 # CrossBorder Reviewer
 
-This repository contains review history for `entropy-student/CrossBorder`.
+This repository contains the current Reviewer handoff plus review/execution history for `entropy-student/CrossBorder`.
 
 ## Canonical entry
 
@@ -11,9 +11,9 @@ This repository contains review history for `entropy-student/CrossBorder`.
 
 ## Directory meaning
 
-- `reviewer/`: historical formal review decisions.
-- `tasks/`: historical Gate prompts.
-- `execution/`: historical execution reports and logs.
+- `reviewer/`: formal Reviewer decisions; closed decisions remain history after the handoff advances.
+- `tasks/`: Reviewer Gate prompts; a task is current only when root `REVIEWER_HANDOFF.md` names it.
+- `execution/`: execution reports/logs/evidence; historical by default, with new current-Gate evidence added only after actual execution.
 - `evidence/`: supporting artifacts.
 - `01_...` through `07_...`: dated 2026-09-05 review baseline; useful history, not current handoff.
 
