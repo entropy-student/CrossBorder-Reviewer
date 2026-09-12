@@ -9,11 +9,15 @@ Before cleanup:
 
 `entropy-student/CrossBorder@f2a8a589f377b3d63e37978159b16fc2c3e5b838`
 
-After cleanup:
+Cleanup checkpoint:
 
 `entropy-student/CrossBorder@b57dd733e73c08a8bfa6c0c9b0765d5652226189`
 
-Git comparison confirms that this cleanup changed documentation/history only. No file under the active application snapshot (`review-source/`) changed.
+Current documentation-aligned source:
+
+`entropy-student/CrossBorder@a04fdc0aa75ae96dcb5d2388da81023ff4017f15`
+
+Git comparison from the pre-cleanup source to the current source shows documentation/history changes only. No file under the active application snapshot (`review-source/`) changed.
 
 All removed material remains recoverable from Git history. The cleanup does not rewrite or destroy history.
 
@@ -26,7 +30,7 @@ All removed material remains recoverable from Git history. The cleanup does not 
 - old document-cleanup/source-markdown/workspace-migration validation reports;
 - the entire historical `archive/` tree.
 
-`DEPENDENCY_AUDIT_TRIAGE.md` was not deleted; it was reduced to a small historical pointer because a fresh dependency/security review is still required before production.
+`DEPENDENCY_AUDIT_TRIAGE.md` was retained only as a small historical pointer because a fresh dependency/security review is still required before production.
 
 ## Removed from active operations documents
 
@@ -38,12 +42,12 @@ These were historical selection/review/evidence material rather than current pro
 
 ## Intentionally retained
 
-- active application snapshot under `review-source/`;
+- application snapshot under `review-source/`;
 - project-local runbook and Windows preflight;
-- external prerequisites and refreshed fulfillment-readiness contract;
+- refreshed external prerequisites and fulfillment-readiness contract;
 - product and UI contracts;
 - deployment status;
-- payment documents needed to describe existing source/reference work and support a future external-system intake;
+- payment documents needed to describe retained source/reference work and support the future external-system intake;
 - one source-side `REVIEWER_HANDOFF.md` pointer to the canonical Reviewer repository;
 - refreshed `README.md`, `DOCUMENT_INDEX.md`, `ROADMAP.md`, and `PRODUCTION_READINESS.md`.
 
