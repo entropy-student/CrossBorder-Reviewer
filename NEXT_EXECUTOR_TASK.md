@@ -4,8 +4,10 @@ This file is retained only for compatibility with older links.
 
 The active Gate is selected only by [`REVIEWER_HANDOFF.md`](REVIEWER_HANDOFF.md).
 
-Current execution Gate: **NONE**.
+Current execution Gate: **UI_MOTHER_TEMPLATE_FOUNDATION**.
 
-The former `P1 RECONCILIATION DURABILITY & STORAGE CONSISTENCY` Gate was superseded before execution after the Owner chose to integrate payment and fulfillment with another already-running system.
+Prompt: [`tasks/UI-MOTHER-TEMPLATE-FOUNDATION.md`](tasks/UI-MOTHER-TEMPLATE-FOUNDATION.md)
 
-When the project resumes, the expected next Gate is a read-only `EXTERNAL_PAYMENT_FULFILLMENT_SYSTEM_INTAKE` issued by the Reviewer.
+Working branch: `entropy-student/CrossBorder:ui/storefront-mother-template-v1`
+
+The former reconciliation Gate remains superseded before execution. Future external-system intake remains deferred until the UI mother-template foundation and visual reference pass are ready for the next architecture checkpoint.
