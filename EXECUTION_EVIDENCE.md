@@ -10,47 +10,36 @@
 - Cross-batch supporting artifacts: `evidence/`
 - Current Reviewer truth: `REVIEWER_HANDOFF.md`
 
-## Current Gate evidence boundary
+## Current evidence boundary
 
 ### P0 CURRENT-STATE REBASE — CLOSED
 
 Reviewer decision: `reviewer/P0-CURRENT-STATE-REBASE/REVIEW_DECISION.md`  
 Finding rebase: `reviewer/P0-CURRENT-STATE-REBASE/FINDING_REBASE_MATRIX.md`
 
-Reviewer source-state evidence:
+P0 established the current authority model and confirmed no application-code drift in the reviewed source comparison.
 
-- reviewed application baseline: `CrossBorder@0f51a313a745d6977f1a6863485680f837c4814e`;
-- current inspected source head: `CrossBorder@f2a8a589f377b3d63e37978159b16fc2c3e5b838`;
-- Git comparison: four commits ahead; changed files are only `00_HANDOFF.md`, `CURRENT_STATE.md`, `DOCUMENT_INDEX.md`, and `REVIEWER_HANDOFF.md`;
-- no application/runtime/payment/storefront source drift was found by that comparison.
+### SOURCE REPOSITORY CLEANUP — CLOSED
 
-P0 performed read-only source/review inspection plus Reviewer-repository documentation updates. It did not execute runtime writes, provider calls, transactions or deployment.
+Reviewer decision: `reviewer/SOURCE-REPO-CLEANUP-2026-09-12/REVIEW_DECISION.md`  
+Cleanup record: `evidence/source-repo-cleanup/2026-09-12_SOURCE_REPO_CLEANUP.md`
 
-### P1 RECONCILIATION DURABILITY — ACTIVE / NO EXECUTION EVIDENCE YET
+Key facts:
 
-Authorized prompt: `tasks/P1-RECONCILIATION-DURABILITY.md`
+- pre-cleanup source: `CrossBorder@f2a8a589f377b3d63e37978159b16fc2c3e5b838`;
+- post-cleanup source: `CrossBorder@b57dd733e73c08a8bfa6c0c9b0765d5652226189`;
+- Git comparison shows documentation/history changes only;
+- no file under `review-source/` changed;
+- historical review/archive material remains recoverable from Git history;
+- current source docs were realigned to the external payment/fulfillment integration direction.
 
-Expected detailed evidence directory after execution:
+### Prior P1 RECONCILIATION DURABILITY — SUPERSEDED BEFORE EXECUTION
 
-`execution/P1-RECONCILIATION-DURABILITY/`
+The former P1 prompt remains under `tasks/` as history, but no P1 execution evidence exists because the Gate was superseded before execution after the Owner changed the intended payment/fulfillment architecture.
 
-Until Executor runs P1 and records actual facts, no P1 PASS/RETURN inference is allowed.
+No `execution/P1-RECONCILIATION-DURABILITY/` evidence is expected unless a future Reviewer explicitly reactivates that path.
 
-Minimum P1 evidence expected:
-
-- source commit/diff summary;
-- command exit status;
-- canonical provider-resource identity read-back;
-- concurrent claim/replay/apply counts;
-- restart recovery from `received` and `dispatch_requested` boundaries;
-- pending refund convergence and mismatch fail-closed behavior;
-- real project-local reconciliation caller proof;
-- isolated PostgreSQL persistence evidence;
-- customer-payment fail-closed regression;
-- `external_payment_api_calls=0`;
-- cleanup result and no-Secret-recorded statement.
-
-## Historical evidence most relevant to current work
+## Historical evidence most relevant to retained application source
 
 ### BATCH-06-R1
 
@@ -96,16 +85,16 @@ Primary evidence:
 - `execution/BATCH-07/B-sandbox-receiver/`
 - Reviewer decision: `reviewer/BATCH-07/REVIEW_DECISION.md`
 
-The historical BATCH-07 Owner-action blocker does not block current P1 because P1 is local, reversible and explicitly forbids hosted deployment/provider transactions.
+BATCH-07 is historical and must not be resumed automatically.
 
-## Legacy evidence
+## Future evidence
 
-BATCH-01 through BATCH-06 and RT-* evidence is preserved for audit/history. A historical execution document can describe an observed result, but it cannot override a later Reviewer decision or the current `REVIEWER_HANDOFF.md`.
+The project is paused. When work resumes, the next expected Gate is a read-only `EXTERNAL_PAYMENT_FULFILLMENT_SYSTEM_INTAKE`. Evidence should describe only actual observed capabilities of the existing external system and must not infer integration behavior that has not been verified.
 
 ## Evidence rules going forward
 
 1. Record facts that can be independently checked.
-2. Keep values requiring confidentiality out of ordinary evidence.
+2. Keep confidential values out of ordinary evidence.
 3. A successful command or test does not equal a Gate PASS.
 4. Cleanup/regression is part of the same Gate evidence boundary.
 5. `PASS_CANDIDATE != PASS`.
