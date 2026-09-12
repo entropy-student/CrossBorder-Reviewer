@@ -15,7 +15,7 @@ Cleanup checkpoint:
 
 Current documentation-aligned source:
 
-`entropy-student/CrossBorder@a04fdc0aa75ae96dcb5d2388da81023ff4017f15`
+`entropy-student/CrossBorder@b973fc65df5b25658da4be14b2eb562eb12bbd18`
 
 Git comparison from the pre-cleanup source to the current source shows documentation/history changes only. No file under the active application snapshot (`review-source/`) changed.
 
