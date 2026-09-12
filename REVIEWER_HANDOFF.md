@@ -8,7 +8,7 @@
 ## 1. Goal and current source
 
 - Final goal: a usable, verifiable, recoverable and safe-to-launch CrossBorder store.
-- Current source head: `entropy-student/CrossBorder@a04fdc0aa75ae96dcb5d2388da81023ff4017f15`.
+- Current source head: `entropy-student/CrossBorder@b973fc65df5b25658da4be14b2eb562eb12bbd18`.
 - Reviewed application baseline: `0f51a313a745d6977f1a6863485680f837c4814e`.
 - Cleanup/realignment comparison from `f2a8a589f377b3d63e37978159b16fc2c3e5b838` to the current source head changes documentation/history only; no file under `review-source/` changed.
 
