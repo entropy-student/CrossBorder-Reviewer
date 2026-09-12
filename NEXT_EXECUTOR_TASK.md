@@ -1,11 +1,11 @@
 # Legacy Task Pointer
 
-This file is retained for compatibility with older links.
+This file is retained only for compatibility with older links.
 
 The active Gate is selected only by [`REVIEWER_HANDOFF.md`](REVIEWER_HANDOFF.md).
 
-Current execution Gate: **P1 RECONCILIATION DURABILITY & STORAGE CONSISTENCY**.
+Current execution Gate: **NONE**.
 
-Canonical prompt: [`tasks/P1-RECONCILIATION-DURABILITY.md`](tasks/P1-RECONCILIATION-DURABILITY.md).
+The former `P1 RECONCILIATION DURABILITY & STORAGE CONSISTENCY` Gate was superseded before execution after the Owner chose to integrate payment and fulfillment with another already-running system.
 
-P0 current-state rebase is closed with Reviewer PASS. Historical batch prompts remain under [`tasks/`](tasks/) and must not be resumed automatically.
+When the project resumes, the expected next Gate is a read-only `EXTERNAL_PAYMENT_FULFILLMENT_SYSTEM_INTAKE` issued by the Reviewer.
