@@ -11,9 +11,9 @@
 ## 1. Project Goal
 
 - Final goal: make the CrossBorder independent store usable, verifiable, recoverable, and safe to launch.
-- Current source head before cleanup: `entropy-student/CrossBorder@f2a8a589f377b3d63e37978159b16fc2c3e5b838`.
+- Current source head after cleanup: `entropy-student/CrossBorder@b57dd733e73c08a8bfa6c0c9b0765d5652226189`.
 - Reviewed application baseline: `entropy-student/CrossBorder@0f51a313a745d6977f1a6863485680f837c4814e`.
-- P0 source comparison found no application/runtime/payment/storefront code drift between those revisions; only governance/document files changed.
+- Cleanup comparison from `f2a8a589f377b3d63e37978159b16fc2c3e5b838` to the current source head changed documentation/history only; no file under `review-source/` changed.
 
 ## 2. Authority / Source of Truth
 
@@ -33,10 +33,10 @@ The source repository must not maintain a competing Reviewer state.
 - Application snapshot: `CrossBorder/review-source/03_template/medusa-crossborder-base/`.
 - Data/persistence: PostgreSQL; Redis exists in the reviewed production-oriented path.
 - Storefront payment exposure: fail-closed by default.
-- Existing source contains a PayPal AUTHORIZE/no-auto-capture provider and reconciliation scaffold.
-- **Owner direction changed on 2026-09-12:** future payment and fulfillment should integrate with another already-running system instead of continuing as a fully self-developed CrossBorder payment/fulfillment stack.
-- The external system identity, API surface, order ownership and integration contract are currently `UNKNOWN` and must not be guessed.
-- Existing PayPal/reconciliation code is preserved as historical/reference implementation only until a future intake decides whether any part is reused.
+- Existing source still contains a PayPal AUTHORIZE/no-auto-capture provider and reconciliation scaffold.
+- Owner direction: future payment and fulfillment should integrate with another already-running system instead of continuing as a fully self-developed CrossBorder payment/fulfillment stack.
+- The external system identity, API surface, order ownership and integration contract are `UNKNOWN` until a future read-only intake.
+- Existing PayPal/reconciliation code is preserved as historical/reference implementation only.
 - Production deployment/storage topology remains unsealed.
 
 ## 4. Current State
@@ -44,14 +44,15 @@ The source repository must not maintain a competing Reviewer state.
 ```text
 Governance normalization to v0.1.6                  ✅ PASS
 P0 CURRENT-STATE REBASE                              ✅ PASS
-Source repository documentation cleanup              ← ACTIVE / documentation-only
+Source repository documentation cleanup              ✅ PASS
 Prior P1 RECONCILIATION DURABILITY                   ⛔ SUPERSEDED BEFORE EXECUTION
 External payment/fulfillment integration intake       ⏸ FUTURE / NOT STARTED
+Active Executor Gate                                 NONE
 Hosted Sandbox / external transaction                 🔒 CLOSED
 Live payment / production enablement                  🔒 CLOSED
 ```
 
-No Executor Gate is active during this cleanup/pause.
+The project is intentionally paused after cleanup.
 
 ## 5. Accepted Baselines
 
@@ -63,45 +64,31 @@ Historical evidence remains accepted only with its original scope:
 - BATCH-06-R1 webhook persistence/concurrency evidence: PASS WITH SCOPE only.
 - BATCH-07 external preflight facts: accepted as observations only.
 - P0 current-state rebase: PASS for governance/source-state reconciliation only.
+- Source repository cleanup: PASS for documentation/history cleanup only.
 
 No decision has accepted hosted Sandbox E2E, Live payment, production inventory, production fulfillment, or production deployment.
 
-## 6. Current Documentation Gate — SOURCE REPOSITORY CLEANUP
+## 6. Cleanup Result
 
-Goal: remove review/evidence/history clutter from the active source tree while preserving recoverability through Git history and the Reviewer repository.
+Formal decision: [`reviewer/SOURCE-REPO-CLEANUP-2026-09-12/REVIEW_DECISION.md`](reviewer/SOURCE-REPO-CLEANUP-2026-09-12/REVIEW_DECISION.md)
 
-Allowed:
-- source/reviewer documentation edits;
-- deletion of historical review/evidence files from the active source tree;
-- creation of cleanup indexes/pointers;
-- architecture-status correction to reflect the Owner's external-system direction.
+Evidence: [`evidence/source-repo-cleanup/2026-09-12_SOURCE_REPO_CLEANUP.md`](evidence/source-repo-cleanup/2026-09-12_SOURCE_REPO_CLEANUP.md)
 
-Forbidden:
-- business/runtime source-code deletion;
-- external API calls;
-- transactions;
-- production data/inventory writes;
-- DNS/cloud/Shared Infra changes;
-- Secret handling;
-- implementation of the new external integration.
-
-Rollback: Git history.
-
-Cleanup evidence: [`evidence/source-repo-cleanup/2026-09-12_SOURCE_REPO_CLEANUP.md`](evidence/source-repo-cleanup/2026-09-12_SOURCE_REPO_CLEANUP.md).
+The active source repository now keeps current source/project contracts rather than historical review packages. Removed material remains recoverable through Git history.
 
 ## 7. Confirmed Facts
 
-- Existing application code still contains the previously reviewed Medusa/Next/PayPal implementation.
-- The previous P1 reconciliation Gate had not yet been executed when the Owner changed direction.
+- Existing application code remains intact under the reviewed source snapshot.
+- The former P1 reconciliation Gate was never started and was superseded by Owner direction.
 - The new external payment/fulfillment system has not yet been inspected in this project.
-- Therefore no adapter shape, order source of truth, inventory sync rule, callback contract or fulfillment ownership may be declared yet.
+- No adapter shape, order source of truth, inventory sync rule, callback contract or fulfillment ownership is currently authorized as fact.
 - Live payment and production enablement remain closed.
 
 ## 8. UNKNOWN / Open Risks
 
 - external payment/fulfillment system identity and repository;
 - API/SDK/hosted-checkout/plugin surfaces;
-- whether Medusa or the external system owns the final customer order;
+- final order source of truth;
 - refund/cancellation/idempotency/callback semantics;
 - fulfillment/tracking/inventory synchronization responsibilities;
 - deployment target and Shared VPS applicability;
@@ -112,7 +99,7 @@ Cleanup evidence: [`evidence/source-repo-cleanup/2026-09-12_SOURCE_REPO_CLEANUP.
 
 Payment, purchase/subscription, identity/account authorization, Secret creation/rotation, irreversible deletion, production enablement, and material business/compliance choices remain Owner-only.
 
-No Owner action is required for repository cleanup.
+No Owner action is required while the project is paused.
 
 ## 10. Future Resume Gate
 
@@ -120,13 +107,13 @@ When the Owner asks to resume this project, the next Gate is:
 
 `EXTERNAL_PAYMENT_FULFILLMENT_SYSTEM_INTAKE`
 
-It is read-only first. It must determine the existing system's integration surfaces, source-of-truth boundaries, transaction/refund/callback behavior, fulfillment/tracking responsibilities, inventory ownership and minimal adapter contract before any implementation work.
+It is read-only first. It must determine the existing system's integration surfaces, source-of-truth boundaries, transaction/refund/callback behavior, fulfillment/tracking responsibilities, inventory ownership and minimal adapter contract before implementation.
 
 ## 11. Status Summary
 
-- Overall progress: architecture and local foundations exist; business-critical transaction/fulfillment integration will be delegated to an existing system rather than fully rebuilt here.
-- Current activity: repository cleanup and documentation realignment only.
+- Overall progress: architecture/local foundations retained; transaction/fulfillment integration will reuse an existing running system rather than be fully rebuilt here.
+- Current activity: NONE — project paused after cleanup.
 - Active Executor Gate: NONE.
 - Previous P1: superseded before execution.
-- Next future technical step: external system intake, only when the project resumes.
+- Next future technical step: external system intake when the project resumes.
 - Owner intervention required now: NO.
