@@ -1,90 +1,22 @@
-# 跨境电商项目独立 Review
+# CrossBorder Reviewer
 
-审查日期：2026-09-05。以实际工作区为准，从源码、配置和数据重新判断，没有继承旧 Agent 的结论。主项目源码与现有文档没有修改；所有审查文档、探针、日志、新审计声明副本均在本目录。
+This repository contains review history for `entropy-student/CrossBorder`.
 
-## 1. 总体评价
+## Canonical entry
 
-**保留当前核心架构，暂不批准公网营业或真实收款。**
+- Current Reviewer state: [`REVIEWER_HANDOFF.md`](REVIEWER_HANDOFF.md)
+- Executor continuity: [`EXECUTOR_HANDOFF.md`](EXECUTOR_HANDOFF.md)
+- Evidence index: [`EXECUTION_EVIDENCE.md`](EXECUTION_EVIDENCE.md)
+- Migration notes: [`GOVERNANCE_MIGRATION_AUDIT.md`](GOVERNANCE_MIGRATION_AUDIT.md)
 
-项目是一个有较完整本地商品/购物车演示能力、经过界面定制的 Medusa + Next.js 原型，支付和商业运营仍未闭环。已经做对了不少基础工作：框架分层清楚、锁文件存在、真实素材和未知供应链事实没有混淆、真实支付默认关闭、支付金额与幂等键有约束、本地数据库有隔离措施。这些值得保留。
+## Directory meaning
 
-主要问题是**文档与局部测试提供的信心超过了实际约束**。既有测试全部通过仍不能发现：邮箱假成功、预览库存不能正确转正式库存、同退款重复记账、查单接受另一订单、样品hard fail不关闭采购gate、打包工具允许删除项目祖先。问题不是“所有代码都不好”，而是几个关键边界尚未兑现，且发布流程不会自动拦住它们。
+- `reviewer/`: historical formal review decisions.
+- `tasks/`: historical Gate prompts.
+- `execution/`: historical execution reports and logs.
+- `evidence/`: supporting artifacts.
+- `01_...` through `07_...`: dated 2026-09-05 review baseline; useful history, not current handoff.
 
-| 维度 | 判断 |
-|---|---|
-| 核心技术架构 | 可保留，无证据支持换平台/重写 |
-| 商品展示与本地技术订单 | 有较完整骨架；本次未重新启动运行验收 |
-| 自有数据管线 | 首个样例可跑，状态迁移/多变体/审批写入一致性不足 |
-| 客户交易与账户 | 存在具体可见缺陷，需补失败恢复和事实准确性 |
-| PayPal | 有默认拒绝的provider脚手架，真实transport/页面/事件闭环未完成 |
-| 安全 | 有基础保护，另有本地破坏性脚本风险和上线数据/支付边界缺口 |
-| 测试与可维护性 | 局部mock/fixture较多；统一验证入口、CI和状态变化测试不足 |
-| 生产/运营 | 部署、邮件、履约、退款对账、备份恢复、政策与经济验证未闭环 |
+`CURRENT_STATUS.md`, `NEXT_EXECUTOR_TASK.md`, and old batch documents are compatibility/history material. Do not use them as a second current source of truth.
 
-不使用虚假的“上线完成度百分比”：缺少一项资金/履约关键能力，就不能由UI或文档完成量抵消。
-
-## 2. 最重要的问题
-
-| 优先处理 | 问题 | 依据 |
-|---|---|---|
-| 立即 | staging参数可指向项目祖先/无关目录，随后无条件递归删除 | RT-01 |
-| 立即 | 仅凭过期PID杀进程树，可能误杀其他应用 | RT-02 |
-| 修复发布基础 | 根test未接后端测试；原Jest配置解析失败；build忽略类型/lint；缺源码根PR CI | RT-04 / SF-11 |
-| 公网前 | System Payment只在前端隐藏，生产沿用本地配置可从API绕过 | PAY-01 |
-| 公网前 | 成本、供应商和采购信息写入可公开metadata | PD-01 |
-| 下一轮商品工作前 | 预览转正式库存未恢复manage_inventory；样品失败和采购gate脱节，核实新事实反被BLOCKED | PD-02 / PD-06 / PD-07 |
-| 接入真实PayPal前 | 状态查询未核对订单、金额证据可缺失、退款重放重复累计、负面webhook action未落实处理 | PAY-02～05 |
-| 客户内测前 | 邮箱假成功、加购失败卡死、支付失败无恢复、GET转移写入、订单/商品缓存陈旧 | SF-01～05 |
-| 真实销售前 | 尚无可信付款→订单→发货→退款→通知→恢复闭环，履约和单位经济未知 | PAY-06 / PD-08 / RT-07 |
-
-P1的含义是“下一次相关高风险操作或上线前必须完成”，并非每项都是当前已发生事故。各专题清楚标明触发条件、静态证明/独立探针/尚需联测的边界。
-
-## 3. 建议修改的内容
-
-采用小批次、可验证的修复，不重写项目：
-
-1. 收紧文件删除、进程管理和服务身份检查；危险操作先验证归属。
-2. 建立唯一verify入口和源码根CI，把现有单测与新失败回归接进来；类型通过不再靠手工命令记忆。
-3. 把公开数据/私有采购资料拆开，统一dry-run与write映射，完整校验所有variant，明确库存模式切换。
-4. 将组件校验器从“固定UNKNOWN样例检查”改为“事实和证据的状态转换检查”，hard fail强制阻断采购。
-5. 修复客户可见假成功/卡死/空白/错误链接；订单与结账使用明确的新鲜度策略；读取页面不执行转移写操作。
-6. 按真实Medusa契约完成一个PayPal纵向切片：订单与金额绑定、授权/捕获/退款幂等、验签、事件持久化、负面事件与对账恢复。
-7. 准备最小生产运行与人工运营流程，验证一单钱货闭环后再扩展功能。
-
-## 4. 优先级和执行顺序
-
-| 顺序 | 工作包 | 完成标准 |
-|---|---|---|
-| A | 本地工具止损：RT-01/02/03 | 危险路径、stale PID、错误200实例均被无副作用拒绝 |
-| B | 可执行验证：RT-04、SF-11 | 一个命令执行真实测试；故意失败能拦CI；记录源码HEAD |
-| C1（与C2同步） | 商品样品/供应商/物流和成本：PD-06/07/08 | 事实可从未知升级，失败不开放采购；确定一种真实履约方式 |
-| C2（与C1同步） | PayPal商家/市场/沙箱能力 | 确认账户资格和可用产品，不用假transport推测 |
-| D | 小范围正确性修复：PD-01～05、SF-01～05/10/14、PAY-02～05 | 关键反例变成回归；私有信息、库存和资金状态可信 |
-| E | 单商品沙箱纵向闭环 | 授权/捕获/退款、重放/乱序/超时、关浏览器恢复、最后一件库存均通过 |
-| F | 上线候选：PAY-01、RT-05/07、政策/邮件/客服/备份恢复 | 公网API无fixture；一单真实履约测试；退款与恢复演练；所有P1关闭或功能未开放 |
-| G | 规模与体验：目录分页、SEO、a11y、文档精简、性能 | 按真实流量/目录规模推进，不抢关键闭环的时间 |
-
-不要将物流/商品可行性等到支付开发全部结束才调查。它们会改变总价、配送承诺、捕获/发货时点和售后规则。也不需要先实现全自动仓储；低单量人工处理可接受，前提是有责任人、记录与补救。
-
-## 5. 目前不应该修改
-
-- Medusa + Next.js + PostgreSQL核心选型、原生订单/支付契约、国家路由的基本分层。
-- 真实支付默认关闭、System Payment仅做本地测试、验签先行、十进制金额及幂等键设计。
-- 用户批准的真实产品图、既有视觉风格、未核实事实保留UNKNOWN的原则。
-- 不擅自切换网关，不把WorldFirst收款账户当checkout；不把参考adapter变成第二套资金引擎。
-- 不批量清历史档案/演示项目，不改无关代码，不加微服务/PIM/ERP/多网关/复杂营销。
-- 不为了audit归零做未经回归的全局major override；不因缓存有问题一律去掉所有公共内容缓存。
-
-“冻结UI”不应阻止修复假成功、无障碍和交易错误，但也不应成为再做一轮全站视觉重构的理由。
-
-## 报告导航
-
-- [架构、目录和文档](01_ARCHITECTURE_DOCUMENTS.md)
-- [支付与后端](02_PAYMENT_BACKEND.md)
-- [Storefront完整问题与验证矩阵](03_STOREFRONT.md)
-- [运行、安全脚本、依赖与发布](04_RUNTIME_DEPENDENCIES.md)
-- [商品、供应链与数据管线](05_PRODUCT_SUPPLY_CHAIN.md)
-- [验证证据与审查边界](06_VERIFICATION.md)
-- [全部问题索引](07_FINDING_INDEX.md)
-
-建议先按本页A～F组织修复，再打开对应专题逐项实施。不同报告重复涉及缓存/CI/支付边界时，应合并成一个修复任务；不必为每个文档编号单独改代码。
+Governance follows `VPS Project Governance v0.1.6`. `PASS_CANDIDATE` is not a formal PASS.
